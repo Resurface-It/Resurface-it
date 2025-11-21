@@ -226,3 +226,4 @@ Fonts are configured in `app/layout.tsx` and `app/globals.css`. Currently using:
 Proprietary - All rights reserved
 
 # Resurface-it
+# Resurface-it
