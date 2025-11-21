@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins } from 'next/font/google'
+import { Suspense } from 'react'
 import './globals.css'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
@@ -119,7 +120,9 @@ export default function RootLayout({
       </head>
       <body className="bg-surface text-slate-900">
         <AnalyticsScripts />
-        <PageViewTracker />
+        <Suspense fallback={null}>
+          <PageViewTracker />
+        </Suspense>
         <SiteHeader />
         <main className="pt-36 md:pt-40 lg:pt-44">{children}</main>
         <SiteFooter />
