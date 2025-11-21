@@ -1,5 +1,4 @@
 import { Section } from '@/components/Section'
-import { SectionHeader } from '@/components/SectionHeader'
 import { SmartEstimateForm } from '@/components/SmartEstimateForm'
 import { FAQAccordion } from '@/components/FAQAccordion'
 import { generateMetadata as genMeta } from '@/lib/seo'

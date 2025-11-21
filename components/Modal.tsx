@@ -3,7 +3,6 @@
 import { Fragment, ReactNode, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { X } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
 
 interface ModalProps {
   isOpen: boolean
