@@ -15,27 +15,33 @@ export const metadata: Metadata = genMeta({
 const contactFAQs = [
   {
     question: 'What happens after I submit this form?',
-    answer: 'We\'ll contact you within 24 hours (usually same day) to schedule a convenient time for your free, no-obligation estimate. We\'ll discuss your project goals, assess your home, and provide a detailed written estimate.',
+    answer: 'We&apos;ll contact you within 24 hours (usually same day) to schedule a convenient time for your free, no-obligation estimate. We&apos;ll discuss your project goals, assess your home, and provide a detailed written estimate.',
+    category: 'scheduling' as const,
   },
   {
     question: 'How fast will you contact me?',
     answer: 'We typically respond within 24 hours, often the same day. During peak season (spring/summer), we aim to respond within 4-6 hours during business hours.',
+    category: 'scheduling' as const,
   },
   {
     question: 'Is the estimate really free and no-obligation?',
-    answer: 'Yes, absolutely. The estimate is completely free with no obligation to proceed. We\'ll visit your home, assess your project, provide recommendations, and give you a detailed written estimate. There\'s no pressure—you decide when and if you want to move forward.',
+    answer: 'Yes, absolutely. The estimate is completely free with no obligation to proceed. We&apos;ll visit your home, assess your project, provide recommendations, and give you a detailed written estimate. There&apos;s no pressure—you decide when and if you want to move forward.',
+    category: 'scheduling' as const,
   },
   {
     question: 'How soon can you start?',
-    answer: 'Project start times vary by season. During peak season (spring/summer), we typically schedule 2-4 weeks out. During fall/winter, we can often start within 1-2 weeks. We\'ll discuss timeline options during your estimate.',
+    answer: 'Project start times vary by season. During peak season (spring/summer), we typically schedule 2-4 weeks out. During fall/winter, we can often start within 1-2 weeks. We&apos;ll discuss timeline options during your estimate.',
+    category: 'scheduling' as const,
   },
   {
     question: 'Do you offer financing?',
     answer: 'We work with several financing partners to offer flexible payment options. We can discuss financing options during your estimate visit to find a solution that works for your budget.',
+    category: 'scheduling' as const,
   },
   {
     question: 'Do I need to be home for the estimate?',
-    answer: 'Yes, we prefer you to be home so we can discuss your goals, answer questions, and show you material samples. However, if you need to reschedule, just let us know and we\'ll find another time that works.',
+    answer: 'Yes, we prefer you to be home so we can discuss your goals, answer questions, and show you material samples. However, if you need to reschedule, just let us know and we&apos;ll find another time that works.',
+    category: 'scheduling' as const,
   },
 ]
 
@@ -68,7 +74,7 @@ export default function ContactPage() {
                 <div className="mb-6 rounded-xl border-2 border-primary/20 bg-primary/5 p-6">
                   <h3 className="mb-3 text-xl font-semibold text-primary">Quick Response Guarantee</h3>
                   <p className="mb-2 text-slate-700">
-                    <strong>We'll contact you within 24 hours</strong> (usually same day) to schedule your free estimate visit.
+                    <strong>We&apos;ll contact you within 24 hours</strong> (usually same day) to schedule your free estimate visit.
                   </p>
                   <p className="text-sm text-slate-600">
                     During peak season, we aim to respond within 4-6 hours during business hours.
@@ -81,7 +87,7 @@ export default function ContactPage() {
                 <ul className="mb-6 space-y-3 text-slate-700">
                   <li className="flex items-start gap-3">
                     <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary" />
-                    <span><strong>Project assessment:</strong> We'll evaluate your home's condition and discuss your goals</span>
+                    <span><strong>Project assessment:</strong> We&apos;ll evaluate your home&apos;s condition and discuss your goals</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary" />
@@ -125,7 +131,7 @@ export default function ContactPage() {
               <div className="card mb-8">
                 <h2 className="mb-6 text-2xl font-semibold">Request Your Free Estimate</h2>
                 <p className="mb-6 text-sm text-slate-600">
-                  Fill out the form below and we'll contact you within 24 hours to schedule your free, no-obligation estimate.
+                  Fill out the form below and we&apos;ll contact you within 24 hours to schedule your free, no-obligation estimate.
                 </p>
                 <SmartEstimateForm />
               </div>

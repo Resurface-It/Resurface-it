@@ -82,7 +82,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
       <Section>
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-6 text-3xl">What's Included</h2>
+          <h2 className="mb-6 text-3xl">What&apos;s Included</h2>
           <ul className="mx-auto space-y-4 text-left max-w-2xl">
             {service.bullets.map((bullet, index) => (
               <li key={index} className="flex items-start gap-3">

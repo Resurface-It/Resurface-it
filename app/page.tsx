@@ -162,10 +162,10 @@ export default function HomePage() {
             <div>
               <h2 className="mb-6 text-3xl font-bold md:text-4xl">Siding & Painting With Purpose</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-700">
-                As Eugene, Albany, Corvallis, and Springfield's trusted siding and painting company, Resurface-it goes above and beyond to deliver top-tier craftsmanship and unmatched customer service—because your happiness is our mission.
+                As Eugene, Albany, Corvallis, and Springfield&apos;s trusted siding and painting company, Resurface-it goes above and beyond to deliver top-tier craftsmanship and unmatched customer service—because your happiness is our mission.
               </p>
               <p className="mb-6 text-lg leading-relaxed text-slate-700">
-                We're here to transform your home with a flawless experience from start to finish. Think of us as the best house guests you've ever had: respectful, tidy, and laser-focused on making your space shine. From{' '}
+                We&apos;re here to transform your home with a flawless experience from start to finish. Think of us as the best house guests you&apos;ve ever had: respectful, tidy, and laser-focused on making your space shine. From{' '}
                 <Link href="/services/siding-replacement" className="font-semibold text-primary hover:underline">
                   siding replacement
                 </Link>{' '}
@@ -314,7 +314,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">Get a Free Estimate in 24 Hours</h2>
             <p className="mb-8 text-lg text-white/90">
-              Ready to transform your home? Schedule your free, no-obligation estimate today. We'll visit your home, assess your project, and provide a detailed quote—no pressure, no obligation.
+              Ready to transform your home? Schedule your free, no-obligation estimate today. We&apos;ll visit your home, assess your project, and provide a detailed quote—no pressure, no obligation.
             </p>
             <PrimaryButton
               variant="large"

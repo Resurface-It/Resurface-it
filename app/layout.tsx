@@ -5,6 +5,7 @@ import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { AnalyticsScripts } from '@/components/analytics/AnalyticsScripts'
 import { PageViewTracker } from '@/components/analytics/PageViewTracker'
+import { Analytics } from '@vercel/analytics/next'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -122,6 +123,7 @@ export default function RootLayout({
         <SiteHeader />
         <main className="pt-36 md:pt-40 lg:pt-44">{children}</main>
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   )

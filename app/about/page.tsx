@@ -22,7 +22,7 @@ const values = [
   },
   {
     title: 'Local Expertise',
-    description: 'We understand Oregon\'s unique climate and building requirements, ensuring solutions that work for your home.',
+    description: 'We understand Oregon&apos;s unique climate and building requirements, ensuring solutions that work for your home.',
   },
   {
     title: 'Transparency',
@@ -54,13 +54,13 @@ export default function AboutPage() {
               investment for years to come.
             </p>
             <p className="mb-4 text-lg text-slate-700">
-              We understand that your home is more than just a building—it's where memories are made, 
-              where families grow, and where you've invested your hard-earned money. That's why we 
-              approach every project with the same care and attention to detail we'd want for our own homes.
+              We understand that your home is more than just a building—it&apos;s where memories are made, 
+              where families grow, and where you&apos;ve invested your hard-earned money. That&apos;s why we 
+              approach every project with the same care and attention to detail we&apos;d want for our own homes.
             </p>
             <p className="text-lg text-slate-700">
               With years of experience serving Eugene, Albany, Corvallis, Springfield, and surrounding 
-              communities, we've built a reputation for quality craftsmanship, honest communication, and 
+              communities, we&apos;ve built a reputation for quality craftsmanship, honest communication, and 
               results that exceed expectations.
             </p>
           </div>
@@ -86,7 +86,7 @@ export default function AboutPage() {
           <h2 className="mb-6 text-3xl">Our Experience</h2>
           <div className="prose prose-lg max-w-none">
             <p className="mb-4 text-lg text-slate-700">
-              Our team brings decades of combined experience in home exterior services. We've completed 
+              Our team brings decades of combined experience in home exterior services. We&apos;ve completed 
               hundreds of projects, from simple paint jobs to complete siding replacements, always 
               maintaining the highest standards of quality and professionalism.
             </p>
@@ -106,7 +106,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-4 text-3xl font-bold">Ready to Work Together?</h2>
           <p className="mb-6 text-lg text-primaryLight">
-            Let's discuss how we can help transform your home's exterior.
+            Let&apos;s discuss how we can help transform your home&apos;s exterior.
           </p>
           <PillBadge className="bg-white/20 text-white">
             Licensed & Insured • 5-Year Warranty • Free Estimates

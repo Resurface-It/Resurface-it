@@ -9,7 +9,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = genMeta({
   title: '5-Year Workmanship Warranty',
-  description: 'Learn about Resurface-it\'s comprehensive 5-year workmanship warranty that covers all our siding replacement and painting services.',
+  description: 'Learn about Resurface-it&apos;s comprehensive 5-year workmanship warranty that covers all our siding replacement and painting services.',
   path: '/warranty',
 })
 
@@ -67,7 +67,7 @@ export default function WarrantyPage() {
                 <div>
                   <strong className="text-slate-900">Material defects:</strong>
                   <span className="ml-2 text-slate-600">
-                    Defects in materials we supply, provided they're not due to normal wear and tear.
+                    Defects in materials we supply, provided they&apos;re not due to normal wear and tear.
                   </span>
                 </div>
               </li>
@@ -76,7 +76,7 @@ export default function WarrantyPage() {
                 <div>
                   <strong className="text-slate-900">Repair and replacement:</strong>
                   <span className="ml-2 text-slate-600">
-                    We'll repair or replace covered items at no cost to you, including labor and materials.
+                    We&apos;ll repair or replace covered items at no cost to you, including labor and materials.
                   </span>
                 </div>
               </li>
@@ -146,7 +146,7 @@ export default function WarrantyPage() {
                 <div>
                   <strong className="text-slate-900">Inspection:</strong>
                   <span className="ml-2 text-slate-600">
-                    We'll schedule a convenient time to inspect the issue and determine if it's covered under warranty.
+                    We&apos;ll schedule a convenient time to inspect the issue and determine if it&apos;s covered under warranty.
                   </span>
                 </div>
               </li>
@@ -157,7 +157,7 @@ export default function WarrantyPage() {
                 <div>
                   <strong className="text-slate-900">Resolution:</strong>
                   <span className="ml-2 text-slate-600">
-                    If covered, we'll schedule repairs at no cost to you and complete the work promptly.
+                    If covered, we&apos;ll schedule repairs at no cost to you and complete the work promptly.
                   </span>
                 </div>
               </li>
@@ -167,12 +167,12 @@ export default function WarrantyPage() {
           <h2 className="mb-6 text-3xl">Our Promise to You</h2>
           <div className="card">
             <p className="mb-4 text-lg text-slate-700">
-              We stand behind our work because we're confident in the quality of our craftsmanship 
+              We stand behind our work because we&apos;re confident in the quality of our craftsmanship 
               and materials. Our 5-year warranty reflects our commitment to your satisfaction and 
               the long-term protection of your investment.
             </p>
             <p className="text-lg text-slate-700">
-              When you choose Resurface-it, you're not just getting a contractor—you're getting a 
+              When you choose Resurface-it, you&apos;re not just getting a contractor—you&apos;re getting a 
               partner who will be there for you long after the project is complete.
             </p>
           </div>

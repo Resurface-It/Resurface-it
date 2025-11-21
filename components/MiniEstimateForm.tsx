@@ -207,7 +207,7 @@ export function MiniEstimateForm({ onSuccess }: MiniEstimateFormProps) {
         {isSubmitting ? 'Submitting...' : 'Get My Free Estimate'}
       </PrimaryButton>
       <p className="text-xs text-slate-500 text-center">
-        Free, no-obligation estimate. We'll contact you within 24 hours.
+        Free, no-obligation estimate. We&apos;ll contact you within 24 hours.
       </p>
     </form>
   )

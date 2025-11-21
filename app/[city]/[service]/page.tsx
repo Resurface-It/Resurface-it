@@ -63,7 +63,7 @@ export default async function CityServicePage({ params }: CityServicePageProps) 
             </h1>
             <p className="mb-8 text-xl text-slate-600">
               {city.name} homeowners trust Resurface-it for professional {service.name.toLowerCase()}. 
-              We understand the unique challenges of Oregon's climate and provide solutions that protect 
+              We understand the unique challenges of Oregon&apos;s climate and provide solutions that protect 
               and beautify your home for years to come.
             </p>
             <Link href="/contact">
@@ -80,8 +80,8 @@ export default async function CityServicePage({ params }: CityServicePageProps) 
           </h2>
           <div className="prose prose-lg max-w-none">
             <p className="text-lg text-slate-700">
-              Living in {city.name} means dealing with Oregon's unique weather patterns—from heavy 
-              winter rains to sunny summers. Your home's exterior needs protection that can withstand 
+              Living in {city.name} means dealing with Oregon&apos;s unique weather patterns—from heavy 
+              winter rains to sunny summers. Your home&apos;s exterior needs protection that can withstand 
               these conditions while maintaining its beauty and value.
             </p>
             <p className="text-lg text-slate-700">
@@ -90,7 +90,7 @@ export default async function CityServicePage({ params }: CityServicePageProps) 
               ensuring your investment lasts for years.
             </p>
             <p className="text-lg text-slate-700">
-              Whether you're dealing with aging siding, faded paint, or planning a complete exterior 
+              Whether you&apos;re dealing with aging siding, faded paint, or planning a complete exterior 
               transformation, we bring the expertise and attention to detail that {city.name} homeowners 
               deserve.
             </p>
@@ -103,7 +103,7 @@ export default async function CityServicePage({ params }: CityServicePageProps) 
           <div className="mx-auto max-w-4xl">
             <h3 className="mb-4 text-2xl font-semibold">Also Serving Nearby Areas</h3>
             <p className="mb-4 text-slate-600">
-              We're proud to serve {city.name} and surrounding communities including{' '}
+              We&apos;re proud to serve {city.name} and surrounding communities including{' '}
               {city.nearby.slice(0, -1).join(', ')}, and {city.nearby[city.nearby.length - 1]}.
             </p>
             <Link href="/areas-we-serve" className="text-primary hover:text-primaryDark">

@@ -3,7 +3,7 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react'
 import { motion } from 'framer-motion'
 
-interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface PrimaryButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag' | 'onDragEnd' | 'onDragStart' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'> {
   children: ReactNode
   variant?: 'default' | 'large'
 }
@@ -23,7 +23,7 @@ export function PrimaryButton({ children, variant = 'default', className = '', .
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       className={`${baseClasses} ${sizeClasses} ${bgClasses} shadow-md hover:shadow-lg ${className}`}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </motion.button>

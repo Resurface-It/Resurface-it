@@ -124,12 +124,12 @@ export default async function CityPage({ params }: CityPageProps) {
 
             {/* Main Headline */}
             <h1 className="mb-6 text-center text-4xl font-bold leading-tight text-white md:text-5xl lg:text-left lg:text-6xl">
-              {city.name}'s Premier Siding & Painting Services
+              {city.name}&apos;s Premier Siding & Painting Services
             </h1>
             
             {/* Subheadline */}
             <p className="mb-8 text-center text-xl text-white/95 md:text-2xl lg:text-left">
-              Professional home exterior services that protect your investment and enhance your home's value in {city.name}, Oregon
+              Professional home exterior services that protect your investment and enhance your home&apos;s value in {city.name}, Oregon
             </p>
 
             {/* CTAs */}
@@ -190,7 +190,7 @@ export default async function CityPage({ params }: CityPageProps) {
               </div>
               <h3 className="mb-3 text-xl font-bold text-slate-900">Reputation</h3>
               <p className="text-slate-600">
-                50+ five-star reviews! We're the siding & painting contractor of choice for {city.name} and surrounding areas.
+                50+ five-star reviews! We&apos;re the siding & painting contractor of choice for {city.name} and surrounding areas.
               </p>
             </div>
 
@@ -238,7 +238,7 @@ export default async function CityPage({ params }: CityPageProps) {
               </div>
               <h3 className="mb-3 text-xl font-bold text-slate-900">Quality</h3>
               <p className="text-slate-600">
-                Superior quality service and workmanship. We use premium materials designed for Oregon's unique climate.
+                Superior quality service and workmanship. We use premium materials designed for Oregon&apos;s unique climate.
               </p>
             </div>
 
@@ -250,7 +250,7 @@ export default async function CityPage({ params }: CityPageProps) {
               </div>
               <h3 className="mb-3 text-xl font-bold text-slate-900">Insurance</h3>
               <p className="text-slate-600">
-                We are fully insured, including liability and Workers' Compensation insurance. Your protection is our priority.
+                We are fully insured, including liability and Workers&apos; Compensation insurance. Your protection is our priority.
               </p>
             </div>
           </div>
@@ -285,7 +285,7 @@ export default async function CityPage({ params }: CityPageProps) {
               <h3 className="mb-4 text-2xl font-bold text-slate-900">Schedule Your Estimate</h3>
               <p className="text-slate-600">
                 Contact us at <PhoneLink phone={companyInfo.phone} className="font-semibold text-primary hover:underline">{companyInfo.phone}</PhoneLink> or request online. 
-                We'll schedule a convenient time to meet at your {city.name} home and discuss your project.
+                We&apos;ll schedule a convenient time to meet at your {city.name} home and discuss your project.
               </p>
             </div>
 
@@ -297,7 +297,7 @@ export default async function CityPage({ params }: CityPageProps) {
               </div>
               <h3 className="mb-4 text-2xl font-bold text-slate-900">Planning Your Project</h3>
               <p className="text-slate-600">
-                Meet with our project manager to plan and discuss all details before work begins. We'll review materials, 
+                Meet with our project manager to plan and discuss all details before work begins. We&apos;ll review materials, 
                 colors, timeline, and answer all your questions.
               </p>
             </div>
@@ -310,8 +310,8 @@ export default async function CityPage({ params }: CityPageProps) {
               </div>
               <h3 className="mb-4 text-2xl font-bold text-slate-900">Project Completed!</h3>
               <p className="text-slate-600">
-                Get the job done on time and to your satisfaction. We'll do a final walkthrough together to ensure 
-                everything meets our high standards. It's that easy with Resurface-it!
+                Get the job done on time and to your satisfaction. We&apos;ll do a final walkthrough together to ensure 
+                everything meets our high standards. It&apos;s that easy with Resurface-it!
               </p>
             </div>
           </div>
@@ -376,7 +376,7 @@ export default async function CityPage({ params }: CityPageProps) {
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="mb-4 text-3xl font-bold">Also Serving {city.name} and Surrounding Communities</h2>
             <p className="mb-8 text-lg text-slate-600">
-              We're proud to serve {city.name} and nearby areas. Our team is familiar with the unique needs 
+              We&apos;re proud to serve {city.name} and nearby areas. Our team is familiar with the unique needs 
               of homes throughout the region.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
@@ -422,7 +422,7 @@ export default async function CityPage({ params }: CityPageProps) {
                 <h3 className="mb-4 text-2xl font-semibold">Serving {city.name} Since Day One</h3>
                 <p className="mb-4 text-slate-600">
                   As a locally owned and operated business, we understand what {city.name} homeowners need. 
-                  From historic homes to new construction, we've worked on all types of properties throughout the area.
+                  From historic homes to new construction, we&apos;ve worked on all types of properties throughout the area.
                 </p>
                 <p className="text-slate-600">
                   Our commitment to quality, fair pricing, and excellent customer service has made us a trusted 
@@ -432,11 +432,11 @@ export default async function CityPage({ params }: CityPageProps) {
               <div>
                 <h3 className="mb-4 text-2xl font-semibold">Why {city.name} Homes Need Quality Exteriors</h3>
                 <p className="mb-4 text-slate-600">
-                  Oregon's climate can be tough on home exteriors. Heavy rainfall, temperature fluctuations, 
+                  Oregon&apos;s climate can be tough on home exteriors. Heavy rainfall, temperature fluctuations, 
                   and UV exposure can cause siding to deteriorate and paint to fade prematurely.
                 </p>
                 <p className="text-slate-600">
-                  That's why we use premium materials specifically designed for Pacific Northwest conditions. 
+                  That&apos;s why we use premium materials specifically designed for Pacific Northwest conditions. 
                   Whether you need new siding or a fresh coat of paint, we ensure your {city.name} home 
                   stays protected and beautiful for years to come.
                 </p>

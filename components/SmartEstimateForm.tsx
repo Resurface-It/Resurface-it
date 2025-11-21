@@ -132,7 +132,7 @@ export function SmartEstimateForm({ prefilledCity, prefilledService, onSuccess }
         <div className="mb-4 text-4xl">✓</div>
         <h3 className="mb-2 text-2xl font-semibold text-green-900">Thank you!</h3>
         <p className="text-green-700">
-          We've received your request and will contact you within 24 hours to schedule your free estimate.
+          We&apos;ve received your request and will contact you within 24 hours to schedule your free estimate.
         </p>
       </div>
     )
@@ -288,7 +288,7 @@ export function SmartEstimateForm({ prefilledCity, prefilledService, onSuccess }
           accept="image/*"
           className="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
         />
-        <p className="mt-1 text-xs text-slate-500">Upload photos of areas you'd like us to address</p>
+        <p className="mt-1 text-xs text-slate-500">Upload photos of areas you&apos;d like us to address</p>
       </div>
 
       {errors.submit && <p className="text-sm text-red-500">{errors.submit}</p>}
