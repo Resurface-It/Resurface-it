@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Optimize font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Prevent horizontal scrolling and zooming out */
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+  }
+
+  body {
+    @apply bg-surface text-slate-900 antialiased;
+    /* Prevent layout shift */
+    min-height: 100vh;
+    /* Prevent horizontal scrolling */
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+  }
+  
+  /* Ensure all elements respect viewport width */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  /* Prevent images and media from causing overflow */
+  img,
+  video,
+  iframe,
+  embed,
+  object {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Prevent any element from exceeding viewport */
+  body > * {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-semibold;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  h5 {
+    @apply text-lg md:text-xl;
+  }
+
+  h6 {
+    @apply text-base md:text-lg;
+  }
+
+  p {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+
+  ul,
+  ol {
+    @apply space-y-2;
+  }
+
+  a {
+    @apply transition-colors;
+    /* Ensure links are easily tappable on mobile */
+    @media (max-width: 768px) {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+  
+  /* Prevent text from being too small on mobile */
+  @media (max-width: 640px) {
+    body {
+      font-size: 16px; /* Prevent iOS zoom on input focus */
+    }
+    
+    input,
+    select,
+    textarea {
+      font-size: 16px !important; /* Prevent iOS zoom on input focus */
+    }
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-section-sm md:py-section;
+  }
+
+  .card {
+    @apply rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply shadow-lg border-primary/20;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Hide scrollbar but keep scrolling functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+    /* Optimize animation performance */
+    will-change: transform;
+    /* Ensure smooth rendering for seamless loop */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    /* Prevent subpixel rendering issues and enable hardware acceleration */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Force GPU acceleration on mobile */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Faster marquee on mobile */
+  @media (max-width: 768px) {
+    .animate-marquee {
+      animation: marquee 15s linear infinite;
+      /* Ensure animation works on mobile browsers */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    
+    /* Allow horizontal scrolling for brand marquee on mobile */
+    .brand-marquee-scroll {
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      max-width: 100vw !important;
+    }
+  }
+
+  /* Optimize image loading */
+  img {
+    content-visibility: auto;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    /* Ensure buttons and interactive elements meet touch target requirements */
+    button,
+    [role="button"],
+    input[type="submit"],
+    input[type="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Improve spacing on mobile */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    /* Better line height for readability on mobile */
+    p {
+      line-height: 1.75;
+    }
+    
+    /* Prevent horizontal scrolling on mobile */
+    html,
+    body {
+      overflow-x: hidden !important;
+      position: relative;
+      width: 100%;
+      max-width: 100vw;
+    }
+    
+    /* Ensure all containers respect viewport */
+    main,
+    section,
+    div {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+  }
+}
+

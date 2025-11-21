@@ -1,0 +1,32 @@
+'use client'
+
+import { CityCard } from './CityCard'
+import { CityBadge } from './CityBadge'
+import type { City } from '@/data/cities'
+
+interface CitiesGridProps {
+  cities: City[]
+  surroundingCities: string[]
+}
+
+export function CitiesGrid({ cities, surroundingCities }: CitiesGridProps) {
+  return (
+    <>
+      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {cities.map((city) => (
+          <CityCard key={city.slug} city={city} />
+        ))}
+      </div>
+
+      <div className="mt-12">
+        <h3 className="mb-6 text-2xl font-semibold">Also Serving</h3>
+        <div className="flex flex-wrap gap-3">
+          {surroundingCities.map((city) => (
+            <CityBadge key={city} city={city} />
+          ))}
+        </div>
+      </div>
+    </>
+  )
+}
+

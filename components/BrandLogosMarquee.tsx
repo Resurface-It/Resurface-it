@@ -1,0 +1,130 @@
+'use client'
+
+import Image from 'next/image'
+
+/**
+ * Brand Logos Marquee Component
+ * 
+ * Displays a scrolling marquee of brand logos that Resurface-it works with.
+ * Logos scroll horizontally in a continuous loop.
+ * 
+ * To add new logos:
+ * 1. Add logo image to /public/images/brands/
+ * 2. Add entry to the brands array below
+ */
+
+const brands = [
+  {
+    name: 'BEHR',
+    logo: '/images/brands/behr-paint-logo.png',
+    alt: 'BEHR Paint',
+  },
+  {
+    name: 'James Hardie',
+    logo: '/images/brands/Hardie-logo.png',
+    alt: 'James Hardie Siding',
+  },
+  {
+    name: 'TruWood',
+    logo: '/images/brands/truwood-logo.jpg',
+    alt: 'TruWood Siding & Trim',
+  },
+  {
+    name: 'Sherwin-Williams',
+    logo: '/images/brands/Sherwin-Williams-Logo.webp',
+    alt: 'Sherwin-Williams Paint',
+  },
+  {
+    name: 'Benjamin Moore',
+    logo: '/images/brands/B-M-logo.png',
+    alt: 'Benjamin Moore Paint',
+  },
+]
+
+export function BrandLogosMarquee() {
+  // For desktop: duplicate brands array exactly 2 times for seamless scrolling
+  const duplicatedBrands = [...brands, ...brands]
+  
+  // Split brands for mobile grid: 3 on top, 2 on bottom
+  const topBrands = brands.slice(0, 3)
+  const bottomBrands = brands.slice(3, 5)
+
+  return (
+    <div className="border-y-2 border-slate-200 bg-white py-8">
+      {/* Mobile: Grid layout (3 top, 2 bottom) */}
+      <div className="md:hidden px-6">
+        <div className="grid grid-cols-3 gap-4 mb-4">
+          {topBrands.map((brand) => {
+            const isBehr = brand.name === 'BEHR'
+            const isBenjaminMoore = brand.name === 'Benjamin Moore'
+            return (
+              <div
+                key={brand.name}
+                className="flex items-center justify-center"
+              >
+                <Image
+                  src={brand.logo}
+                  alt={brand.alt}
+                  width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
+                  height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
+                  className={`${isBehr ? 'h-10' : isBenjaminMoore ? 'h-10' : 'h-10'} w-auto ${isBehr ? 'max-w-[120px]' : isBenjaminMoore ? 'max-w-[120px]' : 'max-w-[100px]'} object-contain opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0`}
+                  loading="lazy"
+                         quality={75}
+                />
+              </div>
+            )
+          })}
+        </div>
+        <div className="grid grid-cols-2 gap-4 justify-items-center">
+          {bottomBrands.map((brand) => {
+            const isBehr = brand.name === 'BEHR'
+            const isBenjaminMoore = brand.name === 'Benjamin Moore'
+            return (
+              <div
+                key={brand.name}
+                className="flex items-center justify-center"
+              >
+                <Image
+                  src={brand.logo}
+                  alt={brand.alt}
+                  width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
+                  height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
+                  className={`${isBehr ? 'h-10' : isBenjaminMoore ? 'h-10' : 'h-10'} w-auto ${isBehr ? 'max-w-[120px]' : isBenjaminMoore ? 'max-w-[120px]' : 'max-w-[100px]'} object-contain opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0`}
+                  loading="lazy"
+                         quality={75}
+                />
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Desktop: Animated marquee */}
+      <div className="hidden md:block overflow-hidden px-12">
+        <div className="flex animate-marquee whitespace-nowrap">
+          {duplicatedBrands.map((brand, index) => {
+            const isBehr = brand.name === 'BEHR'
+            const isBenjaminMoore = brand.name === 'Benjamin Moore'
+            return (
+              <div
+                key={`${brand.name}-${index}`}
+                className="mx-12 flex shrink-0 items-center justify-center"
+              >
+                <Image
+                  src={brand.logo}
+                  alt={brand.alt}
+                  width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
+                  height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
+                  className={`${isBehr ? 'h-36' : isBenjaminMoore ? 'h-16' : 'h-16'} w-auto object-contain opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0`}
+                  loading="lazy"
+                         quality={75}
+                />
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
+
