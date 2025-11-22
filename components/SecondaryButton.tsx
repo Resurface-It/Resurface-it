@@ -18,9 +18,12 @@ export function SecondaryButton({
 }: SecondaryButtonProps) {
   // Check if className contains border-white to determine if it's a white variant
   const isWhiteVariant = className.includes('border-white')
+  // Check if className contains rounded-full to use pill style
+  const isPillStyle = className.includes('rounded-full')
+  const roundedClass = isPillStyle ? 'rounded-full' : 'rounded-lg'
   const baseClasses = isWhiteVariant
-    ? 'inline-flex items-center justify-center rounded-lg border-2 border-white bg-transparent px-6 py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-white hover:text-primary focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg'
-    : 'inline-flex items-center justify-center rounded-lg border-2 border-primary bg-transparent px-6 py-3 text-base font-semibold text-primary transition-all duration-200 hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md'
+    ? `inline-flex items-center justify-center ${roundedClass} border-2 border-white bg-transparent px-6 py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-white hover:text-primary focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg`
+    : `inline-flex items-center justify-center ${roundedClass} border-2 border-primary bg-transparent px-6 py-3 text-base font-semibold text-primary transition-all duration-200 hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md`
 
   // Determine if we should render as anchor (if href is provided or as='a')
   const renderAsAnchor = as === 'a' || (href !== undefined && as !== 'button')

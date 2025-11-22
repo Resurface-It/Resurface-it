@@ -111,7 +111,10 @@ export function HousecallProButton({
   }, [])
 
   // Base button styles matching PrimaryButton
-  const baseClasses = 'inline-flex items-center justify-center rounded-lg font-semibold text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-primary hover:bg-primaryDark shadow-md hover:shadow-lg'
+  // Check if className contains rounded-full to use pill style
+  const isPillStyle = className.includes('rounded-full')
+  const roundedClass = isPillStyle ? 'rounded-full' : 'rounded-lg'
+  const baseClasses = `inline-flex items-center justify-center ${roundedClass} font-semibold text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-primary hover:bg-primaryDark shadow-md hover:shadow-lg`
   const sizeClasses = variant === 'large' ? 'px-8 py-4 text-lg' : 'px-6 py-3 text-base'
   
   // Check if className overrides background

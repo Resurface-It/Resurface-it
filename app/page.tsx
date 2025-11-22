@@ -119,12 +119,12 @@ export default function HomePage() {
             <div className="mb-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <HousecallProButton
                 variant="large"
-                className="shadow-xl"
+                className="shadow-xl rounded-full"
               >
                 Get Free Estimate
               </HousecallProButton>
               <Link href="/gallery">
-                <SecondaryButton className="px-8 py-4 text-lg border-2 border-white text-white hover:bg-white hover:text-primary">
+                <SecondaryButton className="px-8 py-1.5 text-lg border-2 border-white text-white hover:bg-white hover:text-primary rounded-full">
                   See Our Work
                 </SecondaryButton>
               </Link>
