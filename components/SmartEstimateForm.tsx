@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, FormEvent, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { PrimaryButton } from './PrimaryButton'
 import { getCityNames } from '@/data/cities'
 import { services } from '@/data/services'
@@ -13,6 +14,7 @@ interface SmartEstimateFormProps {
 }
 
 export function SmartEstimateForm({ prefilledCity, prefilledService, onSuccess }: SmartEstimateFormProps) {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -25,7 +27,6 @@ export function SmartEstimateForm({ prefilledCity, prefilledService, onSuccess }
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
 
   const cities = getCityNames()
   const serviceOptions = services.map((s) => ({ value: s.slug, label: s.name }))
@@ -95,11 +96,16 @@ export function SmartEstimateForm({ prefilledCity, prefilledService, onSuccess }
         formType: 'full',
       })
 
-      setIsSuccess(true)
+      // If onSuccess callback is provided (e.g., for modal), close modal first
       if (onSuccess) {
+        onSuccess()
+        // Small delay to allow modal to close, then redirect
         setTimeout(() => {
-          onSuccess()
-        }, 2000)
+          router.push('/thank-you')
+        }, 300)
+      } else {
+        // Direct redirect if not in modal
+        router.push('/thank-you')
       }
     } catch (error) {
       // Track submission error
@@ -124,18 +130,6 @@ export function SmartEstimateForm({ prefilledCity, prefilledService, onSuccess }
     if (errors.services) {
       setErrors((prev) => ({ ...prev, services: '' }))
     }
-  }
-
-  if (isSuccess) {
-    return (
-      <div className="rounded-xl bg-green-50 p-8 text-center">
-        <div className="mb-4 text-4xl">✓</div>
-        <h3 className="mb-2 text-2xl font-semibold text-green-900">Thank you!</h3>
-        <p className="text-green-700">
-          We&apos;ve received your request and will contact you within 24 hours to schedule your free estimate.
-        </p>
-      </div>
-    )
   }
 
   return (

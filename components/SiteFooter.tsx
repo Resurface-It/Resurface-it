@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { PillBadge } from './PillBadge'
 import { PhoneLink } from './PhoneLink'
+import { HousecallProButton } from './HousecallProButton'
 import { companyInfo } from '@/data/company'
 
 export function SiteFooter() {
@@ -121,9 +122,9 @@ export function SiteFooter() {
                 </span>
               </li>
               <li className="pt-2">
-                <Link href="/contact" className="font-semibold text-primary hover:text-primaryDark">
+                <HousecallProButton className="!px-4 !py-2 text-sm font-semibold">
                   Get Free Estimate →
-                </Link>
+                </HousecallProButton>
               </li>
             </ul>
           </div>

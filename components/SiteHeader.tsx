@@ -1,13 +1,13 @@
 'use client'
 
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
 import dynamic from 'next/dynamic'
+import { Menu } from 'lucide-react'
 import { PrimaryButton } from './PrimaryButton'
+import { HousecallProButton } from './HousecallProButton'
 import { primaryCities } from '@/data/cities'
 
 const MobileNav = dynamic(() => import('./MobileNav').then(mod => ({ default: mod.MobileNav })), {
@@ -73,10 +73,7 @@ export function SiteHeader() {
 
   return (
     <>
-      <motion.header
-        initial={false}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.2 }}
+      <header
         className={`fixed top-0 left-0 right-0 z-40 ${headerBg} transition-all duration-300`}
       >
         <nav className={`container flex ${navHeight} items-center justify-between`}>
@@ -103,9 +100,7 @@ export function SiteHeader() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/contact">
-              <PrimaryButton className="shadow-lg hover:shadow-xl">Free Estimate</PrimaryButton>
-            </Link>
+            <HousecallProButton className="shadow-lg hover:shadow-xl">Free Estimate</HousecallProButton>
           </div>
 
           <button
@@ -116,10 +111,9 @@ export function SiteHeader() {
             <Menu className={`h-6 w-6 ${textColor}`} />
           </button>
         </nav>
-      </motion.header>
+      </header>
 
       <MobileNav isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
     </>
   )
 }
-

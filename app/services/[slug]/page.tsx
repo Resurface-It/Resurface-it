@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Section } from '@/components/Section'
 import { PrimaryButton } from '@/components/PrimaryButton'
+import { HousecallProButton } from '@/components/HousecallProButton'
 import { FAQAccordion } from '@/components/FAQAccordion'
 import { ServicePageTracker } from '@/components/analytics/ServicePageTracker'
 import { getServiceBySlug } from '@/data/services'
@@ -73,9 +74,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="mb-6">{service.name}</h1>
             <p className="mb-8 text-xl text-slate-600">{service.longDescription}</p>
-            <Link href="/contact">
-              <PrimaryButton variant="large">Get Free Estimate</PrimaryButton>
-            </Link>
+            <HousecallProButton variant="large">Get Free Estimate</HousecallProButton>
           </div>
         </div>
       </section>

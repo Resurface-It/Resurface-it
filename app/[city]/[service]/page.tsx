@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Section } from '@/components/Section'
 import { PrimaryButton } from '@/components/PrimaryButton'
+import { HousecallProButton } from '@/components/HousecallProButton'
 import { SmartEstimateForm } from '@/components/SmartEstimateForm'
 import { CityServicePageTracker } from '@/components/analytics/CityServicePageTracker'
 import { getCityBySlug } from '@/data/cities'
@@ -66,9 +67,7 @@ export default async function CityServicePage({ params }: CityServicePageProps) 
               We understand the unique challenges of Oregon&apos;s climate and provide solutions that protect 
               and beautify your home for years to come.
             </p>
-            <Link href="/contact">
-              <PrimaryButton variant="large">Get Free Estimate</PrimaryButton>
-            </Link>
+            <HousecallProButton variant="large">Get Free Estimate</HousecallProButton>
           </div>
         </div>
       </section>

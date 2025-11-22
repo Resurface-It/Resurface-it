@@ -37,17 +37,56 @@
   /* Prevent images and media from causing overflow */
   img,
   video,
-  iframe,
   embed,
   object {
     max-width: 100%;
     height: auto;
   }
   
+  /* Housecall Pro modal iframe - allow full height */
+  iframe[src*="housecallpro.com"],
+  iframe[src*="online-booking"] {
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 800px !important;
+  }
+  
   /* Prevent any element from exceeding viewport */
   body > * {
     max-width: 100vw;
     overflow-x: hidden;
+  }
+  
+  /* Housecall Pro modal containers - ensure full height and space */
+  [id*="hcp"],
+  [class*="hcp-modal"],
+  [class*="hcp-widget"],
+  [id*="housecall"],
+  [class*="housecall"],
+  div[data-hcp],
+  /* Target common Housecall Pro modal wrapper classes */
+  div[style*="position: fixed"][style*="z-index"]:has(iframe[src*="housecallpro"]),
+  div[style*="position: fixed"][style*="z-index"]:has(iframe[src*="online-booking"]) {
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    min-height: 800px !important;
+    height: auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    z-index: 9999 !important;
+  }
+  
+  /* Ensure Housecall Pro modal content has space */
+  [id*="hcp"] iframe,
+  [class*="hcp-modal"] iframe,
+  [class*="hcp-widget"] iframe,
+  iframe[src*="housecallpro.com"],
+  iframe[src*="online-booking"] {
+    width: 100% !important;
+    min-height: 800px !important;
+    height: auto !important;
+    max-height: 95vh !important;
+    border: none !important;
   }
 
   h1,
@@ -198,6 +237,27 @@
     content-visibility: auto;
   }
 
+  /* Hide Housecall Pro "Powered by" text */
+  /* Target common Housecall Pro branding elements */
+  [class*="hcp"],
+  [id*="hcp"],
+  [data-hcp],
+  *[class*="powered-by"],
+  *[id*="powered-by"] {
+    /* Only hide if it contains "Powered by" text */
+  }
+  
+  /* More specific: hide any element containing "Powered by Housecall Pro" */
+  body * {
+    position: relative;
+  }
+  
+  /* Use JavaScript to hide it, but also add CSS fallback */
+  script + div[style*="position"],
+  div:has(> *:contains("Powered by")) {
+    display: none !important;
+  }
+
   /* Reduce motion for users who prefer it */
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -246,6 +306,24 @@
     div {
       max-width: 100%;
       overflow-x: hidden;
+    }
+    
+    /* Exception: Housecall Pro modal needs full space on mobile */
+    [id*="hcp"],
+    [class*="hcp-modal"],
+    [class*="hcp-widget"],
+    div[style*="position: fixed"]:has(iframe[src*="housecallpro"]),
+    div[style*="position: fixed"]:has(iframe[src*="online-booking"]) {
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      min-height: 700px !important;
+      overflow-y: auto !important;
+    }
+    
+    iframe[src*="housecallpro.com"],
+    iframe[src*="online-booking"] {
+      min-height: 700px !important;
+      max-height: 90vh !important;
     }
   }
 }

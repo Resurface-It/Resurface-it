@@ -5,6 +5,7 @@ import { Section } from '@/components/Section'
 import { SectionHeader } from '@/components/SectionHeader'
 import { PrimaryButton } from '@/components/PrimaryButton'
 import { SecondaryButton } from '@/components/SecondaryButton'
+import { HousecallProButton } from '@/components/HousecallProButton'
 import { ServiceCard } from '@/components/ServiceCard'
 import { CityBadge } from '@/components/CityBadge'
 import { TestimonialCard } from '@/components/TestimonialCard'
@@ -134,11 +135,9 @@ export default async function CityPage({ params }: CityPageProps) {
 
             {/* CTAs */}
             <div className="mb-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
-              <Link href="/contact">
-                <PrimaryButton variant="large" className="bg-white !text-slate-900 hover:bg-slate-100 shadow-xl font-bold">
-                  Get Free Estimate
-                </PrimaryButton>
-              </Link>
+              <HousecallProButton variant="large" className="bg-white !text-slate-900 hover:bg-slate-100 shadow-xl font-bold">
+                Get Free Estimate
+              </HousecallProButton>
               <PhoneLink phone={companyInfo.phone}>
                 <SecondaryButton className="px-8 py-4 text-lg border-2 border-white text-white hover:bg-white hover:text-primary">
                   Call {companyInfo.phone}
@@ -256,9 +255,7 @@ export default async function CityPage({ params }: CityPageProps) {
           </div>
 
           <div className="mt-12 text-center">
-            <Link href="/contact">
-              <PrimaryButton variant="large" className="bg-white !text-slate-900 hover:bg-slate-100 shadow-xl font-bold">Get Your Free Estimate</PrimaryButton>
-            </Link>
+            <HousecallProButton variant="large" className="bg-white !text-slate-900 hover:bg-slate-100 shadow-xl font-bold">Get Your Free Estimate</HousecallProButton>
           </div>
         </div>
       </Section>
@@ -317,9 +314,7 @@ export default async function CityPage({ params }: CityPageProps) {
           </div>
 
           <div className="mt-12 text-center">
-            <Link href="/contact">
-              <PrimaryButton variant="large" className="bg-white !text-slate-900 hover:bg-slate-100 shadow-xl font-bold">Get Your Free Estimate</PrimaryButton>
-            </Link>
+            <HousecallProButton variant="large" className="bg-white !text-slate-900 hover:bg-slate-100 shadow-xl font-bold">Get Your Free Estimate</HousecallProButton>
           </div>
         </div>
       </Section>

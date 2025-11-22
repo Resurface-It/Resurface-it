@@ -2,12 +2,13 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { Section } from '@/components/Section'
 import { SectionHeader } from '@/components/SectionHeader'
 import { PrimaryButton } from '@/components/PrimaryButton'
 import { SecondaryButton } from '@/components/SecondaryButton'
+import { HousecallProButton } from '@/components/HousecallProButton'
 import { TrustStrip } from '@/components/TrustStrip'
 import { PhoneLink } from '@/components/PhoneLink'
 import { Shield, CheckCircle } from 'lucide-react'
@@ -44,29 +45,29 @@ const BrandLogosMarquee = dynamic(() => import('@/components/BrandLogosMarquee')
   ssr: false, // Client-side only to reduce initial bundle
 })
 
-const Modal = dynamic(() => import('@/components/Modal').then(mod => ({ default: mod.Modal })), {
-  ssr: false, // Modal only needed client-side
-})
-
-const SmartEstimateForm = dynamic(() => import('@/components/SmartEstimateForm').then(mod => ({ default: mod.SmartEstimateForm })), {
-  ssr: false,
-})
 
 const MobileStickyCTA = dynamic(() => import('@/components/MobileStickyCTA').then(mod => ({ default: mod.MobileStickyCTA })), {
   ssr: false, // Only needed on mobile
 })
 
 export default function HomePage() {
-  const [isEstimateModalOpen, setIsEstimateModalOpen] = useState(false)
-  const [miniFormSuccess, setMiniFormSuccess] = useState(false)
+  // Preload critical hero image only on home page
+  useEffect(() => {
+    const link = document.createElement('link')
+    link.rel = 'preload'
+    link.as = 'image'
+    link.href = '/images/Home-Landing.jpg'
+    link.setAttribute('fetchPriority', 'high')
+    document.head.appendChild(link)
 
-  const handleMiniFormSuccess = (data: { name: string; phone: string; city: string; service: string }) => {
-    setMiniFormSuccess(true)
-    setTimeout(() => {
-      setIsEstimateModalOpen(true)
-      setMiniFormSuccess(false)
-    }, 1500)
-  }
+    return () => {
+      // Cleanup: remove the preload link when component unmounts
+      const existingLink = document.querySelector('link[href="/images/Home-Landing.jpg"][rel="preload"]')
+      if (existingLink) {
+        document.head.removeChild(existingLink)
+      }
+    }
+  }, [])
 
   const localBusinessSchema = generateLocalBusinessSchema()
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -116,13 +117,12 @@ export default function HomePage() {
               </PhoneLink>
             </div>
             <div className="mb-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-              <PrimaryButton
+              <HousecallProButton
                 variant="large"
-                onClick={() => setIsEstimateModalOpen(true)}
                 className="shadow-xl"
               >
                 Get Free Estimate
-              </PrimaryButton>
+              </HousecallProButton>
               <Link href="/gallery">
                 <SecondaryButton className="px-8 py-4 text-lg border-2 border-white text-white hover:bg-white hover:text-primary">
                   See Our Work
@@ -316,32 +316,23 @@ export default function HomePage() {
             <p className="mb-8 text-lg text-white/90">
               Ready to transform your home? Schedule your free, no-obligation estimate today. We&apos;ll visit your home, assess your project, and provide a detailed quote—no pressure, no obligation.
             </p>
-            <PrimaryButton
+            <HousecallProButton
               variant="large"
-              onClick={() => setIsEstimateModalOpen(true)}
               className="bg-white !text-slate-900 hover:bg-slate-100 shadow-xl font-bold"
             >
               Schedule Now
-            </PrimaryButton>
+            </HousecallProButton>
           </div>
         </div>
       </Section>
 
       {/* Mobile Sticky CTA */}
       <Suspense fallback={null}>
-        <MobileStickyCTA onClick={() => setIsEstimateModalOpen(true)} />
+        <MobileStickyCTA />
       </Suspense>
       
       {/* Spacer for mobile sticky CTA */}
       <div className="h-20 lg:hidden" />
-
-      <Modal
-        isOpen={isEstimateModalOpen}
-        onClose={() => setIsEstimateModalOpen(false)}
-        title="Get Your Free Estimate"
-      >
-        <SmartEstimateForm onSuccess={() => setIsEstimateModalOpen(false)} />
-      </Modal>
     </>
   )
 }

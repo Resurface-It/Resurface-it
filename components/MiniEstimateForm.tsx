@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, FormEvent, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { PrimaryButton } from './PrimaryButton'
 import { getCityNames } from '@/data/cities'
 import { services } from '@/data/services'
@@ -11,6 +12,7 @@ interface MiniEstimateFormProps {
 }
 
 export function MiniEstimateForm({ onSuccess }: MiniEstimateFormProps) {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -93,8 +95,16 @@ export function MiniEstimateForm({ onSuccess }: MiniEstimateFormProps) {
         formType: 'mini',
       })
 
+      // If onSuccess callback is provided (e.g., for modal), close modal first
       if (onSuccess) {
         onSuccess(formData)
+        // Small delay to allow modal to close, then redirect
+        setTimeout(() => {
+          router.push('/thank-you')
+        }, 300)
+      } else {
+        // Direct redirect if not in modal
+        router.push('/thank-you')
       }
     } catch (error) {
       // Track submission error

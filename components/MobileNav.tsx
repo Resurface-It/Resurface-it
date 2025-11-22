@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
-import { PrimaryButton } from './PrimaryButton'
+import { HousecallProButton } from './HousecallProButton'
 
 interface MobileNavProps {
   isOpen: boolean
@@ -78,9 +78,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
               </div>
 
               <div className="mt-8">
-                <Link href="/contact" onClick={onClose}>
-                  <PrimaryButton className="w-full">Free Estimate</PrimaryButton>
-                </Link>
+                <HousecallProButton className="w-full" onClick={onClose}>Free Estimate</HousecallProButton>
               </div>
             </div>
           </motion.nav>
