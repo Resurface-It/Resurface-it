@@ -49,8 +49,8 @@ export function TestimonialsCarousel() {
               onClick={() => setCurrentIndex(index)}
               className={`flex items-center justify-center rounded-full transition-all ${
                 index === currentIndex 
-                  ? 'w-3 h-3 md:w-4 md:h-4 bg-primary' 
-                  : 'w-1 h-1 md:w-1.5 md:h-1.5 bg-slate-300'
+                  ? 'w-2 h-2 md:w-4 md:h-4 bg-primary' 
+                  : 'w-0.5 h-0.5 md:w-1.5 md:h-1.5 bg-slate-300'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />
