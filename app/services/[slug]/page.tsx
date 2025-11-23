@@ -10,7 +10,6 @@ import { getServiceBySlug } from '@/data/services'
 import { getFAQsByService } from '@/data/faq'
 import { generateMetadata as genMeta } from '@/lib/seo'
 import { generateServiceSchema, generateFAQPageSchema, generateBreadcrumbSchema } from '@/lib/jsonld'
-import { SmartEstimateForm } from '@/components/SmartEstimateForm'
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>
@@ -93,36 +92,124 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </div>
       </Section>
 
-      <Section className="bg-white">
-        <div className="mx-auto max-w-4xl">
-          <div className="flex justify-center">
-            <div className="grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200">
-                <Image
-                  src={`/images/service-${slug}-1.jpg`}
-                  alt={`${service.name} example 1`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  loading="lazy"
-                  quality={75}
-                />
-              </div>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200">
-                <Image
-                  src={`/images/service-${slug}-2.jpg`}
-                  alt={`${service.name} example 2`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  loading="lazy"
-                  quality={75}
-                />
+      {service.processSteps && service.processSteps.length > 0 && (
+        <Section className="bg-white">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-8 text-center text-3xl">Our Process</h2>
+            <div className="space-y-6">
+              {service.processSteps.map((step, index) => (
+                <div key={index} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <div className="mb-3 flex items-center gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-white">
+                      {index + 1}
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900">{step.title}</h3>
+                  </div>
+                  <p className="ml-14 text-slate-700">{step.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {service.benefits && service.benefits.length > 0 && (
+        <Section>
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-6 text-center text-3xl">Why Choose Our {service.name} Service?</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              {service.benefits.map((benefit, index) => (
+                <div key={index} className="flex items-start gap-3 rounded-lg bg-primary/5 p-4">
+                  <svg
+                    className="mt-0.5 h-6 w-6 shrink-0 text-primary"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-lg text-slate-700">{benefit}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {service.materials && service.materials.length > 0 && (
+        <Section className="bg-white">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-6 text-center text-3xl">Premium Materials We Use</h2>
+            <p className="mb-6 text-center text-lg text-slate-600">
+              We only use high-quality materials from trusted manufacturers to ensure lasting results.
+            </p>
+            <ul className="mx-auto space-y-3 max-w-2xl">
+              {service.materials.map((material, index) => (
+                <li key={index} className="flex items-center gap-3">
+                  <span className="h-2 w-2 shrink-0 rounded-full bg-primary" />
+                  <span className="text-lg text-slate-700">{material}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Section>
+      )}
+
+      {service.additionalContent && service.additionalContent.length > 0 && (
+        <Section>
+          <div className="mx-auto max-w-4xl">
+            <div className="prose prose-lg max-w-none">
+              {service.additionalContent.map((content, index) => (
+                <p key={index} className="mb-4 text-lg leading-relaxed text-slate-700">
+                  {content}
+                </p>
+              ))}
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {service.timeline && (
+        <Section className="bg-primary/5">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="mb-4 text-3xl">What to Expect</h2>
+            <p className="text-lg text-slate-700">{service.timeline}</p>
+          </div>
+        </Section>
+      )}
+
+      {service.image1 && service.image2 && (
+        <Section className="bg-white">
+          <div className="mx-auto max-w-4xl">
+            <div className="flex justify-center">
+              <div className="grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200">
+                  <Image
+                    src={service.image1}
+                    alt={`${service.name} project example 1`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
+                    quality={75}
+                  />
+                </div>
+                <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200">
+                  <Image
+                    src={service.image2}
+                    alt={`${service.name} project example 2`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
+                    quality={75}
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </Section>
+        </Section>
+      )}
 
       {faqs.length > 0 && (
         <Section>
@@ -141,9 +228,9 @@ export default async function ServicePage({ params }: ServicePageProps) {
           <p className="mb-8 text-lg text-primaryLight">
             Get your free, no-obligation estimate for {service.name.toLowerCase()}.
           </p>
-          <div className="rounded-xl bg-white p-8 text-slate-900">
-            <SmartEstimateForm prefilledService={slug} />
-          </div>
+          <HousecallProButton variant="large" className="bg-white text-primary hover:bg-slate-100">
+            Get Free Estimate
+          </HousecallProButton>
         </div>
       </Section>
     </>

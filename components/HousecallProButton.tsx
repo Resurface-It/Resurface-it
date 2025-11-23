@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import Script from 'next/script'
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import type { ButtonHTMLAttributes, ReactNode, MouseEvent } from 'react'
 
 interface HousecallProButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> {
   children?: ReactNode
@@ -124,7 +124,7 @@ export function HousecallProButton({
     : 'bg-primary hover:bg-primaryDark'
 
   // Handle click - call external onClick if provided, then let Housecall Pro handle it
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     if (externalOnClick) {
       externalOnClick(e)
     }
@@ -133,16 +133,15 @@ export function HousecallProButton({
 
   return (
     <>
-      {/* Load script only once globally - using Next.js Script component */}
-      {!scriptLoaded && (
-        <Script
-          src="https://online-booking.housecallpro.com/script.js?token=8e0ff8d623db4bd2bd14edc3d764f248&orgName=Resurface-It"
-          strategy="lazyOnload"
-          onLoad={() => {
-            scriptLoaded = true
-          }}
-        />
-      )}
+      {/* Load script only once globally - using Next.js Script component with id to prevent duplicates */}
+      <Script
+        id="housecallpro-script"
+        src="https://online-booking.housecallpro.com/script.js?token=8e0ff8d623db4bd2bd14edc3d764f248&orgName=Resurface-It"
+        strategy="lazyOnload"
+        onLoad={() => {
+          scriptLoaded = true
+        }}
+      />
       {/* Start of Housecallpro Online booking button */}
       <button
         data-token="8e0ff8d623db4bd2bd14edc3d764f248"
