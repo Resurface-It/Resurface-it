@@ -10,7 +10,7 @@ import Image from 'next/image'
  * 
  * To add new logos:
  * 1. Add logo image to /public/images/brands/
- * 2. Add entry to the brands array below
+ * 2. Add entry to the brands array below with name, logo, alt, and url
  */
 
 const brands = [
@@ -18,26 +18,31 @@ const brands = [
     name: 'BEHR',
     logo: '/images/brands/behr-paint-logo.png',
     alt: 'BEHR Paint',
+    url: 'https://www.behr.com',
   },
   {
     name: 'James Hardie',
     logo: '/images/brands/Hardie-logo.png',
     alt: 'James Hardie Siding',
+    url: 'https://www.jameshardie.com',
   },
   {
     name: 'TruWood',
     logo: '/images/brands/truwood-logo.jpg',
     alt: 'TruWood Siding & Trim',
+    url: 'https://www.truwood.com',
   },
   {
     name: 'Sherwin-Williams',
     logo: '/images/brands/Sherwin-Williams-Logo.webp',
     alt: 'Sherwin-Williams Paint',
+    url: 'https://www.sherwin-williams.com',
   },
   {
     name: 'Benjamin Moore',
     logo: '/images/brands/B-M-logo.png',
     alt: 'Benjamin Moore Paint',
+    url: 'https://www.benjaminmoore.com',
   },
 ]
 
@@ -58,20 +63,24 @@ export function BrandLogosMarquee() {
             const isBehr = brand.name === 'BEHR'
             const isBenjaminMoore = brand.name === 'Benjamin Moore'
             return (
-              <div
+              <a
                 key={brand.name}
-                className="flex items-center justify-center"
+                href={brand.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
+                aria-label={`Visit ${brand.name} website`}
               >
                 <Image
                   src={brand.logo}
                   alt={brand.alt}
                   width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
                   height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
-                  className={`${isBehr ? 'h-10' : isBenjaminMoore ? 'h-10' : 'h-10'} w-auto ${isBehr ? 'max-w-[120px]' : isBenjaminMoore ? 'max-w-[120px]' : 'max-w-[100px]'} object-contain opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0`}
+                  className={`${isBehr ? 'h-10' : isBenjaminMoore ? 'h-10' : 'h-10'} w-auto ${isBehr ? 'max-w-[120px]' : isBenjaminMoore ? 'max-w-[120px]' : 'max-w-[100px]'} object-contain opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0 pointer-events-none`}
                   loading="lazy"
-                         quality={75}
+                  quality={75}
                 />
-              </div>
+              </a>
             )
           })}
         </div>
@@ -80,20 +89,24 @@ export function BrandLogosMarquee() {
             const isBehr = brand.name === 'BEHR'
             const isBenjaminMoore = brand.name === 'Benjamin Moore'
             return (
-              <div
+              <a
                 key={brand.name}
-                className="flex items-center justify-center"
+                href={brand.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
+                aria-label={`Visit ${brand.name} website`}
               >
                 <Image
                   src={brand.logo}
                   alt={brand.alt}
                   width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
                   height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
-                  className={`${isBehr ? 'h-10' : isBenjaminMoore ? 'h-10' : 'h-10'} w-auto ${isBehr ? 'max-w-[120px]' : isBenjaminMoore ? 'max-w-[120px]' : 'max-w-[100px]'} object-contain opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0`}
+                  className={`${isBehr ? 'h-10' : isBenjaminMoore ? 'h-10' : 'h-10'} w-auto ${isBehr ? 'max-w-[120px]' : isBenjaminMoore ? 'max-w-[120px]' : 'max-w-[100px]'} object-contain opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0 pointer-events-none`}
                   loading="lazy"
-                         quality={75}
+                  quality={75}
                 />
-              </div>
+              </a>
             )
           })}
         </div>
@@ -106,20 +119,24 @@ export function BrandLogosMarquee() {
             const isBehr = brand.name === 'BEHR'
             const isBenjaminMoore = brand.name === 'Benjamin Moore'
             return (
-              <div
+              <a
                 key={`${brand.name}-${index}`}
-                className="mx-12 flex shrink-0 items-center justify-center"
+                href={brand.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mx-12 flex shrink-0 items-center justify-center transition-transform hover:scale-105 cursor-pointer"
+                aria-label={`Visit ${brand.name} website`}
               >
                 <Image
                   src={brand.logo}
                   alt={brand.alt}
                   width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
                   height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
-                  className={`${isBehr ? 'h-36' : isBenjaminMoore ? 'h-16' : 'h-16'} w-auto object-contain opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0`}
+                  className={`${isBehr ? 'h-36' : isBenjaminMoore ? 'h-16' : 'h-16'} w-auto object-contain opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0 pointer-events-none`}
                   loading="lazy"
-                         quality={75}
+                  quality={75}
                 />
-              </div>
+              </a>
             )
           })}
         </div>

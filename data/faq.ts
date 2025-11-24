@@ -55,17 +55,67 @@ export const faqs: FAQ[] = [
   },
   {
     question: 'How long does interior painting take?',
-    answer: 'Most interior painting projects take 3-7 days depending on the number of rooms and complexity. We work efficiently to minimize disruption to your daily routine.',
+    answer: 'Most interior painting projects take 2-7 days depending on the number of rooms and complexity. A single room can often be completed in one day, while whole-home projects may take 5-7 days. We work efficiently to minimize disruption to your daily routine.',
     category: 'interior-painting',
   },
   {
     question: 'Do you offer low-VOC paint options?',
-    answer: 'Yes, we offer low-VOC and zero-VOC paint options for healthier indoor air quality. These are especially important for families with children, pets, or sensitivities.',
+    answer: 'Yes, we offer low-VOC and zero-VOC paint options for healthier indoor air quality. These are especially important for families with children, pets, or sensitivities. These paints have minimal odor and are safer for indoor air quality.',
     category: 'interior-painting',
   },
   {
     question: 'Can you help with color selection?',
-    answer: 'Absolutely! We provide color consultation services to help you choose the perfect shades for your home. We can also work with your existing color scheme or designer recommendations.',
+    answer: 'Absolutely! We provide color consultation services to help you choose the perfect shades for your home. We consider natural light, room size, and how colors flow from room to room. We can also work with your existing color scheme or designer recommendations.',
+    category: 'interior-painting',
+  },
+  {
+    question: 'Do you paint kitchens and bathrooms?',
+    answer: 'Yes! We specialize in kitchen and bathroom painting. These spaces require moisture-resistant paints and special preparation. We use washable, moisture-resistant finishes in satin or semi-gloss that stand up to steam, splashes, and regular cleaning.',
+    category: 'interior-painting',
+  },
+  {
+    question: 'What paint finishes do you offer?',
+    answer: 'We offer flat (for ceilings), eggshell (subtle sheen, great for most walls), satin (durable, easy to clean), and semi-gloss (for trim, doors, and high-moisture areas). We help you choose the right finish for each surface based on the room\'s use and traffic.',
+    category: 'interior-painting',
+  },
+  {
+    question: 'Do you paint ceilings and trim?',
+    answer: 'Yes, we paint all interior surfaces including walls, ceilings, trim, baseboards, and doors. Ceilings receive flat finishes to minimize imperfections, while trim and doors get semi-gloss or gloss finishes for durability and easy cleaning.',
+    category: 'interior-painting',
+  },
+  {
+    question: 'Can you create accent walls?',
+    answer: 'Absolutely! Accent walls are a great way to add visual interest. We can create stunning accent walls using bold colors, decorative techniques, or specialty finishes. Our team helps you choose the perfect wall and color to achieve your desired effect.',
+    category: 'interior-painting',
+  },
+  {
+    question: 'What paint brands do you use for interior painting?',
+    answer: 'We use premium interior paints from trusted brands like Sherwin-Williams and Benjamin Moore. These paints provide excellent coverage, durability, and color retention. We select the right paint for each specific application.',
+    category: 'interior-painting',
+  },
+  {
+    question: 'How do you prepare surfaces before painting?',
+    answer: 'Proper surface preparation is crucial. We clean all walls, sand rough areas, fill nail holes, repair cracks, and ensure surfaces are smooth and ready. We apply primer where needed, especially for new drywall, patched areas, or dramatic color changes.',
+    category: 'interior-painting',
+  },
+  {
+    question: 'Will you paint around my existing décor?',
+    answer: 'Yes, we work carefully around your existing décor, furniture, and fixtures. We protect everything with drop cloths and plastic sheeting. If you prefer, we can work with you to temporarily move items, but we handle most of the protection ourselves.',
+    category: 'interior-painting',
+  },
+  {
+    question: 'Can you match existing paint colors?',
+    answer: 'Yes, we can match existing paint colors using color samples and professional color matching tools. If you have the original paint can or color code, that makes matching even easier. We can also help you choose complementary colors.',
+    category: 'interior-painting',
+  },
+  {
+    question: 'How long will interior paint last?',
+    answer: 'With proper preparation and quality paint, interior paint typically lasts 5-7 years in most areas. High-traffic areas may need touch-ups sooner, while low-traffic areas can last even longer. The quality of surface preparation significantly affects longevity.',
+    category: 'interior-painting',
+  },
+  {
+    question: 'Do you work on occupied homes?',
+    answer: 'Yes, we regularly work in occupied homes. We understand the need to minimize disruption and work efficiently. We communicate our schedule clearly, clean up daily, and you can continue using other areas of your home while we work.',
     category: 'interior-painting',
   },
   // Warranty FAQs

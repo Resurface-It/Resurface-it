@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Suspense, useEffect } from 'react'
+import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { Section } from '@/components/Section'
 import { SectionHeader } from '@/components/SectionHeader'
@@ -17,42 +17,65 @@ import { primaryCities } from '@/data/cities'
 import { companyInfo } from '@/data/company'
 
 // Dynamic imports for non-critical components - loaded after initial render
-const ServicesGrid = dynamic(() => import('@/components/ServicesGrid').then(mod => ({ default: mod.ServicesGrid })), {
-  loading: () => <div className="h-64 animate-pulse bg-slate-200 rounded-xl" />,
-  ssr: false, // Client-side only for faster initial load
-})
+const ServicesGrid = dynamic(
+  () => import('@/components/ServicesGrid').then((mod) => ({ default: mod.ServicesGrid })),
+  {
+    loading: () => <div className="h-64 animate-pulse bg-slate-200 rounded-xl" />,
+    ssr: false, // Client-side only for faster initial load
+  }
+)
 
-const ProcessTimeline = dynamic(() => import('@/components/ProcessTimeline').then(mod => ({ default: mod.ProcessTimeline })), {
-  loading: () => <div className="h-96 animate-pulse bg-slate-200 rounded-xl" />,
-  ssr: false, // Client-side only for faster initial load
-})
+const ProcessTimeline = dynamic(
+  () => import('@/components/ProcessTimeline').then((mod) => ({ default: mod.ProcessTimeline })),
+  {
+    loading: () => <div className="h-96 animate-pulse bg-slate-200 rounded-xl" />,
+    ssr: false, // Client-side only for faster initial load
+  }
+)
 
-const TestimonialsCarousel = dynamic(() => import('@/components/TestimonialsCarousel').then(mod => ({ default: mod.TestimonialsCarousel })), {
-  loading: () => <div className="h-64 animate-pulse bg-slate-200 rounded-xl" />,
-  ssr: false, // Client-side only for faster initial load
-})
+const TestimonialsCarousel = dynamic(
+  () => import('@/components/TestimonialsCarousel').then((mod) => ({ default: mod.TestimonialsCarousel })),
+  {
+    loading: () => <div className="h-64 animate-pulse bg-slate-200 rounded-xl" />,
+    ssr: false, // Client-side only for faster initial load
+  }
+)
 
-const StatsSection = dynamic(() => import('@/components/StatsSection').then(mod => ({ default: mod.StatsSection })), {
-  loading: () => <div className="h-48 animate-pulse bg-slate-200 rounded-xl" />,
-  ssr: false, // Client-side only for faster initial load
-})
+const StatsSection = dynamic(
+  () => import('@/components/StatsSection').then((mod) => ({ default: mod.StatsSection })),
+  {
+    loading: () => <div className="h-48 animate-pulse bg-slate-200 rounded-xl" />,
+    ssr: false, // Client-side only for faster initial load
+  }
+)
 
-const MarqueeBanner = dynamic(() => import('@/components/MarqueeBanner').then(mod => ({ default: mod.MarqueeBanner })), {
-  ssr: false, // Client-side only to reduce initial bundle
-})
+const MarqueeBanner = dynamic(
+  () => import('@/components/MarqueeBanner').then((mod) => ({ default: mod.MarqueeBanner })),
+  {
+    ssr: false, // Client-side only to reduce initial bundle
+  }
+)
 
-const BrandLogosMarquee = dynamic(() => import('@/components/BrandLogosMarquee').then(mod => ({ default: mod.BrandLogosMarquee })), {
-  ssr: false, // Client-side only to reduce initial bundle
-})
+const BrandLogosMarquee = dynamic(
+  () => import('@/components/BrandLogosMarquee').then((mod) => ({ default: mod.BrandLogosMarquee })),
+  {
+    ssr: false, // Client-side only to reduce initial bundle
+  }
+)
 
-
-const MobileStickyCTA = dynamic(() => import('@/components/MobileStickyCTA').then(mod => ({ default: mod.MobileStickyCTA })), {
-  ssr: false, // Only needed on mobile
-})
+const MobileStickyCTA = dynamic(
+  () => import('@/components/MobileStickyCTA').then((mod) => ({ default: mod.MobileStickyCTA })),
+  {
+    ssr: false, // Only needed on mobile
+  }
+)
 
 export default function HomePage() {
   // Preload critical hero image only on home page
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return
+    
     const link = document.createElement('link')
     link.rel = 'preload'
     link.as = 'image'
@@ -148,9 +171,7 @@ export default function HomePage() {
       </section>
 
       {/* Marquee Banner */}
-      <Suspense fallback={null}>
-        <MarqueeBanner />
-      </Suspense>
+      <MarqueeBanner />
 
       {/* Trust Strip */}
       <TrustStrip />
@@ -202,10 +223,66 @@ export default function HomePage() {
         </div>
       </Section>
 
+      {/* Interior Painting Highlight Section */}
+      <Section className="bg-gradient-to-br from-primary/5 to-surface py-16">
+        <div className="container">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+            <div className="order-2 lg:order-1">
+              <h2 className="mb-6 text-3xl font-bold md:text-4xl">Transform Your Home&apos;s Interior</h2>
+              <p className="mb-4 text-lg leading-relaxed text-slate-700">
+                Refresh every room in your home with our professional interior painting services. From living rooms and bedrooms to kitchens and bathrooms, we bring expert craftsmanship and attention to detail to every project.
+              </p>
+              <p className="mb-4 text-lg leading-relaxed text-slate-700">
+                We specialize in painting all interior spaces, using premium paints from Sherwin-Williams and Benjamin Moore. Our team handles everything—from color consultation and surface preparation to furniture protection and cleanup—ensuring a beautiful finish with minimal disruption to your daily life.
+              </p>
+              <ul className="mb-6 space-y-3 text-lg text-slate-700">
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                  <span>Complete interior painting for all rooms and spaces</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                  <span>Kitchen and bathroom painting with moisture-resistant finishes</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                  <span>Accent walls and decorative painting techniques</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                  <span>Low-VOC and zero-VOC paint options for healthier indoor air</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                  <span>Expert color consultation and design advice</span>
+                </li>
+              </ul>
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <Link href="/services/interior-painting">
+                  <SecondaryButton>Learn More About Interior Painting</SecondaryButton>
+                </Link>
+                <HousecallProButton variant="default">
+                  Get Free Estimate
+                </HousecallProButton>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2 relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-200 shadow-xl">
+              <Image
+                src="/images/project-3.jpg"
+                alt="Professional interior painting services"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                loading="lazy"
+                quality={75}
+              />
+            </div>
+          </div>
+        </div>
+      </Section>
+
       {/* Brand Logos Marquee */}
-      <Suspense fallback={null}>
-        <BrandLogosMarquee />
-      </Suspense>
+      <BrandLogosMarquee />
 
       {/* Services Section */}
       <Section className="bg-slate-50 py-16">
@@ -225,9 +302,7 @@ export default function HomePage() {
       </Section>
 
       {/* Stats Section */}
-      <Suspense fallback={null}>
-        <StatsSection />
-      </Suspense>
+      <StatsSection />
 
       {/* Process Timeline */}
       <Section className="bg-slate-50 py-16">
@@ -237,9 +312,7 @@ export default function HomePage() {
           align="center"
         />
         <div className="mt-16">
-          <Suspense fallback={<div className="h-96 animate-pulse bg-slate-200 rounded-xl" />}>
-            <ProcessTimeline />
-          </Suspense>
+          <ProcessTimeline />
         </div>
       </Section>
 
@@ -251,9 +324,7 @@ export default function HomePage() {
           align="center"
         />
         <div className="mt-12 max-w-6xl mx-auto">
-          <Suspense fallback={<div className="h-64 animate-pulse bg-slate-200 rounded-xl" />}>
-            <TestimonialsCarousel />
-          </Suspense>
+          <TestimonialsCarousel />
         </div>
       </Section>
 
@@ -327,9 +398,7 @@ export default function HomePage() {
       </Section>
 
       {/* Mobile Sticky CTA */}
-      <Suspense fallback={null}>
-        <MobileStickyCTA />
-      </Suspense>
+      <MobileStickyCTA />
       
       {/* Spacer for mobile sticky CTA */}
       <div className="h-20 lg:hidden" />
