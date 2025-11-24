@@ -76,7 +76,7 @@ export function BrandLogosMarquee() {
                   alt={brand.alt}
                   width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
                   height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
-                  className={`${isBehr ? 'h-10' : isBenjaminMoore ? 'h-10' : 'h-10'} w-auto ${isBehr ? 'max-w-[120px]' : isBenjaminMoore ? 'max-w-[120px]' : 'max-w-[100px]'} object-contain opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0 pointer-events-none`}
+                  className={`${isBehr ? 'h-10' : isBenjaminMoore ? 'h-10' : 'h-10'} w-auto ${isBehr ? 'max-w-[120px]' : isBenjaminMoore ? 'max-w-[120px]' : 'max-w-[100px]'} object-contain transition-opacity hover:opacity-90 pointer-events-none`}
                   loading="lazy"
                   quality={75}
                 />
@@ -102,7 +102,7 @@ export function BrandLogosMarquee() {
                   alt={brand.alt}
                   width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
                   height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
-                  className={`${isBehr ? 'h-10' : isBenjaminMoore ? 'h-10' : 'h-10'} w-auto ${isBehr ? 'max-w-[120px]' : isBenjaminMoore ? 'max-w-[120px]' : 'max-w-[100px]'} object-contain opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0 pointer-events-none`}
+                  className={`${isBehr ? 'h-10' : isBenjaminMoore ? 'h-10' : 'h-10'} w-auto ${isBehr ? 'max-w-[120px]' : isBenjaminMoore ? 'max-w-[120px]' : 'max-w-[100px]'} object-contain transition-opacity hover:opacity-90 pointer-events-none`}
                   loading="lazy"
                   quality={75}
                 />
@@ -132,7 +132,7 @@ export function BrandLogosMarquee() {
                   alt={brand.alt}
                   width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
                   height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
-                  className={`${isBehr ? 'h-36' : isBenjaminMoore ? 'h-16' : 'h-16'} w-auto object-contain opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0 pointer-events-none`}
+                  className={`${isBehr ? 'h-36' : isBenjaminMoore ? 'h-16' : 'h-16'} w-auto object-contain transition-opacity hover:opacity-90 pointer-events-none`}
                   loading="lazy"
                   quality={75}
                 />
