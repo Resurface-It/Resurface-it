@@ -225,7 +225,7 @@
   }
 
   .animate-marquee {
-    animation: marquee 90s linear infinite;
+    animation: marquee 30s linear infinite;
     /* Optimize animation performance with GPU acceleration */
     will-change: transform;
     /* Ensure smooth rendering for seamless loop */
@@ -244,9 +244,39 @@
     white-space: nowrap;
   }
 
-  /* Slower marquee on mobile */
+  /* Slower animation for main marquee banner */
+  .animate-marquee-slow {
+    animation: marquee 60s linear infinite;
+    /* Optimize animation performance with GPU acceleration */
+    will-change: transform;
+    /* Ensure smooth rendering for seamless loop */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    /* Use transform3d for better GPU acceleration */
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    /* Force GPU acceleration on mobile */
+    -webkit-font-smoothing: antialiased;
+    /* Ensure content doesn't get cut off - use fit-content width */
+    width: fit-content;
+    /* Prevent text wrapping */
+    white-space: nowrap;
+  }
+
+  /* Same speed marquee on mobile */
   @media (max-width: 768px) {
     .animate-marquee {
+      animation: marquee 30s linear infinite;
+      /* Ensure animation works on mobile browsers with transform3d */
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    .animate-marquee-slow {
       animation: marquee 60s linear infinite;
       /* Ensure animation works on mobile browsers with transform3d */
       -webkit-transform: translate3d(0, 0, 0);

@@ -9,7 +9,6 @@ import { HousecallProButton } from '@/components/HousecallProButton'
 import { ServiceCard } from '@/components/ServiceCard'
 import { CityBadge } from '@/components/CityBadge'
 import { TestimonialCard } from '@/components/TestimonialCard'
-import { SmartEstimateForm } from '@/components/SmartEstimateForm'
 import { PhoneLink } from '@/components/PhoneLink'
 import { MarqueeBanner } from '@/components/MarqueeBanner'
 import { BrandLogosMarquee } from '@/components/BrandLogosMarquee'
@@ -389,7 +388,7 @@ export default async function CityPage({ params }: CityPageProps) {
         </Section>
       )}
 
-      {/* CTA Section with Form */}
+      {/* CTA Section with Button */}
       <Section className="bg-primary py-16 text-white">
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
@@ -399,10 +398,9 @@ export default async function CityPage({ params }: CityPageProps) {
             <p className="mb-8 text-lg text-white/90">
               Get your free, no-obligation estimate for siding replacement or painting services in {city.name}, Oregon.
             </p>
-            <div className="rounded-xl bg-white p-8 text-slate-900 shadow-2xl">
-              <h3 className="mb-6 text-2xl font-bold">Get Your Free Estimate</h3>
-              <SmartEstimateForm prefilledCity={city.name} />
-            </div>
+            <HousecallProButton variant="large" className="bg-white !text-slate-900 hover:bg-slate-100 shadow-xl font-bold">
+              Get Free Estimate
+            </HousecallProButton>
           </div>
         </div>
       </Section>

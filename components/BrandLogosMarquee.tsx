@@ -125,7 +125,7 @@ export function BrandLogosMarquee() {
                 href={brand.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mx-10 flex shrink-0 items-center justify-center min-w-fit px-4 transition-transform hover:scale-105 cursor-pointer"
+                className="mx-20 flex shrink-0 items-center justify-center min-w-fit px-4 transition-transform hover:scale-105 cursor-pointer"
                 aria-label={`Visit ${brand.name} website`}
               >
                 <Image

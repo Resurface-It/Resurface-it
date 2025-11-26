@@ -23,7 +23,7 @@ export function MarqueeBanner() {
 
   return (
     <div className="overflow-hidden border-y-2 border-primary/20 bg-primary/15 py-4">
-      <div className="flex animate-marquee whitespace-nowrap w-fit">
+      <div className="flex animate-marquee-slow whitespace-nowrap w-fit">
         {duplicatedItems.map((item, index) => {
           if (item.type === 'logo') {
             return (
