@@ -5,6 +5,8 @@ import { getBlogPostBySlug, getRelatedPosts } from '@/data/blogPosts'
 import { generateMetadata as genMeta } from '@/lib/seo'
 import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/jsonld'
 
+import { formatDate } from '@/lib/formatDate'
+
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>
 }
@@ -73,11 +75,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
             <h1 className="mb-4">{post.title}</h1>
             <time className="text-slate-500">
-              {new Date(post.date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
+              {formatDate(post.date)}
             </time>
           </div>
         </Section>

@@ -83,6 +83,7 @@ export function generateLocalBusinessSchema(): LocalBusiness {
       'Millersburg, OR',
     ],
     serviceType: [
+      'Roofing',
       'Siding Replacement',
       'Exterior Painting',
       'Interior Painting',

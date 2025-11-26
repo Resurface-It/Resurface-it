@@ -1,7 +1,7 @@
 export interface FAQ {
   question: string
   answer: string
-  category: 'siding' | 'exterior-painting' | 'interior-painting' | 'warranty' | 'scheduling'
+  category: 'siding' | 'exterior-painting' | 'interior-painting' | 'roofing' | 'warranty' | 'scheduling'
 }
 
 export const faqs: FAQ[] = [
@@ -118,6 +118,67 @@ export const faqs: FAQ[] = [
     answer: 'Yes, we regularly work in occupied homes. We understand the need to minimize disruption and work efficiently. We communicate our schedule clearly, clean up daily, and you can continue using other areas of your home while we work.',
     category: 'interior-painting',
   },
+  // Roofing FAQs
+  {
+    question: 'How long does a roof replacement take?',
+    answer: 'Most roof replacement projects take 3-7 business days, depending on the size of your roof, complexity, and weather conditions. Simple repairs can often be completed in one day. We\'ll provide a detailed timeline during your free estimate.',
+    category: 'roofing',
+  },
+  {
+    question: 'What types of roofing materials do you install?',
+    answer: 'We install premium asphalt shingles, metal roofing (standing seam and corrugated), tile roofing (clay, concrete, slate), and flat roof systems. Each material has unique benefits, and we\'ll help you choose the best option for your home, budget, and Oregon\'s climate.',
+    category: 'roofing',
+  },
+  {
+    question: 'How do I know if I need a roof replacement or just repairs?',
+    answer: 'During our free inspection, we\'ll assess your roof\'s condition, including shingle wear, leaks, ventilation, and structural integrity. We\'ll provide honest recommendations—sometimes repairs are sufficient, while other times replacement is the better long-term investment.',
+    category: 'roofing',
+  },
+  {
+    question: 'Do you handle emergency roof repairs?',
+    answer: 'Yes, we offer emergency roof repair services for urgent situations like storm damage, active leaks, or missing shingles. We respond quickly to protect your home from further damage and can often provide temporary solutions until permanent repairs can be completed.',
+    category: 'roofing',
+  },
+  {
+    question: 'How much does a roof replacement cost?',
+    answer: 'Roof replacement costs vary based on roof size, pitch, material choice, and complexity. Most projects range from $6,500-$25,000. Premium materials like metal or tile cost more but offer longer lifespans. We provide detailed, no-obligation estimates.',
+    category: 'roofing',
+  },
+  {
+    question: 'Will you remove my old roof?',
+    answer: 'Yes, we remove all old roofing material and inspect the underlying structure for any damage or issues. We make necessary repairs to ensure a solid foundation before installing your new roof.',
+    category: 'roofing',
+  },
+  {
+    question: 'Do you install gutters with roofing projects?',
+    answer: 'Yes, we install and maintain gutter systems as part of our roofing services. Proper gutters are essential for water drainage and protecting your roof, siding, and foundation. We can install new gutters or replace existing ones during your roofing project.',
+    category: 'roofing',
+  },
+  {
+    question: 'How long will my new roof last?',
+    answer: 'Roof lifespan depends on the material: premium asphalt shingles typically last 25-30 years, metal roofing can last 50+ years, and tile roofing can last 50+ years. Proper installation, ventilation, and maintenance significantly impact longevity.',
+    category: 'roofing',
+  },
+  {
+    question: 'Do you work in all weather conditions?',
+    answer: 'We schedule roofing projects around weather conditions. We need dry weather for proper installation and to ensure materials adhere correctly. We\'ll work with you to find the best timing for your project, especially important in Oregon\'s climate.',
+    category: 'roofing',
+  },
+  {
+    question: 'What is included in your roofing warranty?',
+    answer: 'We provide a 5-year workmanship warranty covering installation quality and defects. Manufacturer warranties on materials vary by product and can range from 20-50 years. We\'ll explain all warranty coverage during your estimate.',
+    category: 'roofing',
+  },
+  {
+    question: 'Do you handle permits for roofing projects?',
+    answer: 'Yes, we handle all necessary permits for roofing projects. We ensure all work complies with local building codes and manufacturer specifications. You don\'t need to worry about permits—we take care of everything.',
+    category: 'roofing',
+  },
+  {
+    question: 'What is ice and water shield, and do I need it?',
+    answer: 'Ice and water shield is a waterproof membrane that provides extra protection in critical areas like valleys, around chimneys, and along eaves. It\'s essential for Oregon roofs to prevent water intrusion from ice dams and heavy rain. We install it in all critical areas.',
+    category: 'roofing',
+  },
   // Warranty FAQs
   {
     question: 'What does the 5-year workmanship warranty cover?',
@@ -166,6 +227,7 @@ export function getFAQsByService(serviceSlug: string): FAQ[] {
     'siding-replacement': 'siding',
     'exterior-painting': 'exterior-painting',
     'interior-painting': 'interior-painting',
+    'roofing': 'roofing',
   }
   const category = serviceCategoryMap[serviceSlug]
   return category ? getFAQsByCategory(category) : []

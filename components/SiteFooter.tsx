@@ -133,7 +133,7 @@ export function SiteFooter() {
         <div className="mt-8 border-t border-slate-200 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-slate-600">
-              &copy; {currentYear} Resurface-it. All rights reserved. | Licensed & Insured in Oregon
+              &copy; <span suppressHydrationWarning>{currentYear}</span> Resurface-it. All rights reserved. | Licensed & Insured in Oregon
             </p>
             <div className="flex gap-6 text-sm">
               <Link href="/warranty" className="text-slate-600 hover:text-primary">

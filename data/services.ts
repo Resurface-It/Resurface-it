@@ -354,6 +354,83 @@ export const services: Service[] = [
     image1: '/images/project-2.jpg',
     image2: '/images/project-7.jpg',
   },
+  {
+    slug: 'roofing',
+    name: 'Roofing',
+    shortDescription: 'Professional roofing installation, repair, and replacement services with premium materials and expert craftsmanship.',
+    longDescription: 'Protect your home with our comprehensive roofing services. We specialize in roof installation, repair, and replacement using premium materials designed to withstand Oregon\'s challenging weather conditions. From asphalt shingles and metal roofing to tile and flat roof systems, our expert team ensures proper installation, ventilation, and weatherproofing. We handle everything from minor repairs to complete roof replacements, always prioritizing quality craftsmanship and long-lasting protection for your home.',
+    bullets: [
+      'Complete roof installation and replacement',
+      'Expert roof repairs and maintenance',
+      'Premium materials: asphalt shingles, metal, tile, and more',
+      'Proper ventilation and weatherproofing',
+      'Emergency roof repair services available',
+      '5-year workmanship warranty included',
+    ],
+    startingPrice: '$6,500',
+    featured: true,
+    icon: 'building',
+    processSteps: [
+      {
+        title: 'Roof Inspection & Assessment',
+        description: 'We conduct a thorough inspection of your roof, identifying any damage, leaks, or areas of concern. We assess the condition of shingles, flashing, gutters, and ventilation to provide a comprehensive evaluation.',
+      },
+      {
+        title: 'Detailed Estimate & Material Selection',
+        description: 'We provide a detailed written estimate with material options suited for your home and budget. We help you choose the best roofing material—asphalt shingles, metal, tile, or other options—based on your home\'s style and Oregon\'s climate requirements.',
+      },
+      {
+        title: 'Permit Acquisition & Preparation',
+        description: 'We handle all necessary permits and prepare your property for the roofing project. We protect landscaping, set up safety equipment, and ensure everything is ready for a smooth installation process.',
+      },
+      {
+        title: 'Old Roof Removal & Structural Inspection',
+        description: 'We carefully remove the existing roofing material and inspect the underlying structure for any damage or issues. We make necessary repairs to ensure a solid foundation for your new roof.',
+      },
+      {
+        title: 'Installation & Weatherproofing',
+        description: 'Our expert roofers install your new roof with precision, ensuring proper flashing, ventilation, and weatherproofing. Every seam is sealed, and all components are installed according to manufacturer specifications and building codes.',
+      },
+      {
+        title: 'Cleanup & Final Inspection',
+        description: 'We thoroughly clean up all debris and materials, leaving your property spotless. We conduct a final walk-through with you to ensure everything meets our high standards and your satisfaction.',
+      },
+    ],
+    benefits: [
+      'Complete protection against Oregon\'s rain, wind, and weather',
+      'Increased home value and curb appeal',
+      'Improved energy efficiency with proper ventilation',
+      'Long-lasting durability (20-50 years depending on material)',
+      'Fire-resistant and impact-resistant options available',
+      'Comprehensive warranty coverage on materials and workmanship',
+      'Expert installation ensures proper drainage and prevents leaks',
+      'Professional assessment of ventilation needs',
+    ],
+    materials: [
+      'Premium asphalt shingles (GAF, CertainTeed, Owens Corning)',
+      'Metal roofing systems (standing seam, corrugated)',
+      'Tile roofing (clay, concrete, slate)',
+      'Professional-grade underlayment and flashing',
+      'High-quality ventilation systems',
+      'Premium gutters and gutter guards',
+      'Ice and water shield for Oregon winters',
+    ],
+    timeline: 'Roofing projects typically take 3-7 business days depending on roof size, complexity, and weather conditions. Simple repairs can often be completed in one day, while complete replacements may take 5-7 days. We work efficiently while maintaining our commitment to quality.',
+    additionalContent: [
+      'Oregon\'s climate presents unique challenges for roofs—heavy winter rains, strong winds, and temperature fluctuations require roofing systems that can withstand these conditions. We specialize in materials and installation techniques specifically suited for Pacific Northwest weather.',
+      'Regular roof maintenance and timely repairs can extend your roof\'s lifespan significantly. We offer comprehensive roof inspections to identify issues early, preventing costly damage to your home\'s interior and structure.',
+      'Proper ventilation is crucial for roof longevity and energy efficiency. We assess your attic ventilation needs and install appropriate systems to prevent moisture buildup, reduce energy costs, and extend your roof\'s life.',
+      'Metal roofing is an excellent choice for Oregon homes, offering exceptional durability, energy efficiency, and resistance to wind and fire. Modern metal roofs can last 50+ years and are available in various styles and colors to match your home\'s aesthetic.',
+      'Asphalt shingles remain the most popular roofing choice for their affordability, durability, and wide range of styles. Premium asphalt shingles can last 25-30 years and come with excellent warranties when properly installed.',
+      'Tile roofing offers a distinctive look and exceptional longevity, with clay and concrete tiles lasting 50+ years. While heavier than other materials, tile provides excellent protection and can be a great investment for your home.',
+      'Emergency roof repairs are available for urgent situations like storm damage or active leaks. We respond quickly to protect your home from further damage and can often provide temporary solutions until permanent repairs can be completed.',
+      'Gutter systems are an integral part of your roof\'s performance. We install and maintain gutters and gutter guards to ensure proper water drainage, preventing damage to your roof, siding, and foundation.',
+      'Ice and water shield is essential for Oregon roofs, providing an extra layer of protection in valleys, around chimneys, and along eaves where ice dams and water intrusion are most likely to occur.',
+      'Our roofing installations follow all local building codes and manufacturer specifications. We ensure proper flashing around chimneys, vents, and skylights, and use high-quality materials throughout to prevent leaks and ensure long-term performance.',
+    ],
+    image1: '/images/project-1.jpg',
+    image2: '/images/project-4.jpg',
+  },
 ]
 
 export function getServiceBySlug(slug: string): Service | undefined {

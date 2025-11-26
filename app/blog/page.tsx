@@ -11,6 +11,8 @@ export const metadata: Metadata = genMeta({
   path: '/blog',
 })
 
+import { formatDate } from '@/lib/formatDate'
+
 export default function BlogPage() {
   const posts = getAllBlogPosts()
 
@@ -48,11 +50,7 @@ export default function BlogPage() {
               </h3>
               <p className="mb-4 text-slate-600">{post.description}</p>
               <time className="text-sm text-slate-500">
-                {new Date(post.date).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
+                {formatDate(post.date)}
               </time>
             </Link>
           ))}

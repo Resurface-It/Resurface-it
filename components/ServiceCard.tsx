@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Home, Paintbrush, Palette, Square, Droplet } from 'lucide-react'
+import { Home, Paintbrush, Palette, Square, Droplet, Building2 } from 'lucide-react'
 import type { Service } from '@/data/services'
 
 interface ServiceCardProps {
@@ -16,6 +16,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   palette: Palette,
   square: Square,
   droplet: Droplet,
+  building: Building2,
 }
 
 export function ServiceCard({ service, featured = false }: ServiceCardProps) {

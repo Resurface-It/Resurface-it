@@ -19,6 +19,15 @@ export function SiteHeader() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
   const pathname = usePathname()
 
+  // Determine landing page status directly during render
+  // This ensures server and client initial renders match without flicker
+  // usePathname() works on both server (SSR) and client
+  const citySlugs = primaryCities.map(city => city.slug)
+  const isHome = pathname === '/'
+  const isCity = pathname ? citySlugs.some(slug => pathname === `/${slug}`) : false
+  const isLandingPage = isHome || isCity
+  const isCityPage = isCity
+
   // Use native scroll event instead of framer-motion for better performance
   useEffect(() => {
     let ticking = false
@@ -34,12 +43,6 @@ export function SiteHeader() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  // Check if we're on a landing page (home or city pages)
-  const isHomePage = pathname === '/'
-  const citySlugs = primaryCities.map(city => city.slug)
-  const isCityPage = pathname && citySlugs.some(slug => pathname === `/${slug}`)
-  const isLandingPage = isHomePage || isCityPage
   
   // Determine header styles based on page type
   const headerBg = isLandingPage ? 'bg-transparent' : 'bg-white shadow-md'
@@ -51,7 +54,7 @@ export function SiteHeader() {
     ? 'h-36 md:h-40 lg:h-44' 
     : 'h-20 md:h-24 lg:h-28'
   
-  // Logo size based on page type
+  // Logo size - use stable default that matches server render, updates after mount
   const logoSize = isLandingPage
     ? 'h-24 w-auto md:h-32 lg:h-36'
     : 'h-14 w-auto md:h-16 lg:h-20'
@@ -101,6 +104,26 @@ export function SiteHeader() {
               </Link>
             ))}
             <HousecallProButton className="shadow-lg hover:shadow-xl">Free Estimate</HousecallProButton>
+            <button
+              data-token="78e82f81455a4447b0f675bb4afc124a"
+              data-orgname="Resurface-It"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.open(
+                    'https://client.housecallpro.com/customer_portal/request-link?token=78e82f81455a4447b0f675bb4afc124a',
+                    '_blank'
+                  )
+                }
+              }}
+              suppressHydrationWarning
+              className={`rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                isLandingPage
+                  ? 'bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white/20 focus:ring-white/50'
+                  : 'bg-primary text-white hover:bg-primaryDark focus:ring-primary'
+              } shadow-md hover:shadow-lg`}
+            >
+              Login
+            </button>
           </div>
 
           <button

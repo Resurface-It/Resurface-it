@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = genMeta({
   title: 'Services',
-  description: 'Comprehensive home exterior services including siding replacement, exterior painting, interior painting, deck staining, and pressure washing. Serving Eugene, Albany, Corvallis, and surrounding areas.',
+  description: 'Comprehensive home exterior services including roofing, siding replacement, exterior painting, interior painting, deck staining, and pressure washing. Serving Eugene, Albany, Corvallis, and surrounding areas.',
   path: '/services',
 })
 

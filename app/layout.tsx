@@ -1,26 +1,12 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins } from 'next/font/google'
-import { Suspense } from 'react'
 import './globals.css'
-import dynamic from 'next/dynamic'
 import { Analytics } from '@vercel/analytics/next'
-
-// Lazy load header and footer to improve initial page load
-const SiteHeader = dynamic(() => import('@/components/SiteHeader').then(mod => ({ default: mod.SiteHeader })), {
-  ssr: true, // Keep SSR for SEO, but load async
-})
-
-const SiteFooter = dynamic(() => import('@/components/SiteFooter').then(mod => ({ default: mod.SiteFooter })), {
-  ssr: true,
-})
-
-const AnalyticsScripts = dynamic(() => import('@/components/analytics/AnalyticsScripts').then(mod => ({ default: mod.AnalyticsScripts })), {
-  ssr: false,
-})
-
-const PageViewTracker = dynamic(() => import('@/components/analytics/PageViewTracker').then(mod => ({ default: mod.PageViewTracker })), {
-  ssr: false,
-})
+import { SiteHeader } from '@/components/SiteHeader'
+import { SiteFooter } from '@/components/SiteFooter'
+import { ClientOnly } from '@/components/ClientOnly'
+import { AnalyticsScripts } from '@/components/analytics/AnalyticsScripts'
+import { PageViewTracker } from '@/components/analytics/PageViewTracker'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -130,19 +116,13 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-surface text-slate-900">
-        <Suspense fallback={null}>
-          <AnalyticsScripts />
-        </Suspense>
-        <Suspense fallback={null}>
-          <PageViewTracker />
-        </Suspense>
-        <Suspense fallback={<div className="h-20" />}>
-          <SiteHeader />
-        </Suspense>
+        <SiteHeader />
         <main className="pt-36 md:pt-40 lg:pt-44">{children}</main>
-        <Suspense fallback={null}>
-          <SiteFooter />
-        </Suspense>
+        <SiteFooter />
+        <ClientOnly>
+          <AnalyticsScripts />
+          <PageViewTracker />
+        </ClientOnly>
         <Analytics />
       </body>
     </html>
