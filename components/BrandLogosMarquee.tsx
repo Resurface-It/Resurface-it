@@ -113,8 +113,10 @@ export function BrandLogosMarquee() {
       </div>
 
       {/* Desktop: Animated marquee */}
-      <div className="hidden md:block overflow-hidden px-16">
-        <div className="flex animate-marquee whitespace-nowrap">
+      <div className="hidden md:block overflow-hidden px-24">
+        <div className="flex animate-marquee whitespace-nowrap py-4">
+          {/* Spacer at start to prevent clipping */}
+          <div className="shrink-0 w-32" />
           {duplicatedBrands.map((brand, index) => {
             const isBehr = brand.name === 'BEHR'
             const isBenjaminMoore = brand.name === 'Benjamin Moore'
@@ -124,7 +126,7 @@ export function BrandLogosMarquee() {
                 href={brand.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mx-12 flex shrink-0 items-center justify-center transition-transform hover:scale-105 cursor-pointer"
+                className="mx-10 flex shrink-0 items-center justify-center min-w-fit px-4 transition-transform hover:scale-105 cursor-pointer"
                 aria-label={`Visit ${brand.name} website`}
               >
                 <Image
@@ -139,6 +141,8 @@ export function BrandLogosMarquee() {
               </a>
             )
           })}
+          {/* Spacer at end to prevent clipping */}
+          <div className="shrink-0 w-32" />
         </div>
       </div>
     </div>
