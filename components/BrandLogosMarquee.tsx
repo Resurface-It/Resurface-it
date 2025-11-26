@@ -47,8 +47,9 @@ const brands = [
 ]
 
 export function BrandLogosMarquee() {
-  // For desktop: duplicate brands array exactly 2 times for seamless scrolling
-  const duplicatedBrands = [...brands, ...brands]
+  // For desktop: duplicate brands array multiple times for seamless infinite scrolling
+  // Using 4 copies ensures there's always plenty of content visible for a never-ending loop effect
+  const duplicatedBrands = [...brands, ...brands, ...brands, ...brands]
   
   // Split brands for mobile grid: 3 on top, 2 on bottom
   const topBrands = brands.slice(0, 3)
