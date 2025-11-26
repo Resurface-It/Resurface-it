@@ -7,6 +7,8 @@ import { SiteFooter } from '@/components/SiteFooter'
 import { ClientOnly } from '@/components/ClientOnly'
 import { AnalyticsScripts } from '@/components/analytics/AnalyticsScripts'
 import { PageViewTracker } from '@/components/analytics/PageViewTracker'
+import { CoreWebVitalsTracker } from '@/components/analytics/CoreWebVitalsTracker'
+import { PagePrefetcher } from '@/components/PagePrefetcher'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -122,6 +124,8 @@ export default function RootLayout({
         <ClientOnly>
           <AnalyticsScripts />
           <PageViewTracker />
+          <CoreWebVitalsTracker />
+          <PagePrefetcher />
         </ClientOnly>
         <Analytics />
       </body>

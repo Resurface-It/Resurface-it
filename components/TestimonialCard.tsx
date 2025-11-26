@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Quote } from 'lucide-react'
 import type { Testimonial } from '@/data/testimonials'
 
@@ -10,10 +9,7 @@ interface TestimonialCardProps {
 
 export function TestimonialCard({ testimonial }: TestimonialCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3 }}
+    <div
       className="card h-full"
     >
       <Quote className="mb-4 h-8 w-8 text-primary/30" />
@@ -22,7 +18,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
         <p className="font-semibold text-slate-900">{testimonial.name}</p>
         <p className="text-sm text-slate-600">{testimonial.location}</p>
       </div>
-    </motion.div>
+    </div>
   )
 }
 

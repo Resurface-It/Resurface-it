@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 interface ProjectCardProps {
@@ -13,10 +12,9 @@ interface ProjectCardProps {
 
 export function ProjectCard({ image, location, services, description, priority = false }: ProjectCardProps) {
   return (
-    <motion.div
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.2 }}
-      className="group relative overflow-hidden rounded-xl"
+    <div
+      className="group relative overflow-hidden rounded-xl transition-transform duration-200 hover:-translate-y-1"
+      style={{ willChange: 'transform' }}
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-slate-200">
         <Image
@@ -40,7 +38,7 @@ export function ProjectCard({ image, location, services, description, priority =
         <p className="font-semibold">{location}</p>
         <p className="text-sm text-white/90">{services.join(' • ')}</p>
       </div>
-    </motion.div>
+    </div>
   )
 }
 

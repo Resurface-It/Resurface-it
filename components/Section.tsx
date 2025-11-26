@@ -11,7 +11,8 @@ interface SectionProps {
 
 export function Section({ children, className = '', animate = true }: SectionProps) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  // Add rootMargin to trigger earlier and reduce firing frequency during scroll
+  const isInView = useInView(ref, { once: true, amount: 0.2, margin: '50px' })
 
   if (!animate) {
     return (

@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import type { City } from '@/data/cities'
 
 interface CityCardProps {
@@ -10,10 +9,9 @@ interface CityCardProps {
 
 export function CityCard({ city }: CityCardProps) {
   return (
-    <motion.div
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.2 }}
-      className="card"
+    <div
+      className="card transition-transform duration-200 hover:-translate-y-1"
+      style={{ willChange: 'transform' }}
     >
       <h3 className="mb-2 text-2xl">{city.name}</h3>
       <p className="mb-4 text-slate-600">{city.blurb}</p>
@@ -41,7 +39,7 @@ export function CityCard({ city }: CityCardProps) {
         View {city.name} services
         <span className="ml-1">→</span>
       </Link>
-    </motion.div>
+    </div>
   )
 }
 

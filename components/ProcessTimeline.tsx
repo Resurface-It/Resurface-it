@@ -52,7 +52,7 @@ export function ProcessTimeline() {
                 key={step.number}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: '50px' }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="relative z-10 flex w-[calc(20%-1rem)] flex-col items-center text-center"
               >
@@ -85,7 +85,7 @@ export function ProcessTimeline() {
                 key={step.number}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: '50px' }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="relative flex items-start gap-4 rounded-xl border border-slate-200 bg-white p-4 pr-6 shadow-sm transition-shadow hover:shadow-md overflow-visible"
               >

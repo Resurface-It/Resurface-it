@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { Home, Paintbrush, Palette, Square, Droplet, Building2 } from 'lucide-react'
 import type { Service } from '@/data/services'
 
@@ -23,10 +22,9 @@ export function ServiceCard({ service, featured = false }: ServiceCardProps) {
   const Icon = service.icon ? iconMap[service.icon] || Home : Home
 
   return (
-    <motion.div
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.2 }}
-      className="card h-full w-full"
+    <div
+      className="card h-full w-full transition-transform duration-200 hover:-translate-y-1"
+      style={{ willChange: 'transform' }}
     >
       <div className="mb-4 flex items-center gap-3">
         <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
@@ -55,7 +53,7 @@ export function ServiceCard({ service, featured = false }: ServiceCardProps) {
         View Service Details
         <span className="ml-1">→</span>
       </Link>
-    </motion.div>
+    </div>
   )
 }
 

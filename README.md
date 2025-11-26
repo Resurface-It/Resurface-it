@@ -208,10 +208,58 @@ Fonts are configured in `app/layout.tsx` and `app/globals.css`. Currently using:
 
 ## Performance
 
-- Images optimized with Next.js Image component
-- Automatic code splitting
+### Optimizations
+
+- Images optimized with Next.js Image component (WebP/AVIF formats)
+- Automatic code splitting and dynamic imports
 - Font optimization with `next/font`
+- CSS containment and content-visibility for better scroll performance
+- Page prefetching for likely next pages
+- Core Web Vitals tracking (LCP, FID, CLS)
 - Framer Motion animations respect `prefers-reduced-motion`
+
+### Image Optimization
+
+Check image file sizes and get optimization recommendations:
+
+```bash
+npm run check-images
+```
+
+This script will:
+- Scan all images in `public/images/`
+- Report images that exceed size targets
+- Provide recommendations for compression
+- Show potential bandwidth savings
+
+**Image Size Targets:**
+- Logos: < 50KB
+- Landing images: < 200KB
+- Gallery images: < 150KB
+- Brand logos: < 30KB
+
+### Core Web Vitals Monitoring
+
+The site automatically tracks Core Web Vitals metrics:
+- **LCP (Largest Contentful Paint)**: Target ≤2.5s
+- **FID (First Input Delay)**: Target ≤100ms
+- **CLS (Cumulative Layout Shift)**: Target ≤0.1
+
+Metrics are sent to Google Analytics (if configured). For more accurate measurements, install the optional `web-vitals` package:
+
+```bash
+npm install web-vitals
+```
+
+### Page Prefetching
+
+The site automatically prefetches likely next pages based on current page context:
+- Homepage prefetches main navigation pages
+- City pages prefetch related service pages
+- Service pages prefetch related services
+- All pages prefetch high-priority pages (contact, services, gallery)
+
+This improves perceived navigation speed by loading pages before users click.
 
 ## Accessibility
 
@@ -224,7 +272,3 @@ Fonts are configured in `app/layout.tsx` and `app/globals.css`. Currently using:
 ## License
 
 Proprietary - All rights reserved
-
-# Resurface-it
-# Resurface-it
-# Resurface-it

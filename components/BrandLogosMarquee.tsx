@@ -113,7 +113,7 @@ export function BrandLogosMarquee() {
       </div>
 
       {/* Desktop: Animated marquee */}
-      <div className="hidden md:block overflow-hidden px-12">
+      <div className="hidden md:block overflow-hidden px-16">
         <div className="flex animate-marquee whitespace-nowrap">
           {duplicatedBrands.map((brand, index) => {
             const isBehr = brand.name === 'BEHR'
@@ -132,7 +132,7 @@ export function BrandLogosMarquee() {
                   alt={brand.alt}
                   width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
                   height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
-                  className={`${isBehr ? 'h-36' : isBenjaminMoore ? 'h-16' : 'h-16'} w-auto object-contain transition-opacity hover:opacity-90 pointer-events-none`}
+                  className={`${isBehr ? 'h-16 max-w-[200px]' : isBenjaminMoore ? 'h-16 max-w-[200px]' : 'h-16 max-w-[180px]'} w-auto object-contain transition-opacity hover:opacity-90 pointer-events-none`}
                   loading="lazy"
                   quality={75}
                 />
