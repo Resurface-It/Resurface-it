@@ -225,7 +225,7 @@
   }
 
   .animate-marquee {
-    animation: marquee 30s linear infinite;
+    animation: marquee 90s linear infinite;
     /* Optimize animation performance with GPU acceleration */
     will-change: transform;
     /* Ensure smooth rendering for seamless loop */
@@ -238,14 +238,16 @@
     -webkit-transform: translate3d(0, 0, 0);
     /* Force GPU acceleration on mobile */
     -webkit-font-smoothing: antialiased;
-    /* Contain layout to prevent reflows */
-    contain: layout style paint;
+    /* Ensure content doesn't get cut off - use fit-content width */
+    width: fit-content;
+    /* Prevent text wrapping */
+    white-space: nowrap;
   }
 
-  /* Faster marquee on mobile */
+  /* Slower marquee on mobile */
   @media (max-width: 768px) {
     .animate-marquee {
-      animation: marquee 15s linear infinite;
+      animation: marquee 60s linear infinite;
       /* Ensure animation works on mobile browsers with transform3d */
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);

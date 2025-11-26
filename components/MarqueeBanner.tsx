@@ -18,10 +18,13 @@ export function MarqueeBanner() {
     items.push({ type: 'logo' })
   }
 
+  // Duplicate items multiple times for seamless infinite scrolling
+  const duplicatedItems = [...items, ...items, ...items, ...items]
+
   return (
     <div className="overflow-hidden border-y-2 border-primary/20 bg-primary/15 py-4">
-      <div className="flex animate-marquee whitespace-nowrap">
-        {[...items, ...items].map((item, index) => {
+      <div className="flex animate-marquee whitespace-nowrap w-fit">
+        {duplicatedItems.map((item, index) => {
           if (item.type === 'logo') {
             return (
               <div key={`logo-${index}`} className="mx-8 flex shrink-0 items-center">
@@ -38,8 +41,8 @@ export function MarqueeBanner() {
             )
           }
           return (
-            <div key={`message-${index}`} className="mx-8 flex shrink-0 items-center">
-              <span className={`text-xl font-extrabold ${colorClasses[item.colorIndex!]} md:text-2xl lg:text-3xl`}>
+            <div key={`message-${index}`} className="mx-8 flex shrink-0 items-center whitespace-nowrap">
+              <span className={`text-xl font-extrabold ${colorClasses[item.colorIndex!]} md:text-2xl lg:text-3xl whitespace-nowrap`}>
                 {message}
               </span>
             </div>

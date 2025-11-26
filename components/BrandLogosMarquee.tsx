@@ -114,10 +114,8 @@ export function BrandLogosMarquee() {
       </div>
 
       {/* Desktop: Animated marquee */}
-      <div className="hidden md:block overflow-hidden px-24">
-        <div className="flex animate-marquee whitespace-nowrap py-4">
-          {/* Spacer at start to prevent clipping */}
-          <div className="shrink-0 w-32" />
+      <div className="hidden md:block overflow-hidden">
+        <div className="flex animate-marquee whitespace-nowrap py-4 w-fit">
           {duplicatedBrands.map((brand, index) => {
             const isBehr = brand.name === 'BEHR'
             const isBenjaminMoore = brand.name === 'Benjamin Moore'
@@ -142,8 +140,6 @@ export function BrandLogosMarquee() {
               </a>
             )
           })}
-          {/* Spacer at end to prevent clipping */}
-          <div className="shrink-0 w-32" />
         </div>
       </div>
     </div>
