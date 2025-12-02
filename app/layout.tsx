@@ -47,10 +47,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://resurface-it.com'),
   title: {
-    default: 'Resurface-it | Siding Replacement & Painting Services in Eugene, Albany, Corvallis OR',
+    default: 'Resurface-it | Premium Siding Replacement & Painting in Eugene, Albany, Corvallis & Springfield, OR',
     template: '%s | Resurface-it',
   },
-  description: 'Professional siding replacement and painting services in Eugene, Albany, Corvallis, Springfield OR. Top-rated contractors with 5-year warranty. Licensed & insured. Free estimates.',
+  description: 'Professional siding replacement and painting services in Eugene, Albany, Corvallis, Springfield OR. Hardie board, vinyl & fiber cement installation. Exterior & interior painting. 5-year workmanship warranty. Licensed & insured. Free estimates in 24 hours.',
   keywords: [
     'siding replacement Eugene OR',
     'exterior painting Eugene Oregon',
@@ -104,6 +104,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-R6WNQ9VY4G"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-R6WNQ9VY4G');
+            `,
+          }}
+        />
+        
         {/* Viewport meta tag - prevents zooming out and horizontal scrolling */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
         

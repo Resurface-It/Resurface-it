@@ -33,7 +33,7 @@ export function CityCard({ city }: CityCardProps) {
       )}
 
       <Link
-        href={`/${city.slug}`}
+        href={`/${city.slug}-or`}
         className="inline-flex items-center text-sm font-semibold text-primary hover:text-primaryDark"
       >
         View {city.name} services

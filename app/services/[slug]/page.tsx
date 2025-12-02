@@ -27,9 +27,42 @@ export async function generateMetadata({ params }: ServicePageProps) {
     })
   }
 
-  return genMeta({
-    title: service.name,
+  // Enhanced SEO titles and descriptions for local SEO
+  const serviceMetaMap: Record<string, { title: string; description: string }> = {
+    'siding-replacement': {
+      title: 'Siding Replacement in Eugene, Albany, Corvallis & Springfield, OR',
+      description: 'Professional siding replacement in Eugene, Albany, Corvallis & Springfield, OR. Hardie board, vinyl & fiber cement installation with a 5-year workmanship warranty. Get a free estimate in 24 hours.',
+    },
+    'exterior-painting': {
+      title: 'Exterior Painting in Eugene, Albany, Corvallis & Springfield, OR',
+      description: 'Professional exterior painting in Eugene, Albany, Corvallis & Springfield, OR. Premium paints for Oregon weather. Proper prep, primer & multiple coats. 5-year warranty. Free estimates.',
+    },
+    'interior-painting': {
+      title: 'Interior Painting in Eugene, Albany, Corvallis & Springfield, OR',
+      description: 'Professional interior painting in Eugene, Albany, Corvallis & Springfield, OR. All rooms, low-VOC options, color consultation. Sherwin-Williams & Benjamin Moore paints. Free estimates.',
+    },
+    'deck-staining': {
+      title: 'Deck Staining in Eugene & Surrounding Oregon Areas',
+      description: 'Professional deck staining and sealing in Eugene, Albany, Corvallis & Springfield, OR. Protects against Oregon weather. Premium stains & sealants. Free estimates.',
+    },
+    'pressure-washing': {
+      title: 'Pressure Washing in Eugene & Surrounding Oregon Areas',
+      description: 'Professional pressure washing in Eugene, Albany, Corvallis & Springfield, OR. Safe cleaning for siding, decks, driveways. Prep for painting/staining. Free estimates.',
+    },
+    'roofing': {
+      title: 'Roofing Services in Eugene, Albany, Corvallis & Springfield, OR',
+      description: 'Professional roofing installation, repair & replacement in Eugene, Albany, Corvallis & Springfield, OR. Asphalt, metal, tile. 5-year warranty. Licensed & insured. Free estimates.',
+    },
+  }
+
+  const meta = serviceMetaMap[slug] || {
+    title: `${service.name} | Resurface-it`,
     description: service.shortDescription,
+  }
+
+  return genMeta({
+    title: meta.title,
+    description: meta.description,
     path: `/services/${slug}`,
   })
 }
@@ -71,8 +104,21 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <section className="bg-gradient-to-br from-primary/5 to-surface pt-32 pb-16">
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
-            <h1 className="mb-6">{service.name}</h1>
-            <p className="mb-8 text-xl text-slate-600">{service.longDescription}</p>
+            <h1 className="mb-6">
+              {service.name === 'Siding Replacement' && 'Siding Replacement in Eugene, Albany, Corvallis & Springfield, OR'}
+              {service.name === 'Exterior Painting' && 'Exterior Painting in Eugene, Albany, Corvallis & Springfield, OR'}
+              {service.name === 'Interior Painting' && 'Interior Painting in Eugene, Albany, Corvallis & Springfield, OR'}
+              {service.name === 'Deck Staining' && 'Deck Staining in Eugene & Surrounding Oregon Areas'}
+              {service.name === 'Pressure Washing' && 'Pressure Washing in Eugene & Surrounding Oregon Areas'}
+              {service.name === 'Roofing' && 'Roofing Services in Eugene, Albany, Corvallis & Springfield, OR'}
+              {!['Siding Replacement', 'Exterior Painting', 'Interior Painting', 'Deck Staining', 'Pressure Washing', 'Roofing'].includes(service.name) && service.name}
+            </h1>
+            <p className="mb-4 text-xl text-slate-600">{service.longDescription}</p>
+            {(service.name === 'Siding Replacement' || service.name === 'Exterior Painting' || service.name === 'Interior Painting' || service.name === 'Roofing') && (
+              <p className="mb-8 text-lg text-slate-600">
+                We provide {service.name.toLowerCase()} services for homes in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon communities.
+              </p>
+            )}
             <HousecallProButton variant="large">Get Free Estimate</HousecallProButton>
           </div>
         </div>

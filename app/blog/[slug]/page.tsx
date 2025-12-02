@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Section } from '@/components/Section'
+import { HousecallProButton } from '@/components/HousecallProButton'
 import { getBlogPostBySlug, getRelatedPosts } from '@/data/blogPosts'
 import { generateMetadata as genMeta } from '@/lib/seo'
 import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/jsonld'
-
 import { formatDate } from '@/lib/formatDate'
 
 interface BlogPostPageProps {
@@ -92,6 +92,36 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </Section>
       </article>
+
+      {/* CTA Section */}
+      <Section className="bg-primary text-white">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="mb-4 text-3xl font-bold">Ready to Get Started?</h2>
+          <p className="mb-6 text-lg text-white/90">
+            Get your free, no-obligation estimate for your home project. We&apos;ll visit your home, assess your needs, and provide a detailed quote.
+          </p>
+          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <HousecallProButton
+              variant="large"
+              className="bg-white !text-slate-900 hover:bg-slate-100 shadow-xl font-bold"
+            >
+              Get Free Estimate
+            </HousecallProButton>
+            <Link
+              href="/services"
+              className="inline-flex items-center justify-center rounded-lg border-2 border-white px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+            >
+              View All Services
+            </Link>
+          </div>
+          <div className="mt-8 text-sm text-white/80">
+            <p className="mb-2">Serving Eugene, Albany, Corvallis, Springfield, and surrounding Oregon communities.</p>
+            <Link href="/areas-we-serve" className="underline hover:text-white">
+              View all service areas →
+            </Link>
+          </div>
+        </div>
+      </Section>
 
       {relatedPosts.length > 0 && (
         <Section>

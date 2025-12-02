@@ -28,8 +28,15 @@ export function SiteFooter() {
             <p className="mb-4 text-sm text-slate-600">
               Premium siding replacement and painting services for Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas.
             </p>
-            <PillBadge>5-Year Workmanship Warranty</PillBadge>
-            <p className="mt-4 text-xs text-slate-500">{companyInfo.ccbLicense}</p>
+            <div className="mb-4 space-y-2">
+              <PillBadge>5-Year Workmanship Warranty</PillBadge>
+              <PillBadge>Licensed & Insured</PillBadge>
+              <PillBadge>Locally Owned</PillBadge>
+            </div>
+            <p className="mt-4 text-xs text-slate-500 font-semibold">{companyInfo.ccbLicense}</p>
+            <p className="mt-2 text-xs text-slate-500">
+              Licensed & Insured in Oregon
+            </p>
           </div>
 
           <div>
@@ -97,6 +104,31 @@ export function SiteFooter() {
                 </Link>
               </li>
             </ul>
+            <div className="mt-6">
+              <h4 className="mb-3 text-sm font-semibold text-slate-900">Service Areas</h4>
+              <ul className="space-y-1 text-xs text-slate-600">
+                <li>
+                  <Link href="/eugene-or" className="hover:text-primary">
+                    Eugene, OR
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/albany-or" className="hover:text-primary">
+                    Albany, OR
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/corvallis-or" className="hover:text-primary">
+                    Corvallis, OR
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/springfield-or" className="hover:text-primary">
+                    Springfield, OR
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div>

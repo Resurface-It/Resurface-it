@@ -45,10 +45,10 @@ export function generateSitemap(): SitemapEntry[] {
     })
   })
 
-  // City landing pages
+  // City landing pages (new format: eugene-or, albany-or, etc.)
   primaryCities.forEach((city) => {
     entries.push({
-      url: `${siteUrl}/${city.slug}`,
+      url: `${siteUrl}/${city.slug}-or`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,

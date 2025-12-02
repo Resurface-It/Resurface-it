@@ -12,9 +12,11 @@ import { HousecallProButton } from '@/components/HousecallProButton'
 import { TrustStrip } from '@/components/TrustStrip'
 import { PhoneLink } from '@/components/PhoneLink'
 import { Shield, CheckCircle } from 'lucide-react'
-import { generateLocalBusinessSchema, generateBreadcrumbSchema } from '@/lib/jsonld'
+import { generateLocalBusinessSchema, generateBreadcrumbSchema, generateFAQPageSchema } from '@/lib/jsonld'
 import { primaryCities } from '@/data/cities'
 import { companyInfo } from '@/data/company'
+import { FAQAccordion } from '@/components/FAQAccordion'
+import { getFAQsByCategory } from '@/data/faq'
 
 // Dynamic imports for non-critical components - loaded after initial render
 const ServicesGrid = dynamic(
@@ -96,6 +98,15 @@ export default function HomePage() {
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },
   ])
+  
+  // Get high-intent FAQs for home page
+  const homeFAQs = [
+    getFAQsByCategory('siding')[0],
+    getFAQsByCategory('exterior-painting')[0],
+    getFAQsByCategory('scheduling')[0],
+    getFAQsByCategory('warranty')[0],
+  ].filter(Boolean)
+  const faqSchema = homeFAQs.length > 0 ? generateFAQPageSchema(homeFAQs) : null
 
   return (
     <>
@@ -107,6 +118,12 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       {/* Hero Section - Full Width with Image */}
       <section className="relative min-h-[80vh] flex items-center -mt-36 md:-mt-40 lg:-mt-44 pt-36 md:pt-40 lg:pt-44 pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -126,7 +143,7 @@ export default function HomePage() {
         <div className="container relative z-10">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-              Professional Siding & Painting Services You Can Trust
+              Premium Siding Replacement & Painting in Eugene, Albany, Corvallis & Springfield, OR
             </h1>
             <p className="mb-4 text-xl text-white/95 md:text-2xl">
               Serving Eugene, Albany, Corvallis, Springfield and surrounding Oregon communities with premium craftsmanship and unmatched customer service.
@@ -360,16 +377,17 @@ export default function HomePage() {
         />
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {primaryCities.map((city) => (
-            <div key={city.slug} className="rounded-xl border border-slate-200 bg-white p-6 text-center transition-shadow hover:shadow-lg">
+            <Link
+              key={city.slug}
+              href={`/${city.slug}-or`}
+              className="rounded-xl border border-slate-200 bg-white p-6 text-center transition-shadow hover:shadow-lg"
+            >
               <h3 className="mb-2 text-xl font-semibold">{city.name}</h3>
               <p className="mb-4 text-sm text-slate-600">{city.blurb}</p>
-              <Link
-                href={`/${city.slug}`}
-                className="text-sm font-semibold text-primary hover:text-primaryDark"
-              >
+              <span className="text-sm font-semibold text-primary hover:text-primaryDark">
                 View {city.name} services →
-              </Link>
-            </div>
+              </span>
+            </Link>
           ))}
         </div>
         <div className="mt-8 text-center">
@@ -378,6 +396,25 @@ export default function HomePage() {
           </Link>
         </div>
       </Section>
+
+      {/* FAQ Section */}
+      {homeFAQs.length > 0 && (
+        <Section className="bg-slate-50 py-16">
+          <SectionHeader
+            title="Frequently Asked Questions"
+            subtitle="Common questions about our siding replacement and painting services in Oregon"
+            align="center"
+          />
+          <div className="mt-12 mx-auto max-w-3xl">
+            <FAQAccordion faqs={homeFAQs} />
+          </div>
+          <div className="mt-8 text-center">
+            <Link href="/services">
+              <SecondaryButton>View All Services</SecondaryButton>
+            </Link>
+          </div>
+        </Section>
+      )}
 
       {/* Final CTA */}
       <Section className="bg-primary py-16 text-white">
