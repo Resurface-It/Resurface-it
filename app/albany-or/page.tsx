@@ -48,7 +48,7 @@ export default function AlbanyPage() {
       <section className="relative min-h-[70vh] flex items-center -mt-36 md:-mt-40 lg:-mt-44 pt-36 md:pt-40 lg:pt-44 pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/Albany-Landing.webp"
+            src="/images/Albany-Landing.jpg"
             alt="Siding replacement and painting services in Albany, Oregon"
             fill
             className="object-cover w-full h-full"

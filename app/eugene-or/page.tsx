@@ -49,7 +49,7 @@ export default function EugenePage() {
       <section className="relative min-h-[70vh] flex items-center -mt-36 md:-mt-40 lg:-mt-44 pt-36 md:pt-40 lg:pt-44 pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/city-eugene.jpg"
+            src="/images/Eugene-landing.jpeg"
             alt="Siding replacement and painting services in Eugene, Oregon"
             fill
             className="object-cover w-full h-full"
