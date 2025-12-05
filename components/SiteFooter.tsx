@@ -32,6 +32,7 @@ export function SiteFooter() {
               <PillBadge>5-Year Workmanship Warranty</PillBadge>
               <PillBadge>Licensed & Insured</PillBadge>
               <PillBadge>Locally Owned</PillBadge>
+              <PillBadge>12 Month 0% Interest Financing</PillBadge>
             </div>
             <p className="mt-4 text-xs text-slate-500 font-semibold">{companyInfo.ccbLicense}</p>
             <p className="mt-2 text-xs text-slate-500">

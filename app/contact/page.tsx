@@ -34,7 +34,7 @@ const contactFAQs = [
   },
   {
     question: 'Do you offer financing?',
-    answer: 'We work with several financing partners to offer flexible payment options. We can discuss financing options during your estimate visit to find a solution that works for your budget.',
+    answer: 'Yes! We offer 12 month 0% interest financing for qualified customers. We work with several financing partners to offer flexible payment options. We can discuss financing options during your estimate visit to find a solution that works for your budget.',
     category: 'scheduling' as const,
   },
   {

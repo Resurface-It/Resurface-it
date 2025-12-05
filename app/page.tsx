@@ -182,6 +182,10 @@ export default function HomePage() {
                 <CheckCircle className="h-5 w-5 text-blue-400" />
                 <span>Locally Owned</span>
               </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-purple-400" />
+                <span>12 Month 0% Interest Financing Available</span>
+              </div>
             </div>
           </div>
         </div>
@@ -421,8 +425,11 @@ export default function HomePage() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">Get a Free Estimate in 24 Hours</h2>
-            <p className="mb-8 text-lg text-white/90">
+            <p className="mb-4 text-lg text-white/90">
               Ready to transform your home? Schedule your free, no-obligation estimate today. We&apos;ll visit your home, assess your project, and provide a detailed quote—no pressure, no obligation.
+            </p>
+            <p className="mb-8 text-base text-white/80">
+              <strong>12 month 0% interest financing available for qualified customers.</strong>
             </p>
             <HousecallProButton
               variant="large"

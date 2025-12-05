@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Shield, Award, MapPin, FileCheck } from 'lucide-react'
+import { Shield, Award, MapPin, FileCheck, CreditCard } from 'lucide-react'
 import { companyInfo } from '@/data/company'
 
 const trustItems = [
@@ -24,6 +24,12 @@ const trustItems = [
   {
     icon: MapPin,
     label: 'Locally Owned & Operated',
+    href: null,
+    clickable: false,
+  },
+  {
+    icon: CreditCard,
+    label: '12 Month 0% Interest Financing',
     href: null,
     clickable: false,
   },
