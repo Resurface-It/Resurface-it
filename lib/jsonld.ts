@@ -198,7 +198,7 @@ export function generateOrganizationSchema(): Organization {
     '@type': 'Organization',
     name: companyInfo.name,
     url: siteUrl,
-    logo: `${siteUrl}/Resurface-it.png`,
+    logo: `${siteUrl}/logo.png`,
     description: 'Premium siding replacement and painting services in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, and backed by a 5-year workmanship warranty.',
     telephone: companyInfo.phone,
     email: companyInfo.email,
