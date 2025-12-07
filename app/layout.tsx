@@ -73,9 +73,13 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Resurface-it' }],
   icons: {
-    icon: '/Resurface-it.png',
-    shortcut: '/Resurface-it.png',
-    apple: '/Resurface-it.png',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
   openGraph: {
     type: 'website',
