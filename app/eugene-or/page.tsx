@@ -10,12 +10,14 @@ import { getCityBySlug } from '@/data/cities'
 import { services } from '@/data/services'
 import { testimonials } from '@/data/testimonials'
 import { generateMetadata as genMeta } from '@/lib/seo'
-import { generateLocalBusinessSchema, generateBreadcrumbSchema } from '@/lib/jsonld'
+import { generateLocalBusinessSchema, generateBreadcrumbSchema, generateFAQPageSchema } from '@/lib/jsonld'
+import { FAQAccordion } from '@/components/FAQAccordion'
+import { getCityFAQs } from '@/data/faq'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = genMeta({
-  title: 'Siding Replacement & Painting in Eugene, OR | Resurface-it',
-  description: 'Professional siding replacement and painting services in Eugene, OR. Hardie board, vinyl & fiber cement installation. Exterior & interior painting. 5-year warranty. Licensed & insured. Free estimates.',
+  title: 'Siding Replacement & House Painting in Eugene, OR',
+  description: 'Professional siding replacement and house painting in Eugene, OR. Hardie board, vinyl & fiber cement installation. Exterior & interior painting. 5-year workmanship warranty. Licensed & insured. Free estimates in 24 hours.',
   path: '/eugene-or',
 })
 
@@ -27,6 +29,8 @@ export default function EugenePage() {
   }
 
   const eugeneTestimonials = testimonials.filter(t => t.location.includes('Eugene'))
+  const cityFAQs = getCityFAQs('Eugene')
+  const faqSchema = cityFAQs.length > 0 ? generateFAQPageSchema(cityFAQs) : null
   const localBusinessSchema = generateLocalBusinessSchema()
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -44,6 +48,12 @@ export default function EugenePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center -mt-36 md:-mt-40 lg:-mt-44 pt-36 md:pt-40 lg:pt-44 pb-20 overflow-hidden">
@@ -90,7 +100,7 @@ export default function EugenePage() {
                 Resurface-it is Eugene&apos;s trusted partner for siding replacement and painting services. From historic homes in the South University neighborhood to modern builds in the River Road area, we understand the unique needs of Eugene homeowners. Oregon&apos;s climate—with its wet winters, sunny summers, and temperature fluctuations—demands exterior materials and finishes that can withstand the elements while maintaining their beauty.
               </p>
               <p className="mb-4 text-lg leading-relaxed">
-                We specialize in <Link href="/services/siding-replacement" className="font-semibold text-primary hover:underline">siding replacement</Link> using Hardie board, vinyl, and fiber cement materials that stand up to Eugene&apos;s weather. Our <Link href="/services/exterior-painting" className="font-semibold text-primary hover:underline">exterior painting</Link> services use premium paints specifically formulated for Oregon&apos;s rain and humidity. And our <Link href="/services/interior-painting" className="font-semibold text-primary hover:underline">interior painting</Link> services transform every room in your home with expert craftsmanship and attention to detail.
+                We specialize in <Link href="/services/siding-replacement" className="font-semibold text-primary hover:underline">siding replacement</Link> using Hardie board, vinyl, and fiber cement materials that stand up to Eugene&apos;s weather. Our <Link href="/services/exterior-painting" className="font-semibold text-primary hover:underline">exterior painting</Link> services use premium paints specifically formulated for Oregon&apos;s rain and humidity. Our <Link href="/eugene-or/interior-painting" className="font-semibold text-primary hover:underline">interior painting in Eugene</Link> services transform every room in your home, and we also offer <Link href="/eugene-or/cabinet-painting" className="font-semibold text-primary hover:underline">cabinet painting</Link> and <Link href="/eugene-or/deck-and-fence-staining" className="font-semibold text-primary hover:underline">deck and fence staining</Link>.
               </p>
               <p className="mb-6 text-lg leading-relaxed">
                 Whether you&apos;re near the University of Oregon campus, in the Friendly Street area, or anywhere throughout Eugene and surrounding communities like Springfield, Creswell, Coburg, and Junction City, we&apos;re here to help protect and beautify your home.
@@ -103,12 +113,49 @@ export default function EugenePage() {
       {/* Services Available in Eugene */}
       <Section className="bg-slate-50 py-16">
         <SectionHeader
-          title="Our Services in Eugene"
+          title="Siding & Painting Services in Eugene"
           subtitle="Comprehensive home exterior and interior services tailored to Eugene homes"
           align="center"
         />
-        <div className="mt-12">
-          <ServicesGrid />
+        <div className="mt-8 mx-auto max-w-4xl">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="rounded-lg bg-white p-6 shadow-sm">
+              <h3 className="mb-3 text-xl font-semibold">Siding Replacement</h3>
+              <p className="text-slate-700">
+                Hardie board, vinyl, and fiber cement siding installation that withstands Eugene&apos;s wet winters and protects your home for decades. We handle everything from removal to final inspection.
+              </p>
+            </div>
+            <div className="rounded-lg bg-white p-6 shadow-sm">
+              <h3 className="mb-3 text-xl font-semibold">Exterior Painting</h3>
+              <p className="text-slate-700">
+                Premium paints formulated for Oregon&apos;s climate, with proper surface prep, primer application, and multiple coats. Our exterior painting protects against Eugene&apos;s rain and humidity.
+              </p>
+            </div>
+            <div className="rounded-lg bg-white p-6 shadow-sm">
+              <h3 className="mb-3 text-xl font-semibold">Interior Painting</h3>
+              <p className="text-slate-700">
+                Transform every room in your Eugene home with expert interior painting. We use low-VOC paints, provide color consultation, and ensure minimal disruption to your daily life.
+              </p>
+            </div>
+            <div className="rounded-lg bg-white p-6 shadow-sm">
+              <h3 className="mb-3 text-xl font-semibold">Deck & Fence Staining</h3>
+              <p className="text-slate-700">
+                Protect your outdoor spaces from Oregon weather with professional staining and sealing. We properly prepare surfaces and use premium stains that last through Eugene&apos;s seasons.
+              </p>
+            </div>
+            <div className="rounded-lg bg-white p-6 shadow-sm">
+              <h3 className="mb-3 text-xl font-semibold">Pressure Washing</h3>
+              <p className="text-slate-700">
+                Restore your home&apos;s exterior with safe, effective pressure washing. We clean siding, decks, driveways, and more, preparing surfaces for painting or staining projects.
+              </p>
+            </div>
+            <div className="rounded-lg bg-white p-6 shadow-sm">
+              <h3 className="mb-3 text-xl font-semibold">Roofing</h3>
+              <p className="text-slate-700">
+                Complete roofing services including installation, repair, and replacement. We use materials designed for Oregon&apos;s weather and ensure proper ventilation and weatherproofing.
+              </p>
+            </div>
+          </div>
         </div>
         <div className="mt-8 text-center">
           <HousecallProButton variant="default">
@@ -117,9 +164,36 @@ export default function EugenePage() {
         </div>
       </Section>
 
+      {/* Local Gallery */}
+      <Section className="bg-white py-16">
+        <SectionHeader
+          title="Recent Projects in Eugene"
+          subtitle="See our work transforming Eugene homes"
+          align="center"
+        />
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {[1, 2, 3, 4, 5, 6, 7, 8].slice(0, 8).map((num) => (
+            <div key={num} className="relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200">
+              <Image
+                src={`/images/project-${num}.jpg`}
+                alt={`Siding and painting project in Eugene, OR - Project ${num}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                loading="lazy"
+                quality={75}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="mt-6 text-center text-sm text-slate-600">
+          <p>New Hardie siding and exterior paint in South Eugene • Exterior painting in Friendly Street area • Siding replacement near University of Oregon</p>
+        </div>
+      </Section>
+
       {/* Testimonials */}
       {eugeneTestimonials.length > 0 && (
-        <Section className="bg-white py-16">
+        <Section className="bg-slate-50 py-16">
           <SectionHeader
             title="What Eugene Homeowners Say"
             subtitle="See why Eugene residents trust Resurface-it for their home projects"
@@ -129,6 +203,20 @@ export default function EugenePage() {
             {eugeneTestimonials.slice(0, 3).map((testimonial, index) => (
               <TestimonialCard key={index} testimonial={testimonial} />
             ))}
+          </div>
+        </Section>
+      )}
+
+      {/* City-Specific FAQ */}
+      {cityFAQs.length > 0 && (
+        <Section className="bg-white py-16">
+          <SectionHeader
+            title="Frequently Asked Questions About Siding & Painting in Eugene"
+            subtitle="Common questions from Eugene homeowners"
+            align="center"
+          />
+          <div className="mt-12 mx-auto max-w-3xl">
+            <FAQAccordion faqs={cityFAQs} />
           </div>
         </Section>
       )}

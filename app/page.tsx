@@ -17,6 +17,7 @@ import { primaryCities } from '@/data/cities'
 import { companyInfo } from '@/data/company'
 import { FAQAccordion } from '@/components/FAQAccordion'
 import { getFAQsByCategory } from '@/data/faq'
+import { testimonials } from '@/data/testimonials'
 
 // Dynamic imports for non-critical components - loaded after initial render
 const ServicesGrid = dynamic(
@@ -101,11 +102,32 @@ export default function HomePage() {
   
   // Get high-intent FAQs for home page
   const homeFAQs = [
-    getFAQsByCategory('siding')[0],
-    getFAQsByCategory('exterior-painting')[0],
-    getFAQsByCategory('scheduling')[0],
-    getFAQsByCategory('warranty')[0],
-  ].filter(Boolean)
+    {
+      question: 'How much does siding replacement cost in Eugene, OR?',
+      answer: 'Siding replacement costs in Eugene typically range from $8,500 to $25,000, depending on home size, material choice (Hardie board, vinyl, or fiber cement), and project complexity. Most projects fall in the $12,000-$18,000 range. We provide detailed, no-obligation estimates within 24 hours.',
+      category: 'siding' as const,
+    },
+    {
+      question: 'How long does a full exterior repaint usually take in Oregon?',
+      answer: 'Exterior painting in Oregon typically takes 3-7 business days, depending on home size, weather conditions, and the amount of prep work needed. We schedule around Oregon\'s weather patterns and work efficiently to minimize disruption. Proper surface preparation is crucial for long-lasting results in our wet climate.',
+      category: 'exterior-painting' as const,
+    },
+    {
+      question: 'What does your 5-year workmanship warranty cover?',
+      answer: 'Our 5-year workmanship warranty covers defects in installation, materials, and finish quality. If your paint peels, cracks, or bubbles due to workmanship issues, we fix it at no cost to you. The warranty is transferable if you sell your home, adding value to your property. It doesn\'t cover normal wear and tear or damage from external causes.',
+      category: 'warranty' as const,
+    },
+    {
+      question: 'Do you handle both siding replacement and painting on the same project?',
+      answer: 'Yes! We specialize in combining siding replacement and exterior painting for complete home protection. When we install new siding, we can coordinate with exterior painting to ensure everything works together seamlessly. This approach often saves time and money while providing superior protection against Oregon\'s weather.',
+      category: 'siding' as const,
+    },
+    {
+      question: 'Which areas do you serve in the Willamette Valley?',
+      answer: 'We serve Eugene, Albany, Corvallis, Springfield, and surrounding communities including Lebanon, Philomath, Junction City, Creswell, Coburg, Tangent, Monroe, Adair Village, Harrisburg, and Millersburg. As a locally owned company based in Eugene, we understand the unique needs of Willamette Valley homeowners.',
+      category: 'scheduling' as const,
+    },
+  ]
   const faqSchema = homeFAQs.length > 0 ? generateFAQPageSchema(homeFAQs) : null
 
   return (
@@ -146,7 +168,7 @@ export default function HomePage() {
               Premium Siding Replacement & Painting in Eugene, Albany, Corvallis & Springfield, OR
             </h1>
             <p className="mb-4 text-xl text-white/95 md:text-2xl">
-              Serving Eugene, Albany, Corvallis, Springfield and surrounding Oregon communities with premium craftsmanship and unmatched customer service.
+              Protect your Oregon home from rain, moisture, and UV damage with our expert siding replacement and house painting services. We combine both services for long-lasting results, backed by a 5-year workmanship warranty and local ownership you can trust.
             </p>
             <div className="mb-8">
               <PhoneLink 
@@ -171,20 +193,20 @@ export default function HomePage() {
             </div>
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-white/90">
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-green-400" />
-                <span>Licensed & Insured</span>
+                <Shield className="h-5 w-5 text-yellow-400" />
+                <span>5-Year Workmanship Warranty</span>
               </div>
               <div className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-yellow-400" />
-                <span>5-Year Warranty</span>
+                <CheckCircle className="h-5 w-5 text-green-400" />
+                <span>Licensed & Insured • CCB #217088</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-blue-400" />
-                <span>Locally Owned</span>
+                <span>Locally Owned in Eugene, OR</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-purple-400" />
-                <span>12 Month 0% Interest Financing Available</span>
+                <span>Fast, Transparent Estimates (Often in 24 Hours)</span>
               </div>
             </div>
           </div>
@@ -197,25 +219,66 @@ export default function HomePage() {
       {/* Trust Strip */}
       <TrustStrip />
 
-      {/* Painting With Purpose Section */}
+      {/* Social Proof Section */}
+      <Section className="bg-slate-50 py-16">
+        <div className="container">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+              Oregon Homeowners Rate Resurface-it ★★★★★ for Siding & Painting
+            </h2>
+            <p className="mb-8 text-lg text-slate-600">
+              With 50+ five-star reviews from homeowners across Eugene, Albany, Corvallis, and Springfield, we&apos;ve built our reputation on quality work, clear communication, and standing behind every project with our 5-year warranty.
+            </p>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {testimonials.slice(0, 3).map((testimonial, index) => {
+                const nameParts = testimonial.name.split(' ')
+                const firstName = nameParts[0] || ''
+                const lastNameInitial = nameParts[1]?.[0] || ''
+                const displayName = lastNameInitial ? `${firstName} ${lastNameInitial}.` : firstName
+                
+                return (
+                  <div key={index} className="rounded-lg bg-white p-6 shadow-sm">
+                    <div className="mb-3 flex items-center gap-1 text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="h-5 w-5 fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <p className="mb-4 text-sm italic text-slate-700">&quot;{testimonial.quote}&quot;</p>
+                    <p className="text-sm font-semibold text-slate-900">
+                      — {displayName}, {testimonial.location}
+                    </p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Why Resurface-it Section */}
       <Section className="bg-white py-16">
         <div className="container">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
             <div>
-              <h2 className="mb-6 text-3xl font-bold md:text-4xl">Siding & Painting With Purpose</h2>
+              <h2 className="mb-6 text-3xl font-bold md:text-4xl">Why Choose Resurface-it for Your Oregon Home</h2>
               <p className="mb-4 text-lg leading-relaxed text-slate-700">
-                As Eugene, Albany, Corvallis, and Springfield&apos;s trusted siding and painting company, Resurface-it goes above and beyond to deliver top-tier craftsmanship and unmatched customer service—because your happiness is our mission.
-              </p>
-              <p className="mb-6 text-lg leading-relaxed text-slate-700">
-                We&apos;re here to transform your home with a flawless experience from start to finish. Think of us as the best house guests you&apos;ve ever had: respectful, tidy, and laser-focused on making your space shine. From{' '}
+                Oregon&apos;s climate is tough on homes. Heavy winter rains, high humidity, and intense summer sun can damage siding and cause paint to fail prematurely. At Resurface-it, we specialize in both{' '}
                 <Link href="/services/siding-replacement" className="font-semibold text-primary hover:underline">
                   siding replacement
                 </Link>{' '}
                 and{' '}
                 <Link href="/services/exterior-painting" className="font-semibold text-primary hover:underline">
                   exterior painting
-                </Link>{' '}
-                to{' '}
+                </Link>
+                , working together to create a complete protective system for your home.
+              </p>
+              <p className="mb-4 text-lg leading-relaxed text-slate-700">
+                As a locally owned, non-franchise company based in Eugene, we understand the unique challenges Oregon homeowners face. Our experienced crews use materials specifically chosen for Oregon&apos;s weather—moisture-resistant primers, UV-protective paints, and durable siding materials that stand up to our climate. Every project is backed by our 5-year workmanship warranty, giving you confidence that your investment will last.
+              </p>
+              <p className="mb-6 text-lg leading-relaxed text-slate-700">
+                We also provide{' '}
                 <Link href="/services/interior-painting" className="font-semibold text-primary hover:underline">
                   interior painting
                 </Link>
@@ -223,7 +286,11 @@ export default function HomePage() {
                 <Link href="/services/deck-staining" className="font-semibold text-primary hover:underline">
                   deck staining
                 </Link>
-                , and more, we offer a full suite of home improvement services tailored to your needs.
+                , and{' '}
+                <Link href="/services/pressure-washing" className="font-semibold text-primary hover:underline">
+                  pressure washing
+                </Link>
+                . Our crews are respectful, keep job sites clean daily, and communicate clearly throughout your project. We&apos;re not just contractors—we&apos;re your neighbors, committed to protecting your most valuable investment.
               </p>
               <Link href="/about">
                 <SecondaryButton>Learn More About Us</SecondaryButton>
@@ -375,24 +442,32 @@ export default function HomePage() {
       {/* Service Areas */}
       <Section className="bg-white py-16">
         <SectionHeader
-          title="Serving Eugene, Albany, Corvallis, Springfield & Surrounding Oregon Communities"
+          title="Serving Oregon's Willamette Valley"
           subtitle="Locally owned and operated, we understand the unique needs of Oregon homeowners"
           align="center"
         />
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {primaryCities.map((city) => (
-            <Link
-              key={city.slug}
-              href={`/${city.slug}-or`}
-              className="rounded-xl border border-slate-200 bg-white p-6 text-center transition-shadow hover:shadow-lg"
-            >
-              <h3 className="mb-2 text-xl font-semibold">{city.name}</h3>
-              <p className="mb-4 text-sm text-slate-600">{city.blurb}</p>
-              <span className="text-sm font-semibold text-primary hover:text-primaryDark">
-                View {city.name} services →
-              </span>
-            </Link>
-          ))}
+          {primaryCities.map((city) => {
+            const citySpecificBlurbs: Record<string, string> = {
+              eugene: 'From historic homes near the University of Oregon to modern builds in River Road, Eugene\'s diverse neighborhoods require siding and paint solutions that withstand our wet winters and sunny summers.',
+              albany: 'Albany\'s mix of historic and newer homes benefits from our expertise in both traditional and modern siding materials, plus exterior painting that protects against Oregon\'s humidity and rain.',
+              corvallis: 'Corvallis homeowners trust us for siding replacement and painting that stands up to the Willamette Valley\'s climate. We work with homes near OSU, in established neighborhoods, and throughout the area.',
+              springfield: 'Springfield\'s growing community needs reliable exterior services. We provide siding replacement and painting solutions that protect homes from Oregon\'s weather while enhancing curb appeal.',
+            }
+            return (
+              <Link
+                key={city.slug}
+                href={`/${city.slug}-or`}
+                className="rounded-xl border border-slate-200 bg-white p-6 text-center transition-shadow hover:shadow-lg"
+              >
+                <h3 className="mb-2 text-xl font-semibold">{city.name}</h3>
+                <p className="mb-4 text-sm text-slate-600">{citySpecificBlurbs[city.slug] || city.blurb}</p>
+                <span className="text-sm font-semibold text-primary hover:text-primaryDark">
+                  View {city.name} services →
+                </span>
+              </Link>
+            )
+          })}
         </div>
         <div className="mt-8 text-center">
           <Link href="/areas-we-serve">

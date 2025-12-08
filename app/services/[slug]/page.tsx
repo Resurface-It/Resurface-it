@@ -268,6 +268,63 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </Section>
       )}
 
+      {/* Trust Block */}
+      <Section className="bg-slate-50">
+        <div className="mx-auto max-w-4xl">
+          <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
+            <h2 className="mb-6 text-center text-2xl font-bold">Why Choose Resurface-it for {service.name}?</h2>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="flex items-start gap-3">
+                <svg className="mt-0.5 h-6 w-6 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <div>
+                  <h3 className="font-semibold text-slate-900">5-Year Workmanship Warranty</h3>
+                  <p className="text-sm text-slate-600">Every project is backed by our comprehensive warranty covering workmanship and materials.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <svg className="mt-0.5 h-6 w-6 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <div>
+                  <h3 className="font-semibold text-slate-900">Licensed & Insured in Oregon</h3>
+                  <p className="text-sm text-slate-600">CCB #217088. Fully licensed and insured for your protection and peace of mind.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <svg className="mt-0.5 h-6 w-6 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <div>
+                  <h3 className="font-semibold text-slate-900">Locally Owned & Operated</h3>
+                  <p className="text-sm text-slate-600">Based in Eugene, we understand Oregon&apos;s climate and building requirements.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <svg className="mt-0.5 h-6 w-6 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <div>
+                  <h3 className="font-semibold text-slate-900">Experienced Crews, Not Random Subs</h3>
+                  <p className="text-sm text-slate-600">Our team members are trained professionals who take pride in quality work.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 md:col-span-2">
+                <svg className="mt-0.5 h-6 w-6 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <h3 className="font-semibold text-slate-900">Fast, Detailed Estimates</h3>
+                  <p className="text-sm text-slate-600">We provide transparent, written estimates often within 24 hours. No surprises, no hidden fees.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
       <Section className="bg-primary text-white">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="mb-4 text-3xl font-bold">Ready to Get Started?</h2>

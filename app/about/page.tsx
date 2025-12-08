@@ -49,19 +49,16 @@ export default function AboutPage() {
           <div className="prose prose-lg max-w-none">
             <h2 className="mb-6 text-3xl">Our Story</h2>
             <p className="mb-4 text-lg text-slate-700">
-              Resurface-it was founded with a simple mission: to provide homeowners with premium 
-              exterior services that not only beautify their homes but protect their most valuable 
-              investment for years to come.
+              Resurface-it was founded in Eugene, Oregon, with a simple mission: to provide homeowners throughout the Willamette Valley with premium siding replacement and painting services that not only beautify their homes but protect their most valuable investment for years to come.
             </p>
             <p className="mb-4 text-lg text-slate-700">
-              We understand that your home is more than just a building—it&apos;s where memories are made, 
-              where families grow, and where you&apos;ve invested your hard-earned money. That&apos;s why we 
-              approach every project with the same care and attention to detail we&apos;d want for our own homes.
+              As a locally owned, non-franchise company, we understand that your home is more than just a building—it&apos;s where memories are made, where families grow, and where you&apos;ve invested your hard-earned money. That&apos;s why we approach every project with the same care and attention to detail we&apos;d want for our own homes.
+            </p>
+            <p className="mb-4 text-lg text-slate-700">
+              With years of combined experience serving Eugene, Albany, Corvallis, Springfield, and surrounding communities, we&apos;ve built a reputation for quality craftsmanship, honest communication, and results that exceed expectations. Our team brings decades of experience in home exterior services, specializing in materials and techniques specifically suited for Oregon&apos;s challenging climate.
             </p>
             <p className="text-lg text-slate-700">
-              With years of experience serving Eugene, Albany, Corvallis, Springfield, and surrounding 
-              communities, we&apos;ve built a reputation for quality craftsmanship, honest communication, and 
-              results that exceed expectations.
+              Every project is backed by our 5-year workmanship warranty, giving you peace of mind that we stand behind our work long after the project is complete. We&apos;re licensed and insured in Oregon (CCB #217088), and we take pride in being your trusted local partner for siding and painting needs.
             </p>
           </div>
         </div>
@@ -86,17 +83,30 @@ export default function AboutPage() {
           <h2 className="mb-6 text-3xl">Our Experience</h2>
           <div className="prose prose-lg max-w-none">
             <p className="mb-4 text-lg text-slate-700">
-              Our team brings decades of combined experience in home exterior services. We&apos;ve completed 
-              hundreds of projects, from simple paint jobs to complete siding replacements, always 
-              maintaining the highest standards of quality and professionalism.
+              Our team brings decades of combined experience in home exterior services, specifically trained and experienced in working with Oregon homes. We&apos;ve completed hundreds of projects across the Willamette Valley, from simple paint jobs to complete siding replacements, always maintaining the highest standards of quality and professionalism.
             </p>
             <p className="mb-4 text-lg text-slate-700">
-              We stay current with the latest materials, techniques, and industry best practices. This 
-              commitment to continuous improvement ensures you receive the best possible service and results.
+              We stay current with the latest materials, techniques, and industry best practices, especially those relevant to Oregon&apos;s climate. Our expertise includes proper moisture barriers, weatherproofing techniques, and material selection specifically suited for the Pacific Northwest. This commitment to continuous improvement ensures you receive the best possible service and results.
+            </p>
+            <p className="mb-4 text-lg text-slate-700">
+              Every project is backed by our 5-year workmanship warranty, giving you peace of mind that we stand behind our work long after the project is complete. We&apos;re licensed and insured in Oregon (CCB #217088), and we take pride in our local ownership and commitment to the communities we serve.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="bg-white">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-6 text-3xl">Why Oregon?</h2>
+          <div className="prose prose-lg max-w-none">
+            <p className="mb-4 text-lg text-slate-700">
+              Oregon&apos;s climate presents unique challenges for home exteriors. Our wet winters, high humidity, intense summer sun, and temperature fluctuations require specialized knowledge and materials. We understand these challenges because we live and work here—we know what works in Oregon homes.
+            </p>
+            <p className="mb-4 text-lg text-slate-700">
+              We choose materials specifically suited for Oregon&apos;s weather: moisture-resistant primers, UV-protective paints, and durable siding materials like Hardie board that stand up to our climate. Our installation techniques include proper flashing, weatherproofing, and ventilation—all critical for long-lasting results in Oregon.
             </p>
             <p className="text-lg text-slate-700">
-              Every project is backed by our 5-year workmanship warranty, giving you peace of mind 
-              that we stand behind our work long after the project is complete.
+              As a locally owned company based in Eugene, we&apos;re invested in the success of our community. We understand local building codes, work with local suppliers, and build relationships with homeowners throughout the Willamette Valley. When you choose Resurface-it, you&apos;re choosing a neighbor who cares about your home as much as you do.
             </p>
           </div>
         </div>

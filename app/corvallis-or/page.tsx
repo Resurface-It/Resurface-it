@@ -13,8 +13,8 @@ import { generateLocalBusinessSchema, generateBreadcrumbSchema } from '@/lib/jso
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = genMeta({
-  title: 'Siding Replacement & Painting in Corvallis, OR | Resurface-it',
-  description: 'Professional siding replacement and painting services in Corvallis, OR. Hardie board, vinyl & fiber cement installation. Exterior & interior painting. 5-year warranty. Licensed & insured. Free estimates.',
+  title: 'Siding Replacement & House Painting in Corvallis, OR',
+  description: 'Professional siding replacement and house painting in Corvallis, OR. Hardie board, vinyl & fiber cement installation. Exterior & interior painting. 5-year workmanship warranty. Licensed & insured. Free estimates in 24 hours.',
   path: '/corvallis-or',
 })
 
@@ -89,7 +89,7 @@ export default function CorvallisPage() {
                 Resurface-it is Corvallis&apos;s trusted partner for siding replacement and painting services. From homes near Oregon State University to properties throughout the Willamette Valley, we understand the unique needs of Corvallis homeowners. Oregon&apos;s climate—with its wet winters, sunny summers, and temperature fluctuations—demands exterior materials and finishes that can withstand the elements while maintaining their beauty.
               </p>
               <p className="mb-4 text-lg leading-relaxed">
-                We specialize in <Link href="/services/siding-replacement" className="font-semibold text-primary hover:underline">siding replacement</Link> using Hardie board, vinyl, and fiber cement materials that stand up to Corvallis&apos;s weather. Our <Link href="/services/exterior-painting" className="font-semibold text-primary hover:underline">exterior painting</Link> services use premium paints specifically formulated for Oregon&apos;s rain and humidity. And our <Link href="/services/interior-painting" className="font-semibold text-primary hover:underline">interior painting</Link> services transform every room in your home with expert craftsmanship and attention to detail.
+                We specialize in <Link href="/services/siding-replacement" className="font-semibold text-primary hover:underline">siding replacement</Link> using Hardie board, vinyl, and fiber cement materials that stand up to Corvallis&apos;s weather. Our <Link href="/services/exterior-painting" className="font-semibold text-primary hover:underline">exterior painting</Link> services use premium paints specifically formulated for Oregon&apos;s rain and humidity. Our <Link href="/corvallis-or/interior-painting" className="font-semibold text-primary hover:underline">interior painting in Corvallis</Link> services transform every room in your home with expert craftsmanship and attention to detail.
               </p>
               <p className="mb-6 text-lg leading-relaxed">
                 Whether you&apos;re near OSU campus, in the Timberhill area, or anywhere throughout Corvallis and surrounding communities like Philomath, Adair Village, Albany, and Monroe, we&apos;re here to help protect and beautify your home.

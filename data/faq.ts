@@ -1,7 +1,7 @@
 export interface FAQ {
   question: string
   answer: string
-  category: 'siding' | 'exterior-painting' | 'interior-painting' | 'roofing' | 'warranty' | 'scheduling'
+  category: 'siding' | 'exterior-painting' | 'interior-painting' | 'roofing' | 'warranty' | 'scheduling' | 'city-specific'
 }
 
 export const faqs: FAQ[] = [
@@ -216,6 +216,37 @@ export const faqs: FAQ[] = [
     answer: 'Yes, all estimates are completely free with no obligation. We\'ll visit your home, assess your project, and provide a detailed written estimate.',
     category: 'scheduling',
   },
+  // City-specific FAQs
+  {
+    question: 'How much does siding replacement cost in Eugene, OR?',
+    answer: 'Siding replacement in Eugene typically costs $8,500 to $25,000, depending on home size, material choice, and project complexity. Most Eugene projects range from $12,000 to $18,000. We provide detailed estimates within 24 hours.',
+    category: 'city-specific',
+  },
+  {
+    question: 'What\'s the best time of year for exterior painting in Eugene?',
+    answer: 'Late spring through early fall (May through September) is ideal for exterior painting in Eugene. We need consistent dry weather for proper paint application and curing. We schedule around Oregon\'s weather patterns and can work with you to find the best timing.',
+    category: 'city-specific',
+  },
+  {
+    question: 'How does Eugene\'s rain and humidity affect siding and painting projects?',
+    answer: 'Eugene\'s high rainfall and humidity require moisture-resistant materials and proper preparation. We use primers and paints specifically formulated for wet climates, ensure proper surface drying before painting, and schedule projects during dry weather windows. Our siding installations include proper flashing and weatherproofing to prevent moisture intrusion.',
+    category: 'city-specific',
+  },
+  {
+    question: 'How long does siding replacement take in Albany, OR?',
+    answer: 'Most siding replacement projects in Albany take 5-10 business days, depending on home size and weather conditions. We work efficiently while maintaining quality, and we\'ll provide a detailed timeline during your free estimate.',
+    category: 'city-specific',
+  },
+  {
+    question: 'What siding materials work best for Corvallis homes?',
+    answer: 'Hardie board (fiber cement) and premium vinyl siding both perform well in Corvallis\'s climate. Hardie board offers exceptional durability and can be painted any color, while vinyl provides excellent value and low maintenance. We\'ll help you choose based on your home\'s style, budget, and long-term goals.',
+    category: 'city-specific',
+  },
+  {
+    question: 'How do I request an estimate in Springfield, OR?',
+    answer: 'Requesting an estimate is easy—call us at (541) 913-5940 or use our online form. We typically provide estimates within 24 hours. We\'ll visit your Springfield home, assess your project, discuss your goals, and provide a detailed written estimate with no obligation.',
+    category: 'city-specific',
+  },
 ]
 
 export function getFAQsByCategory(category: FAQ['category']): FAQ[] {
@@ -231,5 +262,18 @@ export function getFAQsByService(serviceSlug: string): FAQ[] {
   }
   const category = serviceCategoryMap[serviceSlug]
   return category ? getFAQsByCategory(category) : []
+}
+
+export function getCityFAQs(cityName: string): FAQ[] {
+  // Return city-specific FAQs based on city name
+  const cityFAQMap: Record<string, string[]> = {
+    'Eugene': ['How much does siding replacement cost in Eugene, OR?', 'What\'s the best time of year for exterior painting in Eugene?', 'How does Eugene\'s rain and humidity affect siding and painting projects?'],
+    'Albany': ['How long does siding replacement take in Albany, OR?'],
+    'Corvallis': ['What siding materials work best for Corvallis homes?'],
+    'Springfield': ['How do I request an estimate in Springfield, OR?'],
+  }
+  
+  const questions = cityFAQMap[cityName] || []
+  return faqs.filter(faq => questions.includes(faq.question))
 }
 

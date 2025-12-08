@@ -55,3 +55,14 @@ export function generateMetadata({
   }
 }
 
+/**
+ * Generate city-specific metadata for local SEO
+ */
+export function generateCityMetadata(cityName: string, citySlug: string) {
+  return generateMetadata({
+    title: `Siding Replacement & House Painting in ${cityName}, OR`,
+    description: `Professional siding replacement and house painting in ${cityName}, OR. Hardie board, vinyl & fiber cement installation. Exterior & interior painting. 5-year workmanship warranty. Licensed & insured. Free estimates in 24 hours.`,
+    path: `/${citySlug}-or`,
+  })
+}
+

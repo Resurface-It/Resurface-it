@@ -23,6 +23,7 @@ export interface LocalBusiness {
     ratingValue: string
     reviewCount: string
   }
+  sameAs?: string[]
 }
 
 export interface ServiceSchema {
@@ -53,7 +54,7 @@ export interface FAQPage {
 export function generateLocalBusinessSchema(): LocalBusiness {
   return {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': 'HomeAndConstructionBusiness',
     name: companyInfo.name,
     description: 'Premium siding replacement and painting services in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, and backed by a 5-year workmanship warranty.',
     telephone: companyInfo.phone,
@@ -96,6 +97,12 @@ export function generateLocalBusinessSchema(): LocalBusiness {
       ratingValue: '5.0',
       reviewCount: '50+',
     },
+    sameAs: [
+      // TODO: Add actual social media and review platform URLs when available
+      // 'https://www.google.com/maps/...', // Google Business Profile
+      // 'https://www.facebook.com/...', // Facebook page
+      // 'https://www.yelp.com/biz/...', // Yelp page
+    ],
   }
 }
 
@@ -186,6 +193,11 @@ export interface Organization {
     bestRating?: string
     worstRating?: string
   }
+  geo?: {
+    '@type': string
+    latitude: string
+    longitude: string
+  }
 }
 
 export function generateOrganizationSchema(): Organization {
@@ -210,6 +222,12 @@ export function generateOrganizationSchema(): Organization {
       postalCode: companyInfo.address.zip,
       addressCountry: 'US',
     },
+    sameAs: [
+      // TODO: Add actual social media and review platform URLs when available
+      // 'https://www.google.com/maps/...', // Google Business Profile
+      // 'https://www.facebook.com/...', // Facebook page
+      // 'https://www.yelp.com/biz/...', // Yelp page
+    ],
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '5.0',

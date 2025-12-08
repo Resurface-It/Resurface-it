@@ -47,10 +47,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://resurface-it.com'),
   title: {
-    default: 'Resurface-it | Premium Siding Replacement & Painting in Eugene, Albany, Corvallis & Springfield, OR',
+    default: 'Siding Replacement & House Painting in Eugene, Albany, Corvallis & Springfield, OR | Resurface-it',
     template: '%s | Resurface-it',
   },
-  description: 'Professional siding replacement and painting services in Eugene, Albany, Corvallis, Springfield OR. Hardie board, vinyl & fiber cement installation. Exterior & interior painting. 5-year workmanship warranty. Licensed & insured. Free estimates in 24 hours.',
+  description: 'Resurface-it provides premium siding replacement and house painting in Eugene, Albany, Corvallis & Springfield, OR. 5-year workmanship warranty, licensed & insured, locally owned, and fast, transparent estimates for siding, exterior painting, interior painting, deck staining & more.',
   keywords: [
     'siding replacement Eugene OR',
     'exterior painting Eugene Oregon',
