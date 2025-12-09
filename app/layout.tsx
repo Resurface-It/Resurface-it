@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
 import { ClientOnly } from '@/components/ClientOnly'
@@ -160,6 +161,7 @@ export default function RootLayout({
           </SafeComponentWrapper>
         </ClientOnly>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
