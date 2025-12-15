@@ -11,6 +11,8 @@ import { testimonials } from '@/data/testimonials'
 import { generateMetadata as genMeta } from '@/lib/seo'
 import { generateLocalBusinessSchema, generateBreadcrumbSchema } from '@/lib/jsonld'
 import type { Metadata } from 'next'
+import { PhoneLink } from '@/components/PhoneLink'
+import { companyInfo } from '@/data/company'
 
 export const metadata: Metadata = genMeta({
   title: 'Siding Replacement & House Painting in Corvallis, OR',
@@ -75,6 +77,12 @@ export default function CorvallisPage() {
                 View All Service Areas →
               </Link>
             </div>
+            <p className="mt-4 text-sm text-white/90">
+              Prefer to talk now?{' '}
+              <PhoneLink phone={companyInfo.phone} className="font-semibold underline">
+                Call {companyInfo.phone}
+              </PhoneLink>
+            </p>
           </div>
         </div>
       </section>

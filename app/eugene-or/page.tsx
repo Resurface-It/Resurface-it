@@ -14,6 +14,8 @@ import { generateLocalBusinessSchema, generateBreadcrumbSchema, generateFAQPageS
 import { FAQAccordion } from '@/components/FAQAccordion'
 import { getCityFAQs } from '@/data/faq'
 import type { Metadata } from 'next'
+import { PhoneLink } from '@/components/PhoneLink'
+import { companyInfo } from '@/data/company'
 
 export const metadata: Metadata = genMeta({
   title: 'Siding Replacement & House Painting in Eugene, OR',
@@ -86,6 +88,12 @@ export default function EugenePage() {
                 View All Service Areas →
               </Link>
             </div>
+            <p className="mt-4 text-sm text-white/90">
+              Prefer to talk now?{' '}
+              <PhoneLink phone={companyInfo.phone} className="font-semibold underline">
+                Call {companyInfo.phone}
+              </PhoneLink>
+            </p>
           </div>
         </div>
       </section>
