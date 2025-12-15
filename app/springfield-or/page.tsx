@@ -66,9 +66,17 @@ export default function SpringfieldPage() {
             <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
               Siding Replacement & Painting in Springfield, OR
             </h1>
-            <p className="mb-8 text-xl text-white/95 md:text-2xl">
+            <p className="mb-4 text-xl text-white/95 md:text-2xl">
               Serving Springfield homeowners with premium siding replacement, exterior painting, pressure washing, and comprehensive home exterior services. Licensed, insured, and backed by a 5-year workmanship warranty.
             </p>
+            <div className="mb-8">
+              <PhoneLink 
+                phone={companyInfo.phone}
+                className="text-2xl md:text-4xl lg:text-5xl font-bold text-white hover:text-primary/90 transition-colors"
+              >
+                {companyInfo.phone}
+              </PhoneLink>
+            </div>
             <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <HousecallProButton variant="large" className="shadow-xl">
                 Get Free Estimate
@@ -77,12 +85,6 @@ export default function SpringfieldPage() {
                 View All Service Areas →
               </Link>
             </div>
-            <p className="mt-4 text-sm text-white/90">
-              Prefer to talk now?{' '}
-              <PhoneLink phone={companyInfo.phone} className="font-semibold underline">
-                Call {companyInfo.phone}
-              </PhoneLink>
-            </p>
           </div>
         </div>
       </section>
