@@ -156,7 +156,7 @@ export function MiniEstimateForm({ onSuccess }: MiniEstimateFormProps) {
           className={`w-full rounded-lg border px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary ${
             errors.phone ? 'border-red-500' : 'border-slate-300'
           }`}
-          placeholder="(541) 555-1234"
+          placeholder="(541) 255-1331"
         />
         {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
       </div>

@@ -244,7 +244,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: 'How do I request an estimate in Springfield, OR?',
-    answer: 'Requesting an estimate is easy—call us at (541) 913-5940 or use our online form. We typically provide estimates within 24 hours. We\'ll visit your Springfield home, assess your project, discuss your goals, and provide a detailed written estimate with no obligation.',
+    answer: 'Requesting an estimate is easy—call us at (541) 255-1331 or use our online form. We typically provide estimates within 24 hours. We\'ll visit your Springfield home, assess your project, discuss your goals, and provide a detailed written estimate with no obligation.',
     category: 'city-specific',
   },
 ]

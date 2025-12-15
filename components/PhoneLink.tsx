@@ -7,8 +7,8 @@
  * click-to-call events in Google Analytics.
  * 
  * Usage:
- *   <PhoneLink phone="(541) 913-5940" />
- *   <PhoneLink phone="(541) 913-5940" className="custom-class" />
+ *   <PhoneLink phone="(541) 255-1331" />
+ *   <PhoneLink phone="(541) 255-1331" className="custom-class" />
  */
 
 import { trackClickToCall } from '@/lib/analytics'

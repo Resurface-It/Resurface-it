@@ -1,6 +1,7 @@
 export const companyInfo = {
   name: 'Resurface-it',
-  phone: '(541) 913-5940',
+  phone: '(541) 255-1331',
+  officePhone: '(541) 913-5940',
   email: 'info@resurface-it.com', // TODO: Replace with actual email
   address: {
     street: '2535 Prairie Rd unit c',
@@ -10,8 +11,8 @@ export const companyInfo = {
   },
   ccbLicense: 'CCB #217088',
   hours: {
-    weekdays: '8:00 AM - 6:00 PM',
-    saturday: '9:00 AM - 4:00 PM',
+    weekdays: 'Mon - Fri: 8:00 AM - 5:00 PM',
+    saturday: 'Closed',
     sunday: 'Closed',
   },
   localKeywords: [

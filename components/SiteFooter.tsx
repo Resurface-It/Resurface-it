@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Phone, Mail, MapPin } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock } from 'lucide-react'
 import { PillBadge } from './PillBadge'
 import { PhoneLink } from './PhoneLink'
 import { HousecallProButton } from './HousecallProButton'
@@ -141,6 +141,10 @@ export function SiteFooter() {
                   {companyInfo.phone}
                 </PhoneLink>
               </li>
+              <li className="flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                <span>Office: {companyInfo.officePhone}</span>
+              </li>
               <li>
                 <a href={`mailto:${companyInfo.email}`} className="flex items-center gap-2 hover:text-primary">
                   <Mail className="h-4 w-4" />
@@ -153,6 +157,10 @@ export function SiteFooter() {
                   {companyInfo.address.street}<br />
                   {companyInfo.address.city}, {companyInfo.address.state} {companyInfo.address.zip}
                 </span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                <span>{companyInfo.hours.weekdays}</span>
               </li>
               <li className="pt-2">
                 <HousecallProButton className="!px-4 !py-2 text-sm font-semibold">

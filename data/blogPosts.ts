@@ -22,7 +22,7 @@ export const blogPosts: BlogPost[] = [
       'Home size and complexity also affect pricing. A single-story home with straightforward lines will cost less than a multi-story home with complex angles, peaks, and architectural details. Additional factors include the condition of existing siding, accessibility, and any necessary structural repairs.',
       'Labor costs in Eugene are competitive, and working with a licensed, insured contractor ensures quality installation. Don\'t forget to factor in permits, which may be required depending on your project scope.',
       'The best way to get an accurate estimate for your specific home is to schedule a free consultation. A professional assessment will account for all variables and provide you with a detailed, transparent quote.',
-      'Ready to get started? Contact Resurface-it for a free estimate on siding replacement in Eugene. We\'ll visit your home, assess your project, and provide a detailed quote with no obligation. Call us at (541) 913-5940 or request an estimate online.',
+      'Ready to get started? Contact Resurface-it for a free estimate on siding replacement in Eugene. We\'ll visit your home, assess your project, and provide a detailed quote with no obligation. Call us at (541) 255-1331 or request an estimate online.',
     ],
   },
   {
