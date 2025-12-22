@@ -183,7 +183,7 @@ export function SiteFooter() {
               <Link href="/warranty" className="text-slate-600 hover:text-primary">
                 Warranty
               </Link>
-              <Link href="/about" className="text-slate-600 hover:text-primary">
+              <Link href="/privacy" className="text-slate-600 hover:text-primary">
                 Privacy Policy
               </Link>
             </div>
