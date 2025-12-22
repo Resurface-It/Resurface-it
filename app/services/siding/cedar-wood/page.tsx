@@ -83,7 +83,7 @@ export default function CedarWoodPage() {
               Cedar Siding Repair & Replacement in Eugene, Albany, Corvallis & Springfield, OR
             </h1>
             <p className="mb-4 text-xl text-slate-600">
-              Restore the natural beauty of your cedar siding while protecting it from Oregon\'s challenging weather. We specialize in cedar repair, replacement, and maintenance.
+              Restore the natural beauty of your cedar siding while protecting it from Oregon&apos;s challenging weather. We specialize in cedar repair, replacement, and maintenance.
             </p>
             <p className="mb-8 text-lg text-slate-600">
               From localized rot repair to complete cedar siding replacement, we preserve the classic look of natural wood while ensuring long-lasting protection.
@@ -95,10 +95,10 @@ export default function CedarWoodPage() {
 
       <Section>
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-6 text-3xl">Cedar Siding in Oregon\'s Climate</h2>
+          <h2 className="mb-6 text-3xl">Cedar Siding in Oregon&apos;s Climate</h2>
           <div className="prose prose-lg max-w-none">
             <p className="mb-4 text-lg text-slate-700">
-              Cedar siding offers unmatched natural beauty, but Oregon\'s high humidity and rainfall can be tough on wood. Without proper maintenance, cedar can rot, warp, and deteriorate. That\'s why regular maintenance and proper installation are crucial.
+              Cedar siding offers unmatched natural beauty, but Oregon&apos;s high humidity and rainfall can be tough on wood. Without proper maintenance, cedar can rot, warp, and deteriorate. That&apos;s why regular maintenance and proper installation are crucial.
             </p>
             <p className="mb-4 text-lg text-slate-700">
               At Resurface-It, Inc, we specialize in both preserving existing cedar siding and installing new cedar. We use premium stains and sealants designed for wet climates, ensure proper flashing and ventilation, and provide maintenance schedules to keep your cedar siding beautiful for decades.
@@ -136,7 +136,7 @@ export default function CedarWoodPage() {
           <h2 className="mb-6 text-3xl">Why Maintain Cedar Siding?</h2>
           <div className="prose prose-lg max-w-none">
             <p className="mb-4 text-lg text-slate-700">
-              Cedar siding requires regular maintenance in Oregon\'s climate, but the natural beauty and character it provides make it worth the effort. With proper care, cedar siding can last 20-30 years and maintain its distinctive appearance.
+              Cedar siding requires regular maintenance in Oregon&apos;s climate, but the natural beauty and character it provides make it worth the effort. With proper care, cedar siding can last 20-30 years and maintain its distinctive appearance.
             </p>
             <p className="mb-4 text-lg text-slate-700">
               Regular staining every 3-5 years is essential to protect cedar from moisture, UV damage, and rot. We use premium stains specifically formulated for cedar in wet climates, ensuring your siding stays protected and beautiful.

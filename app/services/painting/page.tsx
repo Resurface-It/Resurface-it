@@ -71,7 +71,7 @@ export default function PaintingHubPage() {
               Professional Painting Services in Eugene, Albany, Corvallis & Springfield, OR
             </h1>
             <p className="mb-4 text-xl text-slate-600">
-              Transform your home with our expert painting services. We specialize in exterior and interior painting using premium paints specifically chosen for Oregon\'s climate.
+              Transform your home with our expert painting services. We specialize in exterior and interior painting using premium paints specifically chosen for Oregon&apos;s climate.
             </p>
             <p className="mb-8 text-lg text-slate-600">
               From complete exterior repaints to interior room refreshes and cabinet refinishing, we deliver professional results backed by a 5-year workmanship warranty.
@@ -86,10 +86,10 @@ export default function PaintingHubPage() {
           <h2 className="mb-6 text-3xl">Why Oregon Homes Need Quality Paint</h2>
           <div className="prose prose-lg max-w-none">
             <p className="mb-4 text-lg text-slate-700">
-              Oregon\'s wet winters and sunny summers create unique challenges for paint. High humidity, heavy rainfall, and intense UV exposure can cause paint to peel, crack, fade, and fail prematurely if not properly applied with the right materials.
+              Oregon&apos;s wet winters and sunny summers create unique challenges for paint. High humidity, heavy rainfall, and intense UV exposure can cause paint to peel, crack, fade, and fail prematurely if not properly applied with the right materials.
             </p>
             <p className="mb-4 text-lg text-slate-700">
-              At Resurface-It, Inc, we use premium paints specifically formulated for Pacific Northwest conditions. We never skip surface preparation steps—every surface is properly cleaned, repaired, primed, and sealed before paint application. This ensures your paint job lasts 7-10 years or more, even in Oregon\'s challenging climate.
+              At Resurface-It, Inc, we use premium paints specifically formulated for Pacific Northwest conditions. We never skip surface preparation steps—every surface is properly cleaned, repaired, primed, and sealed before paint application. This ensures your paint job lasts 7-10 years or more, even in Oregon&apos;s challenging climate.
             </p>
           </div>
         </div>

@@ -86,7 +86,7 @@ export default function RotRepairPage() {
               Protect your Oregon home from moisture damage with our expert dry rot repair and weatherproofing services. We identify and repair rot, then install proper protection to prevent future problems.
             </p>
             <p className="mb-8 text-lg text-slate-600">
-              From structural repairs to comprehensive weatherproofing, we ensure your home stays protected from Oregon\'s challenging climate.
+              From structural repairs to comprehensive weatherproofing, we ensure your home stays protected from Oregon&apos;s challenging climate.
             </p>
             <HousecallProButton variant="large">Get Free Estimate</HousecallProButton>
           </div>
@@ -98,13 +98,13 @@ export default function RotRepairPage() {
           <h2 className="mb-6 text-3xl">Why Oregon Homes Need Rot Repair & Weatherproofing</h2>
           <div className="prose prose-lg max-w-none">
             <p className="mb-4 text-lg text-slate-700">
-              Oregon\'s high humidity and heavy rainfall create ideal conditions for dry rot. Moisture seeps into wood through cracks, gaps, or improper flashing, and fungal growth begins. Without proper repairs and weatherproofing, rot can spread and cause significant structural damage.
+              Oregon&apos;s high humidity and heavy rainfall create ideal conditions for dry rot. Moisture seeps into wood through cracks, gaps, or improper flashing, and fungal growth begins. Without proper repairs and weatherproofing, rot can spread and cause significant structural damage.
             </p>
             <p className="mb-4 text-lg text-slate-700">
               At Resurface-It, Inc, we specialize in identifying and repairing dry rot, then installing comprehensive weatherproofing to prevent future problems. We remove all affected wood, make structural repairs, and install proper moisture barriers, flashing, and ventilation.
             </p>
             <p className="mb-4 text-lg text-slate-700">
-              Our weatherproofing services ensure your home is protected from Oregon\'s wet climate. We seal all seams, corners, and penetrations, install proper flashing around windows and doors, and ensure adequate ventilation. Every repair is backed by our 5-year workmanship warranty.
+              Our weatherproofing services ensure your home is protected from Oregon&apos;s wet climate. We seal all seams, corners, and penetrations, install proper flashing around windows and doors, and ensure adequate ventilation. Every repair is backed by our 5-year workmanship warranty.
             </p>
           </div>
         </div>

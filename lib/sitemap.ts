@@ -12,10 +12,16 @@ export interface SitemapEntry {
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://resurface-it.com'
 
+/**
+ * Generates a comprehensive sitemap for Google and AI crawlers.
+ * Includes all static pages, dynamic routes, and content pages.
+ * Excludes pages that should not be indexed (e.g., thank-you pages).
+ */
 export function generateSitemap(): SitemapEntry[] {
   const entries: SitemapEntry[] = []
+  const now = new Date()
 
-  // Static pages
+  // Static pages - high priority pages that are core to the site
   const staticPages = [
     { path: '', priority: 1.0, changeFrequency: 'weekly' as const },
     { path: '/services', priority: 0.9, changeFrequency: 'monthly' as const },
@@ -34,23 +40,23 @@ export function generateSitemap(): SitemapEntry[] {
   staticPages.forEach((page) => {
     entries.push({
       url: `${siteUrl}${page.path}`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
     })
   })
 
-  // Service pages (existing)
+  // Service pages - all main service detail pages
   services.forEach((service) => {
     entries.push({
       url: `${siteUrl}/services/${service.slug}`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.8,
     })
   })
 
-  // Child service pages
+  // Child service pages - specialized service sub-pages
   const childServices = [
     { path: '/services/siding/james-hardie', priority: 0.85 },
     { path: '/services/siding/cedar-wood', priority: 0.85 },
@@ -60,45 +66,48 @@ export function generateSitemap(): SitemapEntry[] {
   childServices.forEach((service) => {
     entries.push({
       url: `${siteUrl}${service.path}`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'monthly',
       priority: service.priority,
     })
   })
 
   // City landing pages (legacy format: eugene-or, albany-or, etc.)
+  // These are important for local SEO
   primaryCities.forEach((city) => {
     entries.push({
       url: `${siteUrl}/${city.slug}-or`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.8,
     })
   })
 
   // Location pages (new format: /locations/[city])
+  // These are the canonical city pages
   primaryCities.forEach((city) => {
     entries.push({
       url: `${siteUrl}/locations/${city.slug}-or`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.85,
     })
   })
 
   // City/Service combination pages
+  // These are important for local service SEO (e.g., "interior painting in Eugene")
   primaryCities.forEach((city) => {
     city.highlightedServices.forEach((serviceSlug) => {
       entries.push({
         url: `${siteUrl}/${city.slug}/${serviceSlug}`,
-        lastModified: new Date(),
+        lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.7,
       })
     })
   })
 
-  // Resource articles
+  // Resource articles - educational content with actual publication dates
   resources.forEach((resource) => {
     entries.push({
       url: `${siteUrl}/resources/${resource.slug}`,
@@ -108,7 +117,7 @@ export function generateSitemap(): SitemapEntry[] {
     })
   })
 
-  // Blog posts
+  // Blog posts - content pages with actual publication dates
   blogPosts.forEach((post) => {
     entries.push({
       url: `${siteUrl}/blog/${post.slug}`,
@@ -116,6 +125,14 @@ export function generateSitemap(): SitemapEntry[] {
       changeFrequency: 'monthly',
       priority: 0.6,
     })
+  })
+
+  // Sort entries by priority (highest first) and then by URL for consistent ordering
+  entries.sort((a, b) => {
+    if (b.priority !== a.priority) {
+      return b.priority - a.priority
+    }
+    return a.url.localeCompare(b.url)
   })
 
   return entries

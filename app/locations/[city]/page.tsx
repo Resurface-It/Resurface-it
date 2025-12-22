@@ -122,7 +122,7 @@ export default async function CityLocationPage({ params }: CityPageProps) {
               Siding, Roofing & Painting Services in {city.name}, OR
             </h1>
             <p className="mb-8 text-center text-xl text-white/95 md:text-2xl">
-              Professional home exterior services that protect your investment and enhance your home's value in {city.name}, Oregon
+              Professional home exterior services that protect your investment and enhance your home&apos;s value in {city.name}, Oregon
             </p>
             <div className="mb-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <HousecallProButton variant="large" className="bg-white !text-slate-900 hover:bg-slate-100 shadow-xl font-bold">

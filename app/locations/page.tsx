@@ -100,7 +100,7 @@ export default function LocationsHubPage() {
               We work with local suppliers, understand local building codes, and have experience with the specific housing stock found throughout the Willamette Valley—from historic homes in Albany to modern builds in Corvallis.
             </p>
             <p className="mb-4 text-lg text-slate-700">
-              Every project is backed by our 5-year workmanship warranty, and we provide fast, transparent estimates often within 24 hours. We\'re not a franchise—we\'re your neighbors, committed to protecting your most valuable investment.
+              Every project is backed by our 5-year workmanship warranty, and we provide fast, transparent estimates often within 24 hours. We&apos;re not a franchise—we&apos;re your neighbors, committed to protecting your most valuable investment.
             </p>
           </div>
         </div>

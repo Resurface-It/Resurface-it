@@ -98,10 +98,10 @@ export default function JamesHardiePage() {
           <h2 className="mb-6 text-3xl">Why James Hardie Siding for Oregon Homes?</h2>
           <div className="prose prose-lg max-w-none">
             <p className="mb-4 text-lg text-slate-700">
-              Oregon\'s climate is one of the toughest on home exteriors. Heavy winter rains, high humidity, and intense summer sun can destroy traditional siding materials. James Hardie fiber cement siding is specifically engineered to withstand these conditions.
+              Oregon&apos;s climate is one of the toughest on home exteriors. Heavy winter rains, high humidity, and intense summer sun can destroy traditional siding materials. James Hardie fiber cement siding is specifically engineered to withstand these conditions.
             </p>
             <p className="mb-4 text-lg text-slate-700">
-              Unlike wood siding that rots in Oregon\'s humidity, Hardie board maintains its structural integrity. Unlike vinyl that can crack in temperature extremes, fiber cement expands and contracts minimally. And unlike painted wood that requires frequent repainting, ColorPlus Technology provides fade-resistant color that lasts for decades.
+              Unlike wood siding that rots in Oregon&apos;s humidity, Hardie board maintains its structural integrity. Unlike vinyl that can crack in temperature extremes, fiber cement expands and contracts minimally. And unlike painted wood that requires frequent repainting, ColorPlus Technology provides fade-resistant color that lasts for decades.
             </p>
             <p className="mb-4 text-lg text-slate-700">
               At Resurface-It, Inc, we specialize in James Hardie installation following manufacturer specifications. We ensure proper flashing, weatherproofing, and moisture barriers—all critical for Oregon homes. Every installation is backed by our 5-year workmanship warranty.
@@ -182,7 +182,7 @@ export default function JamesHardiePage() {
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-4 text-3xl">Related Services</h2>
           <p className="mb-6 text-lg text-slate-600">
-            We also offer related services to complete your home\'s exterior protection:
+            We also offer related services to complete your home&apos;s exterior protection:
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/services/siding/rot-repair-weatherproofing" className="text-primary font-semibold hover:underline">

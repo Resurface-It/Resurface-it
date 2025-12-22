@@ -67,7 +67,7 @@ export default function SidingHubPage() {
               Siding Replacement Services in Eugene, Albany, Corvallis & Springfield, OR
             </h1>
             <p className="mb-4 text-xl text-slate-600">
-              Protect your Oregon home from rain, moisture, and UV damage with our expert siding replacement services. We specialize in Hardie board, vinyl, and fiber cement siding that stands up to Oregon\'s challenging climate.
+              Protect your Oregon home from rain, moisture, and UV damage with our expert siding replacement services. We specialize in Hardie board, vinyl, and fiber cement siding that stands up to Oregon&apos;s challenging climate.
             </p>
             <p className="mb-8 text-lg text-slate-600">
               From complete siding replacement to rot repair and weatherproofing, we provide comprehensive solutions backed by a 5-year workmanship warranty.
@@ -82,10 +82,10 @@ export default function SidingHubPage() {
           <h2 className="mb-6 text-3xl">Why Oregon Homes Need Quality Siding</h2>
           <div className="prose prose-lg max-w-none">
             <p className="mb-4 text-lg text-slate-700">
-              Oregon\'s climate is tough on home exteriors. Heavy winter rains, high humidity, and intense summer sun can cause siding to deteriorate, rot, and fail prematurely. That\'s why choosing the right siding material and proper installation is crucial for protecting your most valuable investment.
+              Oregon&apos;s climate is tough on home exteriors. Heavy winter rains, high humidity, and intense summer sun can cause siding to deteriorate, rot, and fail prematurely. That&apos;s why choosing the right siding material and proper installation is crucial for protecting your most valuable investment.
             </p>
             <p className="mb-4 text-lg text-slate-700">
-              At Resurface-It, Inc, we specialize in siding materials specifically chosen for Oregon\'s weather conditions. We use moisture-resistant materials, proper flashing, and expert installation techniques to ensure your siding protects your home for decades to come.
+              At Resurface-It, Inc, we specialize in siding materials specifically chosen for Oregon&apos;s weather conditions. We use moisture-resistant materials, proper flashing, and expert installation techniques to ensure your siding protects your home for decades to come.
             </p>
           </div>
         </div>
@@ -98,7 +98,7 @@ export default function SidingHubPage() {
             <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
               <h3 className="mb-4 text-2xl font-bold">James Hardie Siding</h3>
               <p className="mb-4 text-slate-700">
-                Fiber cement siding that resists moisture, rot, and insects. Perfect for Oregon\'s wet climate with ColorPlus Technology for fade-resistant color.
+                Fiber cement siding that resists moisture, rot, and insects. Perfect for Oregon&apos;s wet climate with ColorPlus Technology for fade-resistant color.
               </p>
               <Link href="/services/siding/james-hardie">
                 <span className="font-semibold text-primary hover:underline">Learn More →</span>
@@ -107,7 +107,7 @@ export default function SidingHubPage() {
             <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
               <h3 className="mb-4 text-2xl font-bold">Cedar & Natural Wood</h3>
               <p className="mb-4 text-slate-700">
-                Beautiful cedar siding repair and replacement. We restore the natural beauty of wood while protecting it from Oregon\'s weather.
+                Beautiful cedar siding repair and replacement. We restore the natural beauty of wood while protecting it from Oregon&apos;s weather.
               </p>
               <Link href="/services/siding/cedar-wood">
                 <span className="font-semibold text-primary hover:underline">Learn More →</span>
