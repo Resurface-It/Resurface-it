@@ -43,18 +43,20 @@ export function getCityServices(citySlug: string, limit: number = 3): InternalLi
   const city = primaryCities.find(c => c.slug === citySlug)
   if (!city) return []
 
-  return city.highlightedServices
-    .slice(0, limit)
-    .map(slug => {
-      const service = services.find(s => s.slug === slug)
-      if (!service) return null
-      return {
+  const links: InternalLink[] = []
+  
+  for (const slug of city.highlightedServices.slice(0, limit)) {
+    const service = services.find(s => s.slug === slug)
+    if (service) {
+      links.push({
         title: service.name,
         url: `/services/${service.slug}`,
         description: service.shortDescription,
-      }
-    })
-    .filter((link): link is InternalLink => link !== null)
+      })
+    }
+  }
+  
+  return links
 }
 
 /**
