@@ -82,13 +82,13 @@ export default function HomePage() {
     const link = document.createElement('link')
     link.rel = 'preload'
     link.as = 'image'
-    link.href = '/images/Home-Landing.jpg'
+    link.href = '/Landing_Page.png'
     link.setAttribute('fetchPriority', 'high')
     document.head.appendChild(link)
 
     return () => {
       // Cleanup: remove the preload link when component unmounts
-      const existingLink = document.querySelector('link[href="/images/Home-Landing.jpg"][rel="preload"]')
+      const existingLink = document.querySelector('link[href="/Landing_Page.png"][rel="preload"]')
       if (existingLink) {
         document.head.removeChild(existingLink)
       }
@@ -150,7 +150,7 @@ export default function HomePage() {
       <section className="relative min-h-[80vh] flex items-center -mt-36 md:-mt-40 lg:-mt-44 pt-36 md:pt-40 lg:pt-44 pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/Home-Landing.jpg"
+            src="/Landing_Page.png"
             alt="Professional siding installation and home exterior services"
             fill
             className="object-cover w-full h-full"
