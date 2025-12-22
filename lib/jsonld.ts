@@ -2,7 +2,7 @@ import { companyInfo } from '@/data/company'
 
 export interface LocalBusiness {
   '@context': string
-  '@type': string
+  '@type': string | string[]
   name: string
   description: string
   telephone: string
@@ -18,6 +18,11 @@ export interface LocalBusiness {
   areaServed: string[]
   serviceType: string[]
   priceRange: string
+  geo?: {
+    '@type': string
+    latitude: string
+    longitude: string
+  }
   aggregateRating?: {
     '@type': string
     ratingValue: string
@@ -54,9 +59,9 @@ export interface FAQPage {
 export function generateLocalBusinessSchema(): LocalBusiness {
   return {
     '@context': 'https://schema.org',
-    '@type': 'HomeAndConstructionBusiness',
+    '@type': ['HomeAndConstructionBusiness', 'GeneralContractor', 'HousePainter'],
     name: companyInfo.name,
-    description: 'Premium siding replacement and painting services in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, and backed by a 5-year workmanship warranty.',
+    description: 'Premium siding replacement, roofing, and painting services in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, and backed by a 5-year workmanship warranty.',
     telephone: companyInfo.phone,
     email: companyInfo.email,
     address: {
@@ -66,6 +71,11 @@ export function generateLocalBusinessSchema(): LocalBusiness {
       addressRegion: companyInfo.address.state,
       postalCode: companyInfo.address.zip,
       addressCountry: 'US',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: '44.0521',
+      longitude: '-123.0868',
     },
     areaServed: [
       'Eugene, OR',
@@ -114,7 +124,7 @@ export function generateServiceSchema(serviceName: string, serviceDescription: s
     description: serviceDescription,
     provider: {
       '@type': 'LocalBusiness',
-      name: 'Resurface-it',
+      name: 'Resurface-It, Inc Siding, Roofing & Painting',
     },
     areaServed: [
       'Eugene, OR',
@@ -211,7 +221,7 @@ export function generateOrganizationSchema(): Organization {
     name: companyInfo.name,
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
-    description: 'Premium siding replacement and painting services in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, and backed by a 5-year workmanship warranty.',
+    description: 'Premium siding replacement, roofing, and painting services in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, and backed by a 5-year workmanship warranty.',
     telephone: companyInfo.phone,
     email: companyInfo.email,
     address: {

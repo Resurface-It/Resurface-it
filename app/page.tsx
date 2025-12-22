@@ -447,7 +447,9 @@ export default function HomePage() {
           align="center"
         />
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {primaryCities.map((city) => {
+          {primaryCities
+            .filter(city => city.slug !== 'junction-city' && city.slug !== 'veneta')
+            .map((city) => {
             const citySpecificBlurbs: Record<string, string> = {
               eugene: 'From historic homes near the University of Oregon to modern builds in River Road, Eugene\'s diverse neighborhoods require siding and paint solutions that withstand our wet winters and sunny summers.',
               albany: 'Albany\'s mix of historic and newer homes benefits from our expertise in both traditional and modern siding materials, plus exterior painting that protects against Oregon\'s humidity and rain.',

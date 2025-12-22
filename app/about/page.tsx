@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = genMeta({
   title: 'About Us',
-  description: 'Learn about Resurface-it, our mission, values, and commitment to quality craftsmanship in siding replacement and painting services.',
+  description: 'Learn about Resurface-It, Inc, our mission, values, and commitment to quality craftsmanship in siding replacement, roofing, and painting services.',
   path: '/about',
 })
 
@@ -36,9 +36,9 @@ export default function AboutPage() {
       <section className="bg-gradient-to-br from-primary/5 to-surface pt-32 pb-16">
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
-            <h1 className="mb-6">About Resurface-it</h1>
+            <h1 className="mb-6">About Resurface-It, Inc</h1>
             <p className="text-xl text-slate-600">
-              Transforming homes with premium siding replacement and painting services throughout Oregon.
+              Transforming homes with premium siding replacement, roofing, and painting services throughout Oregon.
             </p>
           </div>
         </div>
@@ -49,7 +49,10 @@ export default function AboutPage() {
           <div className="prose prose-lg max-w-none">
             <h2 className="mb-6 text-3xl">Our Story</h2>
             <p className="mb-4 text-lg text-slate-700">
-              Resurface-it was founded in Eugene, Oregon, with a simple mission: to provide homeowners throughout the Willamette Valley with premium siding replacement and painting services that not only beautify their homes but protect their most valuable investment for years to come.
+              Resurface-It, Inc was founded in Eugene, Oregon, with a simple mission: to provide homeowners throughout the Willamette Valley with premium siding replacement, roofing, and painting services that not only beautify their homes but protect their most valuable investment for years to come.
+            </p>
+            <p className="mb-4 text-lg text-slate-700 font-semibold">
+              Resurface-It, Inc specializes in siding, roofing, and painting services for residential exteriors in the Willamette Valley.
             </p>
             <p className="mb-4 text-lg text-slate-700">
               As a locally owned, non-franchise company, we understand that your home is more than just a building—it&apos;s where memories are made, where families grow, and where you&apos;ve invested your hard-earned money. That&apos;s why we approach every project with the same care and attention to detail we&apos;d want for our own homes.

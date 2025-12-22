@@ -47,10 +47,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://resurface-it.com'),
   title: {
-    default: 'Siding Replacement & House Painting in Eugene, Albany, Corvallis & Springfield, OR | Resurface-it',
-    template: '%s | Resurface-it',
+    default: 'Siding Replacement & House Painting in Eugene, Albany, Corvallis & Springfield, OR | Resurface-It, Inc',
+    template: '%s | Resurface-It, Inc Siding, Roofing & Painting',
   },
-  description: 'Resurface-it provides premium siding replacement and house painting in Eugene, Albany, Corvallis & Springfield, OR. 5-year workmanship warranty, licensed & insured, locally owned, and fast, transparent estimates for siding, exterior painting, interior painting, deck staining & more.',
+  description: 'Resurface-It, Inc provides premium siding replacement, roofing, and house painting in Eugene, Albany, Corvallis & Springfield, OR. 5-year workmanship warranty, licensed & insured, locally owned, and fast, transparent estimates for siding, roofing, exterior painting, interior painting, deck staining & more.',
   keywords: [
     'siding replacement Eugene OR',
     'exterior painting Eugene Oregon',
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     'Springfield',
     'Oregon',
   ],
-  authors: [{ name: 'Resurface-it' }],
+  authors: [{ name: 'Resurface-It, Inc Siding, Roofing & Painting' }],
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -86,9 +86,9 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://resurface-it.com',
-    siteName: 'Resurface-it',
-    title: 'Resurface-it | Siding Replacement & Painting Services in Eugene, Albany, Corvallis OR',
-    description: 'Professional siding replacement and painting services in Eugene, Albany, Corvallis, Springfield OR. Top-rated contractors with 5-year warranty.',
+    siteName: 'Resurface-It, Inc Siding, Roofing & Painting',
+    title: 'Resurface-It, Inc | Siding, Roofing & Painting Services in Eugene, Albany, Corvallis OR',
+    description: 'Professional siding replacement, roofing, and painting services in Eugene, Albany, Corvallis, Springfield OR. Top-rated contractors with 5-year warranty.',
   },
   other: {
     'dns-prefetch': 'https://www.googletagmanager.com https://www.clarity.ms',

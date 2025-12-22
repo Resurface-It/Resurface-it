@@ -1,6 +1,7 @@
 import { services } from '@/data/services'
 import { primaryCities } from '@/data/cities'
 import { blogPosts } from '@/data/blogPosts'
+import { resources } from '@/data/resources'
 
 export interface SitemapEntry {
   url: string
@@ -18,6 +19,10 @@ export function generateSitemap(): SitemapEntry[] {
   const staticPages = [
     { path: '', priority: 1.0, changeFrequency: 'weekly' as const },
     { path: '/services', priority: 0.9, changeFrequency: 'monthly' as const },
+    { path: '/services/siding', priority: 0.9, changeFrequency: 'monthly' as const },
+    { path: '/services/painting', priority: 0.9, changeFrequency: 'monthly' as const },
+    { path: '/locations', priority: 0.9, changeFrequency: 'monthly' as const },
+    { path: '/resources', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/areas-we-serve', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/gallery', priority: 0.8, changeFrequency: 'weekly' as const },
     { path: '/about', priority: 0.7, changeFrequency: 'monthly' as const },
@@ -35,7 +40,7 @@ export function generateSitemap(): SitemapEntry[] {
     })
   })
 
-  // Service pages
+  // Service pages (existing)
   services.forEach((service) => {
     entries.push({
       url: `${siteUrl}/services/${service.slug}`,
@@ -45,13 +50,39 @@ export function generateSitemap(): SitemapEntry[] {
     })
   })
 
-  // City landing pages (new format: eugene-or, albany-or, etc.)
+  // Child service pages
+  const childServices = [
+    { path: '/services/siding/james-hardie', priority: 0.85 },
+    { path: '/services/siding/cedar-wood', priority: 0.85 },
+    { path: '/services/siding/rot-repair-weatherproofing', priority: 0.85 },
+    { path: '/services/painting/cabinet-refinishing', priority: 0.85 },
+  ]
+  childServices.forEach((service) => {
+    entries.push({
+      url: `${siteUrl}${service.path}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: service.priority,
+    })
+  })
+
+  // City landing pages (legacy format: eugene-or, albany-or, etc.)
   primaryCities.forEach((city) => {
     entries.push({
       url: `${siteUrl}/${city.slug}-or`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
+    })
+  })
+
+  // Location pages (new format: /locations/[city])
+  primaryCities.forEach((city) => {
+    entries.push({
+      url: `${siteUrl}/locations/${city.slug}-or`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
     })
   })
 
@@ -64,6 +95,16 @@ export function generateSitemap(): SitemapEntry[] {
         changeFrequency: 'monthly',
         priority: 0.7,
       })
+    })
+  })
+
+  // Resource articles
+  resources.forEach((resource) => {
+    entries.push({
+      url: `${siteUrl}/resources/${resource.slug}`,
+      lastModified: new Date(resource.datePublished),
+      changeFrequency: 'monthly',
+      priority: 0.7,
     })
   })
 

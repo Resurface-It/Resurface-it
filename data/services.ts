@@ -7,6 +7,7 @@ export interface Service {
   startingPrice?: string
   featured?: boolean
   icon?: string
+  parentCategory?: 'siding' | 'painting' | 'roofing'
   processSteps?: {
     title: string
     description: string

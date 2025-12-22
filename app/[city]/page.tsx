@@ -200,7 +200,7 @@ export default async function CityPage({ params }: CityPageProps) {
               </div>
               <h3 className="mb-3 text-xl font-bold text-slate-900">Expert Team</h3>
               <p className="text-slate-600">
-                Our employees are full-time professional craftspeople, not subcontractors. We invest in training and quality.
+                Our experienced team brings years of combined expertise to every project. We work with trusted professionals who share our commitment to quality craftsmanship.
               </p>
             </div>
 

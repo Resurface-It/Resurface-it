@@ -26,7 +26,10 @@ export function SiteFooter() {
               />
             </div>
             <p className="mb-4 text-sm text-slate-600">
-              Premium siding replacement and painting services for Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas.
+              Premium siding replacement, roofing, and painting services for Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas.
+            </p>
+            <p className="mb-4 text-xs text-slate-500 italic">
+              Resurface-It, Inc specializes in siding, roofing, and painting services for residential exteriors in the Willamette Valley.
             </p>
             <div className="mb-4 space-y-2">
               <PillBadge>5-Year Workmanship Warranty</PillBadge>
@@ -174,7 +177,7 @@ export function SiteFooter() {
         <div className="mt-8 border-t border-slate-200 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-slate-600">
-              &copy; <span suppressHydrationWarning>{currentYear}</span> Resurface-it. All rights reserved. | Licensed & Insured in Oregon
+              &copy; <span suppressHydrationWarning>{currentYear}</span> Resurface-It, Inc Siding, Roofing & Painting. All rights reserved. | Licensed & Insured in Oregon
             </p>
             <div className="flex gap-6 text-sm">
               <Link href="/warranty" className="text-slate-600 hover:text-primary">

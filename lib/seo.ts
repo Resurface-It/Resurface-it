@@ -21,13 +21,13 @@ export function generateMetadata({
   const fullUrl = `${siteUrl}${path}`
 
   return {
-    title: `${title} | Resurface-it`,
+    title: `${title} | Resurface-It, Inc Siding, Roofing & Painting`,
     description,
     openGraph: {
-      title: `${title} | Resurface-it`,
+      title: `${title} | Resurface-It, Inc Siding, Roofing & Painting`,
       description,
       url: fullUrl,
-      siteName: 'Resurface-it',
+      siteName: 'Resurface-It, Inc Siding, Roofing & Painting',
       images: [
         {
           url: image,
@@ -41,7 +41,7 @@ export function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | Resurface-it`,
+      title: `${title} | Resurface-It, Inc Siding, Roofing & Painting`,
       description,
       images: [image],
     },
@@ -60,7 +60,7 @@ export function generateMetadata({
  */
 export function generateCityMetadata(cityName: string, citySlug: string) {
   return generateMetadata({
-    title: `Siding Replacement & House Painting in ${cityName}, OR`,
+    title: `Siding Replacement & House Painting in ${cityName}, OR | Resurface-It`,
     description: `Professional siding replacement and house painting in ${cityName}, OR. Hardie board, vinyl & fiber cement installation. Exterior & interior painting. 5-year workmanship warranty. Licensed & insured. Free estimates in 24 hours.`,
     path: `/${citySlug}-or`,
   })

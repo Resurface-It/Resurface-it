@@ -307,8 +307,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
                 <div>
-                  <h3 className="font-semibold text-slate-900">Experienced Crews, Not Random Subs</h3>
-                  <p className="text-sm text-slate-600">Our team members are trained professionals who take pride in quality work.</p>
+                  <h3 className="font-semibold text-slate-900">Experienced Professional Team</h3>
+                  <p className="text-sm text-slate-600">We work with skilled craftspeople who are experienced in their trades and committed to delivering quality results.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 md:col-span-2">

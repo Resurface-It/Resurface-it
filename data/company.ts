@@ -1,5 +1,6 @@
 export const companyInfo = {
-  name: 'Resurface-it',
+  name: 'Resurface-It, Inc Siding, Roofing & Painting',
+  shortName: 'Resurface-It',
   phone: '(541) 255-1331',
   officePhone: '(541) 913-5940',
   email: 'info@resurface-it.com', // TODO: Replace with actual email
