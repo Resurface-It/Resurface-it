@@ -84,6 +84,18 @@ export default async function ServicePage({ params }: ServicePageProps) {
     { name: service.name, url: `/services/${slug}` },
   ])
 
+  // Map service slugs to their corresponding logo images
+  const serviceImageMap: Record<string, string> = {
+    'siding-replacement': '/Resurface-It-Siding.jpg',
+    'roofing': '/Resurface-It-Roofing.jpg',
+    'pressure-washing': '/Resurface-It-Powerwashing.jpg',
+    'exterior-painting': '/Resurface-It-Painting.jpg',
+    'interior-painting': '/Resurface-It-Painting.jpg',
+    'deck-staining': '/Resurface-It-Deck.jpg',
+  }
+
+  const serviceImage = serviceImageMap[slug]
+
   return (
     <>
       <ServicePageTracker service={service.slug} />
@@ -101,7 +113,23 @@ export default async function ServicePage({ params }: ServicePageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <section className="bg-gradient-to-br from-primary/5 to-surface pt-32 pb-16">
+      {serviceImage && (
+        <section className="relative w-full bg-white">
+          <div className="container pt-8 pb-4">
+            <div className="relative mx-auto h-[150px] md:h-[200px] max-w-4xl overflow-hidden">
+              <Image
+                src={serviceImage}
+                alt={`${service.name} service logo`}
+                fill
+                className="object-contain"
+                priority
+                sizes="(max-width: 768px) 100vw, 896px"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+      <section className={`bg-gradient-to-br from-primary/5 to-surface ${serviceImage ? 'pt-8' : 'pt-32'} pb-16`}>
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="mb-6">

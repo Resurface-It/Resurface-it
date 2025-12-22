@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Home, Paintbrush, Palette, Square, Droplet, Building2 } from 'lucide-react'
 import type { Service } from '@/data/services'
 
@@ -18,14 +19,36 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   building: Building2,
 }
 
+// Map service slugs to their corresponding logo images
+const serviceImageMap: Record<string, string> = {
+  'siding-replacement': '/Resurface-It-Siding.jpg',
+  'roofing': '/Resurface-It-Roofing.jpg',
+  'pressure-washing': '/Resurface-It-Powerwashing.jpg',
+  'exterior-painting': '/Resurface-It-Painting.jpg',
+  'interior-painting': '/Resurface-It-Painting.jpg',
+  'deck-staining': '/Resurface-It-Deck.jpg',
+}
+
 export function ServiceCard({ service, featured = false }: ServiceCardProps) {
   const Icon = service.icon ? iconMap[service.icon] || Home : Home
+  const serviceImage = serviceImageMap[service.slug]
 
   return (
     <div
       className="card h-full w-full transition-transform duration-200 hover:-translate-y-1"
       style={{ willChange: 'transform' }}
     >
+      {serviceImage && (
+        <div className="relative mb-4 h-[120px] w-full overflow-hidden rounded-lg">
+          <Image
+            src={serviceImage}
+            alt={`${service.name} service logo`}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        </div>
+      )}
       <div className="mb-4 flex items-center gap-3">
         <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
           <Icon className="h-6 w-6 text-primary" />
