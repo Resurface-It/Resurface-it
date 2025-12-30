@@ -7,6 +7,7 @@ import { generateMetadata as genMeta } from '@/lib/seo'
 import type { Metadata } from 'next'
 import { companyInfo } from '@/data/company'
 import { CheckCircle, Clock, Phone, Mail, MapPin, Shield, Award } from 'lucide-react'
+import Script from 'next/script'
 
 export const metadata: Metadata = genMeta({
   title: 'Thank You | We\'ll Contact You Soon',
@@ -18,6 +19,18 @@ export const metadata: Metadata = genMeta({
 export default function ThankYouPage() {
   return (
     <>
+      {/* Google tag (gtag.js) event */}
+      <Script
+        id="conversion-event-request-quote"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            gtag('event', 'conversion_event_request_quote', {
+              // <event_parameters>
+            });
+          `,
+        }}
+      />
       <section className="bg-gradient-to-br from-primary/5 to-surface pt-32 pb-16">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
