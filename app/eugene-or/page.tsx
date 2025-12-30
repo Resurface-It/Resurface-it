@@ -8,7 +8,7 @@ import { ServicesGrid } from '@/components/ServicesGrid'
 import { TestimonialCard } from '@/components/TestimonialCard'
 import { getCityBySlug } from '@/data/cities'
 import { services } from '@/data/services'
-import { testimonials } from '@/data/testimonials'
+import { testimonials, getFiveStarReviews } from '@/data/testimonials'
 import { generateMetadata as genMeta } from '@/lib/seo'
 import { generateLocalBusinessSchema, generateBreadcrumbSchema, generateFAQPageSchema } from '@/lib/jsonld'
 import { FAQAccordion } from '@/components/FAQAccordion'
@@ -30,7 +30,9 @@ export default function EugenePage() {
     notFound()
   }
 
-  const eugeneTestimonials = testimonials.filter(t => t.location.includes('Eugene'))
+  const eugeneTestimonials = getFiveStarReviews(
+    testimonials.filter(t => t.location.includes('Eugene'))
+  )
   const cityFAQs = getCityFAQs('Eugene')
   const faqSchema = cityFAQs.length > 0 ? generateFAQPageSchema(cityFAQs) : null
   const localBusinessSchema = generateLocalBusinessSchema()

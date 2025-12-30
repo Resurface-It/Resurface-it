@@ -4,17 +4,18 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { TestimonialCard } from './TestimonialCard'
-import { testimonials } from '@/data/testimonials'
+import { testimonials, getFiveStarReviews } from '@/data/testimonials'
 
 export function TestimonialsCarousel() {
+  const fiveStarTestimonials = getFiveStarReviews(testimonials)
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const next = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+    setCurrentIndex((prev) => (prev + 1) % fiveStarTestimonials.length)
   }
 
   const prev = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+    setCurrentIndex((prev) => (prev - 1 + fiveStarTestimonials.length) % fiveStarTestimonials.length)
   }
 
   return (
@@ -28,7 +29,7 @@ export function TestimonialsCarousel() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <TestimonialCard testimonial={testimonials[currentIndex]} />
+            <TestimonialCard testimonial={fiveStarTestimonials[currentIndex]} />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -43,7 +44,7 @@ export function TestimonialsCarousel() {
         </button>
 
         <div className="flex gap-1.5 md:gap-2">
-          {testimonials.map((_, index) => (
+          {fiveStarTestimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}

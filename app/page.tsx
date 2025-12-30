@@ -17,7 +17,7 @@ import { primaryCities } from '@/data/cities'
 import { companyInfo } from '@/data/company'
 import { FAQAccordion } from '@/components/FAQAccordion'
 import { getFAQsByCategory } from '@/data/faq'
-import { testimonials } from '@/data/testimonials'
+import { testimonials, getFiveStarReviews } from '@/data/testimonials'
 
 // Dynamic imports for non-critical components - loaded after initial render
 const ServicesGrid = dynamic(
@@ -230,7 +230,7 @@ export default function HomePage() {
               With 50+ five-star reviews from homeowners across Eugene, Albany, Corvallis, and Springfield, we&apos;ve built our reputation on quality work, clear communication, and standing behind every project with our 5-year warranty.
             </p>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {testimonials.slice(0, 3).map((testimonial, index) => {
+              {getFiveStarReviews(testimonials).slice(0, 3).map((testimonial, index) => {
                 const nameParts = testimonial.name.split(' ')
                 const firstName = nameParts[0] || ''
                 const lastNameInitial = nameParts[1]?.[0] || ''

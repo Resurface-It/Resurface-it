@@ -7,7 +7,7 @@ import { HousecallProButton } from '@/components/HousecallProButton'
 import { ServicesGrid } from '@/components/ServicesGrid'
 import { TestimonialCard } from '@/components/TestimonialCard'
 import { getCityBySlug } from '@/data/cities'
-import { testimonials } from '@/data/testimonials'
+import { testimonials, getFiveStarReviews } from '@/data/testimonials'
 import { generateMetadata as genMeta } from '@/lib/seo'
 import { generateLocalBusinessSchema, generateBreadcrumbSchema } from '@/lib/jsonld'
 import type { Metadata } from 'next'
@@ -27,7 +27,9 @@ export default function SpringfieldPage() {
     notFound()
   }
 
-  const springfieldTestimonials = testimonials.filter(t => t.location.includes('Springfield'))
+  const springfieldTestimonials = getFiveStarReviews(
+    testimonials.filter(t => t.location.includes('Springfield'))
+  )
   const localBusinessSchema = generateLocalBusinessSchema()
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },

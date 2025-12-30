@@ -28,5 +28,8 @@ export const companyInfo = {
     'professional painters Eugene',
     'home exterior services Eugene',
   ],
+  // Google Business Profile
+  googleBusinessProfileUrl: 'https://maps.app.goo.gl/zrCiSQGYawtB8bSZA',
+  googlePlaceId: '', // Optional: Your Google Place ID for API integration
 }
 

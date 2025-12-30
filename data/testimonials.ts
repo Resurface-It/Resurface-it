@@ -3,56 +3,81 @@ export interface Testimonial {
   location: string
   quote: string
   services: string[]
+  source?: 'google' | 'manual' // Source of the review
+  rating?: number // Star rating (1-5)
+  date?: string // Review date (ISO format or readable date)
+  googleReviewUrl?: string // Link to the Google review if available
+}
+
+/**
+ * Filter testimonials to only show 5-star reviews
+ * Reviews without a rating are included (assumed to be 5-star)
+ */
+export function getFiveStarReviews(testimonials: Testimonial[]): Testimonial[] {
+  return testimonials.filter((t) => !t.rating || t.rating === 5)
 }
 
 export const testimonials: Testimonial[] = [
+  // ============================================
+  // ADD YOUR GOOGLE REVIEWS HERE
+  // ============================================
+  // 
+  // To add your actual Google reviews:
+  // 1. Go to: https://maps.app.goo.gl/zrCiSQGYawtB8bSZA
+  // 2. Scroll to the "Reviews" section
+  // 3. Copy each 5-star review and add it below using this format:
+  //
+  // {
+  //   name: 'Customer Name',           // First name + last initial (e.g., 'John D.')
+  //   location: 'Eugene, OR',          // City and state
+  //   quote: 'Exact review text...',   // Copy the exact review text from Google
+  //   services: ['exterior-painting'], // Choose relevant service(s)
+  //   source: 'google',                // REQUIRED - shows Google badge
+  //   rating: 5,                       // REQUIRED - must be 5 to display
+  //   date: 'January 2024',            // Review date
+  //   googleReviewUrl: '...',          // Optional: Link to the review
+  // },
+  //
+  // IMPORTANT: Only reviews with source: 'google' and rating: 5 will show!
+  // ============================================
+  
+  // Google Reviews from Google Business Profile
+  // Source: https://maps.app.goo.gl/zrCiSQGYawtB8bSZA
   {
-    name: 'Sarah Johnson',
+    name: 'Missy Chambers',
     location: 'Eugene, OR',
-    quote: 'Resurface-It completely transformed our home\'s exterior. The Hardie board siding looks incredible and the team was professional from start to finish. We couldn\'t be happier with the results!',
-    services: ['siding-replacement', 'exterior-painting'],
+    quote: 'Mike and Jose were great to work with on a painting project I had at my house! They were very professional and did an excellent job. Definitely recommend.',
+    services: ['exterior-painting', 'interior-painting'],
+    source: 'google',
+    rating: 5,
+    date: '2024',
   },
   {
-    name: 'Michael Chen',
-    location: 'Albany, OR',
-    quote: 'Outstanding work on our exterior painting project. They took the time to properly prep everything and the paint job has held up beautifully through two Oregon winters. Highly recommend!',
-    services: ['exterior-painting'],
-  },
-  {
-    name: 'Jennifer Martinez',
-    location: 'Corvallis, OR',
-    quote: 'The interior painting service was exceptional. They were clean, efficient, and the color consultation helped us choose the perfect shades. Our home feels completely refreshed.',
+    name: 'Chantel',
+    location: 'Eugene, OR',
+    quote: 'Mike and Jose did amazing work for us. Our cabinets were in pretty rough condition, and they were able to make them look smooth with a factory-like finish again. Thank you Mike and Jose—and thank you to the Resurface-It, Inc team!',
     services: ['interior-painting'],
+    source: 'google',
+    rating: 5,
+    date: '2024',
   },
   {
-    name: 'David Thompson',
-    location: 'Springfield, OR',
-    quote: 'We needed siding replacement after storm damage, and Resurface-It made the whole process smooth. Great communication, quality materials, and expert installation. Worth every penny.',
-    services: ['siding-replacement'],
-  },
-  {
-    name: 'Lisa Anderson',
+    name: 'Tristan Britten',
     location: 'Eugene, OR',
-    quote: 'Professional, punctual, and the results speak for themselves. Our deck looks brand new after their staining service, and the exterior paint job is flawless. Great company!',
-    services: ['deck-staining', 'exterior-painting'],
+    quote: 'There have been times where I\'ve needed last-minute paint repairs and touch-ups to get my real estate clients to the closing table. Jose Villalvazo has always been the most reliable and efficient option. His attention to detail and ability to provide quick solutions has been a game changer. I wouldn\'t recommend anyone else for the job.',
+    services: ['exterior-painting', 'interior-painting'],
+    source: 'google',
+    rating: 5,
+    date: '2024',
   },
   {
-    name: 'Robert Williams',
-    location: 'Albany, OR',
-    quote: 'The 5-year warranty gives us peace of mind, but honestly, the quality of work is so good I don\'t think we\'ll need it. These folks know what they\'re doing.',
-    services: ['siding-replacement'],
-  },
-  {
-    name: 'Amanda Davis',
-    location: 'Corvallis, OR',
-    quote: 'From the initial estimate to final walk-through, everything was handled professionally. The team was respectful of our property and the finished product exceeded our expectations.',
-    services: ['exterior-painting', 'pressure-washing'],
-  },
-  {
-    name: 'James Wilson',
+    name: 'Oregon Rehab Squad',
     location: 'Eugene, OR',
-    quote: 'We\'ve used Resurface-It for multiple projects over the years. Consistent quality, fair pricing, and they stand behind their work. That\'s why we keep coming back.',
-    services: ['siding-replacement', 'exterior-painting', 'interior-painting'],
+    quote: 'Resurface It gave us very good advice on how to save money when sealing our concrete project. The quality of their concrete repair sealant has received rave reviews, so we\'re confident our project will benefit long-term. Thank you!',
+    services: ['pressure-washing'],
+    source: 'google',
+    rating: 5,
+    date: '2024',
   },
 ]
 

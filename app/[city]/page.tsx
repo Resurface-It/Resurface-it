@@ -14,7 +14,7 @@ import { MarqueeBanner } from '@/components/MarqueeBanner'
 import { BrandLogosMarquee } from '@/components/BrandLogosMarquee'
 import { getCityBySlug } from '@/data/cities'
 import { services, getServiceBySlug } from '@/data/services'
-import { testimonials } from '@/data/testimonials'
+import { testimonials, getFiveStarReviews } from '@/data/testimonials'
 import { generateMetadata as genMeta } from '@/lib/seo'
 import { generateLocalBusinessSchema, generateBreadcrumbSchema } from '@/lib/jsonld'
 import { companyInfo } from '@/data/company'
@@ -67,9 +67,11 @@ export default async function CityPage({ params }: CityPageProps) {
     .map((slug) => getServiceBySlug(slug))
     .filter((service): service is NonNullable<typeof service> => service !== undefined)
 
-  // Get testimonials from this city
-  const cityTestimonials = testimonials.filter((t) =>
-    t.location.toLowerCase().includes(city.name.toLowerCase())
+  // Get testimonials from this city (5-star reviews only)
+  const cityTestimonials = getFiveStarReviews(
+    testimonials.filter((t) =>
+      t.location.toLowerCase().includes(city.name.toLowerCase())
+    )
   )
 
   // Get all services if we need fallback

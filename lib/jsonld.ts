@@ -108,8 +108,10 @@ export function generateLocalBusinessSchema(): LocalBusiness {
       reviewCount: '50+',
     },
     sameAs: [
+      ...(companyInfo.googleBusinessProfileUrl
+        ? [companyInfo.googleBusinessProfileUrl]
+        : []),
       // TODO: Add actual social media and review platform URLs when available
-      // 'https://www.google.com/maps/...', // Google Business Profile
       // 'https://www.facebook.com/...', // Facebook page
       // 'https://www.yelp.com/biz/...', // Yelp page
     ],
@@ -233,8 +235,10 @@ export function generateOrganizationSchema(): Organization {
       addressCountry: 'US',
     },
     sameAs: [
+      ...(companyInfo.googleBusinessProfileUrl
+        ? [companyInfo.googleBusinessProfileUrl]
+        : []),
       // TODO: Add actual social media and review platform URLs when available
-      // 'https://www.google.com/maps/...', // Google Business Profile
       // 'https://www.facebook.com/...', // Facebook page
       // 'https://www.yelp.com/biz/...', // Yelp page
     ],
