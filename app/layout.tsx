@@ -130,13 +130,14 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
         
         {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-R6WNQ9VY4G"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17795278955"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
+              gtag('config', 'AW-17795278955');
               gtag('config', 'G-R6WNQ9VY4G');
             `,
           }}

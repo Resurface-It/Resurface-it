@@ -19,14 +19,14 @@ export const metadata: Metadata = genMeta({
 export default function ThankYouPage() {
   return (
     <>
-      {/* Google tag (gtag.js) event */}
+      {/* Google Ads Conversion Event */}
       <Script
-        id="conversion-event-request-quote"
-        strategy="beforeInteractive"
+        id="google-ads-conversion"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-            gtag('event', 'conversion_event_request_quote', {
-              // <event_parameters>
+            gtag('event', 'conversion', {
+              'send_to': 'AW-17795278955/h2CjCIv1qt0bEOvQuaVC'
             });
           `,
         }}
