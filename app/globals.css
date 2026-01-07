@@ -265,10 +265,10 @@
     white-space: nowrap;
   }
 
-  /* Same speed marquee on mobile */
+  /* Faster marquee on mobile for better engagement */
   @media (max-width: 768px) {
     .animate-marquee {
-      animation: marquee 30s linear infinite;
+      animation: marquee 20s linear infinite;
       /* Ensure animation works on mobile browsers with transform3d */
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
@@ -277,7 +277,7 @@
     }
 
     .animate-marquee-slow {
-      animation: marquee 60s linear infinite;
+      animation: marquee 20s linear infinite;
       /* Ensure animation works on mobile browsers with transform3d */
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
