@@ -43,7 +43,7 @@ export function NavDropdown({ label, items, textColor, hoverColor, isLandingPage
   function handleMouseLeave() {
     timeoutRef.current = setTimeout(() => {
       setIsOpen(false)
-    }, 150)
+    }, 100)
   }
 
   return (
@@ -64,7 +64,7 @@ export function NavDropdown({ label, items, textColor, hoverColor, isLandingPage
 
       {isOpen && (
         <div className="absolute left-0 top-full pt-2 z-[9999]">
-          <div className="min-w-[280px] max-w-[320px] rounded-lg bg-white/75 backdrop-blur-lg shadow-2xl border border-white/30 py-2">
+          <div className="min-w-[280px] max-w-[320px] max-h-[calc(100vh-120px)] overflow-y-auto rounded-lg bg-white/75 backdrop-blur-lg shadow-2xl border border-white/30 py-2">
             {items.map((item) => (
               <Link
                 key={item.href}

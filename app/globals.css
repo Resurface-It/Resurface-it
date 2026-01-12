@@ -308,12 +308,12 @@
   }
   
   /* Optimize fixed position elements for better scroll performance */
+  /* Note: removed containment from header to allow dropdowns to extend beyond bounds */
   header[class*="fixed"],
   [class*="fixed"][class*="top-0"] {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     will-change: transform;
-    contain: layout style paint;
   }
   
   /* Scroll performance utilities */

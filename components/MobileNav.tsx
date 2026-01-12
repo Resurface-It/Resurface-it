@@ -109,16 +109,22 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   </button>
                   {areasOpen && (
                     <div className="ml-4 mt-1 space-y-1 border-l-2 border-slate-200 pl-4">
-                      {primaryCities.map((city) => (
-                        <Link
-                          key={city.slug}
-                          href={`/${city.slug}-or`}
-                          onClick={onClose}
-                          className="block rounded-lg px-4 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
-                        >
-                          {city.name}
-                        </Link>
-                      ))}
+                      {primaryCities
+                        .filter(city => ['eugene', 'springfield', 'corvallis', 'albany'].includes(city.slug))
+                        .sort((a, b) => {
+                          const order = ['eugene', 'springfield', 'corvallis', 'albany']
+                          return order.indexOf(a.slug) - order.indexOf(b.slug)
+                        })
+                        .map((city) => (
+                          <Link
+                            key={city.slug}
+                            href={`/${city.slug}-or`}
+                            onClick={onClose}
+                            className="block rounded-lg px-4 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
+                          >
+                            {city.name}
+                          </Link>
+                        ))}
                       <Link
                         href="/areas-we-serve"
                         onClick={onClose}

@@ -73,12 +73,16 @@ export function SiteHeader() {
     description: service.shortDescription,
   }))
 
-  // Areas dropdown items
+  // Areas dropdown items - only show main cities
+  const mainCities = ['eugene', 'springfield', 'corvallis', 'albany']
   const areasDropdownItems = [
-    ...primaryCities.map(city => ({
-      href: `/${city.slug}-or`,
-      label: city.name,
-    })),
+    ...primaryCities
+      .filter(city => mainCities.includes(city.slug))
+      .sort((a, b) => mainCities.indexOf(a.slug) - mainCities.indexOf(b.slug))
+      .map(city => ({
+        href: `/${city.slug}-or`,
+        label: city.name,
+      })),
     {
       href: '/areas-we-serve',
       label: 'View All Areas',
