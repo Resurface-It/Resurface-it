@@ -5,6 +5,7 @@ import { FAQAccordion } from '@/components/FAQAccordion'
 import { getFAQsByCategory } from '@/data/faq'
 import { generateMetadata as genMeta } from '@/lib/seo'
 import { generateFAQPageSchema } from '@/lib/jsonld'
+import { PrintWarrantyButton } from '@/components/PrintWarrantyButton'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = genMeta({
@@ -175,6 +176,10 @@ export default function WarrantyPage() {
               When you choose Resurface-it, you&apos;re not just getting a contractor—you&apos;re getting a 
               partner who will be there for you long after the project is complete.
             </p>
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <PrintWarrantyButton />
           </div>
         </div>
       </Section>
