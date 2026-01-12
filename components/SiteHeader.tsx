@@ -8,7 +8,9 @@ import dynamic from 'next/dynamic'
 import { Menu } from 'lucide-react'
 import { PrimaryButton } from './PrimaryButton'
 import { HousecallProButton } from './HousecallProButton'
+import { NavDropdown } from './NavDropdown'
 import { primaryCities } from '@/data/cities'
+import { services } from '@/data/services'
 
 const MobileNav = dynamic(() => import('./MobileNav').then(mod => ({ default: mod.MobileNav })), {
   ssr: false, // Only load when menu is opened
@@ -64,22 +66,31 @@ export function SiteHeader() {
     ? '/images/Resurface-it-white-logo.png'
     : '/Resurface-it.png'
 
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/services', label: 'Services' },
-    { href: '/areas-we-serve', label: 'Areas We Serve' },
-    { href: '/gallery', label: 'Gallery' },
-    { href: '/about', label: 'About' },
-    { href: '/warranty', label: 'Warranty' },
-    { href: '/blog', label: 'Blog' },
+  // Services dropdown items
+  const servicesDropdownItems = services.map(service => ({
+    href: `/services/${service.slug}`,
+    label: service.name,
+    description: service.shortDescription,
+  }))
+
+  // Areas dropdown items
+  const areasDropdownItems = [
+    ...primaryCities.map(city => ({
+      href: `/${city.slug}-or`,
+      label: city.name,
+    })),
+    {
+      href: '/areas-we-serve',
+      label: 'View All Areas',
+    },
   ]
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 ${headerBg} transition-all duration-300`}
+        className={`fixed top-0 left-0 right-0 z-50 ${headerBg} transition-all duration-300 overflow-visible`}
       >
-        <nav className={`container flex ${navHeight} items-center justify-between`}>
+        <nav className={`container flex ${navHeight} items-center justify-between overflow-visible`}>
           <Link href="/" className="flex items-center">
             <Image
               src={logoSrc}
@@ -94,15 +105,50 @@ export function SiteHeader() {
           </Link>
 
           <div className="hidden items-center gap-8 lg:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-semibold ${textColor} transition-colors ${hoverColor}`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            <Link
+              href="/"
+              className={`text-sm font-semibold ${textColor} transition-colors ${hoverColor}`}
+            >
+              Home
+            </Link>
+            <NavDropdown
+              label="Services"
+              items={servicesDropdownItems}
+              textColor={textColor}
+              hoverColor={hoverColor}
+              isLandingPage={isLandingPage}
+            />
+            <NavDropdown
+              label="Areas We Serve"
+              items={areasDropdownItems}
+              textColor={textColor}
+              hoverColor={hoverColor}
+              isLandingPage={isLandingPage}
+            />
+            <Link
+              href="/gallery"
+              className={`text-sm font-semibold ${textColor} transition-colors ${hoverColor}`}
+            >
+              Gallery
+            </Link>
+            <Link
+              href="/about"
+              className={`text-sm font-semibold ${textColor} transition-colors ${hoverColor}`}
+            >
+              About
+            </Link>
+            <Link
+              href="/warranty"
+              className={`text-sm font-semibold ${textColor} transition-colors ${hoverColor}`}
+            >
+              Warranty
+            </Link>
+            <Link
+              href="/blog"
+              className={`text-sm font-semibold ${textColor} transition-colors ${hoverColor}`}
+            >
+              Blog
+            </Link>
             <HousecallProButton className="shadow-lg hover:shadow-xl">Free Estimate</HousecallProButton>
             <button
               data-token="78e82f81455a4447b0f675bb4afc124a"

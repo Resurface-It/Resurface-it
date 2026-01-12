@@ -1,10 +1,12 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react'
+import { X, ChevronDown } from 'lucide-react'
 import { HousecallProButton } from './HousecallProButton'
+import { services } from '@/data/services'
+import { primaryCities } from '@/data/cities'
 
 interface MobileNavProps {
   isOpen: boolean
@@ -12,26 +14,23 @@ interface MobileNavProps {
 }
 
 export function MobileNav({ isOpen, onClose }: MobileNavProps) {
+  const [servicesOpen, setServicesOpen] = useState(false)
+  const [areasOpen, setAreasOpen] = useState(false)
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'unset'
+      // Reset dropdown states when menu closes
+      setServicesOpen(false)
+      setAreasOpen(false)
     }
     return () => {
       document.body.style.overflow = 'unset'
     }
   }, [isOpen])
 
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/services', label: 'Services' },
-    { href: '/areas-we-serve', label: 'Areas We Serve' },
-    { href: '/gallery', label: 'Gallery' },
-    { href: '/about', label: 'About' },
-    { href: '/warranty', label: 'Warranty' },
-    { href: '/blog', label: 'Blog' },
-  ]
 
   return (
     <AnimatePresence>
@@ -65,16 +64,107 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
             <div className="flex h-[calc(100vh-5rem)] flex-col overflow-y-auto px-6 py-8">
               <div className="space-y-1">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={onClose}
-                    className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+                {/* Home */}
+                <Link
+                  href="/"
+                  onClick={onClose}
+                  className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+                >
+                  Home
+                </Link>
+
+                {/* Services Dropdown */}
+                <div>
+                  <button
+                    onClick={() => setServicesOpen(!servicesOpen)}
+                    className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
                   >
-                    {link.label}
-                  </Link>
-                ))}
+                    Services
+                    <ChevronDown className={`h-5 w-5 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {servicesOpen && (
+                    <div className="ml-4 mt-1 space-y-1 border-l-2 border-slate-200 pl-4">
+                      {services.map((service) => (
+                        <Link
+                          key={service.slug}
+                          href={`/services/${service.slug}`}
+                          onClick={onClose}
+                          className="block rounded-lg px-4 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
+                        >
+                          {service.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Areas We Serve Dropdown */}
+                <div>
+                  <button
+                    onClick={() => setAreasOpen(!areasOpen)}
+                    className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+                  >
+                    Areas We Serve
+                    <ChevronDown className={`h-5 w-5 transition-transform ${areasOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {areasOpen && (
+                    <div className="ml-4 mt-1 space-y-1 border-l-2 border-slate-200 pl-4">
+                      {primaryCities.map((city) => (
+                        <Link
+                          key={city.slug}
+                          href={`/${city.slug}-or`}
+                          onClick={onClose}
+                          className="block rounded-lg px-4 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
+                        >
+                          {city.name}
+                        </Link>
+                      ))}
+                      <Link
+                        href="/areas-we-serve"
+                        onClick={onClose}
+                        className="block rounded-lg px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-slate-100"
+                      >
+                        View All Areas
+                      </Link>
+                    </div>
+                  )}
+                </div>
+
+                {/* Gallery */}
+                <Link
+                  href="/gallery"
+                  onClick={onClose}
+                  className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+                >
+                  Gallery
+                </Link>
+
+                {/* About */}
+                <Link
+                  href="/about"
+                  onClick={onClose}
+                  className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+                >
+                  About
+                </Link>
+
+                {/* Warranty */}
+                <Link
+                  href="/warranty"
+                  onClick={onClose}
+                  className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+                >
+                  Warranty
+                </Link>
+
+                {/* Blog */}
+                <Link
+                  href="/blog"
+                  onClick={onClose}
+                  className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+                >
+                  Blog
+                </Link>
               </div>
 
               <div className="mt-8">

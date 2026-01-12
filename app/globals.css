@@ -70,6 +70,13 @@
     overflow-x: hidden;
   }
   
+  /* Exception: allow header with dropdowns to overflow */
+  body > header,
+  header nav {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+  
   /* Housecall Pro modal containers - ensure full height and space */
   [id*="hcp"],
   [class*="hcp-modal"],
@@ -412,9 +419,18 @@
     /* Ensure all containers respect viewport */
     main,
     section,
-    div {
+    div:not(header *):not([class*="dropdown"]) {
       max-width: 100%;
       overflow-x: hidden;
+    }
+    
+    /* Exception: allow header navigation and dropdowns to overflow */
+    header,
+    header *,
+    [role="navigation"],
+    [role="navigation"] * {
+      overflow-x: visible !important;
+      overflow-y: visible !important;
     }
     
     /* Exception: Housecall Pro modal needs full space on mobile */
