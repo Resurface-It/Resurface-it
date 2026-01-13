@@ -44,6 +44,12 @@ const brands = [
     alt: 'Benjamin Moore Paint',
     url: 'https://www.benjaminmoore.com',
   },
+  {
+    name: 'PPG',
+    logo: '/images/brands/PPGLogo.png',
+    alt: 'PPG Paints',
+    url: 'https://www.ppgpaints.com',
+  },
 ]
 
 export function BrandLogosMarquee() {
@@ -51,9 +57,9 @@ export function BrandLogosMarquee() {
   // Using 4 copies ensures there's always plenty of content visible for a never-ending loop effect
   const duplicatedBrands = [...brands, ...brands, ...brands, ...brands]
   
-  // Split brands for mobile grid: 3 on top, 2 on bottom
+  // Split brands for mobile grid: 3 on top, rest on bottom
   const topBrands = brands.slice(0, 3)
-  const bottomBrands = brands.slice(3, 5)
+  const bottomBrands = brands.slice(3)
 
   return (
     <div className="border-y-2 border-slate-200 bg-white py-8">
@@ -85,7 +91,7 @@ export function BrandLogosMarquee() {
             )
           })}
         </div>
-        <div className="grid grid-cols-2 gap-4 justify-items-center">
+        <div className="grid grid-cols-3 gap-4 justify-items-center">
           {bottomBrands.map((brand) => {
             const isBehr = brand.name === 'BEHR'
             const isBenjaminMoore = brand.name === 'Benjamin Moore'
