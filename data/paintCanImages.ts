@@ -2,8 +2,8 @@
  * Paint Can Image Mapping
  * 
  * Maps quality levels to actual image filenames for each brand/paint type combination.
- * Images are named with numbers in parentheses, and we map them to quality levels
- * based on their order (Good, Better, Best, Premium).
+ * Images are now using simple numbered filenames (X.png format) with high resolution (1080x1350px).
+ * Based on the order (Good, Better, Best, Premium).
  */
 
 export interface PaintCanImageMap {
@@ -19,86 +19,86 @@ export interface PaintCanImageMap {
 
 /**
  * Mapping of actual image filenames to quality levels
- * Based on the numbered filenames in the paint-cans directory
+ * Updated to use simple numbered filenames (X.png format)
  */
 export const paintCanImageMap: PaintCanImageMap = {
   'sherwin-williams': {
     interior: {
-      good: 'Resurface-It  Good  Better  Best Paint Options (16).png',
-      better: 'Resurface-It  Good  Better  Best Paint Options (17).png',
-      best: 'Resurface-It  Good  Better  Best Paint Options (18).png',
-      premium: 'Resurface-It  Good  Better  Best Paint Options (19).png',
+      good: '17.png',
+      better: '18.png',
+      best: '19.png',
+      premium: '20.png',
     },
     exterior: {
-      good: 'Resurface-It  Good  Better  Best Paint Options.png',
-      better: 'Resurface-It  Good  Better  Best Paint Options (1).png',
-      best: 'Resurface-It  Good  Better  Best Paint Options (2).png',
-      premium: 'Resurface-It  Good  Better  Best Paint Options (3).png',
+      good: '1.png',
+      better: '2.png',
+      best: '3.png',
+      premium: '4.png',
     },
     'trim-door': {
-      good: 'Resurface-It  Good  Better  Best Paint Options (31).png',
-      better: 'Resurface-It  Good  Better  Best Paint Options (32).png',
-      best: 'Resurface-It  Good  Better  Best Paint Options (33).png',
-      premium: 'Resurface-It  Good  Better  Best Paint Options (34).png',
+      good: '32.png',
+      better: '33.png',
+      best: '34.png',
+      premium: '35.png',
     },
   },
   'benjamin-moore': {
     interior: {
-      good: 'Resurface-It  Good  Better  Best Paint Options (20).png',
-      better: 'Resurface-It  Good  Better  Best Paint Options (21).png',
-      best: 'Resurface-It  Good  Better  Best Paint Options (22).png',
-      premium: 'Resurface-It  Good  Better  Best Paint Options (23).png',
+      good: '21.png',
+      better: '22.png',
+      best: '23.png',
+      premium: '24.png',
     },
     exterior: {
-      good: 'Resurface-It  Good  Better  Best Paint Options (4).png',
-      better: 'Resurface-It  Good  Better  Best Paint Options (5).png',
-      best: 'Resurface-It  Good  Better  Best Paint Options (6).png',
-      premium: 'Resurface-It  Good  Better  Best Paint Options (7).png',
+      good: '5.png',
+      better: '6.png',
+      best: '7.png',
+      premium: '8.png',
     },
     'trim-door': {
-      good: 'Resurface-It  Good  Better  Best Paint Options (35).png',
-      better: 'Resurface-It  Good  Better  Best Paint Options (36).png',
-      best: 'Resurface-It  Good  Better  Best Paint Options (37).png',
-      premium: 'Resurface-It  Good  Better  Best Paint Options (38).png',
+      good: '36.png',
+      better: '37.png',
+      best: '38.png',
+      premium: '39.png',
     },
   },
   behr: {
     interior: {
-      good: 'Resurface-It  Good  Better  Best Paint Options (24).png',
-      better: 'Resurface-It  Good  Better  Best Paint Options (25).png',
-      best: 'Resurface-It  Good  Better  Best Paint Options (26).png',
-      premium: 'Resurface-It  Good  Better  Best Paint Options (27).png',
+      good: '25.png',
+      better: '26.png',
+      best: '27.png',
+      premium: '28.png',
     },
     exterior: {
-      good: 'Resurface-It  Good  Better  Best Paint Options (8).png',
-      better: 'Resurface-It  Good  Better  Best Paint Options (9).png',
-      best: 'Resurface-It  Good  Better  Best Paint Options (10).png',
-      premium: 'Resurface-It  Good  Better  Best Paint Options (11).png',
+      good: '9.png',
+      better: '10.png',
+      best: '11.png',
+      premium: '12.png',
     },
     'trim-door': {
-      good: 'Resurface-It  Good  Better  Best Paint Options (39).png',
-      better: 'Resurface-It  Good  Better  Best Paint Options (40).png',
-      best: 'Resurface-It  Good  Better  Best Paint Options (41).png',
+      good: '40.png',
+      better: '41.png',
+      best: '42.png',
       // Note: Behr trim-door only has 3 quality levels
     },
   },
   ppg: {
     interior: {
-      good: 'Resurface-It  Good  Better  Best Paint Options (28).png',
-      better: 'Resurface-It  Good  Better  Best Paint Options (29).png',
-      best: 'Resurface-It  Good  Better  Best Paint Options (30).png',
+      good: '29.png',
+      better: '30.png',
+      best: '31.png',
       // Note: PPG interior only has 3 quality levels
     },
     exterior: {
-      good: 'Resurface-It  Good  Better  Best Paint Options (12).png',
-      better: 'Resurface-It  Good  Better  Best Paint Options (13).png',
-      best: 'Resurface-It  Good  Better  Best Paint Options (14).png',
-      premium: 'Resurface-It  Good  Better  Best Paint Options (15).png',
+      good: '13.png',
+      better: '14.png',
+      best: '15.png',
+      premium: '16.png',
     },
     'trim-door': {
-      good: 'Resurface-It  Good  Better  Best Paint Options (42).png',
-      better: 'Resurface-It  Good  Better  Best Paint Options (43).png',
-      best: 'Resurface-It  Good  Better  Best Paint Options (44).png',
+      good: '43.png',
+      better: '44.png',
+      best: '45.png',
       // Note: PPG trim-door only has 3 quality levels
     },
   },

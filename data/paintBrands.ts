@@ -204,7 +204,7 @@ export function getBrandById(id: string): PaintBrand | undefined {
   return paintBrands.find((brand) => brand.id === id)
 }
 
-import { getPaintCanImagePath } from './paintCanImages'
+import { getPaintCanImagePath, paintCanImageMap } from './paintCanImages'
 
 export function getQualityLevelById(
   brandId: string,
@@ -234,6 +234,9 @@ export function getQualityLevelsForType(
   const brand = getBrandById(brandId)
   if (!brand) return []
   
+  // Check if premium exists in the image mapping for this brand/paint type
+  const imageMap = paintCanImageMap[brandId]?.[paintType]
+  
   return brand.qualityLevels
     .map((level) => {
       // Get actual image path from mapping
@@ -245,8 +248,12 @@ export function getQualityLevelsForType(
       }
     })
     .filter((level) => {
-      // Filter out quality levels that don't have images for this paint type
-      // (e.g., some brands/types only have 3 levels instead of 4)
+      // Filter out premium quality level if it doesn't exist in the mapping
+      // (e.g., Behr trim-door, PPG interior, PPG trim-door don't have premium)
+      if (level.id === 'premium' && imageMap && !imageMap.premium) {
+        return false
+      }
+      // Filter out any level that doesn't have an image path
       return level.imagePath !== ''
     })
 }

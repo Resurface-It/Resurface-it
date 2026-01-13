@@ -57,7 +57,11 @@ export function QualityLevelSelector({
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 ${
+        qualityLevels.length === 3 
+          ? 'lg:grid-cols-3 lg:max-w-4xl lg:mx-auto' 
+          : 'lg:grid-cols-4'
+      }`}>
         {qualityLevels.map((level, index) => (
           <button
             key={level.id}
@@ -75,10 +79,9 @@ export function QualityLevelSelector({
                 loading={index < 4 ? undefined : "lazy"}
                 priority={index < 4}
                 quality={100}
-                unoptimized={true}
               />
               {/* Placeholder shown if image fails to load */}
-              <div className="absolute inset-0 flex items-center justify-center text-slate-400 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
+              <div className="absolute inset-0 flex items-center justify-center text-slate-400 opacity-0 pointer-events-none">
                 <div className="text-center">
                   <svg className="mx-auto h-8 w-8 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
