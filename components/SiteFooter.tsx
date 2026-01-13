@@ -70,9 +70,8 @@ export function SiteFooter() {
                 >
                   <img
                     alt="BuildZoom.com"
-                    width="230"
-                    height="auto"
-                    border="0"
+                    width={230}
+                    style={{ height: 'auto' }}
                     src="https://badges.buildzoom.com/2024/bz_2.png"
                   />
                 </a>
