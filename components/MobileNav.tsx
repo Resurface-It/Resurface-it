@@ -16,6 +16,7 @@ interface MobileNavProps {
 export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const [servicesOpen, setServicesOpen] = useState(false)
   const [areasOpen, setAreasOpen] = useState(false)
+  const [moreOpen, setMoreOpen] = useState(false)
 
   useEffect(() => {
     if (isOpen) {
@@ -25,6 +26,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
       // Reset dropdown states when menu closes
       setServicesOpen(false)
       setAreasOpen(false)
+      setMoreOpen(false)
     }
     return () => {
       document.body.style.overflow = 'unset'
@@ -154,32 +156,41 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   Paint Studio
                 </Link>
 
-                {/* About */}
-                <Link
-                  href="/about"
-                  onClick={onClose}
-                  className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
-                >
-                  About
-                </Link>
-
-                {/* Warranty */}
-                <Link
-                  href="/warranty"
-                  onClick={onClose}
-                  className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
-                >
-                  Warranty
-                </Link>
-
-                {/* Blog */}
-                <Link
-                  href="/blog"
-                  onClick={onClose}
-                  className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
-                >
-                  Blog
-                </Link>
+                {/* More Dropdown */}
+                <div>
+                  <button
+                    onClick={() => setMoreOpen(!moreOpen)}
+                    className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+                  >
+                    More
+                    <ChevronDown className={`h-5 w-5 transition-transform ${moreOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {moreOpen && (
+                    <div className="ml-4 mt-1 space-y-1 border-l-2 border-slate-200 pl-4">
+                      <Link
+                        href="/about"
+                        onClick={onClose}
+                        className="block rounded-lg px-4 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
+                      >
+                        About
+                      </Link>
+                      <Link
+                        href="/warranty"
+                        onClick={onClose}
+                        className="block rounded-lg px-4 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
+                      >
+                        Warranty
+                      </Link>
+                      <Link
+                        href="/blog"
+                        onClick={onClose}
+                        className="block rounded-lg px-4 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
+                      >
+                        Blog
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div className="mt-8">

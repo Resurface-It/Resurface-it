@@ -89,6 +89,22 @@ export function SiteHeader() {
     },
   ]
 
+  // More dropdown items
+  const moreDropdownItems = [
+    {
+      href: '/about',
+      label: 'About',
+    },
+    {
+      href: '/warranty',
+      label: 'Warranty',
+    },
+    {
+      href: '/blog',
+      label: 'Blog',
+    },
+  ]
+
   return (
     <>
       <header
@@ -141,24 +157,13 @@ export function SiteHeader() {
             >
               Paint Studio
             </Link>
-            <Link
-              href="/about"
-              className={`text-sm font-semibold ${textColor} transition-colors ${hoverColor}`}
-            >
-              About
-            </Link>
-            <Link
-              href="/warranty"
-              className={`text-sm font-semibold ${textColor} transition-colors ${hoverColor}`}
-            >
-              Warranty
-            </Link>
-            <Link
-              href="/blog"
-              className={`text-sm font-semibold ${textColor} transition-colors ${hoverColor}`}
-            >
-              Blog
-            </Link>
+            <NavDropdown
+              label="More"
+              items={moreDropdownItems}
+              textColor={textColor}
+              hoverColor={hoverColor}
+              isLandingPage={isLandingPage}
+            />
             <HousecallProButton className="shadow-lg hover:shadow-xl">Free Estimate</HousecallProButton>
             <button
               data-token="78e82f81455a4447b0f675bb4afc124a"
