@@ -4,6 +4,7 @@ import './globals.css'
 import { Analytics } from '@vercel/analytics/next'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SiteFooter } from '@/components/SiteFooter'
+import { PromotionalBanner } from '@/components/PromotionalBanner'
 import { ClientOnly } from '@/components/ClientOnly'
 import { AnalyticsScripts } from '@/components/analytics/AnalyticsScripts'
 import { PageViewTracker } from '@/components/analytics/PageViewTracker'
@@ -197,6 +198,7 @@ export default function RootLayout({
           />
         </noscript>
         
+        <PromotionalBanner />
         <SiteHeader />
         <main className="pt-36 md:pt-40 lg:pt-44">{children}</main>
         <SiteFooter />

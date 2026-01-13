@@ -145,6 +145,15 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   Gallery
                 </Link>
 
+                {/* Paint Studio */}
+                <Link
+                  href="/paint-studio"
+                  onClick={onClose}
+                  className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+                >
+                  Paint Studio
+                </Link>
+
                 {/* About */}
                 <Link
                   href="/about"

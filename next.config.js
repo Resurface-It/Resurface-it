@@ -74,6 +74,16 @@ const nextConfig = {
           },
         ],
       },
+      {
+        // Apply to color data JSON files (if served as static files)
+        source: '/data/colors-json/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, immutable, stale-while-revalidate=3600',
+          },
+        ],
+      },
     ]
   },
   // Optimize webpack

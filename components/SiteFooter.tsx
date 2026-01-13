@@ -93,6 +93,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/paint-studio" className="text-slate-600 hover:text-primary">
+                  Paint Studio
+                </Link>
+              </li>
+              <li>
                 <Link href="/warranty" className="text-slate-600 hover:text-primary">
                   Warranty
                 </Link>

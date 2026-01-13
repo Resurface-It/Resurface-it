@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "brand": "sherwin-williams",
+    "paintType": "interior",
+    "qualityLevel": "premium",
+    "totalColors": 3,
+    "lastUpdated": "2024-01-12"
+  },
+  "colors": [
+    {
+      "id": "sw-int-prem-001",
+      "name": "Pure White",
+      "hex": "#FFFFFF",
+      "rgb": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      },
+      "code": "SW 7005",
+      "family": "neutrals"
+    },
+    {
+      "id": "sw-int-prem-002",
+      "name": "Alabaster",
+      "hex": "#F2F0E6",
+      "rgb": {
+        "r": 242,
+        "g": 240,
+        "b": 230
+      },
+      "code": "SW 7008",
+      "family": "neutrals"
+    },
+    {
+      "id": "sw-int-prem-003",
+      "name": "Repose Gray",
+      "hex": "#CCC9C0",
+      "rgb": {
+        "r": 204,
+        "g": 201,
+        "b": 192
+      },
+      "code": "SW 7015",
+      "family": "grays"
+    }
+  ]
+}

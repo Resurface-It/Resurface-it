@@ -209,6 +209,33 @@
 }
 
 @layer utilities {
+  /* Header positioning based on banner visibility */
+  /* Banner height: h-14 = 3.5rem (56px) */
+  body[data-banner-visible="true"] header {
+    top: 3.5rem !important;
+  }
+  
+  body[data-banner-visible="false"] header,
+  body:not([data-banner-visible]) header {
+    top: 0 !important;
+  }
+  
+  /* Main content padding based on banner visibility */
+  body[data-banner-visible="true"] main {
+    padding-top: calc(3.5rem + 9rem);
+  }
+  
+  @media (min-width: 768px) {
+    body[data-banner-visible="true"] main {
+      padding-top: calc(3.5rem + 10rem);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    body[data-banner-visible="true"] main {
+      padding-top: calc(3.5rem + 11rem);
+    }
+  }
   .text-balance {
     text-wrap: balance;
   }

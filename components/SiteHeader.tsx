@@ -92,7 +92,7 @@ export function SiteHeader() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 ${headerBg} transition-all duration-300 overflow-visible`}
+        className={`fixed top-0 left-0 right-0 z-30 ${headerBg} transition-all duration-300 overflow-visible`}
       >
         <nav className={`container flex ${navHeight} items-center justify-between overflow-visible`}>
           <Link href="/" className="flex items-center">
@@ -134,6 +134,12 @@ export function SiteHeader() {
               className={`text-sm font-semibold ${textColor} transition-colors ${hoverColor}`}
             >
               Gallery
+            </Link>
+            <Link
+              href="/paint-studio"
+              className={`text-sm font-semibold ${textColor} transition-colors ${hoverColor}`}
+            >
+              Paint Studio
             </Link>
             <Link
               href="/about"
