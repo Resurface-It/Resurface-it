@@ -41,6 +41,57 @@ export function SiteFooter() {
             <p className="mt-2 text-xs text-slate-500">
               Licensed & Insured in Oregon
             </p>
+            <div className="mt-6">
+              <style dangerouslySetInnerHTML={{ __html: `
+                .bz-bdg {
+                  width: 230px;
+                }
+                .bz-bdg > a {
+                  display: block;
+                  font-family: Helvetica;
+                  font-size: 9px;
+                  font-weight: 500;
+                  text-align: center;
+                  margin-top: 4px;
+                  color: #484848;
+                  line-height: 10px;
+                }
+                .bz-bdg .small-label {
+                  margin-top: -12px;
+                  padding: 0 10px;
+                }
+              ` }} />
+              <div className="bz-bdg">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="BuildZoom.com"
+                  href="https://www.buildzoom.com/contractor/resurface-it-inc?ad_location=co_website"
+                >
+                  <img
+                    alt="BuildZoom.com"
+                    width="230"
+                    height="auto"
+                    border="0"
+                    src="https://badges.buildzoom.com/2024/bz_2.png"
+                  />
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.buildzoom.com/eugene-or/exterior-contractors?ad_location=co_website&bg_ref=30303323"
+                >
+                  Exterior Contractors in Eugene
+                </a>
+                <img
+                  src="https://track.buildzoom.com//badge_load?track_id=QKBxJM&entity=Contractor&event_type=impression&ad_type=contractor_badge"
+                  width="1"
+                  height="1"
+                  alt=""
+                  className="hidden"
+                />
+              </div>
+            </div>
           </div>
 
           <div>
