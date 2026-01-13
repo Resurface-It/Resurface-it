@@ -45,7 +45,7 @@ export function QualityLevelSelector({
             height={80}
             className="h-auto w-auto max-h-16 object-contain"
             loading="lazy"
-            quality={75}
+            quality={90}
           />
         </div>
         <h2 className="mb-2 text-3xl font-bold md:text-4xl">Select a Paint Line</h2>
@@ -58,7 +58,7 @@ export function QualityLevelSelector({
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {qualityLevels.map((level) => (
+        {qualityLevels.map((level, index) => (
           <button
             key={level.id}
             onClick={() => onQualityLevelSelect(level.id)}
@@ -70,10 +70,12 @@ export function QualityLevelSelector({
                 src={level.imagePath}
                 alt={`${brand.name} ${level.displayName} paint can`}
                 fill
-                className="object-contain p-4 transition-transform group-hover:scale-105"
+                className="object-contain p-1 transition-transform group-hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                loading="lazy"
-                quality={75}
+                loading={index < 4 ? undefined : "lazy"}
+                priority={index < 4}
+                quality={100}
+                unoptimized={true}
               />
               {/* Placeholder shown if image fails to load */}
               <div className="absolute inset-0 flex items-center justify-center text-slate-400 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">

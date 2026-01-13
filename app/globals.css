@@ -210,9 +210,16 @@
 
 @layer utilities {
   /* Header positioning based on banner visibility */
-  /* Banner height: h-14 = 3.5rem (56px) */
+  /* Banner height: min-h-[3.5rem] on mobile, h-14 (3.5rem) on desktop */
   body[data-banner-visible="true"] header {
     top: 3.5rem !important;
+  }
+  
+  /* On mobile, banner might be slightly taller, adjust if needed */
+  @media (max-width: 767px) {
+    body[data-banner-visible="true"] header {
+      top: 3.75rem !important;
+    }
   }
   
   body[data-banner-visible="false"] header,
@@ -221,19 +228,21 @@
   }
   
   /* Main content padding based on banner visibility */
+  /* Base padding accounts for header, we add banner height on top */
+  /* Mobile: banner (3.75rem) + header (9rem landing / 5rem regular) */
   body[data-banner-visible="true"] main {
-    padding-top: calc(3.5rem + 9rem);
+    padding-top: calc(3.75rem + 9rem) !important;
   }
   
   @media (min-width: 768px) {
     body[data-banner-visible="true"] main {
-      padding-top: calc(3.5rem + 10rem);
+      padding-top: calc(3.5rem + 10rem) !important;
     }
   }
   
   @media (min-width: 1024px) {
     body[data-banner-visible="true"] main {
-      padding-top: calc(3.5rem + 11rem);
+      padding-top: calc(3.5rem + 11rem) !important;
     }
   }
   .text-balance {
