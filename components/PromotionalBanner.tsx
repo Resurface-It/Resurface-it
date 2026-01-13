@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { X } from 'lucide-react'
-import Link from 'next/link'
+import { HousecallProButton } from './HousecallProButton'
 
 export function PromotionalBanner() {
   const [isVisible, setIsVisible] = useState(false)
@@ -31,12 +31,11 @@ export function PromotionalBanner() {
         <p className="text-sm md:text-base font-semibold text-center flex-1">
           <span className="text-lg md:text-xl font-bold">10% off</span> Any exterior projects Booked now for spring
         </p>
-        <Link
-          href="/contact"
-          className="hidden sm:inline-flex items-center px-4 py-1.5 bg-white text-primary rounded-full font-semibold text-sm hover:bg-slate-100 transition-colors whitespace-nowrap"
-        >
-          Book Now
-        </Link>
+        <div className="hidden sm:block">
+          <HousecallProButton className="!px-4 !py-1.5 bg-white text-primary rounded-full font-semibold text-sm hover:bg-slate-100 whitespace-nowrap">
+            Book Now
+          </HousecallProButton>
+        </div>
         <button
           onClick={handleDismiss}
           className="flex-shrink-0 p-1 hover:bg-white/20 rounded-full transition-colors"
