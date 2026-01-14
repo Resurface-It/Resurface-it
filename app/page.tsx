@@ -1,100 +1,26 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect } from 'react'
-import dynamic from 'next/dynamic'
 import { Section } from '@/components/Section'
 import { SectionHeader } from '@/components/SectionHeader'
-import { PrimaryButton } from '@/components/PrimaryButton'
 import { SecondaryButton } from '@/components/SecondaryButton'
 import { HousecallProButton } from '@/components/HousecallProButton'
-import { TrustStrip } from '@/components/TrustStrip'
 import { PhoneLink } from '@/components/PhoneLink'
 import { Shield, CheckCircle } from 'lucide-react'
 import { generateLocalBusinessSchema, generateBreadcrumbSchema, generateFAQPageSchema } from '@/lib/jsonld'
 import { primaryCities } from '@/data/cities'
 import { companyInfo } from '@/data/company'
 import { FAQAccordion } from '@/components/FAQAccordion'
-import { getFAQsByCategory } from '@/data/faq'
 import { testimonials, getFiveStarReviews } from '@/data/testimonials'
-
-// Dynamic imports for non-critical components - loaded after initial render
-const ServicesGrid = dynamic(
-  () => import('@/components/ServicesGrid').then((mod) => ({ default: mod.ServicesGrid })),
-  {
-    loading: () => <div className="h-64 animate-pulse bg-slate-200 rounded-xl" />,
-    ssr: false, // Client-side only for faster initial load
-  }
-)
-
-const ProcessTimeline = dynamic(
-  () => import('@/components/ProcessTimeline').then((mod) => ({ default: mod.ProcessTimeline })),
-  {
-    loading: () => <div className="h-96 animate-pulse bg-slate-200 rounded-xl" />,
-    ssr: false, // Client-side only for faster initial load
-  }
-)
-
-const TestimonialsCarousel = dynamic(
-  () => import('@/components/TestimonialsCarousel').then((mod) => ({ default: mod.TestimonialsCarousel })),
-  {
-    loading: () => <div className="h-64 animate-pulse bg-slate-200 rounded-xl" />,
-    ssr: false, // Client-side only for faster initial load
-  }
-)
-
-const StatsSection = dynamic(
-  () => import('@/components/StatsSection').then((mod) => ({ default: mod.StatsSection })),
-  {
-    loading: () => <div className="h-48 animate-pulse bg-slate-200 rounded-xl" />,
-    ssr: false, // Client-side only for faster initial load
-  }
-)
-
-const MarqueeBanner = dynamic(
-  () => import('@/components/MarqueeBanner').then((mod) => ({ default: mod.MarqueeBanner })),
-  {
-    ssr: false, // Client-side only to reduce initial bundle
-  }
-)
-
-const BrandLogosMarquee = dynamic(
-  () => import('@/components/BrandLogosMarquee').then((mod) => ({ default: mod.BrandLogosMarquee })),
-  {
-    ssr: false, // Client-side only to reduce initial bundle
-  }
-)
-
-const MobileStickyCTA = dynamic(
-  () => import('@/components/MobileStickyCTA').then((mod) => ({ default: mod.MobileStickyCTA })),
-  {
-    ssr: false, // Only needed on mobile
-  }
-)
+import { MarqueeBanner, BrandLogosMarquee } from '@/components/HomePageClient'
+import { TrustStrip } from '@/components/TrustStrip'
+import { ServicesGrid } from '@/components/ServicesGrid'
+import { StatsSection } from '@/components/StatsSection'
+import { ProcessTimeline } from '@/components/ProcessTimeline'
+import { TestimonialsCarousel } from '@/components/TestimonialsCarousel'
+import { MobileStickyCTA } from '@/components/MobileStickyCTA'
 
 export default function HomePage() {
-  // Preload critical hero image only on home page
-  useEffect(() => {
-    // Only run on client side
-    if (typeof window === 'undefined') return
-    
-    const link = document.createElement('link')
-    link.rel = 'preload'
-    link.as = 'image'
-    link.href = '/Landing_Page.png'
-    link.setAttribute('fetchPriority', 'high')
-    document.head.appendChild(link)
-
-    return () => {
-      // Cleanup: remove the preload link when component unmounts
-      const existingLink = document.querySelector('link[href="/Landing_Page.png"][rel="preload"]')
-      if (existingLink) {
-        document.head.removeChild(existingLink)
-      }
-    }
-  }, [])
-
+  // Generate structured data on server
   const localBusinessSchema = generateLocalBusinessSchema()
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },

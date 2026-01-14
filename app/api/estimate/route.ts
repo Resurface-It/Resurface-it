@@ -13,7 +13,15 @@ interface EstimateRequest {
 
 export async function POST(request: NextRequest) {
   try {
-    const body: EstimateRequest = await request.json()
+    let body: EstimateRequest
+    try {
+      body = await request.json()
+    } catch (jsonError) {
+      return NextResponse.json(
+        { error: 'Invalid JSON in request body' },
+        { status: 400 }
+      )
+    }
 
     // Server-side validation
     if (!body.name || !body.phone) {

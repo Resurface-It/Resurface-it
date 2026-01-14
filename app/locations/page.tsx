@@ -47,6 +47,9 @@ export default function LocationsHubPage() {
       <Section>
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-6 text-3xl">Primary Service Areas</h2>
+          <p className="mb-6 text-lg text-slate-600">
+            Click on any city below to explore our micro-location service pages, area spotlights, and case studies for specific neighborhoods.
+          </p>
           <div className="grid gap-6 md:grid-cols-2">
             {primaryCities
               .filter(city => city.slug !== 'junction-city' && city.slug !== 'veneta')
@@ -61,11 +64,66 @@ export default function LocationsHubPage() {
                     <h3 className="text-2xl font-bold">{city.name}, OR</h3>
                   </div>
                   <p className="mb-4 text-slate-700">{city.blurb}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">
+                      Micro-Location Pages
+                    </span>
+                    <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">
+                      Area Spotlights
+                    </span>
+                    <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded">
+                      Case Studies
+                    </span>
+                  </div>
                   <span className="font-semibold text-primary hover:underline">
                     View {city.name} services →
                   </span>
                 </Link>
               ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section className="bg-white">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-6 text-center text-3xl">Explore Our Content</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            <Link
+              href="/case-studies"
+              className="rounded-xl border-2 border-slate-200 bg-white p-6 text-center shadow-sm transition-all hover:border-primary hover:shadow-md"
+            >
+              <h3 className="mb-2 text-xl font-bold text-slate-900">Case Studies</h3>
+              <p className="mb-4 text-sm text-slate-600">
+                View completed projects with real photos and details from actual homes.
+              </p>
+              <span className="font-semibold text-primary hover:underline">
+                View Case Studies →
+              </span>
+            </Link>
+            <Link
+              href="/spotlights"
+              className="rounded-xl border-2 border-slate-200 bg-white p-6 text-center shadow-sm transition-all hover:border-primary hover:shadow-md"
+            >
+              <h3 className="mb-2 text-xl font-bold text-slate-900">Area Spotlights</h3>
+              <p className="mb-4 text-sm text-slate-600">
+                General recommendations for homes in different neighborhoods throughout our service areas.
+              </p>
+              <span className="font-semibold text-primary hover:underline">
+                View Spotlights →
+              </span>
+            </Link>
+            <Link
+              href="/gallery"
+              className="rounded-xl border-2 border-slate-200 bg-white p-6 text-center shadow-sm transition-all hover:border-primary hover:shadow-md"
+            >
+              <h3 className="mb-2 text-xl font-bold text-slate-900">Gallery</h3>
+              <p className="mb-4 text-sm text-slate-600">
+                Browse our portfolio of completed projects and transformations.
+              </p>
+              <span className="font-semibold text-primary hover:underline">
+                View Gallery →
+              </span>
+            </Link>
           </div>
         </div>
       </Section>

@@ -1,4 +1,5 @@
-import { Shield, Award, Wrench } from 'lucide-react'
+import { Shield, Award, FileCheck, CreditCard } from 'lucide-react'
+import { companyInfo } from '@/data/company'
 
 const trustItems = [
   {
@@ -6,12 +7,16 @@ const trustItems = [
     label: 'Licensed & Insured',
   },
   {
+    icon: FileCheck,
+    label: companyInfo.ccbLicense,
+  },
+  {
     icon: Award,
     label: '5-Year Workmanship Warranty',
   },
   {
-    icon: Wrench,
-    label: 'Siding • Exterior Painting • Interior Painting',
+    icon: CreditCard,
+    label: '12 Month 0% Interest Financing',
   },
 ]
 

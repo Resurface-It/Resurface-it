@@ -13,7 +13,7 @@ export function SiteFooter() {
     <footer className="border-t border-slate-200 bg-white">
       <div className="container py-12">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div>
+          <div className="overflow-visible">
             <div className="mb-4">
               <Image
                 src="/Resurface-it.png"
@@ -61,34 +61,45 @@ export function SiteFooter() {
                   padding: 0 10px;
                 }
               ` }} />
-              <div className="bz-bdg">
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="BuildZoom.com"
-                  href="https://www.buildzoom.com/contractor/resurface-it-inc?ad_location=co_website"
-                >
+              <div className="flex flex-wrap items-start gap-4">
+                <div className="bz-bdg flex-shrink-0">
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="BuildZoom.com"
+                    href="https://www.buildzoom.com/contractor/resurface-it-inc?ad_location=co_website"
+                  >
+                    <img
+                      alt="BuildZoom.com"
+                      width={230}
+                      style={{ height: 'auto' }}
+                      src="https://badges.buildzoom.com/2024/bz_2.png"
+                    />
+                  </a>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.buildzoom.com/eugene-or/exterior-contractors?ad_location=co_website&bg_ref=30303323"
+                  >
+                    Exterior Contractors in Eugene
+                  </a>
                   <img
-                    alt="BuildZoom.com"
-                    width={230}
-                    style={{ height: 'auto' }}
-                    src="https://badges.buildzoom.com/2024/bz_2.png"
+                    src="https://track.buildzoom.com//badge_load?track_id=QKBxJM&entity=Contractor&event_type=impression&ad_type=contractor_badge"
+                    width="1"
+                    height="1"
+                    alt=""
+                    className="hidden"
                   />
-                </a>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://www.buildzoom.com/eugene-or/exterior-contractors?ad_location=co_website&bg_ref=30303323"
-                >
-                  Exterior Contractors in Eugene
-                </a>
-                <img
-                  src="https://track.buildzoom.com//badge_load?track_id=QKBxJM&entity=Contractor&event_type=impression&ad_type=contractor_badge"
-                  width="1"
-                  height="1"
-                  alt=""
-                  className="hidden"
-                />
+                </div>
+                <div className="flex-shrink-0">
+                  <img
+                    src="/images/Oregon-Lead-Safe-Certified.png"
+                    alt="Lead-Safe Oregon Certified Firm"
+                    width={120}
+                    style={{ height: 'auto', width: '120px', display: 'block' }}
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -143,6 +154,16 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/case-studies" className="text-slate-600 hover:text-primary">
+                  Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link href="/spotlights" className="text-slate-600 hover:text-primary">
+                  Area Spotlights
+                </Link>
+              </li>
+              <li>
                 <Link href="/paint-studio" className="text-slate-600 hover:text-primary">
                   Paint Studio
                 </Link>
@@ -160,6 +181,11 @@ export function SiteFooter() {
               <li>
                 <Link href="/areas-we-serve" className="text-slate-600 hover:text-primary">
                   Areas We Serve
+                </Link>
+              </li>
+              <li>
+                <Link href="/locations" className="text-slate-600 hover:text-primary">
+                  Service Locations
                 </Link>
               </li>
             </ul>

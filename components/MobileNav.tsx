@@ -147,6 +147,24 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   Gallery
                 </Link>
 
+                {/* Case Studies */}
+                <Link
+                  href="/case-studies"
+                  onClick={onClose}
+                  className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+                >
+                  Case Studies
+                </Link>
+
+                {/* Spotlights */}
+                <Link
+                  href="/spotlights"
+                  onClick={onClose}
+                  className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+                >
+                  Area Spotlights
+                </Link>
+
                 {/* Paint Studio */}
                 <Link
                   href="/paint-studio"
@@ -173,6 +191,20 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                         className="block rounded-lg px-4 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
                       >
                         About
+                      </Link>
+                      <Link
+                        href="/case-studies"
+                        onClick={onClose}
+                        className="block rounded-lg px-4 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
+                      >
+                        Case Studies
+                      </Link>
+                      <Link
+                        href="/spotlights"
+                        onClick={onClose}
+                        className="block rounded-lg px-4 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
+                      >
+                        Area Spotlights
                       </Link>
                       <Link
                         href="/warranty"

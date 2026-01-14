@@ -12,6 +12,7 @@ import { getCityBySlug } from '@/data/cities'
 import { getServiceBySlug } from '@/data/services'
 import { getCityFAQs } from '@/data/faq'
 import { companyInfo } from '@/data/company'
+import { getMicroLocationsByCity, getCities } from '@/data/geo'
 import type { Metadata } from 'next'
 import { CheckCircle, MapPin } from 'lucide-react'
 
@@ -161,29 +162,42 @@ export default async function CityLocationPage({ params }: CityPageProps) {
         </div>
       </Section>
 
-      {city.neighborhoods && city.neighborhoods.length > 0 && (
-        <Section className="bg-slate-50 py-16">
-          <div className="container">
-            <div className="mx-auto max-w-4xl">
-              <h2 className="mb-6 text-center text-3xl">Neighborhoods We Serve in {city.name}</h2>
-              <p className="mb-6 text-center text-lg text-slate-600">
-                We provide services throughout {city.name}, including these neighborhoods:
-              </p>
-              <div className="flex flex-wrap justify-center gap-3">
-                {city.neighborhoods.map((neighborhood) => (
-                  <div
-                    key={neighborhood}
-                    className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 shadow-sm"
-                  >
-                    <MapPin className="h-4 w-4 text-primary" />
-                    <span className="font-semibold text-slate-700">{neighborhood}</span>
-                  </div>
-                ))}
-              </div>
+      <Section className="bg-slate-50 py-16">
+        <div className="container">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-6 text-center text-3xl">Areas We Serve in {city.name}</h2>
+            <p className="mb-6 text-center text-lg text-slate-600">
+              We provide professional exterior services throughout {city.name}, including these neighborhoods and areas:
+            </p>
+            <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {getMicroLocationsByCity(citySlug).map((location) => (
+                <Link
+                  key={location.areaSlug}
+                  href={`/locations/${citySlug}/${location.areaSlug}`}
+                  className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 shadow-sm transition-all hover:border-primary hover:shadow-md"
+                >
+                  <MapPin className="h-4 w-4 shrink-0 text-primary" />
+                  <span className="font-semibold text-slate-700">{location.areaName}</span>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Link
+                href={`/spotlights/${citySlug}`}
+                className="rounded-lg border-2 border-primary bg-primary px-6 py-3 font-semibold text-white transition-all hover:bg-primaryDark"
+              >
+                View Area Spotlights →
+              </Link>
+              <Link
+                href={`/case-studies/${citySlug}`}
+                className="rounded-lg border-2 border-primary bg-transparent px-6 py-3 font-semibold text-primary transition-all hover:bg-primary hover:text-white"
+              >
+                View Case Studies →
+              </Link>
             </div>
           </div>
-        </Section>
-      )}
+        </div>
+      </Section>
 
       <Section className="bg-white py-16">
         <div className="container">

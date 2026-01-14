@@ -2,6 +2,8 @@ import { services } from '@/data/services'
 import { primaryCities } from '@/data/cities'
 import { blogPosts } from '@/data/blogPosts'
 import { resources } from '@/data/resources'
+import { getCities, getMicroLocationsByCity } from '@/data/geo'
+import { getPublishedCaseStudies } from '@/lib/caseStudies'
 
 export interface SitemapEntry {
   url: string
@@ -126,6 +128,107 @@ export function generateSitemap(): SitemapEntry[] {
       priority: 0.6,
     })
   })
+
+  // Micro-location pages
+  const cities = getCities()
+  cities.forEach((city) => {
+    // City hub
+    entries.push({
+      url: `${siteUrl}/locations/${city.citySlug}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    })
+
+    // Micro-location pages
+    const locations = getMicroLocationsByCity(city.citySlug)
+    locations.forEach((location) => {
+      entries.push({
+        url: `${siteUrl}/locations/${city.citySlug}/${location.areaSlug}`,
+        lastModified: now,
+        changeFrequency: 'monthly',
+        priority: 0.75,
+      })
+    })
+  })
+
+  // Spotlights pages
+  entries.push({
+    url: `${siteUrl}/spotlights`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  })
+
+  cities.forEach((city) => {
+    // City spotlights index
+    entries.push({
+      url: `${siteUrl}/spotlights/${city.citySlug}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+
+    // Spotlight detail pages
+    const locations = getMicroLocationsByCity(city.citySlug)
+    locations.forEach((location) => {
+      entries.push({
+        url: `${siteUrl}/spotlights/${city.citySlug}/${location.areaSlug}`,
+        lastModified: now,
+        changeFrequency: 'monthly',
+        priority: 0.7,
+      })
+    })
+  })
+
+  // Case studies pages
+  entries.push({
+    url: `${siteUrl}/case-studies`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.65,
+  })
+
+  cities.forEach((city) => {
+    // City case studies index
+    entries.push({
+      url: `${siteUrl}/case-studies/${city.citySlug}`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.65,
+    })
+
+    // Area case studies indexes
+    const locations = getMicroLocationsByCity(city.citySlug)
+    locations.forEach((location) => {
+      entries.push({
+        url: `${siteUrl}/case-studies/${city.citySlug}/${location.areaSlug}`,
+        lastModified: now,
+        changeFrequency: 'weekly',
+        priority: 0.65,
+      })
+    })
+  })
+
+  // Published case study detail pages only
+  try {
+    const publishedStudies = getPublishedCaseStudies()
+    publishedStudies.forEach((study) => {
+      entries.push({
+        url: `${siteUrl}/case-studies/${study.frontmatter.citySlug}/${study.frontmatter.areaSlug}/${study.frontmatter.caseSlug}`,
+        lastModified: study.frontmatter.endDate
+          ? new Date(study.frontmatter.endDate)
+          : study.frontmatter.startDate
+            ? new Date(study.frontmatter.startDate)
+            : now,
+        changeFrequency: 'monthly',
+        priority: 0.6,
+      })
+    })
+  } catch (error) {
+    // If case studies can't be loaded (e.g., during build), skip them
+    console.warn('Warning: Could not load case studies for sitemap:', error)
+  }
 
   // Sort entries by priority (highest first) and then by URL for consistent ordering
   entries.sort((a, b) => {

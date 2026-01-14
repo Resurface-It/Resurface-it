@@ -53,16 +53,20 @@ const brands = [
 ]
 
 export function BrandLogosMarquee() {
-  // For desktop: duplicate brands array multiple times for seamless infinite scrolling
-  // Using 4 copies ensures there's always plenty of content visible for a never-ending loop effect
-  const duplicatedBrands = [...brands, ...brands, ...brands, ...brands]
+  // For desktop: duplicate brands array 2x for seamless infinite scrolling (reduced from 4x)
+  // 2x is sufficient for seamless loop while reducing DOM nodes by 50%
+  const duplicatedBrands = [...brands, ...brands]
   
   // Split brands for mobile grid: 3 on top, rest on bottom
   const topBrands = brands.slice(0, 3)
   const bottomBrands = brands.slice(3)
 
   return (
-    <div className="border-y-2 border-slate-200 bg-white py-8">
+    <div 
+      className="border-y-2 border-slate-200 bg-white py-8"
+      aria-label="Brand partners marquee"
+      style={{ minHeight: '8rem' }} // Explicit height to prevent CLS
+    >
       {/* Mobile: Grid layout (3 top, 2 bottom) */}
       <div className="md:hidden px-6">
         <div className="grid grid-cols-3 gap-4 mb-4">
@@ -119,12 +123,13 @@ export function BrandLogosMarquee() {
         </div>
       </div>
 
-      {/* Desktop: Animated marquee */}
-      <div className="hidden md:block overflow-hidden">
-        <div className="flex animate-marquee whitespace-nowrap py-4 w-fit">
+      {/* Desktop: Animated marquee - hidden when user prefers reduced motion */}
+      <div className="hidden md:block overflow-hidden marquee-animated">
+        <div className="flex animate-marquee-right whitespace-nowrap py-4 w-fit">
           {duplicatedBrands.map((brand, index) => {
             const isBehr = brand.name === 'BEHR'
             const isBenjaminMoore = brand.name === 'Benjamin Moore'
+            const isDuplicate = index >= brands.length
             return (
               <a
                 key={`${brand.name}-${index}`}
@@ -132,11 +137,12 @@ export function BrandLogosMarquee() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mx-20 flex shrink-0 items-center justify-center min-w-fit px-4 transition-transform hover:scale-105 cursor-pointer"
-                aria-label={`Visit ${brand.name} website`}
+                aria-label={isDuplicate ? undefined : `Visit ${brand.name} website`}
+                aria-hidden={isDuplicate}
               >
                 <Image
                   src={brand.logo}
-                  alt={brand.alt}
+                  alt={isDuplicate ? '' : brand.alt}
                   width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
                   height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
                   className={`${isBehr ? 'h-16 max-w-[200px]' : isBenjaminMoore ? 'h-16 max-w-[200px]' : 'h-16 max-w-[180px]'} w-auto object-contain transition-opacity hover:opacity-90 pointer-events-none`}
@@ -147,6 +153,34 @@ export function BrandLogosMarquee() {
             )
           })}
         </div>
+      </div>
+      
+      {/* Desktop: Static fallback for users who prefer reduced motion */}
+      <div className="hidden md:marquee-static md:flex md:flex-wrap md:items-center md:justify-center md:gap-8 md:px-8">
+        {brands.map((brand) => {
+          const isBehr = brand.name === 'BEHR'
+          const isBenjaminMoore = brand.name === 'Benjamin Moore'
+          return (
+            <a
+              key={`static-${brand.name}`}
+              href={brand.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
+              aria-label={`Visit ${brand.name} website`}
+            >
+              <Image
+                src={brand.logo}
+                alt={brand.alt}
+                width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
+                height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
+                className={`${isBehr ? 'h-16 max-w-[200px]' : isBenjaminMoore ? 'h-16 max-w-[200px]' : 'h-16 max-w-[180px]'} w-auto object-contain transition-opacity hover:opacity-90 pointer-events-none`}
+                loading="lazy"
+                quality={75}
+              />
+            </a>
+          )
+        })}
       </div>
     </div>
   )

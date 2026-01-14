@@ -75,12 +75,21 @@ export async function getColorsForBrandAndLine(
 
       const response = await fetch(`/api/paint-colors?${params.toString()}`)
       if (response.ok) {
-        const data = await response.json()
-        return data.colors || []
+        try {
+          const data = await response.json()
+          return data.colors || []
+        } catch (jsonError) {
+          // If JSON parsing fails, log and fall through to dynamic import fallback
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('Failed to parse JSON response from paint-colors API:', jsonError)
+          }
+        }
       }
     } catch (error) {
       // Fall through to dynamic import fallback
-      console.log('API route not available, using fallback')
+      if (process.env.NODE_ENV === 'development') {
+        console.log('API route not available, using fallback:', error)
+      }
     }
   }
 

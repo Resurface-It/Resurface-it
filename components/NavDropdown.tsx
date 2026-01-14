@@ -54,7 +54,7 @@ export function NavDropdown({ label, items, textColor, hoverColor, isLandingPage
       onMouseLeave={handleMouseLeave}
     >
       <button
-        className={`flex items-center gap-1 text-sm font-semibold ${textColor} transition-colors ${hoverColor}`}
+        className={`flex items-center gap-1 text-sm font-semibold ${textColor} transition-colors duration-300 ${hoverColor}`}
         aria-expanded={isOpen}
         aria-haspopup="true"
       >

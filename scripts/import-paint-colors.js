@@ -134,7 +134,14 @@ function importFromJson(filePath) {
   }
 
   const fileContent = fs.readFileSync(filePath, 'utf-8')
-  const data = JSON.parse(fileContent)
+  let data
+  try {
+    data = JSON.parse(fileContent)
+  } catch (error) {
+    console.error(`Error: Failed to parse JSON file: ${filePath}`)
+    console.error(`JSON parse error: ${error.message}`)
+    process.exit(1)
+  }
 
   // Handle different JSON structures
   let colors = []

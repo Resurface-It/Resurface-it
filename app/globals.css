@@ -267,6 +267,15 @@
     }
   }
 
+  @keyframes marquee-right {
+    0% {
+      transform: translate3d(-50%, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
   .animate-marquee {
     animation: marquee 30s linear infinite;
     /* Optimize animation performance with GPU acceleration */
@@ -285,6 +294,8 @@
     width: fit-content;
     /* Prevent text wrapping */
     white-space: nowrap;
+    /* Contain layout and paint for better performance */
+    contain: layout style paint;
   }
 
   /* Slower animation for main marquee banner */
@@ -306,6 +317,60 @@
     width: fit-content;
     /* Prevent text wrapping */
     white-space: nowrap;
+    /* Contain layout and paint for better performance */
+    contain: layout style paint;
+  }
+
+  /* Right-scrolling marquee animation */
+  .animate-marquee-right {
+    animation: marquee-right 30s linear infinite;
+    /* Optimize animation performance with GPU acceleration */
+    will-change: transform;
+    /* Ensure smooth rendering for seamless loop */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    /* Use transform3d for better GPU acceleration */
+    transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
+    /* Force GPU acceleration on mobile */
+    -webkit-font-smoothing: antialiased;
+    /* Ensure content doesn't get cut off - use fit-content width */
+    width: fit-content;
+    /* Prevent text wrapping */
+    white-space: nowrap;
+    /* Contain layout and paint for better performance */
+    contain: layout style paint;
+  }
+  
+  /* Disable marquee animations for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-marquee-slow,
+    .animate-marquee-right {
+      animation: none !important;
+      transform: translate3d(0, 0, 0) !important;
+      will-change: auto !important;
+    }
+    
+    /* Hide animated marquee, show static fallback */
+    .marquee-animated {
+      display: none !important;
+    }
+    
+    .marquee-static {
+      display: flex !important;
+    }
+  }
+  
+  /* Show animated marquee, hide static fallback by default */
+  .marquee-animated {
+    display: flex;
+  }
+  
+  .marquee-static {
+    display: none;
   }
 
   /* Faster marquee on mobile for better engagement */
@@ -324,6 +389,15 @@
       /* Ensure animation works on mobile browsers with transform3d */
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    .animate-marquee-right {
+      animation: marquee-right 20s linear infinite;
+      /* Ensure animation works on mobile browsers with transform3d */
+      -webkit-transform: translate3d(-50%, 0, 0);
+      transform: translate3d(-50%, 0, 0);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }

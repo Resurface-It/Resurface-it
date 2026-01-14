@@ -68,7 +68,7 @@ export function SmartEstimateForm({ prefilledCity, prefilledService, onSuccess }
       // Track validation failure
       trackEstimateFormSubmit(false, {
         city: formData.city,
-        service: formData.services[0],
+        service: formData.services[0] || undefined,
         formType: 'full',
       })
       return
@@ -92,7 +92,7 @@ export function SmartEstimateForm({ prefilledCity, prefilledService, onSuccess }
       // Track successful submission
       trackEstimateFormSubmit(true, {
         city: formData.city,
-        service: formData.services[0],
+        service: formData.services[0] || undefined,
         formType: 'full',
       })
 
@@ -111,7 +111,7 @@ export function SmartEstimateForm({ prefilledCity, prefilledService, onSuccess }
       // Track submission error
       trackEstimateFormSubmit(false, {
         city: formData.city,
-        service: formData.services[0],
+        service: formData.services[0] || undefined,
         formType: 'full',
       })
       setErrors({ submit: 'Something went wrong. Please try again.' })
