@@ -146,7 +146,21 @@ function getAllCaseStudyFiles(): string[] {
 function readCaseStudyFile(filePath: string): CaseStudy | null {
   try {
     const fileContents = fs.readFileSync(filePath, 'utf8')
-    const { data, content } = matter(fileContents)
+    let data: any
+    let content: string
+    
+    try {
+      const parsed = matter(fileContents)
+      data = parsed.data
+      content = parsed.content
+    } catch (yamlError: any) {
+      // If YAML parsing fails (e.g., invalid YAML syntax in draft files), skip the file
+      if (process.env.NODE_ENV === 'development') {
+        console.warn(`Skipping case study file with invalid YAML: ${filePath}`)
+        console.warn(`YAML error: ${yamlError.message}`)
+      }
+      return null
+    }
 
     // Extract slug from file path
     const relativePath = path.relative(caseStudiesDirectory, filePath)

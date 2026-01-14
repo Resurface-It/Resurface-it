@@ -1,10 +1,5 @@
 import { FAQAccordion } from './FAQAccordion'
-
-interface FAQ {
-  question: string
-  answer: string
-  category?: string
-}
+import type { FAQ } from '@/data/faq'
 
 interface FAQProps {
   faqs: FAQ[]

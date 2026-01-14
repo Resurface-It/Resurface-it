@@ -190,8 +190,8 @@ export const faqQuestionPool = [
   },
 ]
 
-export function getFAQQuestions(key: string, count: number = 5): Array<{ question: string; answer: string }> {
-  const selected: Array<{ question: string; answer: string }> = []
+export function getFAQQuestions(key: string, count: number = 5): Array<{ question: string; answer: string; category: 'city-specific' }> {
+  const selected: Array<{ question: string; answer: string; category: 'city-specific' }> = []
   const used = new Set<number>()
   
   for (let i = 0; i < count && selected.length < faqQuestionPool.length; i++) {
@@ -208,7 +208,10 @@ export function getFAQQuestions(key: string, count: number = 5): Array<{ questio
     
     if (!used.has(index)) {
       used.add(index)
-      selected.push(faqQuestionPool[index])
+      selected.push({
+        ...faqQuestionPool[index],
+        category: 'city-specific' as const,
+      })
     }
   }
   

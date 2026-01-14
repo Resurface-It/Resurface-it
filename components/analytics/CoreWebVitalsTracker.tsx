@@ -81,7 +81,7 @@ export function CoreWebVitalsTracker() {
       // Add performance marks for marquee animation start/end
       // This helps identify if marquee animations impact performance
       let marqueeTimeoutId: NodeJS.Timeout | null = null
-      if (typeof window !== 'undefined' && window.performance && window.performance.mark) {
+      if (typeof window !== 'undefined' && window.performance && typeof window.performance.mark === 'function') {
         // Mark when marquee components are rendered
         const markMarqueeStart = () => {
           if (document.querySelector('.animate-marquee, .animate-marquee-slow')) {
