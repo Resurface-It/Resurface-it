@@ -68,14 +68,38 @@ export default async function CaseStudyDetailPage({ params }: CaseStudyDetailPag
   const location = getMicroLocation(citySlug, areaSlug)
 
   const components = {
-    h1: ({ children }: { children: React.ReactNode }) => <h1 className="mb-6 text-4xl font-bold text-slate-900">{children}</h1>,
-    h2: ({ children }: { children: React.ReactNode }) => <h2 className="mb-4 mt-8 text-3xl font-bold text-slate-900">{children}</h2>,
-    h3: ({ children }: { children: React.ReactNode }) => <h3 className="mb-3 mt-6 text-2xl font-semibold text-slate-900">{children}</h3>,
-    p: ({ children }: { children: React.ReactNode }) => <p className="mb-4 text-lg text-slate-700">{children}</p>,
-    ul: ({ children }: { children: React.ReactNode }) => <ul className="mb-4 ml-6 list-disc space-y-2 text-lg text-slate-700">{children}</ul>,
-    ol: ({ children }: { children: React.ReactNode }) => <ol className="mb-4 ml-6 list-decimal space-y-2 text-lg text-slate-700">{children}</ol>,
-    li: ({ children }: { children: React.ReactNode }) => <li className="text-lg text-slate-700">{children}</li>,
-    strong: ({ children }: { children: React.ReactNode }) => <strong className="font-semibold text-slate-900">{children}</strong>,
+    h1: (props: React.ComponentProps<'h1'>) => {
+      const { className, ...rest } = props
+      return <h1 {...rest} className={`mb-6 text-4xl font-bold text-slate-900 ${className || ''}`}>{props.children}</h1>
+    },
+    h2: (props: React.ComponentProps<'h2'>) => {
+      const { className, ...rest } = props
+      return <h2 {...rest} className={`mb-4 mt-8 text-3xl font-bold text-slate-900 ${className || ''}`}>{props.children}</h2>
+    },
+    h3: (props: React.ComponentProps<'h3'>) => {
+      const { className, ...rest } = props
+      return <h3 {...rest} className={`mb-3 mt-6 text-2xl font-semibold text-slate-900 ${className || ''}`}>{props.children}</h3>
+    },
+    p: (props: React.ComponentProps<'p'>) => {
+      const { className, ...rest } = props
+      return <p {...rest} className={`mb-4 text-lg text-slate-700 ${className || ''}`}>{props.children}</p>
+    },
+    ul: (props: React.ComponentProps<'ul'>) => {
+      const { className, ...rest } = props
+      return <ul {...rest} className={`mb-4 ml-6 list-disc space-y-2 text-lg text-slate-700 ${className || ''}`}>{props.children}</ul>
+    },
+    ol: (props: React.ComponentProps<'ol'>) => {
+      const { className, ...rest } = props
+      return <ol {...rest} className={`mb-4 ml-6 list-decimal space-y-2 text-lg text-slate-700 ${className || ''}`}>{props.children}</ol>
+    },
+    li: (props: React.ComponentProps<'li'>) => {
+      const { className, ...rest } = props
+      return <li {...rest} className={`text-lg text-slate-700 ${className || ''}`}>{props.children}</li>
+    },
+    strong: (props: React.ComponentProps<'strong'>) => {
+      const { className, ...rest } = props
+      return <strong {...rest} className={`font-semibold text-slate-900 ${className || ''}`}>{props.children}</strong>
+    },
   }
 
   // Schema
