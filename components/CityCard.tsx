@@ -10,15 +10,15 @@ interface CityCardProps {
 export function CityCard({ city }: CityCardProps) {
   return (
     <div
-      className="card transition-transform duration-200 hover:-translate-y-1"
+      className="card h-full transition-transform duration-200 hover:-translate-y-1 px-4 py-5 md:px-6 md:py-6"
       style={{ willChange: 'transform' }}
     >
-      <h3 className="mb-2 text-2xl">{city.name}</h3>
-      <p className="mb-4 text-slate-600">{city.blurb}</p>
+      <h3 className="mb-1.5 text-xl md:text-2xl">{city.name}</h3>
+      <p className="mb-3 md:mb-4 text-sm md:text-base text-slate-600">{city.blurb}</p>
 
       {city.nearby.length > 0 && (
-        <div className="mb-4">
-          <p className="mb-2 text-sm font-semibold text-slate-700">Nearby areas:</p>
+        <div className="mb-3 md:mb-4">
+          <p className="mb-1.5 text-xs md:text-sm font-semibold text-slate-700">Nearby areas:</p>
           <div className="flex flex-wrap gap-2">
             {city.nearby.map((nearbyCity) => (
               <span

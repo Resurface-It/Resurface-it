@@ -18,8 +18,9 @@ import { PhoneLink } from '@/components/PhoneLink'
 import { companyInfo } from '@/data/company'
 
 export const metadata: Metadata = genMeta({
-  title: 'Siding Replacement & House Painting in Eugene, OR',
-  description: 'Professional siding replacement and house painting in Eugene, OR. Hardie board, vinyl & fiber cement installation. Exterior & interior painting. 5-year workmanship warranty. Licensed & insured. Free estimates in 24 hours.',
+  title: 'Siding Replacement & Painting in Eugene OR',
+  description:
+    'Affordable siding replacement contractors and exterior house painters in Eugene, OR. Hardie board, vinyl & fiber cement installation plus interior painting. 5-year workmanship warranty. Licensed & insured.',
   path: '/eugene-or',
 })
 
@@ -60,7 +61,7 @@ export default function EugenePage() {
       )}
       
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center -mt-36 md:-mt-40 lg:-mt-44 pt-36 md:pt-40 lg:pt-44 pb-20 overflow-hidden">
+      <section className="relative flex items-start md:items-center -mt-32 md:-mt-40 lg:-mt-44 pt-32 md:pt-40 lg:pt-44 pb-16 md:pb-20 overflow-hidden min-h-[60vh] md:min-h-[70vh]">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/Eugene-landing.jpeg"
@@ -74,18 +75,18 @@ export default function EugenePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/40" />
         </div>
         
-        <div className="container relative z-10">
-          <div className="mx-auto max-w-4xl text-center">
-            <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+        <div className="container relative z-10 px-4">
+          <div className="mx-auto max-w-3xl md:max-w-4xl text-center">
+            <h1 className="mb-4 md:mb-6 text-3xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
               Siding Replacement & Painting in Eugene, OR
             </h1>
-            <p className="mb-4 text-xl text-white/95 md:text-2xl">
+            <p className="mb-4 text-base text-white/95 md:text-xl">
               Serving Eugene homeowners with premium siding replacement, exterior painting, interior painting, and comprehensive home exterior services. Licensed, insured, and backed by a 5-year workmanship warranty.
             </p>
             <div className="mb-8">
               <PhoneLink 
                 phone={companyInfo.phone}
-                className="text-2xl md:text-4xl lg:text-5xl font-bold text-white hover:text-primary/90 transition-colors"
+                className="text-xl md:text-4xl lg:text-5xl font-bold text-white hover:text-primary/90 transition-colors"
               >
                 {companyInfo.phone}
               </PhoneLink>

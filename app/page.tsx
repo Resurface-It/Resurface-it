@@ -77,7 +77,7 @@ export default function HomePage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/Landing_Page.png"
-            alt="Professional siding installation and home exterior services"
+            alt="Professional siding replacement and exterior house painting in Eugene Oregon"
             fill
             className="object-cover w-full h-full"
             priority
@@ -225,7 +225,7 @@ export default function HomePage() {
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-200 shadow-xl">
               <Image
                 src="/images/Home-Landing.jpg"
-                alt="Professional siding and painting services"
+                alt="Before and after siding replacement and exterior painting project in Corvallis Oregon"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -283,7 +283,7 @@ export default function HomePage() {
             <div className="order-1 lg:order-2 relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-200 shadow-xl">
               <Image
                 src="/images/project-3.jpg"
-                alt="Professional interior painting services"
+                alt="Interior house painting project completed in a Springfield Oregon home"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

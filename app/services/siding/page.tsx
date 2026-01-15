@@ -11,8 +11,9 @@ import type { Metadata } from 'next'
 import { CheckCircle } from 'lucide-react'
 
 export const metadata: Metadata = genMeta({
-  title: 'Siding Replacement Services in Eugene, Albany, Corvallis & Springfield, OR',
-  description: 'Professional siding replacement with Hardie board, vinyl, and fiber cement. Expert installation for Oregon homes. Rot repair, weatherproofing, and 5-year warranty. Free estimates.',
+  title: 'Siding Replacement Contractors in Eugene, Albany, Corvallis & Springfield OR',
+  description:
+    'Licensed siding replacement contractors for Eugene, Albany, Corvallis & Springfield, OR. Hardie board, vinyl & fiber cement siding, rot repair, weatherproofing, and 5-year workmanship warranty.',
   path: '/services/siding',
 })
 
@@ -93,12 +94,12 @@ export default function SidingHubPage() {
 
       <Section className="bg-white">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-8 text-center text-3xl">Our Siding Services</h2>
+          <h2 className="mb-8 text-center text-3xl">Our Siding Services for Oregon Homes</h2>
           <div className="grid gap-6 md:grid-cols-2">
             <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
               <h3 className="mb-4 text-2xl font-bold">James Hardie Siding</h3>
               <p className="mb-4 text-slate-700">
-                Fiber cement siding that resists moisture, rot, and insects. Perfect for Oregon&apos;s wet climate with ColorPlus Technology for fade-resistant color.
+                Fiber cement siding that resists moisture, rot, and insects. Perfect for Oregon&apos;s wet climate with ColorPlus Technology for fade-resistant color—ideal for homes in Eugene, Albany, Corvallis, and Springfield.
               </p>
               <Link href="/services/siding/james-hardie">
                 <span className="font-semibold text-primary hover:underline">Learn More →</span>

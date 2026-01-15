@@ -15,17 +15,17 @@ export const metadata: Metadata = genMeta({
 
 export default function AreasWeServePage() {
   return (
-    <Section className="pt-24">
+    <Section className="pt-24 pb-16">
       <SectionHeader
         title="Areas We Serve"
         subtitle="Proudly serving Eugene, Albany, Corvallis, Springfield and surrounding communities throughout Oregon"
       />
 
-      <div className="mt-8 mx-auto max-w-4xl">
-        <p className="text-lg text-slate-700 mb-6">
+      <div className="mt-6 md:mt-8 mx-auto max-w-3xl md:max-w-4xl px-4 md:px-0">
+        <p className="text-base md:text-lg text-slate-700 mb-4 md:mb-6">
           Resurface-it is your local partner for premium siding replacement and painting services throughout the Willamette Valley. We understand the unique needs of Oregon homeowners and the challenges posed by our climate—from wet winters to sunny summers.
         </p>
-        <p className="text-lg text-slate-700 mb-8">
+        <p className="text-base md:text-lg text-slate-700 mb-8">
           Whether you&apos;re in Eugene, Albany, Corvallis, Springfield, or any of the surrounding communities, we&apos;re here to help protect and beautify your home with expert craftsmanship and premium materials.
         </p>
       </div>

@@ -16,13 +16,13 @@ export default function ServicesPage() {
     <>
       <Section className="pt-24">
         <SectionHeader
-          title="Siding Replacement, Painting & Exterior Services"
-          subtitle="Comprehensive home exterior services backed by expert craftsmanship and premium materials. Serving Eugene, Albany, Corvallis, Springfield, and surrounding Oregon communities."
+          title="Our Comprehensive Siding Replacement & Painting Services"
+          subtitle="Affordable siding replacement, exterior house painting, roofing, and more—backed by expert craftsmanship and premium materials for Oregon homes."
           align="center"
         />
         <div className="mt-8 mx-auto max-w-3xl text-center">
           <p className="text-lg text-slate-700 mb-6">
-            Resurface-it offers a complete suite of home exterior and interior services designed to protect and beautify your Oregon home. From siding replacement and exterior painting to interior painting, deck staining, pressure washing, and roofing, we provide expert craftsmanship backed by a 5-year workmanship warranty.
+            Resurface-it offers a complete suite of home exterior and interior services designed to protect and beautify your Oregon home. From affordable siding replacement and exterior house painting in Eugene, Albany, Corvallis, and Springfield to interior painting, deck staining, pressure washing, and roofing, we provide expert craftsmanship backed by a 5-year workmanship warranty.
           </p>
           <p className="text-lg text-slate-700 mb-8">
             Our services are specifically tailored for Oregon&apos;s climate—protecting against rain, humidity, and temperature fluctuations while maintaining lasting beauty. We use premium materials from trusted manufacturers like James Hardie, Sherwin-Williams, and Benjamin Moore.

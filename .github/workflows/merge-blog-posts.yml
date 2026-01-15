@@ -1,0 +1,77 @@
+name: Merge Generated Blog Posts
+
+on:
+  push:
+    paths:
+      - 'data/generated-posts/*.json'
+
+jobs:
+  merge-posts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Merge blog posts
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Read existing blogPosts.ts
+          const blogPostsPath = 'data/blogPosts.ts';
+          let content = fs.readFileSync(blogPostsPath, 'utf8');
+          
+          // Get all JSON files from generated-posts
+          const generatedDir = 'data/generated-posts';
+          if (!fs.existsSync(generatedDir)) {
+            console.log('No generated-posts directory found, skipping...');
+            process.exit(0);
+          }
+          
+          const jsonFiles = fs.readdirSync(generatedDir).filter(f => f.endsWith('.json'));
+          
+          if (jsonFiles.length === 0) {
+            console.log('No JSON files to merge, skipping...');
+            process.exit(0);
+          }
+          
+          jsonFiles.forEach(file => {
+            const jsonPath = path.join(generatedDir, file);
+            const postData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+            
+            // Format as TypeScript object
+            const postObj = \`  {
+    slug: '\${postData.slug}',
+    title: '\${postData.title.replace(/'/g, \"\\\\'\")}',
+    description: '\${postData.description.replace(/'/g, \"\\\\'\")}',
+    date: '\${postData.date}',
+    tags: [\${postData.tags.map(t => \`'\${t}'\`).join(', ')}],
+    content: [\${typeof postData.content === 'string' ? \`'\${postData.content.replace(/'/g, \"\\\\'\").replace(/\\n/g, ' ')}\'\` : postData.content.map(c => \`'\${String(c).replace(/'/g, \"\\\\'\").replace(/\\n/g, ' ')}\'\`).join(',\\n      ')}],
+  },
+\`;
+            
+            // Append to array (before closing bracket)
+            content = content.replace(/\]\s*as const;?\s*$/, \`,\n\${postObj}\n] as const;\`);
+            
+            // Delete the JSON file
+            fs.unlinkSync(jsonPath);
+          });
+          
+          // Write updated blogPosts.ts
+          fs.writeFileSync(blogPostsPath, content);
+          console.log(\`Merged \${jsonFiles.length} blog post(s) into blogPosts.ts\`);
+          "
+      
+      - name: Commit and push
+        run: |
+          git config user.name "Zapier Bot"
+          git config user.email "bot@zapier.com"
+          git add data/blogPosts.ts
+          git rm data/generated-posts/*.json || true
+          git commit -m "✨ Merge auto-generated blog posts" || exit 0
+          git push

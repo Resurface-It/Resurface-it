@@ -28,6 +28,12 @@ export interface LocalBusiness {
     ratingValue: string
     reviewCount: string
   }
+  openingHoursSpecification?: Array<{
+    '@type': string
+    dayOfWeek: string | string[]
+    opens: string
+    closes: string
+  }>
   sameAs?: string[]
 }
 
@@ -61,7 +67,8 @@ export function generateLocalBusinessSchema(): LocalBusiness {
     '@context': 'https://schema.org',
     '@type': ['HomeAndConstructionBusiness', 'GeneralContractor', 'HousePainter'],
     name: companyInfo.name,
-    description: 'Premium siding replacement, roofing, and painting services in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, and backed by a 5-year workmanship warranty.',
+    description:
+      'Professional siding replacement, roofing, and exterior house painting in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, locally owned, and backed by a 5-year workmanship warranty.',
     telephone: companyInfo.phone,
     email: companyInfo.email,
     address: {
@@ -104,9 +111,17 @@ export function generateLocalBusinessSchema(): LocalBusiness {
     priceRange: '$$',
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '5.0',
-      reviewCount: '50+',
+      ratingValue: '5',
+      reviewCount: '50',
     },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '17:00',
+      },
+    ],
     sameAs: [
       ...(companyInfo.googleBusinessProfileUrl
         ? [companyInfo.googleBusinessProfileUrl]
@@ -223,7 +238,8 @@ export function generateOrganizationSchema(): Organization {
     name: companyInfo.name,
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
-    description: 'Premium siding replacement, roofing, and painting services in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, and backed by a 5-year workmanship warranty.',
+    description:
+      'Professional siding replacement, roofing, and exterior house painting in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, locally owned, and backed by a 5-year workmanship warranty.',
     telephone: companyInfo.phone,
     email: companyInfo.email,
     address: {
@@ -244,8 +260,8 @@ export function generateOrganizationSchema(): Organization {
     ],
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '5.0',
-      reviewCount: '50+',
+      ratingValue: '5',
+      reviewCount: '50',
       bestRating: '5',
       worstRating: '1',
     },

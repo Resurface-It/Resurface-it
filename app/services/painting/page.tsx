@@ -10,8 +10,9 @@ import type { Metadata } from 'next'
 import { CheckCircle } from 'lucide-react'
 
 export const metadata: Metadata = genMeta({
-  title: 'Professional Painting Services in Eugene, Albany, Corvallis & Springfield, OR',
-  description: 'Expert exterior and interior painting services. Premium paints for Oregon weather, proper prep, and multiple coats. Cabinet refinishing available. 5-year warranty. Free estimates.',
+  title: 'Exterior & Interior House Painters in Eugene, Albany, Corvallis & Springfield OR',
+  description:
+    'Expert exterior house painters and interior painting services for Eugene, Albany, Corvallis & Springfield, OR. Premium paints for Oregon weather, proper prep, cabinet refinishing, and 5-year warranty.',
   path: '/services/painting',
 })
 
@@ -71,7 +72,7 @@ export default function PaintingHubPage() {
               Professional Painting Services in Eugene, Albany, Corvallis & Springfield, OR
             </h1>
             <p className="mb-4 text-xl text-slate-600">
-              Transform your home with our expert painting services. We specialize in exterior and interior painting using premium paints specifically chosen for Oregon&apos;s climate.
+              Transform your home with our expert painting services. We specialize in exterior and interior house painting for Eugene, Albany, Corvallis, and Springfield using premium paints specifically chosen for Oregon&apos;s wet climate.
             </p>
             <p className="mb-8 text-lg text-slate-600">
               From complete exterior repaints to interior room refreshes and cabinet refinishing, we deliver professional results backed by a 5-year workmanship warranty.
