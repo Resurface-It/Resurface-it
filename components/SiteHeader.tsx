@@ -83,9 +83,9 @@ export function SiteHeader() {
       <header
         className={`fixed top-0 left-0 right-0 z-30 ${headerBg} transition-all duration-300 overflow-visible`}
       >
-        <nav className={`w-full ${navHeight} overflow-visible`}>
-          <div className="w-full max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 h-full">
-            <Link href="/" className="flex items-center self-start pt-2 md:pt-3 lg:pt-4">
+        <nav className={`w-full ${navHeight} overflow-visible relative`}>
+          <div className="w-full max-w-7xl mx-auto flex items-center justify-between h-full">
+            <Link href="/" className="flex items-center self-start pt-2 md:pt-3 lg:pt-4 pl-2 sm:pl-4 lg:pl-6">
               <Image
                 src={logoSrc}
                 alt="Resurface-it Logo"
@@ -98,7 +98,7 @@ export function SiteHeader() {
               />
             </Link>
 
-            <div className="hidden items-center gap-8 lg:flex flex-shrink-0">
+            <div className="hidden items-center gap-8 lg:flex flex-shrink-0 pr-2 sm:pr-4 lg:pr-6">
               <NavDropdown
                 label="Services"
                 items={servicesDropdownItems}
@@ -139,7 +139,7 @@ export function SiteHeader() {
               </a>
             </div>
 
-            <div className="flex items-center gap-4 lg:hidden">
+            <div className="flex items-center gap-4 lg:hidden pr-2 sm:pr-4">
               <a
                 href={`tel:${companyInfo.phone.replace(/\D/g, '')}`}
                 onClick={() => trackClickToCall(companyInfo.phone)}
@@ -147,14 +147,15 @@ export function SiteHeader() {
               >
                 {companyInfo.phone}
               </a>
-              <button
-                onClick={() => setIsMobileNavOpen(true)}
-                className="flex items-center justify-center min-w-[44px] min-h-[44px] -mr-2"
-                aria-label="Open menu"
-              >
-                <Menu className={`h-6 w-6 ${textColor} transition-colors duration-300`} />
-              </button>
             </div>
+            
+            <button
+              onClick={() => setIsMobileNavOpen(true)}
+              className="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center min-w-[44px] min-h-[44px]"
+              aria-label="Open menu"
+            >
+              <Menu className={`h-6 w-6 ${textColor} transition-colors duration-300`} />
+            </button>
           </div>
         </nav>
       </header>
