@@ -50,7 +50,7 @@ export default function SpringfieldPage() {
       />
       
       {/* Hero Section */}
-      <section className="relative flex items-start md:items-center -mt-32 md:-mt-40 lg:-mt-44 pt-32 md:pt-40 lg:pt-44 pb-16 md:pb-20 overflow-hidden min-h-[60vh] md:min-h-[70vh]">
+      <section className="relative flex items-start md:items-center -mt-16 md:-mt-20 lg:-mt-24 pt-16 md:pt-20 lg:pt-24 pb-16 md:pb-20 overflow-hidden min-h-[60vh] md:min-h-[70vh]">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/Springfield-landing.jpg"

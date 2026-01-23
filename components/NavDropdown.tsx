@@ -15,10 +15,9 @@ interface NavDropdownProps {
   items: DropdownItem[]
   textColor: string
   hoverColor: string
-  isLandingPage?: boolean
 }
 
-export function NavDropdown({ label, items, textColor, hoverColor, isLandingPage }: NavDropdownProps) {
+export function NavDropdown({ label, items, textColor, hoverColor }: NavDropdownProps) {
   const [isOpen, setIsOpen] = useState(false)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -64,12 +63,12 @@ export function NavDropdown({ label, items, textColor, hoverColor, isLandingPage
 
       {isOpen && (
         <div className="absolute left-0 top-full pt-2 z-[9999]">
-          <div className="min-w-[280px] max-w-[320px] max-h-[calc(100vh-120px)] overflow-y-auto rounded-lg bg-white/40 backdrop-blur-xl shadow-2xl border border-white/20 py-2">
+          <div className="min-w-[280px] max-w-[320px] max-h-[calc(100vh-120px)] overflow-y-auto rounded-lg bg-white shadow-2xl border border-slate-200 py-2">
             {items.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block px-4 py-2.5 text-slate-900 hover:bg-white/30 transition-colors"
+                className="block px-4 py-2.5 text-slate-900 hover:bg-slate-50 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 <div className="font-semibold text-sm text-slate-900">{item.label}</div>

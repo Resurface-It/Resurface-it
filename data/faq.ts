@@ -203,7 +203,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: 'Do you work on weekends?',
-    answer: 'We primarily work Monday through Friday, but can arrange weekend work for urgent projects or to accommodate your schedule when needed.',
+    answer: 'Yes, we are open Monday through Sunday, 7:00 AM to 6:00 PM. We can schedule weekend work to accommodate your timeline and project needs.',
     category: 'scheduling',
   },
   {

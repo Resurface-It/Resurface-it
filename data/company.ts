@@ -12,9 +12,9 @@ export const companyInfo = {
   },
   ccbLicense: 'CCB #217088',
   hours: {
-    weekdays: 'Mon - Fri: 8:00 AM - 5:00 PM',
-    saturday: 'Closed',
-    sunday: 'Closed',
+    weekdays: 'Mon - Sun: 7:00 AM - 6:00 PM',
+    saturday: '7:00 AM - 6:00 PM',
+    sunday: '7:00 AM - 6:00 PM',
   },
   localKeywords: [
     'siding replacement Eugene OR',

@@ -21,15 +21,18 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
+      document.body.style.touchAction = 'none'
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = ''
+      document.body.style.touchAction = ''
       // Reset dropdown states when menu closes
       setServicesOpen(false)
       setAreasOpen(false)
       setMoreOpen(false)
     }
     return () => {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = ''
+      document.body.style.touchAction = ''
     }
   }, [isOpen])
 

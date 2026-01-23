@@ -209,7 +209,7 @@ export default function RootLayout({
         
         <PromotionalBanner />
         <SiteHeader />
-        <main className="pt-36 md:pt-40 lg:pt-44">{children}</main>
+        <main className="pt-16 md:pt-20 lg:pt-24">{children}</main>
         <SiteFooter />
         <ClientOnly>
           <AnalyticsScripts />

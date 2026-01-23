@@ -15,9 +15,11 @@
     width: 100%;
     max-width: 100vw;
     position: relative;
-    /* Scroll performance optimizations */
-    overscroll-behavior: contain;
+    /* Scroll performance optimizations - use auto on mobile to allow native scrolling */
+    overscroll-behavior: auto;
     scroll-padding-top: 5rem; /* Account for fixed header */
+    /* Enable touch scrolling on mobile */
+    touch-action: pan-y pan-x;
   }
   
   /* Smooth scrolling only for users who don't prefer reduced motion */
@@ -31,13 +33,17 @@
     @apply bg-surface text-slate-900 antialiased;
     /* Prevent layout shift */
     min-height: 100vh;
-    /* Prevent horizontal scrolling */
-    overflow-x: hidden;
+    /* Don't set overflow on body - let it scroll naturally on mobile */
+    /* Horizontal overflow is prevented on html instead */
     width: 100%;
     max-width: 100vw;
     position: relative;
-    /* Scroll performance optimizations */
-    overscroll-behavior-y: contain;
+    /* Scroll performance optimizations - use auto on mobile to allow native scrolling */
+    overscroll-behavior-y: auto;
+    /* Enable touch scrolling on mobile - critical for iOS and Android */
+    touch-action: pan-y pan-x;
+    /* iOS smooth scrolling */
+    -webkit-overflow-scrolling: touch;
   }
   
   /* Ensure all elements respect viewport width */
@@ -474,9 +480,8 @@
   }
   
   /* More specific: hide any element containing "Powered by Housecall Pro" */
-  body * {
-    position: relative;
-  }
+  /* Removed position: relative from all body children as it interferes with mobile scrolling */
+  /* Only apply position: relative where specifically needed */
   
   /* Use JavaScript to hide it, but also add CSS fallback */
   script + div[style*="position"],
@@ -517,13 +522,26 @@
       line-height: 1.75;
     }
     
-    /* Prevent horizontal scrolling on mobile */
-    html,
-    body {
+    /* Prevent horizontal scrolling on mobile - only on html, not body */
+    html {
       overflow-x: hidden !important;
+      /* Ensure touch scrolling works on mobile */
+      touch-action: pan-y pan-x;
+      /* Allow native overscroll behavior on mobile */
+      overscroll-behavior: auto;
+      /* iOS smooth scrolling */
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    body {
+      /* Don't restrict overflow on body - allows natural scrolling on mobile */
       position: relative;
       width: 100%;
       max-width: 100vw;
+      /* Ensure touch scrolling works on mobile */
+      touch-action: pan-y pan-x;
+      /* iOS smooth scrolling */
+      -webkit-overflow-scrolling: touch;
     }
     
     /* Ensure all containers respect viewport */
