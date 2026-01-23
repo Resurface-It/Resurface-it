@@ -69,15 +69,6 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
             <div className="flex h-[calc(100vh-5rem)] flex-col overflow-y-auto px-6 py-8">
               <div className="space-y-1">
-                {/* Home */}
-                <Link
-                  href="/"
-                  onClick={onClose}
-                  className="block rounded-lg px-4 py-3 text-lg font-semibold text-slate-900 transition-colors hover:bg-slate-100"
-                >
-                  Home
-                </Link>
-
                 {/* Services Dropdown */}
                 <div>
                   <button

@@ -14,10 +14,8 @@ export function MobileStickyCTA({ onClick }: MobileStickyCTAProps) {
       <div className="flex gap-2">
         <PhoneLink
           phone={companyInfo.phone}
-          className="flex-1 rounded-lg bg-primary px-4 py-3 text-center text-sm font-semibold text-white hover:bg-primaryDark transition-colors"
-        >
-          Call Now
-        </PhoneLink>
+          className="flex-1 flex items-center justify-center rounded-lg bg-primary px-4 py-3 text-center text-base font-semibold text-white hover:bg-primaryDark transition-colors"
+        />
         <HousecallProButton className="flex-1" variant="default">
           Free Estimate
         </HousecallProButton>
