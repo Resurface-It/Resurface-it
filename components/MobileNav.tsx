@@ -19,20 +19,49 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const [moreOpen, setMoreOpen] = useState(false)
 
   useEffect(() => {
+    let scrollY = 0
+    
     if (isOpen) {
+      // Store current scroll position
+      scrollY = window.scrollY
+      // Prevent body scroll while allowing nav content to scroll
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
       document.body.style.overflow = 'hidden'
-      document.body.style.touchAction = 'none'
+      // Don't disable touch-action completely - allow scrolling within the nav
+      // touch-action: none would prevent all touch interactions
     } else {
+      // Restore scroll position
+      const savedScrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
       document.body.style.overflow = ''
-      document.body.style.touchAction = ''
+      if (savedScrollY) {
+        const scrollValue = parseInt(savedScrollY.replace('px', '').replace('-', ''), 10)
+        if (!isNaN(scrollValue)) {
+          window.scrollTo({ top: scrollValue, behavior: 'instant' })
+        }
+      }
       // Reset dropdown states when menu closes
       setServicesOpen(false)
       setAreasOpen(false)
       setMoreOpen(false)
     }
     return () => {
+      // Cleanup: restore scroll position
+      const savedScrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
       document.body.style.overflow = ''
-      document.body.style.touchAction = ''
+      if (savedScrollY) {
+        const scrollValue = parseInt(savedScrollY.replace('px', '').replace('-', ''), 10)
+        if (!isNaN(scrollValue)) {
+          window.scrollTo({ top: scrollValue, behavior: 'instant' })
+        }
+      }
     }
   }, [isOpen])
 
@@ -67,7 +96,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
               </button>
             </div>
 
-            <div className="flex h-[calc(100vh-5rem)] flex-col overflow-y-auto px-6 py-8">
+            <div className="flex h-[calc(100vh-5rem)] flex-col overflow-y-auto px-6 py-8" style={{ WebkitOverflowScrolling: 'touch' }}>
               <div className="space-y-1">
                 {/* Services Dropdown */}
                 <div>

@@ -133,7 +133,7 @@ export function SiteHeader() {
               <a
                 href={`tel:${companyInfo.phone.replace(/\D/g, '')}`}
                 onClick={() => trackClickToCall(companyInfo.phone)}
-                className="text-base md:text-lg text-slate-900 font-semibold hover:text-primary transition-colors whitespace-nowrap"
+                className="text-base md:text-lg text-slate-900 font-semibold hover:text-primary transition-colors whitespace-nowrap -mt-1"
               >
                 {companyInfo.phone}
               </a>
@@ -143,7 +143,7 @@ export function SiteHeader() {
               <a
                 href={`tel:${companyInfo.phone.replace(/\D/g, '')}`}
                 onClick={() => trackClickToCall(companyInfo.phone)}
-                className="text-slate-900 font-semibold hover:text-primary transition-colors"
+                className="text-slate-900 font-semibold hover:text-primary transition-colors -mt-1"
               >
                 {companyInfo.phone}
               </a>

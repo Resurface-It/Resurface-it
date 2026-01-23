@@ -156,7 +156,7 @@ export function BrandLogosMarquee() {
       </div>
       
       {/* Desktop: Static fallback for users who prefer reduced motion */}
-      <div className="hidden md:marquee-static md:flex md:flex-wrap md:items-center md:justify-center md:gap-8 md:px-8">
+      <div className="hidden md:flex md:flex-wrap md:items-center md:justify-center md:gap-8 md:px-8 marquee-static">
         {brands.map((brand) => {
           const isBehr = brand.name === 'BEHR'
           const isBenjaminMoore = brand.name === 'Benjamin Moore'

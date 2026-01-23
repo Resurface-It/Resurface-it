@@ -73,7 +73,7 @@ export default function HomePage() {
         />
       )}
       {/* Hero Section - Full Width with Image */}
-      <section className="relative min-h-[80vh] flex items-center -mt-16 md:-mt-20 lg:-mt-24 pt-16 md:pt-20 lg:pt-24 pb-20 overflow-hidden">
+      <section className="relative min-h-[80vh] flex items-center -mt-[7.5rem] md:-mt-[8.5rem] lg:-mt-[9.5rem] pt-[7.5rem] md:pt-[8.5rem] lg:pt-[9.5rem] pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/Landing_Page.png"

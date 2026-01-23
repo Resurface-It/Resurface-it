@@ -14,15 +14,42 @@ interface ModalProps {
 export function Modal({ isOpen, onClose, children, title }: ModalProps) {
   useEffect(() => {
     if (isOpen) {
+      // Store current scroll position
+      const scrollY = window.scrollY
+      // Prevent body scroll while allowing modal content to scroll
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
       document.body.style.overflow = 'hidden'
-      document.body.style.touchAction = 'none'
+      // Don't disable touch-action completely - allow scrolling within the modal
+      // touch-action: none would prevent all touch interactions
     } else {
+      // Restore scroll position
+      const savedScrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
       document.body.style.overflow = ''
-      document.body.style.touchAction = ''
+      if (savedScrollY) {
+        const scrollValue = parseInt(savedScrollY.replace('px', '').replace('-', ''), 10)
+        if (!isNaN(scrollValue)) {
+          window.scrollTo({ top: scrollValue, behavior: 'instant' })
+        }
+      }
     }
     return () => {
+      // Cleanup: restore scroll position
+      const savedScrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
       document.body.style.overflow = ''
-      document.body.style.touchAction = ''
+      if (savedScrollY) {
+        const scrollValue = parseInt(savedScrollY.replace('px', '').replace('-', ''), 10)
+        if (!isNaN(scrollValue)) {
+          window.scrollTo({ top: scrollValue, behavior: 'instant' })
+        }
+      }
     }
   }, [isOpen])
 
@@ -65,7 +92,7 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
                 >
                   <X className="h-5 w-5" />
                 </button>
-                <div className="max-h-[80vh] overflow-y-auto p-6">{children}</div>
+                <div className="max-h-[80vh] overflow-y-auto p-6" style={{ WebkitOverflowScrolling: 'touch' }}>{children}</div>
               </Dialog.Panel>
             </Transition.Child>
           </div>

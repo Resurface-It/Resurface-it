@@ -14,12 +14,18 @@
     overflow-x: hidden;
     width: 100%;
     max-width: 100vw;
-    position: relative;
+    /* Remove position: relative - it can interfere with smooth scrolling */
     /* Scroll performance optimizations - use auto on mobile to allow native scrolling */
     overscroll-behavior: auto;
+    overscroll-behavior-y: auto;
     scroll-padding-top: 5rem; /* Account for fixed header */
-    /* Enable touch scrolling on mobile */
+    /* Enable smooth touch scrolling on mobile - critical for iOS and Android */
     touch-action: pan-y pan-x;
+    /* Force hardware acceleration for smooth scrolling */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* iOS smooth scrolling - enable momentum scrolling */
+    -webkit-overflow-scrolling: touch;
   }
   
   /* Smooth scrolling only for users who don't prefer reduced motion */
@@ -37,13 +43,19 @@
     /* Horizontal overflow is prevented on html instead */
     width: 100%;
     max-width: 100vw;
-    position: relative;
+    /* Remove position: relative - it can interfere with smooth scrolling and cause issues */
     /* Scroll performance optimizations - use auto on mobile to allow native scrolling */
+    overscroll-behavior: auto;
     overscroll-behavior-y: auto;
-    /* Enable touch scrolling on mobile - critical for iOS and Android */
+    overscroll-behavior-x: none;
+    /* Enable smooth touch scrolling on mobile - critical for iOS and Android */
     touch-action: pan-y pan-x;
-    /* iOS smooth scrolling */
+    /* iOS smooth scrolling - enable momentum scrolling */
     -webkit-overflow-scrolling: touch;
+    /* Force hardware acceleration for smooth scrolling */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* Don't use will-change on body - it can cause performance issues */
   }
   
   /* Ensure all elements respect viewport width */
@@ -216,16 +228,9 @@
 
 @layer utilities {
   /* Header positioning based on banner visibility */
-  /* Banner height: min-h-[3.5rem] on mobile, h-14 (3.5rem) on desktop */
+  /* Banner height: h-14 (3.5rem / 56px) on all screen sizes */
   body[data-banner-visible="true"] header {
     top: 3.5rem !important;
-  }
-  
-  /* On mobile, banner might be slightly taller, adjust if needed */
-  @media (max-width: 767px) {
-    body[data-banner-visible="true"] header {
-      top: 3.75rem !important;
-    }
   }
   
   body[data-banner-visible="false"] header,
@@ -235,9 +240,9 @@
   
   /* Main content padding based on banner visibility */
   /* Base padding accounts for header, we add banner height on top */
-  /* Mobile: banner (3.75rem) + header (9rem landing / 5rem regular) */
+  /* Mobile: banner (3.5rem) + header (9rem landing / 5rem regular) */
   body[data-banner-visible="true"] main {
-    padding-top: calc(3.75rem + 9rem) !important;
+    padding-top: calc(3.5rem + 9rem) !important;
   }
   
   @media (min-width: 768px) {
@@ -370,9 +375,20 @@
     }
   }
   
-  /* Show animated marquee, hide static fallback by default */
+  /* Show animated marquee, hide static fallback by default - only on desktop */
+  @media (min-width: 768px) {
+    .marquee-animated {
+      display: flex;
+    }
+    
+    .marquee-static {
+      display: flex;
+    }
+  }
+  
+  /* Hide marquee on mobile by default */
   .marquee-animated {
-    display: flex;
+    display: none;
   }
   
   .marquee-static {
@@ -430,17 +446,59 @@
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     will-change: transform;
+    /* Ensure smooth scrolling when header is fixed */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Optimize scrollable containers for smooth scrolling */
+  [class*="overflow-y-auto"],
+  [class*="overflow-y-scroll"],
+  .overflow-y-auto,
+  .overflow-y-scroll {
+    /* Enable smooth scrolling in containers */
+    -webkit-overflow-scrolling: touch;
+    /* Force hardware acceleration */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Optimize scroll performance */
+    will-change: scroll-position;
+    /* Prevent scroll jank */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
   
   /* Scroll performance utilities */
   .scroll-smooth {
     scroll-behavior: smooth;
+    /* Enable smooth scrolling on all browsers */
+    -webkit-overflow-scrolling: touch;
   }
   
   @media (prefers-reduced-motion: reduce) {
     .scroll-smooth {
       scroll-behavior: auto;
     }
+  }
+  
+  /* Ensure main content area scrolls smoothly */
+  main {
+    /* Optimize scroll performance */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Prevent scroll jank */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Optimize all scrollable sections */
+  section {
+    /* Force hardware acceleration for smooth scrolling */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Prevent scroll jank */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
   
   /* Containment utilities */
@@ -525,23 +583,33 @@
     /* Prevent horizontal scrolling on mobile - only on html, not body */
     html {
       overflow-x: hidden !important;
-      /* Ensure touch scrolling works on mobile */
+      /* Ensure smooth touch scrolling works on mobile */
       touch-action: pan-y pan-x;
       /* Allow native overscroll behavior on mobile */
       overscroll-behavior: auto;
-      /* iOS smooth scrolling */
+      overscroll-behavior-y: auto;
+      overscroll-behavior-x: none;
+      /* iOS smooth scrolling - enable momentum scrolling */
       -webkit-overflow-scrolling: touch;
+      /* Force hardware acceleration for smooth scrolling */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
     
     body {
       /* Don't restrict overflow on body - allows natural scrolling on mobile */
-      position: relative;
+      /* Remove position: relative - it interferes with smooth scrolling */
       width: 100%;
       max-width: 100vw;
-      /* Ensure touch scrolling works on mobile */
+      /* Ensure smooth touch scrolling works on mobile */
       touch-action: pan-y pan-x;
-      /* iOS smooth scrolling */
+      /* iOS smooth scrolling - enable momentum scrolling */
       -webkit-overflow-scrolling: touch;
+      /* Force hardware acceleration for smooth scrolling */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      /* Optimize scroll performance */
+      will-change: scroll-position;
     }
     
     /* Ensure all containers respect viewport */
