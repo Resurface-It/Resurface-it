@@ -18,18 +18,51 @@ export function MarqueeBanner() {
     items.push({ type: 'logo' })
   }
 
-  // Duplicate items 2x for seamless infinite scrolling (reduced from 4x for better performance)
-  // 2x is sufficient for seamless loop while reducing DOM nodes by 50%
+  // Duplicate items 2x for seamless infinite scrolling
+  // 2x with -50% animation creates perfect seamless loop
   const duplicatedItems = [...items, ...items]
+
+  // For static fallback, show only 3 pairs (message + logo) to avoid wrapping
+  const staticItems = items.slice(0, 6)
 
   return (
     <div 
-      className="overflow-hidden border-y-2 border-primary/20 bg-primary/15 py-4"
+      className="overflow-hidden border-y-2 border-primary/20 bg-primary/15 py-3 md:py-4 relative"
       aria-label="Company tagline marquee"
-      style={{ minHeight: '4rem' }} // Explicit height to prevent CLS
+      style={{ minHeight: '3.5rem' }} // Explicit height to prevent CLS
     >
-      {/* Animated marquee - hidden when user prefers reduced motion */}
-      <div className="flex animate-marquee-slow whitespace-nowrap w-fit marquee-animated">
+      {/* Mobile: Simple horizontal scrolling - more reliable */}
+      <div className="md:hidden overflow-x-auto scrollbar-hide">
+        <div className="flex items-center gap-4 px-4 whitespace-nowrap" style={{ width: 'max-content' }}>
+          {items.slice(0, 4).map((item, index) => {
+            if (item.type === 'logo') {
+              return (
+                <div key={`mobile-logo-${index}`} className="flex shrink-0 items-center">
+                  <Image
+                    src="/Resurface-it.png"
+                    alt="Resurface-it Logo"
+                    width={180}
+                    height={60}
+                    className="h-10 w-auto"
+                    loading="lazy"
+                    quality={75}
+                  />
+                </div>
+              )
+            }
+            return (
+              <div key={`mobile-message-${index}`} className="flex shrink-0 items-center whitespace-nowrap">
+                <span className={`text-base font-extrabold ${colorClasses[item.colorIndex!]} whitespace-nowrap`}>
+                  {message}
+                </span>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Desktop: Animated marquee - hidden when user prefers reduced motion */}
+      <div className="hidden md:flex animate-marquee-slow whitespace-nowrap marquee-animated" style={{ width: 'max-content' }}>
         {duplicatedItems.map((item, index) => {
           const isDuplicate = index >= items.length
           if (item.type === 'logo') {
@@ -44,7 +77,7 @@ export function MarqueeBanner() {
                   alt={isDuplicate ? '' : "Resurface-it Logo"}
                   width={180}
                   height={60}
-                  className="h-12 w-auto md:h-14"
+                  className="h-14 w-auto"
                   loading="lazy"
                   quality={75}
                 />
@@ -57,7 +90,7 @@ export function MarqueeBanner() {
               className="mx-8 flex shrink-0 items-center whitespace-nowrap"
               aria-hidden={isDuplicate}
             >
-              <span className={`text-xl font-extrabold ${colorClasses[item.colorIndex!]} md:text-2xl lg:text-3xl whitespace-nowrap`}>
+              <span className={`text-2xl lg:text-3xl font-extrabold ${colorClasses[item.colorIndex!]} whitespace-nowrap`}>
                 {message}
               </span>
             </div>
@@ -65,32 +98,34 @@ export function MarqueeBanner() {
         })}
       </div>
       
-      {/* Static fallback for users who prefer reduced motion */}
-      <div className="hidden marquee-static flex-wrap items-center justify-center gap-4 px-4">
-        {items.map((item, index) => {
-          if (item.type === 'logo') {
+      {/* Static fallback for users who prefer reduced motion - desktop only */}
+      <div className="hidden md:flex marquee-static overflow-x-auto">
+        <div className="flex items-center justify-center gap-4 px-4 whitespace-nowrap">
+          {staticItems.slice(0, 4).map((item, index) => {
+            if (item.type === 'logo') {
+              return (
+                <div key={`static-logo-${index}`} className="flex shrink-0 items-center">
+                  <Image
+                    src="/Resurface-it.png"
+                    alt="Resurface-it Logo"
+                    width={180}
+                    height={60}
+                    className="h-14 w-auto"
+                    loading="lazy"
+                    quality={75}
+                  />
+                </div>
+              )
+            }
             return (
-              <div key={`static-logo-${index}`} className="flex shrink-0 items-center">
-                <Image
-                  src="/Resurface-it.png"
-                  alt="Resurface-it Logo"
-                  width={180}
-                  height={60}
-                  className="h-12 w-auto md:h-14"
-                  loading="lazy"
-                  quality={75}
-                />
+              <div key={`static-message-${index}`} className="flex shrink-0 items-center whitespace-nowrap">
+                <span className={`text-2xl lg:text-3xl font-extrabold ${colorClasses[item.colorIndex!]} whitespace-nowrap`}>
+                  {message}
+                </span>
               </div>
             )
-          }
-          return (
-            <div key={`static-message-${index}`} className="flex shrink-0 items-center whitespace-nowrap">
-              <span className={`text-xl font-extrabold ${colorClasses[item.colorIndex!]} md:text-2xl lg:text-3xl whitespace-nowrap`}>
-                {message}
-              </span>
-            </div>
-          )
-        })}
+          })}
+        </div>
       </div>
     </div>
   )

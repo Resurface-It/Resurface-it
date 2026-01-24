@@ -14,18 +14,15 @@
     overflow-x: hidden;
     width: 100%;
     max-width: 100vw;
-    /* Remove position: relative - it can interfere with smooth scrolling */
     /* Scroll performance optimizations - use auto on mobile to allow native scrolling */
     overscroll-behavior: auto;
     overscroll-behavior-y: auto;
     scroll-padding-top: 5rem; /* Account for fixed header */
     /* Enable smooth touch scrolling on mobile - critical for iOS and Android */
     touch-action: pan-y pan-x;
-    /* Force hardware acceleration for smooth scrolling */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
     /* iOS smooth scrolling - enable momentum scrolling */
     -webkit-overflow-scrolling: touch;
+    /* Removed transform: translateZ(0) - let browser handle hardware acceleration naturally */
   }
   
   /* Smooth scrolling only for users who don't prefer reduced motion */
@@ -43,7 +40,6 @@
     /* Horizontal overflow is prevented on html instead */
     width: 100%;
     max-width: 100vw;
-    /* Remove position: relative - it can interfere with smooth scrolling and cause issues */
     /* Scroll performance optimizations - use auto on mobile to allow native scrolling */
     overscroll-behavior: auto;
     overscroll-behavior-y: auto;
@@ -52,10 +48,7 @@
     touch-action: pan-y pan-x;
     /* iOS smooth scrolling - enable momentum scrolling */
     -webkit-overflow-scrolling: touch;
-    /* Force hardware acceleration for smooth scrolling */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    /* Don't use will-change on body - it can cause performance issues */
+    /* Removed transform: translateZ(0) and will-change - let browser handle optimization naturally */
   }
   
   /* Ensure all elements respect viewport width */
@@ -72,6 +65,153 @@
   object {
     max-width: 100%;
     height: auto;
+  }
+  
+  /* Prevent background image containers from creating scroll contexts */
+  section[class*="relative"] > div[class*="absolute"][class*="inset-0"],
+  section[class*="relative"] > div[class*="absolute"][class*="z-0"],
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"] {
+    overflow: hidden !important;
+    /* Prevent the container from creating its own scroll context */
+    will-change: auto;
+    /* Ensure no scrollbars appear */
+    overscroll-behavior: none !important;
+    /* Prevent any scrolling within the container */
+    overscroll-behavior-x: none !important;
+    overscroll-behavior-y: none !important;
+    /* Force no scroll capability */
+    scroll-behavior: auto;
+    /* Ensure container doesn't exceed parent */
+    max-width: 100% !important;
+    max-height: 100% !important;
+    /* Prevent the container from intercepting scroll events - critical fix */
+    pointer-events: none !important;
+    /* Ensure position doesn't create scroll context */
+    position: absolute !important;
+    /* CRITICAL FIX: When section extends above viewport, clip container to viewport top */
+    /* This prevents the container from creating a scrollable area above the viewport */
+    /* Use max() to ensure top is never negative (never extends above viewport) */
+    top: max(0px, var(--section-top, 0px)) !important;
+    /* Ensure container is always within viewport bounds */
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    /* Prevent any scroll-related properties */
+    scroll-snap-type: none !important;
+    scroll-snap-align: none !important;
+    /* Ensure the container cannot create scroll context */
+    contain: strict !important;
+  }
+  
+  /* For sections with negative margins, ensure background container doesn't extend above viewport */
+  section[class*="-mt-"] > div[class*="absolute"][class*="inset-0"],
+  section[class*="-mt-"] > div[class*="absolute"][class*="z-0"] {
+    /* CRITICAL FIX: When section extends above viewport, prevent background container from doing the same */
+    /* The issue is that inset-0 makes the container extend with the section above viewport */
+    /* We need to clip it to the viewport bounds to prevent scroll context creation */
+    /* Use clip-path to clip any part that extends above viewport */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%) !important;
+    /* Alternative: Use max() to ensure top never goes negative (but CSS max() doesn't work with calc() easily) */
+    /* Instead, use a combination of positioning and clipping */
+    /* Ensure container height is limited to section's visible height */
+    height: 100% !important;
+    /* Prevent the container from creating scroll context by ensuring it's always clipped */
+    /* The key is that overflow: hidden on the section should clip it, but we need to ensure the container respects that */
+    contain: strict !important;
+    /* Force the container to be clipped to its parent's bounds */
+    will-change: auto !important;
+  }
+  
+  /* Re-enable pointer events for interactive elements inside background containers */
+  section[class*="relative"] > div[class*="absolute"][class*="inset-0"] > *:not(img),
+  section[class*="relative"] > div[class*="absolute"][class*="z-0"] > *:not(img) {
+    pointer-events: auto;
+  }
+  
+  /* Ensure hero sections with background images don't create scroll contexts */
+  section[class*="relative"][class*="overflow-hidden"] {
+    /* Ensure section itself doesn't create scroll context */
+    overflow: hidden !important;
+    overscroll-behavior: none !important;
+    /* Prevent nested scroll contexts */
+    contain: layout style paint;
+    /* Ensure negative margins don't cause overflow issues */
+    position: relative !important;
+    /* Prevent the section from creating its own scroll context */
+    max-width: 100vw !important;
+  }
+  
+  /* Ensure hero sections with negative margins don't cause scroll issues */
+  section[class*="-mt-"] {
+    /* Prevent negative margin from causing overflow */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    /* Only allow negative top margin, prevent horizontal issues */
+    width: 100% !important;
+    max-width: 100vw !important;
+    /* Critical: Prevent the section from creating its own scroll context */
+    /* The negative margin extends the section above viewport, but we must ensure it doesn't intercept scroll */
+    position: relative !important;
+    /* Ensure section doesn't create scroll context even with negative margin */
+    contain: layout style paint;
+    /* Prevent any scroll interception - critical fix for "hung up" scrolling */
+    overscroll-behavior: none !important;
+    overscroll-behavior-y: none !important;
+    overscroll-behavior-x: none !important;
+    /* CRITICAL FIX: Keep overflow-hidden but ensure it doesn't create scroll context */
+    /* overflow-hidden is needed for the design, but we must prevent scroll interception */
+    /* The key is that overflow-hidden on the section should clip content, not create scroll context */
+    /* Don't override overflow-hidden - it's needed for the design */
+    /* Instead, ensure the section itself cannot be scrolled */
+    scroll-snap-type: none !important;
+    scroll-snap-align: none !important;
+    /* Prevent touch-action from creating scroll contexts */
+    touch-action: pan-y pan-x !important;
+    /* Ensure the section's scrollHeight equals clientHeight to prevent scroll context */
+    /* This is handled by ensuring children don't overflow */
+  }
+  
+  /* Ensure Next.js Image components with fill don't create scroll contexts */
+  section[class*="relative"] img[style*="position: absolute"],
+  div[class*="absolute"][class*="inset-0"] img,
+  section[class*="relative"][class*="overflow-hidden"] img,
+  /* Target Next.js Image with fill prop - they use position: absolute */
+  span[style*="position: absolute"] img,
+  span[style*="position: absolute"][style*="inset: 0px"] {
+    overflow: hidden !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    /* Prevent image from creating scroll context */
+    object-fit: cover !important;
+    /* Ensure image doesn't cause overflow */
+    width: 100% !important;
+    height: 100% !important;
+    /* Prevent the image wrapper from creating scroll context */
+    position: absolute !important;
+    inset: 0 !important;
+  }
+  
+  /* Next.js Image wrapper span - prevent scroll context */
+  section[class*="relative"] > div[class*="absolute"] > span[style*="position: absolute"],
+  div[class*="absolute"][class*="inset-0"] > span[style*="position: absolute"],
+  /* Target all Next.js Image wrapper spans that might create scroll contexts */
+  span[style*="position: absolute"][style*="inset: 0px"],
+  span[style*="position: absolute"][style*="inset: 0"] {
+    overflow: hidden !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    position: absolute !important;
+    inset: 0 !important;
+    /* Prevent any scrolling */
+    overscroll-behavior: none !important;
+    /* Ensure no scrollbars */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  
+  span[style*="position: absolute"][style*="inset: 0px"]::-webkit-scrollbar,
+  span[style*="position: absolute"][style*="inset: 0"]::-webkit-scrollbar {
+    display: none !important;
   }
   
   /* Housecall Pro modal iframe - allow full height */
@@ -206,56 +346,38 @@
     @apply rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300;
     /* Optimize rendering performance */
     contain: layout style paint;
-    content-visibility: auto;
+    /* Removed content-visibility: auto - causes layout recalculations during scroll */
   }
 
   .card:hover {
     @apply shadow-lg border-primary/20;
   }
   
-  /* Section optimization */
+  /* Section optimization - removed content-visibility: auto as it can cause scroll jank */
   section {
     contain: layout style;
-    content-visibility: auto;
+    /* Removed content-visibility: auto - causes layout recalculations during scroll */
   }
   
-  /* Grid item optimization */
+  /* Grid item optimization - removed content-visibility: auto */
   .grid > * {
     contain: layout style;
-    content-visibility: auto;
+    /* Removed content-visibility: auto - causes layout recalculations during scroll */
   }
 }
 
 @layer utilities {
-  /* Header positioning based on banner visibility */
-  /* Banner height: h-14 (3.5rem / 56px) on all screen sizes */
-  body[data-banner-visible="true"] header {
-    top: 3.5rem !important;
+  /* Ensure proper z-index stacking for sticky elements */
+  .sticky-banner {
+    z-index: 50 !important;
   }
   
-  body[data-banner-visible="false"] header,
-  body:not([data-banner-visible]) header {
-    top: 0 !important;
+  .sticky-header {
+    z-index: 40 !important;
   }
   
-  /* Main content padding based on banner visibility */
-  /* Base padding accounts for header, we add banner height on top */
-  /* Mobile: banner (3.5rem) + header (9rem landing / 5rem regular) */
-  body[data-banner-visible="true"] main {
-    padding-top: calc(3.5rem + 9rem) !important;
-  }
-  
-  @media (min-width: 768px) {
-    body[data-banner-visible="true"] main {
-      padding-top: calc(3.5rem + 10rem) !important;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    body[data-banner-visible="true"] main {
-      padding-top: calc(3.5rem + 11rem) !important;
-    }
-  }
+  /* Main content padding is now handled by Tailwind classes in layout.tsx */
+  /* Sticky positioning means elements are in document flow, padding accounts for both banner and header */
   .text-balance {
     text-wrap: balance;
   }
@@ -271,34 +393,32 @@
 
   @keyframes marquee {
     0% {
-      transform: translate3d(0, 0, 0);
+      transform: translateX(0);
     }
     100% {
-      transform: translate3d(-50%, 0, 0);
+      transform: translateX(-50%);
     }
   }
 
   @keyframes marquee-right {
     0% {
-      transform: translate3d(-50%, 0, 0);
+      transform: translateX(-50%);
     }
     100% {
-      transform: translate3d(0, 0, 0);
+      transform: translateX(0);
     }
   }
 
   .animate-marquee {
     animation: marquee 30s linear infinite;
-    /* Optimize animation performance with GPU acceleration */
-    will-change: transform;
-    /* Ensure smooth rendering for seamless loop */
+    /* Removed will-change: transform - causes continuous compositing layer updates */
+    /* Removed perspective - unnecessary for 2D translation */
+    /* Use simple transform for better performance */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Ensure smooth rendering */
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
-    /* Use transform3d for better GPU acceleration */
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
     /* Force GPU acceleration on mobile */
     -webkit-font-smoothing: antialiased;
     /* Ensure content doesn't get cut off - use fit-content width */
@@ -307,44 +427,43 @@
     white-space: nowrap;
     /* Contain layout and paint for better performance */
     contain: layout style paint;
+    /* Isolate compositing layer to prevent affecting other elements */
+    isolation: isolate;
   }
 
   /* Slower animation for main marquee banner */
   .animate-marquee-slow {
     animation: marquee 60s linear infinite;
-    /* Optimize animation performance with GPU acceleration */
-    will-change: transform;
-    /* Ensure smooth rendering for seamless loop */
+    /* Removed will-change: transform - causes continuous compositing layer updates */
+    /* Removed perspective - unnecessary for 2D translation */
+    /* Use simple transform for better performance */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Ensure smooth rendering */
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
-    /* Use transform3d for better GPU acceleration */
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
     /* Force GPU acceleration on mobile */
     -webkit-font-smoothing: antialiased;
-    /* Ensure content doesn't get cut off - use fit-content width */
-    width: fit-content;
+    /* Ensure content doesn't get cut off - use max-content width */
+    width: max-content;
     /* Prevent text wrapping */
     white-space: nowrap;
-    /* Contain layout and paint for better performance */
-    contain: layout style paint;
+    /* Removed contain to prevent clipping - allow content to flow naturally */
+    /* Isolate compositing layer to prevent affecting other elements */
+    isolation: isolate;
   }
 
   /* Right-scrolling marquee animation */
   .animate-marquee-right {
     animation: marquee-right 30s linear infinite;
-    /* Optimize animation performance with GPU acceleration */
-    will-change: transform;
-    /* Ensure smooth rendering for seamless loop */
+    /* Removed will-change: transform - causes continuous compositing layer updates */
+    /* Removed perspective - unnecessary for 2D translation */
+    /* Use simple transform for better performance */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Ensure smooth rendering */
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
-    /* Use transform3d for better GPU acceleration */
-    transform: translate3d(-50%, 0, 0);
-    -webkit-transform: translate3d(-50%, 0, 0);
     /* Force GPU acceleration on mobile */
     -webkit-font-smoothing: antialiased;
     /* Ensure content doesn't get cut off - use fit-content width */
@@ -353,6 +472,15 @@
     white-space: nowrap;
     /* Contain layout and paint for better performance */
     contain: layout style paint;
+    /* Isolate compositing layer to prevent affecting other elements */
+    isolation: isolate;
+  }
+  
+  /* Let Tailwind classes control marquee visibility */
+  /* No default display rule - components use hidden/flex classes directly */
+  
+  .marquee-static {
+    display: none;
   }
   
   /* Disable marquee animations for users who prefer reduced motion */
@@ -361,8 +489,7 @@
     .animate-marquee-slow,
     .animate-marquee-right {
       animation: none !important;
-      transform: translate3d(0, 0, 0) !important;
-      will-change: auto !important;
+      transform: translateZ(0) !important;
     }
     
     /* Hide animated marquee, show static fallback */
@@ -370,56 +497,37 @@
       display: none !important;
     }
     
+    /* Show static fallback when reduced motion is preferred (both mobile and desktop) */
     .marquee-static {
-      display: flex !important;
+      display: block !important;
     }
-  }
-  
-  /* Show animated marquee, hide static fallback by default - only on desktop */
-  @media (min-width: 768px) {
-    .marquee-animated {
-      display: flex;
-    }
-    
-    .marquee-static {
-      display: flex;
-    }
-  }
-  
-  /* Hide marquee on mobile by default */
-  .marquee-animated {
-    display: none;
-  }
-  
-  .marquee-static {
-    display: none;
   }
 
   /* Faster marquee on mobile for better engagement */
   @media (max-width: 768px) {
     .animate-marquee {
       animation: marquee 20s linear infinite;
-      /* Ensure animation works on mobile browsers with transform3d */
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
+      /* Use simple transform for better performance */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
 
     .animate-marquee-slow {
       animation: marquee 20s linear infinite;
-      /* Ensure animation works on mobile browsers with transform3d */
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
+      /* Use simple transform for better performance */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
 
     .animate-marquee-right {
       animation: marquee-right 20s linear infinite;
-      /* Ensure animation works on mobile browsers with transform3d */
-      -webkit-transform: translate3d(-50%, 0, 0);
-      transform: translate3d(-50%, 0, 0);
+      /* Use simple transform for better performance */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
@@ -433,10 +541,10 @@
     }
   }
 
-  /* Optimize image loading */
+  /* Optimize image loading - removed content-visibility as it can cause scroll jank */
   img {
-    content-visibility: auto;
     contain: layout style;
+    /* Removed content-visibility: auto - causes layout recalculations during scroll */
   }
   
   /* Optimize fixed position elements for better scroll performance */
@@ -445,10 +553,39 @@
   [class*="fixed"][class*="top-0"] {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
-    will-change: transform;
-    /* Ensure smooth scrolling when header is fixed */
+    /* Removed will-change: transform - only add if element actually transforms during scroll */
+    /* Ensure smooth rendering */
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+  }
+  
+  /* Specific optimizations for sticky promotional banner */
+  .sticky-banner {
+    /* Force hardware acceleration only for elements that actually move/transform */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* will-change only if element actually transforms - removed to reduce compositing layers */
+    /* Ensure smooth rendering */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* Prevent layout shifts */
+    contain: layout style paint;
+    /* Optimize compositing layer */
+    isolation: isolate;
+  }
+  
+  /* Specific optimizations for sticky header */
+  .sticky-header {
+    /* Force hardware acceleration only for elements that actually move/transform */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* will-change only if element actually transforms - removed duplicate declaration */
+    /* Ensure smooth rendering */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* Don't use contain here - dropdowns need to extend beyond bounds */
+    /* Optimize compositing layer */
+    isolation: isolate;
   }
   
   /* Optimize scrollable containers for smooth scrolling */
@@ -458,14 +595,8 @@
   .overflow-y-scroll {
     /* Enable smooth scrolling in containers */
     -webkit-overflow-scrolling: touch;
-    /* Force hardware acceleration */
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    /* Optimize scroll performance */
-    will-change: scroll-position;
-    /* Prevent scroll jank */
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    /* Removed will-change: scroll-position - known to cause performance issues */
+    /* Removed transform: translateZ(0) - let browser optimize naturally */
   }
   
   /* Scroll performance utilities */
@@ -481,25 +612,9 @@
     }
   }
   
-  /* Ensure main content area scrolls smoothly */
-  main {
-    /* Optimize scroll performance */
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    /* Prevent scroll jank */
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-  
-  /* Optimize all scrollable sections */
-  section {
-    /* Force hardware acceleration for smooth scrolling */
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    /* Prevent scroll jank */
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
+  /* Removed unnecessary hardware acceleration from main and section */
+  /* Browser handles scroll performance optimization naturally */
+  /* Only apply hardware acceleration to elements that actually need it (animations, fixed/sticky) */
   
   /* Containment utilities */
   .contain-layout {
@@ -591,25 +706,18 @@
       overscroll-behavior-x: none;
       /* iOS smooth scrolling - enable momentum scrolling */
       -webkit-overflow-scrolling: touch;
-      /* Force hardware acceleration for smooth scrolling */
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
+      /* Removed transform: translateZ(0) - let browser optimize naturally */
     }
     
     body {
       /* Don't restrict overflow on body - allows natural scrolling on mobile */
-      /* Remove position: relative - it interferes with smooth scrolling */
       width: 100%;
       max-width: 100vw;
       /* Ensure smooth touch scrolling works on mobile */
       touch-action: pan-y pan-x;
       /* iOS smooth scrolling - enable momentum scrolling */
       -webkit-overflow-scrolling: touch;
-      /* Force hardware acceleration for smooth scrolling */
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      /* Optimize scroll performance */
-      will-change: scroll-position;
+      /* Removed transform: translateZ(0) and will-change: scroll-position - causes performance issues */
     }
     
     /* Ensure all containers respect viewport */

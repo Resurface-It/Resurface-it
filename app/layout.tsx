@@ -12,6 +12,7 @@ import { PageViewTracker } from '@/components/analytics/PageViewTracker'
 import { SafeComponentWrapper } from '@/components/SafeComponentWrapper'
 import { LazyCoreWebVitalsTracker } from '@/components/LazyCoreWebVitalsTracker'
 import { LazyPagePrefetcher } from '@/components/LazyPagePrefetcher'
+import { ScrollPerformanceMonitor } from '@/components/ScrollPerformanceMonitor'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -209,9 +210,10 @@ export default function RootLayout({
         
         <PromotionalBanner />
         <SiteHeader />
-        <main className="pt-16 md:pt-20 lg:pt-24">{children}</main>
+        <main className="pt-[7.5rem] md:pt-[8.5rem] lg:pt-[9.5rem]">{children}</main>
         <SiteFooter />
         <ClientOnly>
+          <ScrollPerformanceMonitor />
           <AnalyticsScripts />
           <PageViewTracker />
           <SafeComponentWrapper>

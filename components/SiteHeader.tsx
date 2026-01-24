@@ -26,7 +26,7 @@ export function SiteHeader() {
   
   // Consistent header height and logo size across all pages - reduced height
   const navHeight = 'h-16 md:h-20 lg:h-24'
-  const logoSize = 'h-10 w-auto md:h-12 lg:h-14'
+  const logoSize = 'h-12 w-auto md:h-14 lg:h-16'
   
   // Use regular logo on all pages
   const logoSrc = '/Resurface-it.png'
@@ -81,7 +81,7 @@ export function SiteHeader() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-30 ${headerBg} transition-all duration-300 overflow-visible`}
+        className={`sticky top-14 left-0 right-0 z-40 ${headerBg} transition-all duration-300 overflow-visible sticky-header`}
       >
         <nav className={`w-full ${navHeight} overflow-visible relative`}>
           <div className="w-full max-w-7xl mx-auto flex items-center justify-between h-full">

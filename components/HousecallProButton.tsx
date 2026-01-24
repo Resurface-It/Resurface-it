@@ -95,11 +95,11 @@ export function HousecallProButton({
       })
     }
 
-    // Run checks periodically
+    // Run checks periodically - increased interval to reduce overhead
     const hideInterval = setInterval(() => {
       hidePoweredBy()
       ensureModalSpace()
-    }, 1000)
+    }, 3000) // Increased from 1000ms to 3000ms to reduce DOM query overhead
 
     // Also run immediately
     hidePoweredBy()

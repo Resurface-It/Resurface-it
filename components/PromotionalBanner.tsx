@@ -9,7 +9,7 @@ export function PromotionalBanner() {
   }, [])
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-14 bg-black text-white py-2 px-3 md:py-3 md:px-4 shadow-lg z-50">
+    <div className="sticky top-0 left-0 right-0 h-14 bg-black text-white py-2 px-3 md:py-3 md:px-4 shadow-lg z-50 sticky-banner">
       <div className="container mx-auto flex items-center justify-center text-center leading-[29px]" style={{ verticalAlign: 'middle' }}>
         {/* Text content - responsive sizing */}
         <p className="text-xs md:text-sm lg:text-base font-semibold text-center">

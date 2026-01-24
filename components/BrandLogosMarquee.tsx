@@ -63,13 +63,13 @@ export function BrandLogosMarquee() {
 
   return (
     <div 
-      className="border-y-2 border-slate-200 bg-white py-8"
+      className="border-y-2 border-slate-200 bg-white py-6 md:py-8"
       aria-label="Brand partners marquee"
-      style={{ minHeight: '8rem' }} // Explicit height to prevent CLS
+      style={{ minHeight: '7rem' }} // Explicit height to prevent CLS
     >
-      {/* Mobile: Grid layout (3 top, 2 bottom) */}
-      <div className="md:hidden px-6">
-        <div className="grid grid-cols-3 gap-4 mb-4">
+      {/* Mobile: Grid layout (3 top, 3 bottom) */}
+      <div className="md:hidden px-4">
+        <div className="grid grid-cols-3 gap-3 md:gap-4 mb-3 md:mb-4">
           {topBrands.map((brand) => {
             const isBehr = brand.name === 'BEHR'
             const isBenjaminMoore = brand.name === 'Benjamin Moore'
@@ -87,7 +87,7 @@ export function BrandLogosMarquee() {
                   alt={brand.alt}
                   width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
                   height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
-                  className={`${isBehr ? 'h-10' : isBenjaminMoore ? 'h-10' : 'h-10'} w-auto ${isBehr ? 'max-w-[120px]' : isBenjaminMoore ? 'max-w-[120px]' : 'max-w-[100px]'} object-contain transition-opacity hover:opacity-90 pointer-events-none`}
+                  className={`h-9 md:h-10 w-auto ${isBehr ? 'max-w-[100px] md:max-w-[120px]' : isBenjaminMoore ? 'max-w-[100px] md:max-w-[120px]' : 'max-w-[80px] md:max-w-[100px]'} object-contain transition-opacity hover:opacity-90 pointer-events-none`}
                   loading="lazy"
                   quality={75}
                 />
@@ -95,7 +95,7 @@ export function BrandLogosMarquee() {
             )
           })}
         </div>
-        <div className="grid grid-cols-3 gap-4 justify-items-center">
+        <div className="grid grid-cols-3 gap-3 md:gap-4">
           {bottomBrands.map((brand) => {
             const isBehr = brand.name === 'BEHR'
             const isBenjaminMoore = brand.name === 'Benjamin Moore'
@@ -113,7 +113,7 @@ export function BrandLogosMarquee() {
                   alt={brand.alt}
                   width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
                   height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
-                  className={`${isBehr ? 'h-10' : isBenjaminMoore ? 'h-10' : 'h-10'} w-auto ${isBehr ? 'max-w-[120px]' : isBenjaminMoore ? 'max-w-[120px]' : 'max-w-[100px]'} object-contain transition-opacity hover:opacity-90 pointer-events-none`}
+                  className={`h-9 md:h-10 w-auto ${isBehr ? 'max-w-[100px] md:max-w-[120px]' : isBenjaminMoore ? 'max-w-[100px] md:max-w-[120px]' : 'max-w-[80px] md:max-w-[100px]'} object-contain transition-opacity hover:opacity-90 pointer-events-none`}
                   loading="lazy"
                   quality={75}
                 />
@@ -124,8 +124,8 @@ export function BrandLogosMarquee() {
       </div>
 
       {/* Desktop: Animated marquee - hidden when user prefers reduced motion */}
-      <div className="hidden md:block overflow-hidden marquee-animated">
-        <div className="flex animate-marquee-right whitespace-nowrap py-4 w-fit">
+      <div className="hidden md:flex overflow-hidden marquee-animated">
+        <div className="flex animate-marquee-right whitespace-nowrap w-fit py-4">
           {duplicatedBrands.map((brand, index) => {
             const isBehr = brand.name === 'BEHR'
             const isBenjaminMoore = brand.name === 'Benjamin Moore'
@@ -136,7 +136,7 @@ export function BrandLogosMarquee() {
                 href={brand.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mx-20 flex shrink-0 items-center justify-center min-w-fit px-4 transition-transform hover:scale-105 cursor-pointer"
+                className="mx-12 flex shrink-0 items-center justify-center px-4 transition-transform hover:scale-105 cursor-pointer"
                 aria-label={isDuplicate ? undefined : `Visit ${brand.name} website`}
                 aria-hidden={isDuplicate}
               >
@@ -153,34 +153,6 @@ export function BrandLogosMarquee() {
             )
           })}
         </div>
-      </div>
-      
-      {/* Desktop: Static fallback for users who prefer reduced motion */}
-      <div className="hidden md:flex md:flex-wrap md:items-center md:justify-center md:gap-8 md:px-8 marquee-static">
-        {brands.map((brand) => {
-          const isBehr = brand.name === 'BEHR'
-          const isBenjaminMoore = brand.name === 'Benjamin Moore'
-          return (
-            <a
-              key={`static-${brand.name}`}
-              href={brand.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
-              aria-label={`Visit ${brand.name} website`}
-            >
-              <Image
-                src={brand.logo}
-                alt={brand.alt}
-                width={isBehr ? 200 : isBenjaminMoore ? 499 : 150}
-                height={isBehr ? 80 : isBenjaminMoore ? 184 : 60}
-                className={`${isBehr ? 'h-16 max-w-[200px]' : isBenjaminMoore ? 'h-16 max-w-[200px]' : 'h-16 max-w-[180px]'} w-auto object-contain transition-opacity hover:opacity-90 pointer-events-none`}
-                loading="lazy"
-                quality={75}
-              />
-            </a>
-          )
-        })}
       </div>
     </div>
   )
