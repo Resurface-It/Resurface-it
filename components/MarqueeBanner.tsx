@@ -98,8 +98,8 @@ export function MarqueeBanner() {
         })}
       </div>
       
-      {/* Static fallback for users who prefer reduced motion - desktop only */}
-      <div className="hidden md:flex marquee-static overflow-x-auto">
+      {/* Static fallback for users who prefer reduced motion - mobile only */}
+      <div className="flex md:hidden marquee-static overflow-x-auto">
         <div className="flex items-center justify-center gap-4 px-4 whitespace-nowrap">
           {staticItems.slice(0, 4).map((item, index) => {
             if (item.type === 'logo') {
