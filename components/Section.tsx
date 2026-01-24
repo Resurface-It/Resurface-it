@@ -16,7 +16,7 @@ export function Section({ children, className = '', animate = true }: SectionPro
   const isInView = useInView(ref, { 
     once: true, 
     margin: '100px', // Larger margin to trigger earlier, reducing calculations during scroll
-    threshold: 0.1 // More efficient than amount for performance
+    amount: 0.1 // Percentage of element that must be visible (0-1)
   })
 
   if (!animate) {
