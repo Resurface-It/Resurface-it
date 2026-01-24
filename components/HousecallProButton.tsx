@@ -123,12 +123,31 @@ export function HousecallProButton({
     ? '' 
     : 'bg-primary hover:bg-primaryDark'
 
-  // Handle click - call external onClick if provided, then let Housecall Pro handle it
+  // Handle click - call external onClick if provided, then open Housecall Pro modal
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     if (externalOnClick) {
       externalOnClick(e)
     }
-    // Don't prevent default - let the inline onClick="HCPWidget.openModal()" handle it
+    
+    // Try to open the modal - with retries if script hasn't loaded yet
+    const openModal = () => {
+      if (typeof window !== 'undefined' && window.HCPWidget && typeof window.HCPWidget.openModal === 'function') {
+        window.HCPWidget.openModal()
+        return true
+      }
+      return false
+    }
+
+    // Try immediately
+    if (!openModal()) {
+      // If not available, try with increasing delays
+      const attempts = [100, 300, 500, 1000]
+      attempts.forEach((delay) => {
+        setTimeout(() => {
+          openModal()
+        }, delay)
+      })
+    }
   }
 
   return (
@@ -136,31 +155,25 @@ export function HousecallProButton({
       {/* Load script only once globally - using Next.js Script component with id to prevent duplicates */}
       <Script
         id="housecallpro-script"
-        src="https://online-booking.housecallpro.com/script.js?token=8e0ff8d623db4bd2bd14edc3d764f248&orgName=Resurface-It"
-        strategy="lazyOnload"
+        src="https://online-booking.housecallpro.com/script.js?token=8e0ff8d623db4bd2bd14edc3d764f248&orgName=Resurface-It-Inc"
+        strategy="afterInteractive"
         onLoad={() => {
           scriptLoaded = true
+          // Ensure HCPWidget is available after script loads
+          if (typeof window !== 'undefined' && window.HCPWidget) {
+            console.log('HousecallPro script loaded successfully')
+          }
+        }}
+        onError={(e) => {
+          console.error('Failed to load HousecallPro script:', e)
         }}
       />
       {/* Start of Housecallpro Online booking button */}
       <button
         data-token="8e0ff8d623db4bd2bd14edc3d764f248"
-        data-orgname="Resurface-It"
+        data-orgname="Resurface-It-Inc"
         className={`hcp-button ${baseClasses} ${sizeClasses} ${bgClasses} ${className}`}
-        onClick={(e) => {
-          handleClick(e)
-          // Call HCPWidget.openModal() exactly as in original code
-          if (typeof window !== 'undefined' && window.HCPWidget && typeof window.HCPWidget.openModal === 'function') {
-            window.HCPWidget.openModal()
-          } else {
-            // Fallback: try again after a short delay
-            setTimeout(() => {
-              if (window.HCPWidget && typeof window.HCPWidget.openModal === 'function') {
-                window.HCPWidget.openModal()
-              }
-            }, 500)
-          }
-        }}
+        onClick={handleClick}
         {...props}
       >
         {children}
