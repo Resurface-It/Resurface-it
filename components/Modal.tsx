@@ -21,6 +21,9 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
       document.body.style.top = `-${scrollY}px`
       document.body.style.width = '100%'
       document.body.style.overflow = 'hidden'
+      // Ensure modal container is visible on mobile
+      document.body.style.height = '100%'
+      document.body.style.maxHeight = '100dvh'
       // Don't disable touch-action completely - allow scrolling within the modal
       // touch-action: none would prevent all touch interactions
     } else {
@@ -30,6 +33,8 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
       document.body.style.top = ''
       document.body.style.width = ''
       document.body.style.overflow = ''
+      document.body.style.height = ''
+      document.body.style.maxHeight = ''
       if (savedScrollY) {
         const scrollValue = parseInt(savedScrollY.replace('px', '').replace('-', ''), 10)
         if (!isNaN(scrollValue)) {
@@ -44,6 +49,8 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
       document.body.style.top = ''
       document.body.style.width = ''
       document.body.style.overflow = ''
+      document.body.style.height = ''
+      document.body.style.maxHeight = ''
       if (savedScrollY) {
         const scrollValue = parseInt(savedScrollY.replace('px', '').replace('-', ''), 10)
         if (!isNaN(scrollValue)) {
@@ -55,7 +62,11 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
 
   return (
     <Transition show={isOpen} as={Fragment}>
-      <Dialog open={isOpen} onClose={onClose}>
+      <Dialog 
+        open={isOpen} 
+        onClose={onClose}
+        className="relative z-[9999]"
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -66,7 +77,7 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
           leaveTo="opacity-0"
         >
           <div 
-            className="fixed inset-0 bg-black/50 z-[9998]" 
+            className="fixed inset-0 bg-black/50 z-[9998] pointer-events-auto" 
             style={{ 
               zIndex: 9998,
               position: 'fixed',
@@ -76,13 +87,15 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
               bottom: 0,
               width: '100%',
               height: '100%',
+              minHeight: '-webkit-fill-available',
             }} 
+            onClick={onClose}
             aria-hidden="true" 
           />
         </Transition.Child>
 
         <div 
-          className="fixed inset-0 z-[9999] overflow-y-auto" 
+          className="fixed inset-0 z-[9999] overflow-y-auto pointer-events-none"
           style={{ 
             zIndex: 9999,
             position: 'fixed',
@@ -92,14 +105,15 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
             bottom: 0,
             width: '100%',
             height: '100%',
-            maxHeight: '100vh',
+            minHeight: '-webkit-fill-available',
+            maxHeight: '100dvh',
             maxWidth: '100vw',
           }}
         >
           <div 
-            className="flex min-h-full items-center justify-center p-4"
+            className="flex min-h-full items-center justify-center p-4 pointer-events-auto"
             style={{
-              minHeight: '100vh',
+              minHeight: '-webkit-fill-available',
             }}
           >
             <Transition.Child
@@ -112,9 +126,9 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel 
-                className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-xl transform transition-all" 
+                className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-xl transform transition-all pointer-events-auto" 
                 style={{ 
-                  zIndex: 9999,
+                  zIndex: 10000,
                   maxWidth: 'calc(100vw - 2rem)',
                   margin: '1rem',
                 }}
@@ -133,10 +147,10 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
                   <X className="h-5 w-5" />
                 </button>
                 <div 
-                  className="max-h-[80vh] overflow-y-auto p-6" 
+                  className="overflow-y-auto p-6" 
                   style={{ 
                     WebkitOverflowScrolling: 'touch',
-                    maxHeight: 'calc(100vh - 8rem)',
+                    maxHeight: 'calc(100dvh - 8rem)',
                     touchAction: 'pan-y',
                   }}
                 >
