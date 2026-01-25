@@ -920,6 +920,7 @@
     
     /* Ensure modals are visible and properly positioned on mobile */
     [role="dialog"],
+    [role="dialog"][aria-modal="true"],
     [role="dialog"] > div {
       position: fixed !important;
       z-index: 9999 !important;
@@ -933,7 +934,7 @@
       left: 0 !important;
       right: 0 !important;
       bottom: 0 !important;
-      display: block !important;
+      display: flex !important;
       visibility: visible !important;
       opacity: 1 !important;
     }

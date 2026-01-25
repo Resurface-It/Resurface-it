@@ -1,7 +1,7 @@
 'use client'
 
-import { Fragment, ReactNode, useEffect } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { ReactNode, useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { X } from 'lucide-react'
 
 interface ModalProps {
@@ -12,6 +12,12 @@ interface ModalProps {
 }
 
 export function Modal({ isOpen, onClose, children, title }: ModalProps) {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   useEffect(() => {
     if (isOpen) {
       // Store current scroll position
@@ -24,8 +30,6 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
       // Ensure modal container is visible on mobile
       document.body.style.height = '100%'
       document.body.style.maxHeight = '100dvh'
-      // Don't disable touch-action completely - allow scrolling within the modal
-      // touch-action: none would prevent all touch interactions
     } else {
       // Restore scroll position
       const savedScrollY = document.body.style.top
@@ -60,108 +64,99 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
     }
   }, [isOpen])
 
-  return (
-    <Transition show={isOpen} as={Fragment}>
-      <Dialog 
-        open={isOpen} 
-        onClose={onClose}
-        className="relative z-[9999]"
-      >
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div 
-            className="fixed inset-0 bg-black/50 z-[9998] pointer-events-auto" 
-            style={{ 
-              zIndex: 9998,
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              width: '100%',
-              height: '100%',
-              minHeight: '-webkit-fill-available',
-            }} 
-            onClick={onClose}
-            aria-hidden="true" 
-          />
-        </Transition.Child>
+  if (!mounted || !isOpen) {
+    return null
+  }
 
-        <div 
-          className="fixed inset-0 z-[9999] overflow-y-auto pointer-events-none"
-          style={{ 
-            zIndex: 9999,
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            width: '100%',
-            height: '100%',
-            minHeight: '-webkit-fill-available',
-            maxHeight: '100dvh',
-            maxWidth: '100vw',
+  const modalContent = (
+    <div
+      className="fixed inset-0 z-[9999]"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '100%',
+        height: '100%',
+        minHeight: '-webkit-fill-available',
+        maxHeight: '100dvh',
+        zIndex: 9999,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '1rem',
+      }}
+      onClick={(e) => {
+        // Close modal if clicking on backdrop
+        if (e.target === e.currentTarget) {
+          onClose()
+        }
+      }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={title ? 'modal-title' : undefined}
+    >
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black/50"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          minHeight: '-webkit-fill-available',
+          zIndex: 9998,
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Modal Panel */}
+      <div
+        className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-xl"
+        style={{
+          zIndex: 10000,
+          maxWidth: 'calc(100vw - 2rem)',
+          width: '100%',
+          maxHeight: 'calc(100dvh - 2rem)',
+          display: 'flex',
+          flexDirection: 'column',
+          position: 'relative',
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {title && (
+          <div className="border-b border-slate-200 px-6 py-4">
+            <h2 id="modal-title" className="text-2xl font-semibold">
+              {title}
+            </h2>
+          </div>
+        )}
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 z-10 rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary touch-manipulation"
+          aria-label="Close"
+          style={{ touchAction: 'manipulation' }}
+        >
+          <X className="h-5 w-5" />
+        </button>
+        <div
+          className="overflow-y-auto p-6"
+          style={{
+            WebkitOverflowScrolling: 'touch',
+            touchAction: 'pan-y',
+            flex: 1,
           }}
         >
-          <div 
-            className="flex min-h-full items-center justify-center p-4 pointer-events-auto"
-            style={{
-              minHeight: '-webkit-fill-available',
-            }}
-          >
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <Dialog.Panel 
-                className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-xl transform transition-all pointer-events-auto" 
-                style={{ 
-                  zIndex: 10000,
-                  maxWidth: 'calc(100vw - 2rem)',
-                  margin: '1rem',
-                }}
-              >
-                {title && (
-                  <div className="border-b border-slate-200 px-6 py-4">
-                    <Dialog.Title className="text-2xl font-semibold">{title}</Dialog.Title>
-                  </div>
-                )}
-                <button
-                  onClick={onClose}
-                  className="absolute right-4 top-4 z-10 rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary touch-manipulation"
-                  aria-label="Close"
-                  style={{ touchAction: 'manipulation' }}
-                >
-                  <X className="h-5 w-5" />
-                </button>
-                <div 
-                  className="overflow-y-auto p-6" 
-                  style={{ 
-                    WebkitOverflowScrolling: 'touch',
-                    maxHeight: 'calc(100dvh - 8rem)',
-                    touchAction: 'pan-y',
-                  }}
-                >
-                  {children}
-                </div>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
+          {children}
         </div>
-      </Dialog>
-    </Transition>
+      </div>
+    </div>
   )
+
+  return createPortal(modalContent, document.body)
 }
 
