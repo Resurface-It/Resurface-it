@@ -65,11 +65,43 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black/50 z-[9998]" style={{ zIndex: 9998 }} aria-hidden="true" />
+          <div 
+            className="fixed inset-0 bg-black/50 z-[9998]" 
+            style={{ 
+              zIndex: 9998,
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              width: '100%',
+              height: '100%',
+            }} 
+            aria-hidden="true" 
+          />
         </Transition.Child>
 
-        <div className="fixed inset-0 z-[9999] overflow-y-auto" style={{ zIndex: 9999 }}>
-          <div className="flex min-h-full items-center justify-center p-4">
+        <div 
+          className="fixed inset-0 z-[9999] overflow-y-auto" 
+          style={{ 
+            zIndex: 9999,
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            height: '100%',
+            maxHeight: '100vh',
+            maxWidth: '100vw',
+          }}
+        >
+          <div 
+            className="flex min-h-full items-center justify-center p-4"
+            style={{
+              minHeight: '100vh',
+            }}
+          >
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -79,7 +111,14 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-xl transform transition-all" style={{ zIndex: 9999 }}>
+              <Dialog.Panel 
+                className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-xl transform transition-all" 
+                style={{ 
+                  zIndex: 9999,
+                  maxWidth: 'calc(100vw - 2rem)',
+                  margin: '1rem',
+                }}
+              >
                 {title && (
                   <div className="border-b border-slate-200 px-6 py-4">
                     <Dialog.Title className="text-2xl font-semibold">{title}</Dialog.Title>
@@ -87,12 +126,22 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
                 )}
                 <button
                   onClick={onClose}
-                  className="absolute right-4 top-4 z-10 rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="absolute right-4 top-4 z-10 rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary touch-manipulation"
                   aria-label="Close"
+                  style={{ touchAction: 'manipulation' }}
                 >
                   <X className="h-5 w-5" />
                 </button>
-                <div className="max-h-[80vh] overflow-y-auto p-6" style={{ WebkitOverflowScrolling: 'touch' }}>{children}</div>
+                <div 
+                  className="max-h-[80vh] overflow-y-auto p-6" 
+                  style={{ 
+                    WebkitOverflowScrolling: 'touch',
+                    maxHeight: 'calc(100vh - 8rem)',
+                    touchAction: 'pan-y',
+                  }}
+                >
+                  {children}
+                </div>
               </Dialog.Panel>
             </Transition.Child>
           </div>

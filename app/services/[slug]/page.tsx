@@ -115,16 +115,28 @@ export default async function ServicePage({ params }: ServicePageProps) {
       />
       {serviceImage && (
         <section className="relative w-full bg-white">
-          <div className="container pt-8 pb-4">
-            <div className="relative mx-auto h-[150px] md:h-[200px] max-w-4xl overflow-hidden">
-              <Image
-                src={serviceImage}
-                alt={`${service.name} service logo`}
-                fill
-                className="object-contain"
-                priority
-                sizes="(max-width: 768px) 100vw, 896px"
-              />
+          <div className="container pb-4">
+            <div className="flex items-center justify-center w-full">
+              <div 
+                className="relative w-full max-w-4xl overflow-hidden bg-white service-image-container flex items-center justify-center"
+                style={{
+                  height: '150px',
+                  minHeight: '150px',
+                  maxHeight: '150px'
+                }}
+              >
+                <Image
+                  src={serviceImage}
+                  alt={`${service.name} service logo`}
+                  fill
+                  className="object-contain"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 896px"
+                  style={{
+                    objectPosition: 'center center'
+                  }}
+                />
+              </div>
             </div>
           </div>
         </section>
