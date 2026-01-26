@@ -182,13 +182,23 @@
     max-width: 100% !important;
     max-height: 100% !important;
     /* Prevent image from creating scroll context */
-    object-fit: cover !important;
+    /* Note: object-fit is NOT !important here so service-image-container can override it */
+    object-fit: cover;
     /* Ensure image doesn't cause overflow */
     width: 100% !important;
     height: 100% !important;
     /* Prevent the image wrapper from creating scroll context */
     position: absolute !important;
     inset: 0 !important;
+  }
+  
+  /* Service image container images should use object-contain, not cover */
+  /* This must come AFTER the general rule above to override it */
+  /* Higher specificity selector ensures it overrides the general rule */
+  div.service-image-container span[style*="position: absolute"] img,
+  .service-image-container span[style*="position: absolute"][style*="inset: 0px"] img {
+    object-fit: contain !important;
+    object-position: center center !important;
   }
   
   /* Next.js Image wrapper span - prevent scroll context */
@@ -474,16 +484,11 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-  }
-  
-  .service-image-container img {
-    max-width: 100% !important;
-    max-height: 100% !important;
-    width: auto !important;
-    height: auto !important;
-    object-fit: contain !important;
-    object-position: center center !important;
-    margin: auto !important;
+    position: relative !important;
+    /* Ensure height is always set - inline styles provide base, media query enhances for desktop */
+    height: 150px !important;
+    min-height: 150px !important;
+    max-height: 150px !important;
   }
   
   @media (min-width: 768px) {
@@ -493,6 +498,8 @@
       max-height: 200px !important;
     }
   }
+  
+  /* Remove all conflicting rules for images - let Next.js Image fill prop handle sizing */
   
   /* Target sections with specific padding classes - match Tailwind's specificity exactly */
   /* Use both :first-child and :first-of-type to catch all cases */

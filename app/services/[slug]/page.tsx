@@ -6,6 +6,7 @@ import { PrimaryButton } from '@/components/PrimaryButton'
 import { HousecallProButton } from '@/components/HousecallProButton'
 import { FAQAccordion } from '@/components/FAQAccordion'
 import { ServicePageTracker } from '@/components/analytics/ServicePageTracker'
+import { ServiceImageContainer } from '@/components/ServiceImageContainer'
 import { getServiceBySlug } from '@/data/services'
 import { getFAQsByService } from '@/data/faq'
 import { generateMetadata as genMeta } from '@/lib/seo'
@@ -117,26 +118,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
         <section className="relative w-full bg-white">
           <div className="container pb-4">
             <div className="flex items-center justify-center w-full">
-              <div 
-                className="relative w-full max-w-4xl overflow-hidden bg-white service-image-container flex items-center justify-center"
-                style={{
-                  height: '150px',
-                  minHeight: '150px',
-                  maxHeight: '150px'
-                }}
-              >
-                <Image
-                  src={serviceImage}
-                  alt={`${service.name} service logo`}
-                  fill
-                  className="object-contain"
-                  priority
-                  sizes="(max-width: 768px) 100vw, 896px"
-                  style={{
-                    objectPosition: 'center center'
-                  }}
-                />
-              </div>
+              <ServiceImageContainer
+                src={serviceImage}
+                alt={`${service.name} service logo`}
+              />
             </div>
           </div>
         </section>

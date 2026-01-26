@@ -136,6 +136,7 @@ export default function ConcreteHubPage() {
                 priority
                 sizes="(max-width: 768px) 100vw, 896px"
                 style={{
+                  objectFit: 'contain',
                   objectPosition: 'center center'
                 }}
               />
