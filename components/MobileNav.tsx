@@ -96,7 +96,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
               </button>
             </div>
 
-            <div className="flex h-[calc(100vh-5rem)] flex-col overflow-y-auto px-6 py-8" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <div className="flex flex-col overflow-y-auto px-6 py-8" style={{ maxHeight: 'calc(100vh - 5rem)', WebkitOverflowScrolling: 'touch' }}>
               <div className="space-y-1">
                 {/* Services Dropdown */}
                 <div>
@@ -112,7 +112,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                       {services.map((service) => (
                         <Link
                           key={service.slug}
-                          href={`/services/${service.slug}`}
+                          href={service.slug === 'concrete' ? '/concrete' : `/services/${service.slug}`}
                           onClick={onClose}
                           className="block rounded-lg px-4 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
                         >
@@ -243,6 +243,13 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                       >
                         Blog
                       </Link>
+                      <Link
+                        href="/careers"
+                        onClick={onClose}
+                        className="block rounded-lg px-4 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100"
+                      >
+                        Careers
+                      </Link>
                     </div>
                   )}
                 </div>
@@ -258,4 +265,3 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
     </AnimatePresence>
   )
 }
-

@@ -63,7 +63,7 @@ export function NavDropdown({ label, items, textColor, hoverColor }: NavDropdown
 
       {isOpen && (
         <div className="absolute left-0 top-full pt-2 z-[9999]">
-          <div className="min-w-[280px] max-w-[320px] max-h-[calc(100vh-120px)] overflow-y-auto rounded-lg bg-white shadow-2xl border border-slate-200 py-2">
+          <div className="min-w-[280px] max-w-[320px] max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-hidden rounded-lg bg-white shadow-2xl border border-slate-200 py-2">
             {items.map((item) => (
               <Link
                 key={item.href}

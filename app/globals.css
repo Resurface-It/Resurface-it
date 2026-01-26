@@ -368,6 +368,19 @@
 }
 
 @layer utilities {
+  /* CRITICAL FIX: Prevent main element from creating scroll context */
+  /* Main should never have overflow-y: auto - only body/html should scroll */
+  /* Must be in utilities layer to override Tailwind classes and have highest specificity */
+  main,
+  body > main,
+  html body main {
+    overflow-y: visible !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible hidden !important;
+  }
+  
   /* Remove top padding on first section(s) so they sit directly under nav */
   /* CRITICAL: Must be in utilities layer to override Tailwind utility classes */
   /* Target first section even if script tags come before it */

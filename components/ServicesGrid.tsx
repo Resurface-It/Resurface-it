@@ -1,3 +1,5 @@
+'use client'
+
 import { ServiceCard } from './ServiceCard'
 import { getFeaturedServices, services } from '@/data/services'
 

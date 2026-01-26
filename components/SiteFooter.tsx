@@ -133,6 +133,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/concrete" className="text-slate-600 hover:text-primary">
+                  Concrete Services
+                </Link>
+              </li>
+              <li>
                 <Link href="/services" className="text-slate-600 hover:text-primary">
                   All Services
                 </Link>
@@ -266,6 +271,9 @@ export function SiteFooter() {
               </Link>
               <Link href="/privacy" className="text-slate-600 hover:text-primary">
                 Privacy Policy
+              </Link>
+              <Link href="/terms" className="text-slate-600 hover:text-primary">
+                Terms & Conditions
               </Link>
             </div>
           </div>

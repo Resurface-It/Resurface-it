@@ -27,6 +27,7 @@ const serviceImageMap: Record<string, string> = {
   'exterior-painting': '/Resurface-It-Painting.jpg',
   'interior-painting': '/Resurface-It-Painting.jpg',
   'deck-staining': '/Resurface-It-Deck.jpg',
+  'concrete': '/images/Resurface-ItConcrete.PNG',
 }
 
 export function ServiceCard({ service, featured = false }: ServiceCardProps) {
@@ -39,7 +40,12 @@ export function ServiceCard({ service, featured = false }: ServiceCardProps) {
       style={{ willChange: 'transform' }}
     >
       {serviceImage && (
-        <div className="relative mb-4 h-[120px] w-full overflow-hidden rounded-lg">
+        <div 
+          className="relative mb-4 w-full overflow-hidden rounded-lg"
+          style={{
+            height: service.slug === 'concrete' ? '180px' : '120px'
+          }}
+        >
           <Image
             src={serviceImage}
             alt={`${service.name} service logo`}
@@ -70,7 +76,7 @@ export function ServiceCard({ service, featured = false }: ServiceCardProps) {
       )}
 
       <Link
-        href={`/services/${service.slug}`}
+        href={service.slug === 'concrete' ? '/concrete' : `/services/${service.slug}`}
         className="inline-flex items-center text-sm font-semibold text-primary hover:text-primaryDark"
       >
         View Service Details

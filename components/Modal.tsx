@@ -79,13 +79,14 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
         bottom: 0,
         width: '100%',
         height: '100%',
-        minHeight: '-webkit-fill-available',
+        minHeight: '100vh',
         maxHeight: '100dvh',
         zIndex: 9999,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         padding: '1rem',
+        overflow: 'auto',
       }}
       onClick={(e) => {
         // Close modal if clicking on backdrop
@@ -125,8 +126,15 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
+          margin: 'auto',
         }}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => {
+          // Only stop propagation if not clicking the close button
+          if ((e.target as HTMLElement).closest('button[aria-label="Close"]')) {
+            return
+          }
+          e.stopPropagation()
+        }}
       >
         {title && (
           <div className="border-b border-slate-200 px-6 py-4">
@@ -136,10 +144,19 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
           </div>
         )}
         <button
-          onClick={onClose}
-          className="absolute right-4 top-4 z-10 rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary touch-manipulation"
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            onClose()
+          }}
+          className="absolute right-4 top-4 z-[10001] rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary touch-manipulation"
           aria-label="Close"
-          style={{ touchAction: 'manipulation' }}
+          style={{ 
+            touchAction: 'manipulation',
+            pointerEvents: 'auto',
+            cursor: 'pointer',
+          }}
+          type="button"
         >
           <X className="h-5 w-5" />
         </button>

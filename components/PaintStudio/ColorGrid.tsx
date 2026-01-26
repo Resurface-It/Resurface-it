@@ -34,6 +34,12 @@ export function ColorGrid({ brandId, paintType, qualityLevelId, onBack }: ColorG
     }
   }
 
+  const handleModalClose = () => {
+    setShowModal(false)
+    // Navigate back to previous page when modal is closed
+    onBack()
+  }
+
   if (!brand || !qualityLevel) {
     return null
   }
@@ -85,7 +91,7 @@ export function ColorGrid({ brandId, paintType, qualityLevelId, onBack }: ColorG
 
       <BrandRedirectModal
         isOpen={showModal}
-        onClose={() => setShowModal(false)}
+        onClose={handleModalClose}
         brand={brand}
         onContinue={handleContinue}
       />

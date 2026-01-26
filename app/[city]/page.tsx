@@ -97,7 +97,7 @@ export default async function CityPage({ params }: CityPageProps) {
       {/* Hero Section - Professional Full-Width */}
       <section className="relative min-h-[80vh] flex items-center -mt-16 md:-mt-20 lg:-mt-24 pt-16 md:pt-20 lg:pt-24 pb-20 overflow-hidden">
         {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <Image
             src={getCityImagePath(citySlug)}
             alt={`${city.name}, Oregon aerial view`}
@@ -106,7 +106,6 @@ export default async function CityPage({ params }: CityPageProps) {
             priority
             sizes="100vw"
             quality={75}
-            style={{ objectFit: 'cover', overflow: 'hidden' }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/60 to-black/75" />
         </div>

@@ -74,6 +74,32 @@ export function generateSitemap(): SitemapEntry[] {
     })
   })
 
+  // Concrete service hub and subpages
+  entries.push({
+    url: `${siteUrl}/concrete`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.85,
+  })
+
+  const concreteSubpages = [
+    'coatings',
+    'repair',
+    'polishing',
+    'sealing',
+    'resurfacing',
+    'pressure-washing',
+  ]
+
+  concreteSubpages.forEach((subpage) => {
+    entries.push({
+      url: `${siteUrl}/concrete/${subpage}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    })
+  })
+
   // City landing pages (legacy format: eugene-or, albany-or, etc.)
   // These are important for local SEO
   primaryCities.forEach((city) => {

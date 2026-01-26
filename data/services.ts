@@ -432,6 +432,22 @@ export const services: Service[] = [
     image1: '/images/project-1.jpg',
     image2: '/images/project-4.jpg',
   },
+  {
+    slug: 'concrete',
+    name: 'Concrete Services',
+    shortDescription: 'Comprehensive concrete services including coatings, repair, polishing, sealing, resurfacing, and pressure washing.',
+    longDescription: 'Protect and enhance your concrete surfaces with our comprehensive concrete services. From garage floor coatings and repair to polishing, sealing, resurfacing, and pressure washing—we provide durable finishes built for Oregon weather.',
+    bullets: [
+      'Concrete coatings (epoxy & polyaspartic) for garages and shops',
+      'Crack repair, spalling fixes, and surface restoration',
+      'Polished concrete finishes for interior floors',
+      'Protective sealing for driveways and patios',
+      'Resurfacing overlays to restore worn slabs',
+      'Professional pressure washing and surface cleaning',
+    ],
+    featured: true,
+    icon: 'square',
+  },
 ]
 
 export function getServiceBySlug(slug: string): Service | undefined {

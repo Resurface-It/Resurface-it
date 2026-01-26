@@ -155,13 +155,51 @@ The estimate form handler is located at `app/api/estimate/route.ts`. Currently, 
    - Store estimate requests in your database
    - Replace the TODO section with database operations
 
+### Careers Page Integration
+
+The careers page (`/careers`) includes job listings and an application form that integrates with Zapier for receiving applications.
+
+#### Setup Instructions
+
+1. **UploadThing Setup** (for resume uploads):
+   - Sign up at [uploadthing.com](https://uploadthing.com)
+   - Create a new app
+   - Copy your `UPLOADTHING_SECRET` and `UPLOADTHING_APP_ID`
+   - Add them to your `.env.local` file
+
+2. **Zapier Webhook Setup**:
+   - Go to [Zapier](https://zapier.com) and create a new Zap
+   - Choose "Catch Hook" as the trigger
+   - Copy the webhook URL provided
+   - Add it to your `.env.local` as `ZAPIER_CAREERS_WEBHOOK_URL`
+   - Configure the Zap to send an email with the payload:
+     - Use "Email by Zapier" as the action
+     - Map the fields: `fullName`, `phone`, `email`, `position`, `city`, `yearsExperience`, `ccbNumber` (if applicable), `insuranceConfirmation` (if applicable), `message`, `resumeUrl`, `submittedAt`
+     - Include the `resumeUrl` as a clickable link in the email
+
+3. **Environment Variables**:
+   ```env
+   ZAPIER_CAREERS_WEBHOOK_URL=https://hooks.zapier.com/hooks/catch/...
+   UPLOADTHING_SECRET=sk_live_...
+   UPLOADTHING_APP_ID=...
+   ```
+
+The form includes:
+- Client and server-side validation
+- Honeypot spam protection
+- Rate limiting (3 submissions per hour per IP)
+- Resume upload (PDF, DOC, DOCX, max 10MB)
+- Conditional fields for subcontractor positions (CCB number, insurance)
+
 ### Environment Variables
 
 Create a `.env.local` file:
 
 ```env
 NEXT_PUBLIC_SITE_URL=https://resurface-it.com
-# Add other API keys and secrets as needed
+ZAPIER_CAREERS_WEBHOOK_URL=your-zapier-webhook-url
+UPLOADTHING_SECRET=your-uploadthing-secret
+UPLOADTHING_APP_ID=your-uploadthing-app-id
 ```
 
 ## Image Requirements

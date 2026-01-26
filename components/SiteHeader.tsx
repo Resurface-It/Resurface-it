@@ -3,18 +3,14 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
 import { Menu } from 'lucide-react'
 import { HousecallProButton } from './HousecallProButton'
 import { NavDropdown } from './NavDropdown'
+import { MobileNav } from './MobileNav'
 import { trackClickToCall } from '@/lib/analytics'
 import { primaryCities } from '@/data/cities'
 import { services } from '@/data/services'
 import { companyInfo } from '@/data/company'
-
-const MobileNav = dynamic(() => import('./MobileNav').then(mod => ({ default: mod.MobileNav })), {
-  ssr: false, // Only load when menu is opened
-})
 
 export function SiteHeader() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
@@ -33,7 +29,7 @@ export function SiteHeader() {
 
   // Services dropdown items
   const servicesDropdownItems = services.map(service => ({
-    href: `/services/${service.slug}`,
+    href: service.slug === 'concrete' ? '/concrete' : `/services/${service.slug}`,
     label: service.name,
     description: service.shortDescription,
   }))
@@ -75,6 +71,10 @@ export function SiteHeader() {
     {
       href: '/blog',
       label: 'Blog',
+    },
+    {
+      href: '/careers',
+      label: 'Careers',
     },
   ]
 

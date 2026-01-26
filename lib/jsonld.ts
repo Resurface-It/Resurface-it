@@ -376,3 +376,86 @@ export function generateArticleSchema(
   }
 }
 
+export interface JobPosting {
+  '@context': string
+  '@type': string
+  title: string
+  description: string
+  employmentType: string
+  hiringOrganization: {
+    '@type': string
+    name: string
+    sameAs?: string
+  }
+  jobLocation: {
+    '@type': string
+    address: {
+      '@type': string
+      addressLocality: string
+      addressRegion: string
+      addressCountry: string
+    }
+  }
+  datePosted?: string
+  validThrough?: string
+  qualifications?: string
+}
+
+export function generateJobPostingSchema(
+  title: string,
+  description: string,
+  location: string,
+  employmentType: 'COMMISSION_ONLY' | 'SUBCONTRACTOR',
+  requirements?: string[]
+): JobPosting {
+  const siteUrl = typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SITE_URL 
+    ? process.env.NEXT_PUBLIC_SITE_URL 
+    : 'https://resurface-it.com'
+
+  // Extract city and state from location string (e.g., "Eugene, OR" or "Eugene, Albany, Corvallis, Springfield, OR")
+  const locationParts = location.split(',').map(s => s.trim())
+  const state = locationParts[locationParts.length - 1] || 'OR'
+  const city = locationParts[0] || 'Eugene'
+
+  // Map employment types to schema.org values
+  const employmentTypeMap: Record<string, string> = {
+    'COMMISSION_ONLY': 'CONTRACTOR',
+    'SUBCONTRACTOR': 'CONTRACTOR',
+  }
+
+  // Build qualifications string if requirements exist
+  let qualifications: string | undefined
+  if (requirements && requirements.length > 0) {
+    qualifications = requirements.join('. ')
+    if (employmentType === 'SUBCONTRACTOR') {
+      qualifications += '. CCB number and active insurance required.'
+    }
+  } else if (employmentType === 'SUBCONTRACTOR') {
+    qualifications = 'CCB number and active insurance required.'
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'JobPosting',
+    title,
+    description,
+    employmentType: employmentTypeMap[employmentType] || 'CONTRACTOR',
+    hiringOrganization: {
+      '@type': 'Organization',
+      name: companyInfo.name,
+      sameAs: siteUrl,
+    },
+    jobLocation: {
+      '@type': 'Place',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: city,
+        addressRegion: state,
+        addressCountry: 'US',
+      },
+    },
+    datePosted: new Date().toISOString().split('T')[0],
+    ...(qualifications && { qualifications }),
+  }
+}
+
