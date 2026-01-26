@@ -1,7 +1,7 @@
 export interface FAQ {
   question: string
   answer: string
-  category: 'siding' | 'exterior-painting' | 'interior-painting' | 'roofing' | 'warranty' | 'scheduling' | 'city-specific'
+  category: 'siding' | 'exterior-painting' | 'interior-painting' | 'roofing' | 'warranty' | 'scheduling' | 'city-specific' | 'concrete'
 }
 
 export const faqs: FAQ[] = [
