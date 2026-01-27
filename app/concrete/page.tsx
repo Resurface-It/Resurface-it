@@ -192,13 +192,13 @@ export default function ConcreteHubPage() {
               <Link
                 key={service.slug}
                 href={`/concrete/${service.slug}`}
-                className="card h-full w-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg"
+                className="card flex h-full w-full flex-col items-start rounded-xl border border-slate-200 bg-white p-6 text-left shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg"
               >
                 <div className="mb-4 flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                     <Square className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-bold">{service.name}</h3>
+                  <h3 className="text-xl font-bold md:text-2xl">{service.name}</h3>
                 </div>
                 <p className="mb-6 text-slate-600">{service.description}</p>
                 <span className="inline-flex items-center text-sm font-semibold text-primary hover:text-primaryDark">

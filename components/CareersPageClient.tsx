@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Section } from '@/components/Section'
 import { SectionHeader } from '@/components/SectionHeader'
 import { JobCard } from '@/components/JobCard'
@@ -12,11 +12,31 @@ export function CareersPageClient() {
   const [selectedJob, setSelectedJob] = useState<string | null>(null)
   const [formType, setFormType] = useState<'territory-manager' | 'subcontractor' | null>(null)
 
+  // Ensure Zapier Interfaces web component script is loaded on the client
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const existingScript = document.querySelector<HTMLScriptElement>(
+      'script[data-zapier-interfaces="true"]'
+    )
+    if (existingScript) {
+      return
+    }
+
+    const script = document.createElement('script')
+    script.type = 'module'
+    script.src =
+      'https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'
+    script.dataset.zapierInterfaces = 'true'
+    document.head.appendChild(script)
+  }, [])
+
   const handleApplyClick = (jobId: string) => {
     const job = getJobById(jobId)
     if (job) {
       setSelectedJob(jobId)
-      // Determine form type based on employment type
       if (job.employmentType === 'COMMISSION_ONLY') {
         setFormType('territory-manager')
       } else if (job.employmentType === 'SUBCONTRACTOR') {
@@ -65,38 +85,48 @@ export function CareersPageClient() {
           setSelectedJob(null)
           setFormType(null)
         }}
-        title={selectedJob && getJobById(selectedJob) ? `Apply for ${getJobDisplayTitle(getJobById(selectedJob)!)}` : 'Apply Now'}
+        title={
+          // The embedded Zapier forms already include their own headings.
+          // To avoid layout conflicts on mobile, omit the modal title when showing Zapier forms.
+          formType === 'territory-manager' || formType === 'subcontractor'
+            ? undefined
+            : selectedJob && getJobById(selectedJob)
+              ? `Apply for ${getJobDisplayTitle(getJobById(selectedJob)!)}`
+              : 'Apply Now'
+        }
       >
-        <div className="flex w-full items-center justify-center">
+        <div className="w-full space-y-4">
           {formType === 'territory-manager' && (
-            <iframe
-              src="https://interfaces.zapier.com/embed/page/cmkvdar7600076izyvs1bq9dj?noBackground=false"
-              style={{
-                width: '100%',
-                maxWidth: '900px',
-                height: '500px',
-                border: 'none',
-                borderRadius: '8px',
-                margin: '0 auto',
-              }}
-              title="Territory Manager Application Form"
-              allow="clipboard-read; clipboard-write"
-            />
+            <div className="flex w-full justify-center">
+              {React.createElement('zapier-interfaces-page-embed', {
+                'page-id': 'cmkvdar7600076izyvs1bq9dj',
+                'test-id': 'cmkvdar7600076izyvs1bq9dj-zapier-interfaces-page-embed-iframe',
+                'no-background': 'false',
+                style: {
+                  width: '100%',
+                  maxWidth: '900px',
+                  // Taller, responsive height so the form is comfortably visible on mobile
+                  height: '80vh',
+                  maxHeight: '700px',
+                } as React.CSSProperties,
+              })}
+            </div>
           )}
+
           {formType === 'subcontractor' && (
-            <iframe
-              src="https://interfaces.zapier.com/embed/page/cmkvnzbvl004zbeu7l4kze6qa?noBackground=false&allowQueryParams=true"
-              style={{
-                width: '100%',
-                maxWidth: '900px',
-                height: '1200px',
-                border: 'none',
-                borderRadius: '8px',
-                margin: '0 auto',
-              }}
-              title="Subcontractor Application Form"
-              allow="clipboard-read; clipboard-write"
-            />
+            <div className="flex w-full justify-center">
+              {React.createElement('zapier-interfaces-page-embed', {
+                'page-id': 'cmkvnzbvl004zbeu7l4kze6qa',
+                'test-id': 'cmkvnzbvl004zbeu7l4kze6qa-zapier-interfaces-page-embed-iframe',
+                'no-background': 'false',
+                style: {
+                  width: '100%',
+                  maxWidth: '900px',
+                  height: '80vh',
+                  maxHeight: '700px',
+                } as React.CSSProperties,
+              })}
+            </div>
           )}
         </div>
       </Modal>
