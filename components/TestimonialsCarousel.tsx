@@ -35,6 +35,30 @@ export function TestimonialsCarousel() {
       </div>
 
       <div className="mt-6 flex items-center justify-center gap-4">
+        <style dangerouslySetInnerHTML={{__html: `
+          .testimonial-dot {
+            width: 5px !important;
+            height: 5px !important;
+            min-width: 0 !important;
+            min-height: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+          }
+          .testimonial-dot.active {
+            width: 6px !important;
+            height: 6px !important;
+          }
+          @media (min-width: 768px) {
+            .testimonial-dot {
+              width: 6px !important;
+              height: 6px !important;
+            }
+            .testimonial-dot.active {
+              width: 16px !important;
+              height: 16px !important;
+            }
+          }
+        `}} />
         <button
           onClick={prev}
           className="flex items-center justify-center min-w-[44px] min-h-[44px] rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-primary"
@@ -43,15 +67,13 @@ export function TestimonialsCarousel() {
           <ChevronLeft className="h-6 w-6" />
         </button>
 
-        <div className="flex gap-1.5 md:gap-2">
+        <div className="flex gap-1 md:gap-2">
           {fiveStarTestimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`flex items-center justify-center rounded-full transition-all ${
-                index === currentIndex 
-                  ? 'w-[4px] h-[4px] md:w-4 md:h-4 bg-primary' 
-                  : 'w-[2px] h-[2px] md:w-1.5 md:h-1.5 bg-slate-300'
+              className={`testimonial-dot rounded-full transition-all ${
+                index === currentIndex ? 'active bg-primary' : 'bg-slate-300'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />

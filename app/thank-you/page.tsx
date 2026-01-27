@@ -189,45 +189,45 @@ export default function ThankYouPage() {
             subtitle="Your trusted local experts for siding and painting"
             align="center"
           />
-          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+          <div className="mt-8 grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 md:p-6 text-center">
               <div className="mb-4 flex justify-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <Shield className="h-6 w-6 text-primary" />
+                <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-primary/10">
+                  <Shield className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                 </div>
               </div>
-              <h3 className="mb-2 font-semibold">Licensed & Insured</h3>
-              <p className="text-sm text-slate-600">{companyInfo.ccbLicense}</p>
+              <h3 className="mb-3 text-sm md:text-base font-semibold">Licensed & Insured</h3>
+              <p className="text-xs md:text-sm text-slate-600 leading-relaxed">{companyInfo.ccbLicense}</p>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 md:p-6 text-center">
               <div className="mb-4 flex justify-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <Award className="h-6 w-6 text-primary" />
+                <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-primary/10">
+                  <Award className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                 </div>
               </div>
-              <h3 className="mb-2 font-semibold">5-Year Warranty</h3>
-              <p className="text-sm text-slate-600">Workmanship guarantee</p>
+              <h3 className="mb-3 text-sm md:text-base font-semibold">5-Year Warranty</h3>
+              <p className="text-xs md:text-sm text-slate-600 leading-relaxed">Workmanship guarantee</p>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 md:p-6 text-center">
               <div className="mb-4 flex justify-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <CheckCircle className="h-6 w-6 text-primary" />
+                <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-primary/10">
+                  <CheckCircle className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                 </div>
               </div>
-              <h3 className="mb-2 font-semibold">Locally Owned</h3>
-              <p className="text-sm text-slate-600">Serving Oregon since day one</p>
+              <h3 className="mb-3 text-sm md:text-base font-semibold">Locally Owned</h3>
+              <p className="text-xs md:text-sm text-slate-600 leading-relaxed">Serving Oregon since day one</p>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 md:p-6 text-center">
               <div className="mb-4 flex justify-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <Award className="h-6 w-6 text-primary" />
+                <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-primary/10">
+                  <Award className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                 </div>
               </div>
-              <h3 className="mb-2 font-semibold">50+ Five-Star Reviews</h3>
-              <p className="text-sm text-slate-600">Trusted by homeowners</p>
+              <h3 className="mb-3 text-sm md:text-base font-semibold">50+ Five-Star Reviews</h3>
+              <p className="text-xs md:text-sm text-slate-600 leading-relaxed">Trusted by homeowners</p>
             </div>
           </div>
         </div>

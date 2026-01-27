@@ -184,7 +184,7 @@ export default function EugenePage() {
           subtitle="See our work transforming Eugene homes"
           align="center"
         />
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[1, 2, 3, 4, 5, 6, 7, 8].slice(0, 8).map((num) => (
             <div key={num} className="relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200">
               <Image

@@ -372,7 +372,7 @@ export default function HomePage() {
           subtitle="Locally owned and operated, we understand the unique needs of Oregon homeowners"
           align="center"
         />
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-4">
           {primaryCities
             .filter(city => city.slug !== 'junction-city' && city.slug !== 'veneta')
             .map((city) => {
@@ -386,11 +386,11 @@ export default function HomePage() {
               <Link
                 key={city.slug}
                 href={`/${city.slug}-or`}
-                className="rounded-xl border border-slate-200 bg-white p-6 text-center transition-shadow hover:shadow-lg"
+                className="rounded-xl border border-slate-200 bg-white p-5 md:p-6 text-center transition-shadow hover:shadow-lg"
               >
-                <h3 className="mb-2 text-xl font-semibold">{city.name}</h3>
-                <p className="mb-4 text-sm text-slate-600">{citySpecificBlurbs[city.slug] || city.blurb}</p>
-                <span className="text-sm font-semibold text-primary hover:text-primaryDark">
+                <h3 className="mb-3 text-lg md:text-xl font-semibold">{city.name}</h3>
+                <p className="mb-4 text-sm md:text-base text-slate-600 leading-relaxed">{citySpecificBlurbs[city.slug] || city.blurb}</p>
+                <span className="text-sm md:text-base font-semibold text-primary hover:text-primaryDark">
                   View {city.name} services →
                 </span>
               </Link>
