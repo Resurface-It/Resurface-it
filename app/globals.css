@@ -616,7 +616,7 @@
 
   /* Slower animation for main marquee banner */
   .animate-marquee-slow {
-    animation: marquee 60s linear infinite;
+    animation: marquee 120s linear infinite;
     /* Removed will-change: transform - causes continuous compositing layer updates */
     /* Removed perspective - unnecessary for 2D translation */
     /* Use simple transform for better performance */
@@ -714,8 +714,17 @@
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
-    
-    /* Allow horizontal scrolling for brand marquee on mobile */
+  }
+
+  /* Slower marquee on desktop for better readability */
+  @media (min-width: 769px) {
+    .animate-marquee-slow {
+      animation: marquee 120s linear infinite;
+    }
+  }
+
+  /* Allow horizontal scrolling for brand marquee on mobile */
+  @media (max-width: 768px) {
     .brand-marquee-scroll {
       overflow-x: auto !important;
       -webkit-overflow-scrolling: touch;

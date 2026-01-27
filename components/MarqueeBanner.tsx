@@ -12,94 +12,72 @@ const colorClasses = [
 
 export function MarqueeBanner() {
   // Create items: message (color 1), logo, message (color 2), logo, message (color 3), logo, repeat
+  // Increased to 25 iterations to ensure each content block is significantly wider than any viewport
+  // This prevents cut-off issues on the right side at all screen sizes
+  // Pattern matches That1painter.com - create content block, then duplicate the entire block
   const items: Array<{ type: 'message' | 'logo'; colorIndex?: number }> = []
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 25; i++) {
     items.push({ type: 'message', colorIndex: i % 3 })
     items.push({ type: 'logo' })
   }
 
-  // Duplicate items 2x for seamless infinite scrolling
-  // 2x with -50% animation creates perfect seamless loop
-  const duplicatedItems = [...items, ...items]
+  // Render a single content block
+  const renderContentBlock = (blockIndex: number) => (
+    <div key={`content-block-${blockIndex}`} className="flex items-center whitespace-nowrap shrink-0" style={{ minWidth: 'max-content' }}>
+      {items.map((item, index) => {
+        if (item.type === 'logo') {
+          return (
+            <div 
+              key={`logo-${blockIndex}-${index}`} 
+              className="mx-4 md:mx-8 flex shrink-0 items-center"
+            >
+              <Image
+                src="/Resurface-it.png"
+                alt="Resurface-it Logo"
+                width={180}
+                height={60}
+                className="h-10 md:h-14 w-auto"
+                loading="lazy"
+                quality={75}
+              />
+            </div>
+          )
+        }
+        return (
+          <div 
+            key={`message-${blockIndex}-${index}`} 
+            className="mx-4 md:mx-8 flex shrink-0 items-center whitespace-nowrap"
+          >
+            <span className={`text-base md:text-2xl lg:text-3xl font-extrabold ${colorClasses[item.colorIndex!]} whitespace-nowrap`}>
+              {message}
+            </span>
+          </div>
+        )
+      })}
+    </div>
+  )
 
   // For static fallback, show only 3 pairs (message + logo) to avoid wrapping
   const staticItems = items.slice(0, 6)
 
   return (
     <div 
-      className="overflow-hidden border-y-2 border-primary/20 bg-primary/15 py-3 md:py-4 relative"
+      className="border-y-2 border-primary/20 bg-primary/15 py-3 md:py-4 relative"
       aria-label="Company tagline marquee"
       style={{ minHeight: '3.5rem' }} // Explicit height to prevent CLS
     >
-      {/* Mobile: Simple horizontal scrolling - more reliable */}
-      <div className="md:hidden overflow-x-auto scrollbar-hide">
-        <div className="flex items-center gap-4 px-4 whitespace-nowrap" style={{ width: 'max-content' }}>
-          {items.slice(0, 4).map((item, index) => {
-            if (item.type === 'logo') {
-              return (
-                <div key={`mobile-logo-${index}`} className="flex shrink-0 items-center">
-                  <Image
-                    src="/Resurface-it.png"
-                    alt="Resurface-it Logo"
-                    width={180}
-                    height={60}
-                    className="h-10 w-auto"
-                    loading="lazy"
-                    quality={75}
-                  />
-                </div>
-              )
-            }
-            return (
-              <div key={`mobile-message-${index}`} className="flex shrink-0 items-center whitespace-nowrap">
-                <span className={`text-base font-extrabold ${colorClasses[item.colorIndex!]} whitespace-nowrap`}>
-                  {message}
-                </span>
-              </div>
-            )
-          })}
+      {/* Animated marquee - works on all screen sizes, hidden when user prefers reduced motion */}
+      {/* Pattern: 2 identical content blocks, animation moves -50% for seamless loop */}
+      {/* Content extends beyond viewport to prevent right-side cut-off */}
+      <div className="overflow-hidden marquee-animated w-full">
+        <div className="flex animate-marquee-slow whitespace-nowrap" style={{ width: 'max-content', flexShrink: 0 }}>
+          {renderContentBlock(0)}
+          {renderContentBlock(1)}
         </div>
       </div>
-
-      {/* Desktop: Animated marquee - hidden when user prefers reduced motion */}
-      <div className="hidden md:flex animate-marquee-slow whitespace-nowrap marquee-animated" style={{ width: 'max-content' }}>
-        {duplicatedItems.map((item, index) => {
-          const isDuplicate = index >= items.length
-          if (item.type === 'logo') {
-            return (
-              <div 
-                key={`logo-${index}`} 
-                className="mx-8 flex shrink-0 items-center"
-                aria-hidden={isDuplicate}
-              >
-                <Image
-                  src="/Resurface-it.png"
-                  alt={isDuplicate ? '' : "Resurface-it Logo"}
-                  width={180}
-                  height={60}
-                  className="h-14 w-auto"
-                  loading="lazy"
-                  quality={75}
-                />
-              </div>
-            )
-          }
-          return (
-            <div 
-              key={`message-${index}`} 
-              className="mx-8 flex shrink-0 items-center whitespace-nowrap"
-              aria-hidden={isDuplicate}
-            >
-              <span className={`text-2xl lg:text-3xl font-extrabold ${colorClasses[item.colorIndex!]} whitespace-nowrap`}>
-                {message}
-              </span>
-            </div>
-          )
-        })}
-      </div>
       
-      {/* Static fallback for users who prefer reduced motion - mobile only */}
-      <div className="flex md:hidden marquee-static overflow-x-auto">
+      {/* Static fallback for users who prefer reduced motion */}
+      <div className="flex marquee-static overflow-x-auto">
         <div className="flex items-center justify-center gap-4 px-4 whitespace-nowrap">
           {staticItems.slice(0, 4).map((item, index) => {
             if (item.type === 'logo') {
@@ -110,7 +88,7 @@ export function MarqueeBanner() {
                     alt="Resurface-it Logo"
                     width={180}
                     height={60}
-                    className="h-14 w-auto"
+                    className="h-10 md:h-14 w-auto"
                     loading="lazy"
                     quality={75}
                   />
@@ -119,7 +97,7 @@ export function MarqueeBanner() {
             }
             return (
               <div key={`static-message-${index}`} className="flex shrink-0 items-center whitespace-nowrap">
-                <span className={`text-2xl lg:text-3xl font-extrabold ${colorClasses[item.colorIndex!]} whitespace-nowrap`}>
+                <span className={`text-base md:text-2xl lg:text-3xl font-extrabold ${colorClasses[item.colorIndex!]} whitespace-nowrap`}>
                   {message}
                 </span>
               </div>
