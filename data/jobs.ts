@@ -38,6 +38,16 @@ export const jobListings: JobListing[] = [
     city: 'Albany',
   },
   {
+    id: 'territory-manager-springfield',
+    title: 'Territory Manager',
+    location: 'Springfield, OR',
+    description:
+      "Join our team as a Territory Manager in Springfield, OR. This commission-only position offers unlimited earning potential for motivated sales professionals. You'll be responsible for generating leads, meeting with homeowners, and closing deals for our premium siding, roofing, and painting services.",
+    employmentType: 'COMMISSION_ONLY',
+    requiresCCB: false,
+    city: 'Springfield',
+  },
+  {
     id: 'painters-subcontractor',
     title: 'Painters',
     location: 'Eugene, Albany, Corvallis, Springfield, OR',
