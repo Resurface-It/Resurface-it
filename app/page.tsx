@@ -76,8 +76,8 @@ export default function HomePage() {
       <section className="relative min-h-[80vh] flex items-center -mt-[7.5rem] md:-mt-[8.5rem] lg:-mt-[9.5rem] pt-[7.5rem] md:pt-[8.5rem] lg:pt-[9.5rem] pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/Landing_Page.png"
-            alt="Professional siding replacement and exterior house painting in Eugene Oregon"
+            src="/images/Untitled design.gif"
+            alt="Animated background showing Resurface-It services"
             fill
             className="object-cover w-full h-full"
             priority
