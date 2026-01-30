@@ -5,7 +5,7 @@ import { PrimaryButton } from './PrimaryButton'
 export function PrintWarrantyButton() {
   function handlePrintWarranty() {
     // Open the PDF in a new window
-    const pdfWindow = window.open('/images/Full Page Warranty Print Out.pdf', '_blank')
+    const pdfWindow = window.open('/images/Full Page Warranty Print Out (1).pdf', '_blank')
     
     // Wait for the PDF to load, then trigger print
     if (pdfWindow) {
