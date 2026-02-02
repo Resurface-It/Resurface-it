@@ -140,6 +140,16 @@
     /* Prevent the section from creating its own scroll context */
     max-width: 100vw !important;
   }
+
+  /* Hero background only: gradient overlay and image must not capture pointer so scroll wheel works when hovering over them */
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="inset-0"] > *,
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="z-0"] > * {
+    pointer-events: none !important;
+  }
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="inset-0"] img,
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="z-0"] img {
+    pointer-events: none !important;
+  }
   
   /* Ensure hero sections with negative margins don't cause scroll issues */
   section[class*="-mt-"] {
