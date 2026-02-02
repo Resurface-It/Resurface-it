@@ -151,7 +151,9 @@
 
   /* Hero background (image + overlay) must not capture pointer so scroll wheel works over the background */
   section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="inset-0"] > *,
-  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="z-0"] > * {
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="z-0"] > *,
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="inset-0"] img,
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="z-0"] img {
     pointer-events: none !important;
   }
   
