@@ -148,6 +148,12 @@
   section[class*="relative"][class*="overflow-hidden"] > div.relative.z-10 {
     pointer-events: auto;
   }
+
+  /* Hero background (image + overlay) must not capture pointer so scroll wheel works over the background */
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="inset-0"] > *,
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="z-0"] > * {
+    pointer-events: none !important;
+  }
   
   /* Ensure hero sections with negative margins don't cause scroll issues */
   section[class*="-mt-"] {
