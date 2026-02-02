@@ -130,11 +130,12 @@
   
   /* Ensure hero sections with background images don't create scroll contexts */
   section[class*="relative"][class*="overflow-hidden"] {
-    /* Ensure section itself doesn't create scroll context */
-    overflow: hidden !important;
+    /* Use overflow: clip (not hidden) so the section does NOT become a scroll container;
+       wheel events then propagate to the document and page scroll works when cursor is over hero. */
+    overflow: clip !important;
     overscroll-behavior: none !important;
-    /* Prevent nested scroll contexts */
-    contain: layout style paint;
+    /* No containment so document scroll works when cursor is over hero (overrides general section rule). */
+    contain: none !important;
     /* Ensure negative margins don't cause overflow issues */
     position: relative !important;
     /* Prevent the section from creating its own scroll context */
@@ -162,8 +163,8 @@
     /* Critical: Prevent the section from creating its own scroll context */
     /* The negative margin extends the section above viewport, but we must ensure it doesn't intercept scroll */
     position: relative !important;
-    /* Ensure section doesn't create scroll context even with negative margin */
-    contain: layout style paint;
+    /* No containment so document scroll works when cursor is over hero (overrides general section rule). */
+    contain: none !important;
     /* Prevent any scroll interception - critical fix for "hung up" scrolling */
     overscroll-behavior: none !important;
     overscroll-behavior-y: none !important;

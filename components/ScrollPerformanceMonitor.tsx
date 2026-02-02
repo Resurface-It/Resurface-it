@@ -14,11 +14,9 @@ export function ScrollPerformanceMonitor() {
     // CRITICAL FIX: Prevent background containers AND sections from creating scroll contexts when section extends above viewport
     const fixBackgroundContainerScrollContext = () => {
       const heroSections = document.querySelectorAll('section[class*="relative"][class*="overflow-hidden"]')
-      
       heroSections.forEach((section) => {
         const sectionEl = section as HTMLElement
         const sectionRect = sectionEl.getBoundingClientRect()
-        
         // CRITICAL: If section extends above viewport, prevent it from creating scroll context
         if (sectionRect.top < 0) {
           const extendAbove = Math.abs(sectionRect.top)

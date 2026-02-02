@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronDown } from 'lucide-react'
 import { HousecallProButton } from './HousecallProButton'
 import { services } from '@/data/services'
@@ -17,6 +16,17 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const [servicesOpen, setServicesOpen] = useState(false)
   const [areasOpen, setAreasOpen] = useState(false)
   const [moreOpen, setMoreOpen] = useState(false)
+  const [shouldRender, setShouldRender] = useState(false)
+
+  // Keep mounted during close so CSS exit transition can run
+  useEffect(() => {
+    if (isOpen) {
+      setShouldRender(true)
+    } else {
+      const t = setTimeout(() => setShouldRender(false), 300)
+      return () => clearTimeout(t)
+    }
+  }, [isOpen])
 
   useEffect(() => {
     let scrollY = 0
@@ -66,25 +76,19 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   }, [isOpen])
 
 
+  if (!shouldRender) return null
+
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-black/50"
-            onClick={onClose}
-          />
-          <motion.nav
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed right-0 top-0 z-50 h-full w-80 bg-white shadow-xl"
-          >
+    <>
+      <div
+        role="presentation"
+        aria-hidden="true"
+        className={`fixed inset-0 z-50 bg-black/50 transition-opacity duration-200 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        onClick={onClose}
+      />
+      <nav
+        className={`fixed right-0 top-0 z-50 h-full w-80 bg-white shadow-xl transition-transform duration-300 ease-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      >
             <div className="flex h-20 items-center justify-between border-b border-slate-200 px-6">
               <span className="text-xl font-bold text-slate-900">Menu</span>
               <button
@@ -259,9 +263,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 <HousecallProButton className="w-full" onClick={onClose}>Free Estimate</HousecallProButton>
               </div>
             </div>
-          </motion.nav>
-        </>
-      )}
-    </AnimatePresence>
+      </nav>
+    </>
   )
 }
