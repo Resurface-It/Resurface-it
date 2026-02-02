@@ -139,6 +139,14 @@
     position: relative !important;
     /* Prevent the section from creating its own scroll context */
     max-width: 100vw !important;
+    /* Let wheel events pass through to document so mouse scroll wheel works on desktop */
+    pointer-events: none;
+  }
+
+  /* Re-enable pointer events on hero content so CTAs and links remain clickable */
+  section[class*="relative"][class*="overflow-hidden"] > .container,
+  section[class*="relative"][class*="overflow-hidden"] > div.relative.z-10 {
+    pointer-events: auto;
   }
   
   /* Ensure hero sections with negative margins don't cause scroll issues */
