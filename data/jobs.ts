@@ -14,7 +14,7 @@ export const jobListings: JobListing[] = [
     id: 'territory-manager-eugene',
     title: 'Territory Manager',
     location: 'Eugene, OR',
-    description: 'Join our team as a Territory Manager in Eugene, OR. This commission-only position offers unlimited earning potential for motivated sales professionals. You\'ll be responsible for generating leads, meeting with homeowners, and closing deals for our premium siding, roofing, and painting services.',
+    description: 'Join our team as a Territory Manager in Eugene, OR. This position pays $18–20/hour plus commission for motivated sales professionals. You\'ll be responsible for generating leads, meeting with homeowners, and closing deals for our premium siding, roofing, and painting services.',
     employmentType: 'COMMISSION_ONLY',
     requiresCCB: false,
     city: 'Eugene',
@@ -23,7 +23,7 @@ export const jobListings: JobListing[] = [
     id: 'territory-manager-corvallis',
     title: 'Territory Manager',
     location: 'Corvallis, OR',
-    description: 'Join our team as a Territory Manager in Corvallis, OR. This commission-only position offers unlimited earning potential for motivated sales professionals. You\'ll be responsible for generating leads, meeting with homeowners, and closing deals for our premium siding, roofing, and painting services.',
+    description: 'Join our team as a Territory Manager in Corvallis, OR. This position pays $18–20/hour plus commission for motivated sales professionals. You\'ll be responsible for generating leads, meeting with homeowners, and closing deals for our premium siding, roofing, and painting services.',
     employmentType: 'COMMISSION_ONLY',
     requiresCCB: false,
     city: 'Corvallis',
@@ -32,7 +32,7 @@ export const jobListings: JobListing[] = [
     id: 'territory-manager-albany',
     title: 'Territory Manager',
     location: 'Albany, OR',
-    description: 'Join our team as a Territory Manager in Albany, OR. This commission-only position offers unlimited earning potential for motivated sales professionals. You\'ll be responsible for generating leads, meeting with homeowners, and closing deals for our premium siding, roofing, and painting services.',
+    description: 'Join our team as a Territory Manager in Albany, OR. This position pays $18–20/hour plus commission for motivated sales professionals. You\'ll be responsible for generating leads, meeting with homeowners, and closing deals for our premium siding, roofing, and painting services.',
     employmentType: 'COMMISSION_ONLY',
     requiresCCB: false,
     city: 'Albany',
@@ -42,7 +42,7 @@ export const jobListings: JobListing[] = [
     title: 'Territory Manager',
     location: 'Springfield, OR',
     description:
-      "Join our team as a Territory Manager in Springfield, OR. This commission-only position offers unlimited earning potential for motivated sales professionals. You'll be responsible for generating leads, meeting with homeowners, and closing deals for our premium siding, roofing, and painting services.",
+      "Join our team as a Territory Manager in Springfield, OR. This position pays $18–20/hour plus commission for motivated sales professionals. You'll be responsible for generating leads, meeting with homeowners, and closing deals for our premium siding, roofing, and painting services.",
     employmentType: 'COMMISSION_ONLY',
     requiresCCB: false,
     city: 'Springfield',
@@ -100,7 +100,7 @@ export function getJobById(id: string): JobListing | undefined {
  */
 export function getJobDisplayTitle(job: JobListing): string {
   if (job.employmentType === 'COMMISSION_ONLY' && job.city) {
-    return `${job.title} — ${job.city}, OR (Commission-Only to Start)`
+    return `${job.title} — ${job.city}, OR ($18–20/hr + commission)`
   }
   return job.title
 }

@@ -5,7 +5,7 @@ import { CareersPageClient } from '@/components/CareersPageClient'
 
 export const metadata = generateMetadata({
   title: 'Careers',
-  description: 'Join the Resurface-It team! We\'re hiring Territory Managers and experienced subcontractors (painters, roofers, siding contractors) in Eugene, Albany, Corvallis, and Springfield, OR. Apply today!',
+  description: 'Join the Resurface-It team! We\'re hiring Territory Managers ($18–20/hr + commission) and experienced subcontractors (painters, roofers, siding contractors) in Eugene, Albany, Corvallis, and Springfield, OR. Apply today!',
   path: '/careers',
 })
 
