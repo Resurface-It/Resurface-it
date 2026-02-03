@@ -91,10 +91,10 @@ export default function HomePage() {
         <div className="container relative z-10">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-              Premium Siding Replacement & Painting in Eugene, Albany, Corvallis & Springfield, OR
+              Residential & Commercial Painting and Siding Experts Serving the Willamette Valley
             </h1>
             <p className="mb-4 text-xl text-white/95 md:text-2xl">
-              Protect your Oregon home from rain, moisture, and UV damage with our expert siding replacement and house painting services. We combine both services for long-lasting results, backed by a 5-year workmanship warranty and local ownership you can trust.
+              Locally Owned. Expertly Built. Designed for Oregon&apos;s Climate.
             </p>
             <div className="mb-8">
               <PhoneLink 
