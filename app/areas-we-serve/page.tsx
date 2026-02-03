@@ -30,9 +30,12 @@ export default function AreasWeServePage() {
         </p>
       </div>
 
-      <CitiesGrid 
-        cities={primaryCities.filter(city => city.slug !== 'junction-city' && city.slug !== 'veneta')} 
-        surroundingCities={surroundingCities} 
+      <CitiesGrid
+        cities={primaryCities.filter(
+          (city) => city.slug !== 'junction-city' && city.slug !== 'veneta'
+        )}
+        surroundingCities={surroundingCities}
+        groupByRegion
       />
 
       <div className="mt-12 bg-primary/5 rounded-2xl p-8">

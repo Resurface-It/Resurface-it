@@ -50,7 +50,7 @@ export default function HomePage() {
     },
     {
       question: 'Which areas do you serve in the Willamette Valley?',
-      answer: 'We serve Eugene, Albany, Corvallis, Springfield, and surrounding communities including Lebanon, Philomath, Junction City, Creswell, Coburg, Tangent, Monroe, Adair Village, Harrisburg, and Millersburg. As a locally owned company based in Eugene, we understand the unique needs of Willamette Valley homeowners.',
+      answer: 'We serve Eugene, Albany, Corvallis, Springfield, and surrounding communities throughout Lane, Linn, and Benton counties. See our Areas We Serve page for the full list of communities. As a locally owned company based in Eugene, we understand the unique needs of Willamette Valley homeowners.',
       category: 'scheduling' as const,
     },
   ]

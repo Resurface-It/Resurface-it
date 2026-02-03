@@ -208,7 +208,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: 'What areas do you serve?',
-    answer: 'We serve Eugene, Albany, Corvallis, Springfield, and surrounding communities including Lebanon, Philomath, Junction City, Creswell, and more.',
+    answer: 'We serve Eugene, Albany, Corvallis, Springfield, and surrounding communities throughout Lane, Linn, and Benton counties. See our Areas We Serve page for the full list of communities.',
     category: 'scheduling',
   },
   {

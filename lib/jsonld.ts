@@ -1,4 +1,5 @@
 import { companyInfo } from '@/data/company'
+import { getCityNames } from '@/data/cities'
 
 export interface LocalBusiness {
   '@context': string
@@ -84,22 +85,7 @@ export function generateLocalBusinessSchema(): LocalBusiness {
       latitude: '44.0521',
       longitude: '-123.0868',
     },
-    areaServed: [
-      'Eugene, OR',
-      'Albany, OR',
-      'Corvallis, OR',
-      'Springfield, OR',
-      'Lebanon, OR',
-      'Philomath, OR',
-      'Junction City, OR',
-      'Creswell, OR',
-      'Tangent, OR',
-      'Monroe, OR',
-      'Adair Village, OR',
-      'Harrisburg, OR',
-      'Coburg, OR',
-      'Millersburg, OR',
-    ],
+    areaServed: getCityNames().map((name) => `${name}, OR`),
     serviceType: [
       'Roofing',
       'Siding Replacement',

@@ -87,17 +87,41 @@ export const primaryCities: City[] = [
   },
 ]
 
-export const surroundingCities: string[] = [
-  'Lebanon',
-  'Philomath',
-  'Creswell',
-  'Tangent',
-  'Monroe',
-  'Adair Village',
-  'Harrisburg',
-  'Coburg',
-  'Millersburg',
-]
+/** Canonical list of all communities we serve, by region. */
+export const serviceAreasByRegion = {
+  laneCounty: [
+    'Coburg',
+    'Creswell',
+    'Junction City',
+    'Veneta',
+    'Cottage Grove',
+    'Lowell',
+    'Pleasant Hill',
+    'Cheshire',
+    'Elmira',
+    'Blue River',
+    'Oakridge',
+  ],
+  linnCounty: [
+    'Lebanon',
+    'Tangent',
+    'Jefferson',
+    'Shedd',
+    'Scio',
+    'Halsey',
+    'Brownsville',
+    'Sodaville',
+  ],
+  bentonCounty: ['Philomath', 'Monroe', 'Adair Village', 'Peoria'],
+  nearby: ['Harrisburg', 'Dallas', 'Sweet Home'],
+} as const
+
+function flattenServiceAreas(): string[] {
+  const { laneCounty, linnCounty, bentonCounty, nearby } = serviceAreasByRegion
+  return [...laneCounty, ...linnCounty, ...bentonCounty, ...nearby]
+}
+
+export const surroundingCities: string[] = flattenServiceAreas()
 
 export function getCityBySlug(slug: string): City | undefined {
   return primaryCities.find((city) => city.slug === slug)

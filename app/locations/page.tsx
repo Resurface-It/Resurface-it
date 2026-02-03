@@ -3,7 +3,7 @@ import { SectionHeader } from '@/components/SectionHeader'
 import { HousecallProButton } from '@/components/HousecallProButton'
 import { generateMetadata as genMeta } from '@/lib/seo'
 import { generateBreadcrumbSchema } from '@/lib/jsonld'
-import { primaryCities, surroundingCities } from '@/data/cities'
+import { primaryCities, serviceAreasByRegion } from '@/data/cities'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { MapPin } from 'lucide-react'
@@ -131,18 +131,70 @@ export default function LocationsHubPage() {
       <Section className="bg-white">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-6 text-center text-3xl">Also Serving These Communities</h2>
-          <p className="mb-6 text-center text-lg text-slate-600">
+          <p className="mb-8 text-center text-lg text-slate-600">
             We also provide services to homeowners in these surrounding areas:
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {surroundingCities.map((city) => (
-              <span
-                key={city}
-                className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700"
-              >
-                {city}
-              </span>
-            ))}
+          <div className="space-y-8">
+            <div>
+              <h3 className="mb-3 text-lg font-semibold text-slate-800">
+                Lane County / Eugene–Springfield Area
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {serviceAreasByRegion.laneCounty.map((city) => (
+                  <span
+                    key={city}
+                    className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700"
+                  >
+                    {city}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="mb-3 text-lg font-semibold text-slate-800">
+                Linn County / Albany Area
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {serviceAreasByRegion.linnCounty.map((city) => (
+                  <span
+                    key={city}
+                    className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700"
+                  >
+                    {city}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="mb-3 text-lg font-semibold text-slate-800">
+                Benton County / Corvallis Area
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {serviceAreasByRegion.bentonCounty.map((city) => (
+                  <span
+                    key={city}
+                    className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700"
+                  >
+                    {city}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="mb-3 text-lg font-semibold text-slate-800">
+                Nearby (Commonly Served / Short Drive)
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {serviceAreasByRegion.nearby.map((city) => (
+                  <span
+                    key={city}
+                    className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700"
+                  >
+                    {city}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </Section>

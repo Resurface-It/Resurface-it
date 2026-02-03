@@ -5,6 +5,7 @@ import { PillBadge } from './PillBadge'
 import { PhoneLink } from './PhoneLink'
 import { HousecallProButton } from './HousecallProButton'
 import { companyInfo } from '@/data/company'
+import { primaryCities, surroundingCities } from '@/data/cities'
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear()
@@ -196,28 +197,21 @@ export function SiteFooter() {
             </ul>
             <div className="mt-6">
               <h4 className="mb-3 text-sm font-semibold text-slate-900">Service Areas</h4>
-              <ul className="space-y-1 text-xs text-slate-600">
-                <li>
-                  <Link href="/eugene-or" className="hover:text-primary">
-                    Eugene, OR
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/albany-or" className="hover:text-primary">
-                    Albany, OR
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/corvallis-or" className="hover:text-primary">
-                    Corvallis, OR
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/springfield-or" className="hover:text-primary">
-                    Springfield, OR
-                  </Link>
-                </li>
+              <ul className="mb-2 space-y-1 text-xs text-slate-600">
+                {primaryCities
+                  .filter((c) => ['eugene', 'albany', 'corvallis', 'springfield'].includes(c.slug))
+                  .map((city) => (
+                    <li key={city.slug}>
+                      <Link href={`/${city.slug}-or`} className="hover:text-primary">
+                        {city.name}, OR
+                      </Link>
+                    </li>
+                  ))}
               </ul>
+              <p className="mb-1.5 text-xs font-medium text-slate-500">Also serving:</p>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                {surroundingCities.join(', ')}
+              </p>
             </div>
           </div>
 
