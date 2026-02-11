@@ -50,6 +50,12 @@ const brands = [
     alt: 'PPG Paints',
     url: 'https://www.ppgpaints.com',
   },
+  {
+    name: 'CTI',
+    logo: '/images/brands/CTI_Color Logo.png',
+    alt: 'Concrete Technology Industries',
+    url: 'https://designcti.com',
+  },
 ]
 
 export function BrandLogosMarquee() {

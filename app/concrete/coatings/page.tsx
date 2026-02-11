@@ -6,6 +6,7 @@ import { generateMetadata as genMeta } from '@/lib/seo'
 import { generateServiceSchema, generateFAQPageSchema, generateBreadcrumbSchema } from '@/lib/jsonld'
 import { companyInfo } from '@/data/company'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { CheckCircle, Square } from 'lucide-react'
 
@@ -112,6 +113,29 @@ export default function ConcreteCoatingsPage() {
           </div>
         </div>
       </section>
+
+      <Section className="bg-white">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="mb-2 text-center text-2xl text-slate-700">Trusted Coating Systems</h2>
+          <p className="mb-6 text-slate-600">We use professional-grade concrete coating systems from industry-leading partners.</p>
+          <a
+            href="https://designcti.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center transition-transform hover:scale-105"
+            aria-label="Visit Concrete Technology Industries website"
+          >
+            <Image
+              src="/images/brands/CTI_Color Logo.png"
+              alt="Concrete Technology Industries"
+              width={220}
+              height={80}
+              className="h-12 w-auto max-w-[200px] object-contain md:h-16 md:max-w-[240px]"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </Section>
 
       <Section>
         <div className="mx-auto max-w-4xl">
