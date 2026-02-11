@@ -128,30 +128,23 @@
     pointer-events: auto;
   }
   
-  /* Ensure hero sections with background images don't create scroll contexts */
+  /* Ensure hero sections with background images don't create scroll contexts
+     without interfering with normal page scrolling. We keep overflow clipping
+     purely for visuals and avoid overscroll/contain tweaks that can trap scroll. */
   section[class*="relative"][class*="overflow-hidden"] {
-    /* Ensure section itself doesn't create scroll context */
     overflow: hidden !important;
-    overscroll-behavior: none !important;
-    /* Use layout/style only - avoid contain: paint so document scroll works when cursor is over hero */
-    contain: layout style;
-    /* Ensure negative margins don't cause overflow issues */
     position: relative !important;
-    /* Prevent the section from creating its own scroll context */
     max-width: 100vw !important;
   }
 
-  /* Hero background wrapper and all descendants must not capture pointer so scroll wheel works when hovering over the section */
+  /* Hero background and all descendants must not capture pointer so wheel events
+     pass through and the document scrolls when the cursor is over the hero. */
   section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="inset-0"],
   section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="z-0"] {
     pointer-events: none !important;
   }
-  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="inset-0"] > *,
-  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="z-0"] > * {
-    pointer-events: none !important;
-  }
-  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="inset-0"] img,
-  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="z-0"] img {
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="inset-0"] *,
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="z-0"] * {
     pointer-events: none !important;
   }
   
@@ -163,26 +156,9 @@
     /* Only allow negative top margin, prevent horizontal issues */
     width: 100% !important;
     max-width: 100vw !important;
-    /* Critical: Prevent the section from creating its own scroll context */
-    /* The negative margin extends the section above viewport, but we must ensure it doesn't intercept scroll */
+    /* Only basic positioning tweaks here; avoid scroll/contain modifiers that can
+       accidentally trap page scrolling when the cursor is over these sections. */
     position: relative !important;
-    /* Use layout/style only - avoid contain: paint so document scroll works when cursor is over hero */
-    contain: layout style;
-    /* Prevent any scroll interception - critical fix for "hung up" scrolling */
-    overscroll-behavior: none !important;
-    overscroll-behavior-y: none !important;
-    overscroll-behavior-x: none !important;
-    /* CRITICAL FIX: Keep overflow-hidden but ensure it doesn't create scroll context */
-    /* overflow-hidden is needed for the design, but we must prevent scroll interception */
-    /* The key is that overflow-hidden on the section should clip content, not create scroll context */
-    /* Don't override overflow-hidden - it's needed for the design */
-    /* Instead, ensure the section itself cannot be scrolled */
-    scroll-snap-type: none !important;
-    scroll-snap-align: none !important;
-    /* Prevent touch-action from creating scroll contexts */
-    touch-action: pan-y pan-x !important;
-    /* Ensure the section's scrollHeight equals clientHeight to prevent scroll context */
-    /* This is handled by ensuring children don't overflow */
   }
   
   /* Ensure Next.js Image components with fill don't create scroll contexts */

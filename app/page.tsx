@@ -87,7 +87,7 @@ export default function HomePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/30" />
         </div>
-        
+
         <div className="container relative z-10">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
@@ -97,7 +97,7 @@ export default function HomePage() {
               Locally Owned. Expertly Built. Designed for Oregon&apos;s Climate.
             </p>
             <div className="mb-8">
-              <PhoneLink 
+              <PhoneLink
                 phone={companyInfo.phone}
                 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white hover:text-primary/90 transition-colors"
               >
@@ -105,10 +105,7 @@ export default function HomePage() {
               </PhoneLink>
             </div>
             <div className="mb-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-              <HousecallProButton
-                variant="large"
-                className="shadow-xl rounded-full"
-              >
+              <HousecallProButton variant="large" className="shadow-xl rounded-full">
                 Get Free Estimate
               </HousecallProButton>
               <Link href="/gallery">

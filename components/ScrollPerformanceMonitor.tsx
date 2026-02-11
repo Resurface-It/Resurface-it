@@ -11,26 +11,26 @@ export function ScrollPerformanceMonitor() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    // CRITICAL FIX: Prevent background containers AND sections from creating scroll contexts when section extends above viewport
+    // Prevent background containers from creating scroll contexts when section extends above viewport.
+    // Skip hero-style sections (overflow-hidden) so we never apply inline styles that block document scroll.
     const fixBackgroundContainerScrollContext = () => {
-      const heroSections = document.querySelectorAll('section[class*="relative"][class*="overflow-hidden"]')
-      heroSections.forEach((section) => {
+      const sections = document.querySelectorAll('section[class*="relative"] > div[class*="absolute"][class*="inset-0"]')
+      const parentSections = new Set<Element>()
+      sections.forEach((el) => {
+        const section = el.closest('section')
+        if (section) parentSections.add(section)
+      })
+      parentSections.forEach((section) => {
+        if (section.classList.contains('overflow-hidden')) return // skip hero sections
         const sectionEl = section as HTMLElement
         const sectionRect = sectionEl.getBoundingClientRect()
         // CRITICAL: If section extends above viewport, prevent it from creating scroll context
         if (sectionRect.top < 0) {
           const extendAbove = Math.abs(sectionRect.top)
-          
-          // Prevent the section itself from creating a scroll context
-          // Use clip-path on the section to clip the part that extends above viewport
-          // This prevents the browser from trying to scroll within the extended area
+          // Clip the section visually so content above viewport is not painted; do NOT set
+          // overscroll-behavior or touch-action here—that blocks document scroll when the
+          // cursor is over the hero and causes "scroll works then stops after a second".
           sectionEl.style.setProperty('clip-path', `inset(${extendAbove}px 0 0 0)`, 'important')
-          // Ensure section can't be scrolled
-          sectionEl.style.setProperty('overscroll-behavior', 'none', 'important')
-          sectionEl.style.setProperty('overscroll-behavior-y', 'none', 'important')
-          sectionEl.style.setProperty('overscroll-behavior-x', 'none', 'important')
-          // Prevent touch scrolling on the section
-          sectionEl.style.setProperty('touch-action', 'pan-y pan-x', 'important')
         } else {
           // Reset when section doesn't extend above
           sectionEl.style.removeProperty('clip-path')
