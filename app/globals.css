@@ -133,15 +133,19 @@
     /* Ensure section itself doesn't create scroll context */
     overflow: hidden !important;
     overscroll-behavior: none !important;
-    /* Prevent nested scroll contexts */
-    contain: layout style paint;
+    /* Use layout/style only - avoid contain: paint so document scroll works when cursor is over hero */
+    contain: layout style;
     /* Ensure negative margins don't cause overflow issues */
     position: relative !important;
     /* Prevent the section from creating its own scroll context */
     max-width: 100vw !important;
   }
 
-  /* Hero background only: gradient overlay and image must not capture pointer so scroll wheel works when hovering over them */
+  /* Hero background wrapper and all descendants must not capture pointer so scroll wheel works when hovering over the section */
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="inset-0"],
+  section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="z-0"] {
+    pointer-events: none !important;
+  }
   section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="inset-0"] > *,
   section[class*="relative"][class*="overflow-hidden"] > div[class*="absolute"][class*="z-0"] > * {
     pointer-events: none !important;
@@ -162,8 +166,8 @@
     /* Critical: Prevent the section from creating its own scroll context */
     /* The negative margin extends the section above viewport, but we must ensure it doesn't intercept scroll */
     position: relative !important;
-    /* Ensure section doesn't create scroll context even with negative margin */
-    contain: layout style paint;
+    /* Use layout/style only - avoid contain: paint so document scroll works when cursor is over hero */
+    contain: layout style;
     /* Prevent any scroll interception - critical fix for "hung up" scrolling */
     overscroll-behavior: none !important;
     overscroll-behavior-y: none !important;
