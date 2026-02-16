@@ -10,7 +10,7 @@ import type { Metadata } from 'next'
 import { CheckCircle } from 'lucide-react'
 
 export const metadata: Metadata = genMeta({
-  title: 'Exterior & Interior House Painters in Eugene, Albany, Corvallis & Springfield OR',
+  title: 'House Painters | Eugene, Albany, Corvallis, Springfield OR',
   description:
     'Expert exterior house painters and interior painting services for Eugene, Albany, Corvallis & Springfield, OR. Premium paints for Oregon weather, proper prep, cabinet refinishing, and 5-year warranty.',
   path: '/services/painting',

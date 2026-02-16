@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     title: post.title,
     description: post.description,
     path: `/blog/${slug}`,
+    ...(post.image && { image: post.image }),
   })
 }
 
@@ -42,7 +43,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const articleSchema = generateArticleSchema(
     post.title,
     post.description,
-    post.date
+    post.date,
+    post.image
   )
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },

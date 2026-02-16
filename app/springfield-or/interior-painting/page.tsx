@@ -11,7 +11,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = genMeta({
   title: 'Interior Painting in Springfield, OR',
   description: 'Professional interior painting in Springfield, OR. All rooms, low-VOC options, color consultation. Sherwin-Williams & Benjamin Moore paints. Expert prep, furniture protection, cleanup. Free estimates.',
-  path: '/springfield-or/interior-painting',
+  path: '/locations/springfield-or',
 })
 
 const springfieldInteriorFAQs = [
@@ -38,8 +38,8 @@ export default function SpringfieldInteriorPaintingPage() {
   const faqSchema = generateFAQPageSchema(springfieldInteriorFAQs)
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Springfield, OR', url: '/springfield-or' },
-    { name: 'Interior Painting', url: '/springfield-or/interior-painting' },
+    { name: 'Springfield, OR', url: '/locations/springfield-or' },
+    { name: 'Interior Painting', url: '/services/interior-painting' },
   ])
 
   return (
@@ -199,7 +199,7 @@ export default function SpringfieldInteriorPaintingPage() {
             Get Free Estimate
           </HousecallProButton>
           <p className="mt-6 text-sm text-white/80">
-            <Link href="/springfield-or" className="underline hover:text-white">
+            <Link href="/locations/springfield-or" className="underline hover:text-white">
               ← Back to Springfield services
             </Link>
             {' • '}

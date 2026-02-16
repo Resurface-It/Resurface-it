@@ -38,8 +38,8 @@ export default function EugeneDeckStainingPage() {
   const faqSchema = generateFAQPageSchema(deckFAQs)
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Eugene, OR', url: '/eugene-or' },
-    { name: 'Deck & Fence Staining', url: '/eugene-or/deck-and-fence-staining' },
+    { name: 'Eugene, OR', url: '/locations/eugene-or' },
+    { name: 'Deck & Fence Staining', url: '/services/deck-staining' },
   ])
 
   return (
@@ -199,7 +199,7 @@ export default function EugeneDeckStainingPage() {
             Get Free Estimate
           </HousecallProButton>
           <p className="mt-6 text-sm text-white/80">
-            <Link href="/eugene-or" className="underline hover:text-white">
+            <Link href="/locations/eugene-or" className="underline hover:text-white">
               ← Back to Eugene services
             </Link>
             {' • '}

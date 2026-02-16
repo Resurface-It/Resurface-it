@@ -9,7 +9,7 @@ import type { Metadata } from 'next'
 import { MapPin } from 'lucide-react'
 
 export const metadata: Metadata = genMeta({
-  title: 'Service Areas: Eugene, Albany, Corvallis, Springfield & Surrounding Oregon Areas',
+  title: 'Service Areas | Eugene, Albany, Corvallis, Springfield OR',
   description: 'Serving Eugene, Albany, Corvallis, Springfield, and surrounding Willamette Valley communities. Local siding, roofing, and painting services. Free estimates.',
   path: '/locations',
 })
@@ -37,7 +37,15 @@ export default function LocationsHubPage() {
               Resurface-It, Inc proudly serves homeowners throughout the Willamette Valley with premium siding, roofing, and painting services.
             </p>
             <p className="mb-8 text-lg text-slate-600">
-              As a locally owned company based in Eugene, we understand the unique needs of Oregon homes and provide expert solutions tailored to our climate.
+              As a locally owned company based in Eugene, we understand the unique needs of Oregon homes and provide expert solutions tailored to our climate—from{' '}
+              <Link href="/siding-contractor-willamette-valley" className="font-semibold text-primary hover:underline">
+                siding contractors
+              </Link>
+              {' '}to{' '}
+              <Link href="/painters-willamette-valley" className="font-semibold text-primary hover:underline">
+                local painters
+              </Link>
+              {' '}serving the Willamette Valley.
             </p>
             <HousecallProButton variant="large">Get Free Estimate</HousecallProButton>
           </div>

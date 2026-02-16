@@ -29,6 +29,8 @@ export function generateSitemap(): SitemapEntry[] {
     { path: '/services', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/services/siding', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/services/painting', priority: 0.9, changeFrequency: 'monthly' as const },
+    { path: '/painters-willamette-valley', priority: 0.9, changeFrequency: 'monthly' as const },
+    { path: '/siding-contractor-willamette-valley', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/locations', priority: 0.9, changeFrequency: 'monthly' as const },
     { path: '/resources', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/areas-we-serve', priority: 0.9, changeFrequency: 'monthly' as const },
@@ -100,38 +102,13 @@ export function generateSitemap(): SitemapEntry[] {
     })
   })
 
-  // City landing pages (legacy format: eugene-or, albany-or, etc.)
-  // These are important for local SEO
-  primaryCities.forEach((city) => {
-    entries.push({
-      url: `${siteUrl}/${city.slug}-or`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    })
-  })
-
-  // Location pages (new format: /locations/[city])
-  // These are the canonical city pages
+  // Canonical city pages: /locations/[city]-or only. Legacy /eugene-or and /eugene redirect via middleware.
   primaryCities.forEach((city) => {
     entries.push({
       url: `${siteUrl}/locations/${city.slug}-or`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.85,
-    })
-  })
-
-  // City/Service combination pages
-  // These are important for local service SEO (e.g., "interior painting in Eugene")
-  primaryCities.forEach((city) => {
-    city.highlightedServices.forEach((serviceSlug) => {
-      entries.push({
-        url: `${siteUrl}/${city.slug}/${serviceSlug}`,
-        lastModified: now,
-        changeFrequency: 'monthly',
-        priority: 0.7,
-      })
     })
   })
 

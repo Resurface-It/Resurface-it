@@ -3,6 +3,14 @@
 
 ---
 
+## Implementation notes (canonical, assets, schema)
+
+- **Canonical city URLs:** Use `/locations/[city]-or` (e.g. `/locations/eugene-or`) for all city pages. Legacy URLs (`/eugene-or`, `/eugene`, `/eugene-or/interior-painting`) redirect 301 via middleware. Sitemap lists only canonical city URLs. Internal links (footer, nav, content) use `/locations/` URLs.
+- **OG image:** A 1200×630px image at `public/og-image.jpg` is required for Open Graph and Twitter cards. See `docs/IMAGE-AUDIT.md`. `lib/seo.ts` builds absolute image URLs for metadata.
+- **Review/rating schema:** Aggregate rating and review count for Organization and LocalBusiness come from `data/company.ts` (with optional env override: `NEXT_PUBLIC_GOOGLE_RATING`, `NEXT_PUBLIC_GOOGLE_REVIEW_COUNT`). Individual Review schema is generated from testimonials on the homepage via `generateIndividualReviewSchemas` in `lib/jsonld.ts`. Add optional `facebookUrl` and `yelpUrl` in `company.ts` for `sameAs` in schema.
+
+---
+
 ## 🎯 Executive Summary
 
 Your website has a **strong foundation** with good technical SEO basics, but there are **critical opportunities** to dominate local search and outperform competitors. This analysis identifies what will set you apart and provides actionable improvements.

@@ -31,16 +31,19 @@ export async function generateMetadata({ params }: ServicePageProps) {
   // Enhanced SEO titles and descriptions for local SEO
   const serviceMetaMap: Record<string, { title: string; description: string }> = {
     'siding-replacement': {
-      title: 'Siding Replacement in Eugene, Albany, Corvallis & Springfield, OR',
-      description: 'Professional siding replacement in Eugene, Albany, Corvallis & Springfield, OR. Hardie board, vinyl & fiber cement installation with a 5-year workmanship warranty. Get a free estimate in 24 hours.',
+      title: 'Siding Contractor in Willamette Valley | Eugene, Albany, Corvallis & Springfield, OR',
+      description:
+        'Licensed siding contractors in the Willamette Valley. Hardie board, vinyl & fiber cement installation in Eugene, Albany, Corvallis & Springfield, OR. 5-year warranty. Free estimate in 24 hours.',
     },
     'exterior-painting': {
-      title: 'Exterior Painting in Eugene, Albany, Corvallis & Springfield, OR',
-      description: 'Professional exterior painting in Eugene, Albany, Corvallis & Springfield, OR. Premium paints for Oregon weather. Proper prep, primer & multiple coats. 5-year warranty. Free estimates.',
+      title: 'Exterior Painting in the Willamette Valley | Eugene, Albany, Corvallis & Springfield, OR',
+      description:
+        'Professional exterior painting in the Willamette Valley, serving Eugene, Albany, Corvallis & Springfield, OR. Premium paints for Oregon weather with proper prep, primer & multiple coats. 5-year warranty. Free estimates.',
     },
     'interior-painting': {
-      title: 'Interior Painting in Eugene, Albany, Corvallis & Springfield, OR',
-      description: 'Professional interior painting in Eugene, Albany, Corvallis & Springfield, OR. All rooms, low-VOC options, color consultation. Sherwin-Williams & Benjamin Moore paints. Free estimates.',
+      title: 'Interior Painting in the Willamette Valley | Eugene, Albany, Corvallis & Springfield, OR',
+      description:
+        'Professional interior painting in the Willamette Valley, including Eugene, Albany, Corvallis & Springfield, OR. All rooms, low-VOC options, color consultation. Sherwin-Williams & Benjamin Moore paints. Free estimates.',
     },
     'deck-staining': {
       title: 'Deck Staining in Eugene & Surrounding Oregon Areas',
@@ -130,9 +133,9 @@ export default async function ServicePage({ params }: ServicePageProps) {
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="mb-6">
-              {service.name === 'Siding Replacement' && 'Siding Replacement in Eugene, Albany, Corvallis & Springfield, OR'}
-              {service.name === 'Exterior Painting' && 'Exterior Painting in Eugene, Albany, Corvallis & Springfield, OR'}
-              {service.name === 'Interior Painting' && 'Interior Painting in Eugene, Albany, Corvallis & Springfield, OR'}
+              {service.name === 'Siding Replacement' && 'Siding Contractor in Willamette Valley | Eugene, Albany, Corvallis & Springfield, OR'}
+              {service.name === 'Exterior Painting' && 'Exterior Painting in the Willamette Valley | Eugene, Albany, Corvallis & Springfield, OR'}
+              {service.name === 'Interior Painting' && 'Interior Painting in the Willamette Valley | Eugene, Albany, Corvallis & Springfield, OR'}
               {service.name === 'Deck Staining' && 'Deck Staining in Eugene & Surrounding Oregon Areas'}
               {service.name === 'Pressure Washing' && 'Pressure Washing in Eugene & Surrounding Oregon Areas'}
               {service.name === 'Roofing' && 'Roofing Services in Eugene, Albany, Corvallis & Springfield, OR'}

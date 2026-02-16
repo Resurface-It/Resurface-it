@@ -6,7 +6,7 @@ import { generateMetadata as genMeta } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = genMeta({
-  title: 'Siding Replacement, Painting & Exterior Services in Eugene & Surrounding Oregon Areas',
+  title: 'Siding, Painting & Exterior Services | Eugene, OR',
   description: 'Comprehensive home exterior services including roofing, siding replacement, exterior painting, interior painting, deck staining, and pressure washing. Serving Eugene, Albany, Corvallis, Springfield, and surrounding Oregon communities. 5-year warranty. Free estimates.',
   path: '/services',
 })

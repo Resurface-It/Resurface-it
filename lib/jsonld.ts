@@ -1,6 +1,14 @@
 import { companyInfo } from '@/data/company'
 import { getCityNames } from '@/data/cities'
 
+function buildSameAs(): string[] {
+  const links: string[] = []
+  if (companyInfo.googleBusinessProfileUrl) links.push(companyInfo.googleBusinessProfileUrl)
+  if (companyInfo.facebookUrl) links.push(companyInfo.facebookUrl)
+  if (companyInfo.yelpUrl) links.push(companyInfo.yelpUrl)
+  return links
+}
+
 export interface LocalBusiness {
   '@context': string
   '@type': string | string[]
@@ -69,7 +77,7 @@ export function generateLocalBusinessSchema(): LocalBusiness {
     '@type': ['HomeAndConstructionBusiness', 'GeneralContractor', 'HousePainter'],
     name: companyInfo.name,
     description:
-      'Professional siding replacement, roofing, and exterior house painting in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, locally owned, and backed by a 5-year workmanship warranty.',
+      'Professional interior and exterior house painters and siding replacement specialists serving the Willamette Valley, including Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, locally owned, and backed by a 5-year workmanship warranty.',
     telephone: companyInfo.phone,
     email: companyInfo.email,
     address: {
@@ -85,7 +93,13 @@ export function generateLocalBusinessSchema(): LocalBusiness {
       latitude: '44.0521',
       longitude: '-123.0868',
     },
-    areaServed: getCityNames().map((name) => `${name}, OR`),
+    areaServed: [
+      ...getCityNames().map((name) => `${name}, OR`),
+      'Willamette Valley, OR',
+      'Lane County, OR',
+      'Linn County, OR',
+      'Benton County, OR',
+    ],
     serviceType: [
       'Roofing',
       'Siding Replacement',
@@ -95,11 +109,13 @@ export function generateLocalBusinessSchema(): LocalBusiness {
       'Pressure Washing',
     ],
     priceRange: '$$',
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: '50',
-    },
+    aggregateRating: companyInfo.aggregateRating
+      ? {
+          '@type': 'AggregateRating' as const,
+          ratingValue: String(companyInfo.aggregateRating.ratingValue),
+          reviewCount: String(companyInfo.aggregateRating.reviewCount),
+        }
+      : undefined,
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -108,14 +124,7 @@ export function generateLocalBusinessSchema(): LocalBusiness {
         closes: '18:00',
       },
     ],
-    sameAs: [
-      ...(companyInfo.googleBusinessProfileUrl
-        ? [companyInfo.googleBusinessProfileUrl]
-        : []),
-      // TODO: Add actual social media and review platform URLs when available
-      // 'https://www.facebook.com/...', // Facebook page
-      // 'https://www.yelp.com/biz/...', // Yelp page
-    ],
+    sameAs: buildSameAs(),
   }
 }
 
@@ -130,6 +139,7 @@ export function generateServiceSchema(serviceName: string, serviceDescription: s
       name: 'Resurface-It, Inc Siding, Roofing & Painting',
     },
     areaServed: [
+      'Willamette Valley, OR',
       'Eugene, OR',
       'Albany, OR',
       'Corvallis, OR',
@@ -225,7 +235,7 @@ export function generateOrganizationSchema(): Organization {
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     description:
-      'Professional siding replacement, roofing, and exterior house painting in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, locally owned, and backed by a 5-year workmanship warranty.',
+      'Professional interior and exterior house painters, siding replacement, and roofing services in the Willamette Valley, including Eugene, Albany, Corvallis, Springfield, and surrounding Oregon communities. Licensed, insured, locally owned, and backed by a 5-year workmanship warranty.',
     telephone: companyInfo.phone,
     email: companyInfo.email,
     address: {
@@ -236,21 +246,16 @@ export function generateOrganizationSchema(): Organization {
       postalCode: companyInfo.address.zip,
       addressCountry: 'US',
     },
-    sameAs: [
-      ...(companyInfo.googleBusinessProfileUrl
-        ? [companyInfo.googleBusinessProfileUrl]
-        : []),
-      // TODO: Add actual social media and review platform URLs when available
-      // 'https://www.facebook.com/...', // Facebook page
-      // 'https://www.yelp.com/biz/...', // Yelp page
-    ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: '50',
-      bestRating: '5',
-      worstRating: '1',
-    },
+    sameAs: buildSameAs().length > 0 ? buildSameAs() : undefined,
+    aggregateRating: companyInfo.aggregateRating
+      ? {
+          '@type': 'AggregateRating' as const,
+          ratingValue: String(companyInfo.aggregateRating.ratingValue),
+          reviewCount: String(companyInfo.aggregateRating.reviewCount),
+          bestRating: '5',
+          worstRating: '1',
+        }
+      : undefined,
   }
 }
 
@@ -307,6 +312,43 @@ export function generateReviewSchema(
   }
 }
 
+export interface TestimonialForReview {
+  name: string
+  quote: string
+  rating?: number
+  date?: string
+}
+
+/** Generates schema.org Review items from testimonials for use in structured data (e.g. homepage). */
+export function generateIndividualReviewSchemas(
+  testimonials: TestimonialForReview[],
+  businessName: string
+): Review[] {
+  return testimonials
+    .filter((t) => t.quote && t.name)
+    .slice(0, 10)
+    .map((t) => ({
+      '@context': 'https://schema.org' as const,
+      '@type': 'Review' as const,
+      itemReviewed: {
+        '@type': 'LocalBusiness' as const,
+        name: businessName,
+      },
+      author: {
+        '@type': 'Person' as const,
+        name: t.name,
+      },
+      reviewRating: {
+        '@type': 'Rating' as const,
+        ratingValue: String(t.rating ?? 5),
+        bestRating: '5',
+        worstRating: '1',
+      },
+      reviewBody: t.quote,
+      ...(t.date && { datePublished: t.date }),
+    }))
+}
+
 export interface Article {
   '@context': string
   '@type': string
@@ -339,12 +381,15 @@ export function generateArticleSchema(
     ? process.env.NEXT_PUBLIC_SITE_URL 
     : 'https://resurface-it.com'
 
+  const absoluteImage = image
+    ? (image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? image : `/${image}`}`)
+    : `${siteUrl}/og-image.jpg`
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline,
     description,
-    image: image || `${siteUrl}/og-image.jpg`,
+    image: absoluteImage,
     datePublished,
     dateModified: datePublished,
     author: {

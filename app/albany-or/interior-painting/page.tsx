@@ -11,7 +11,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = genMeta({
   title: 'Interior Painting in Albany, OR',
   description: 'Professional interior painting in Albany, OR. All rooms, low-VOC options, color consultation. Sherwin-Williams & Benjamin Moore paints. Expert prep, furniture protection, cleanup. Free estimates.',
-  path: '/albany-or/interior-painting',
+  path: '/locations/albany-or',
 })
 
 const albanyInteriorFAQs = [
@@ -38,8 +38,8 @@ export default function AlbanyInteriorPaintingPage() {
   const faqSchema = generateFAQPageSchema(albanyInteriorFAQs)
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Albany, OR', url: '/albany-or' },
-    { name: 'Interior Painting', url: '/albany-or/interior-painting' },
+    { name: 'Albany, OR', url: '/locations/albany-or' },
+    { name: 'Interior Painting', url: '/services/interior-painting' },
   ])
 
   return (
@@ -199,7 +199,7 @@ export default function AlbanyInteriorPaintingPage() {
             Get Free Estimate
           </HousecallProButton>
           <p className="mt-6 text-sm text-white/80">
-            <Link href="/albany-or" className="underline hover:text-white">
+            <Link href="/locations/albany-or" className="underline hover:text-white">
               ← Back to Albany services
             </Link>
             {' • '}

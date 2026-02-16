@@ -8,7 +8,7 @@ import { generateMetadata as genMeta } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = genMeta({
-  title: 'Areas We Serve | Eugene, Albany, Corvallis, Springfield & Surrounding Oregon Communities',
+  title: 'Areas We Serve | Eugene, Albany, Corvallis, Springfield OR',
   description: 'Serving Eugene, Albany, Corvallis, Springfield and surrounding communities with premium siding replacement and painting services. Licensed, insured, 5-year warranty. Free estimates.',
   path: '/areas-we-serve',
 })
@@ -26,7 +26,15 @@ export default function AreasWeServePage() {
           Resurface-it is your local partner for premium siding replacement and painting services throughout the Willamette Valley. We understand the unique needs of Oregon homeowners and the challenges posed by our climate—from wet winters to sunny summers.
         </p>
         <p className="text-base md:text-lg text-slate-700 mb-8">
-          Whether you&apos;re in Eugene, Albany, Corvallis, Springfield, or any of the surrounding communities, we&apos;re here to help protect and beautify your home with expert craftsmanship and premium materials.
+          Whether you&apos;re in Eugene, Albany, Corvallis, Springfield, or any of the surrounding communities, we&apos;re here to help protect and beautify your home with expert craftsmanship and premium materials. If you&apos;re searching for{' '}
+          <Link href="/painters-willamette-valley" className="font-semibold text-primary hover:underline">
+            painters near you in the Willamette Valley
+          </Link>
+          , our interior and exterior painting teams are ready to help. Looking for a{' '}
+          <Link href="/siding-contractor-willamette-valley" className="font-semibold text-primary hover:underline">
+            siding contractor in the Willamette Valley
+          </Link>
+          ? We install Hardie board, vinyl, and fiber cement throughout the same communities.
         </p>
       </div>
 

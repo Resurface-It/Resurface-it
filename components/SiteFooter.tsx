@@ -27,7 +27,7 @@ export function SiteFooter() {
               />
             </div>
             <p className="mb-4 text-sm text-slate-600">
-              Premium siding replacement, roofing, and painting services for Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas.
+              Premium siding replacement, roofing, and painting services for Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas—your local siding contractors and house painters in the Willamette Valley.
             </p>
             <p className="mb-4 text-xs text-slate-500 italic">
               Resurface-It, Inc specializes in siding, roofing, and painting services for residential exteriors in the Willamette Valley.
@@ -109,8 +109,18 @@ export function SiteFooter() {
             <h3 className="mb-4 font-semibold text-slate-900">Services</h3>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link href="/siding-contractor-willamette-valley" className="text-slate-600 hover:text-primary">
+                  Siding Contractor (Willamette Valley)
+                </Link>
+              </li>
+              <li>
                 <Link href="/services/siding-replacement" className="text-slate-600 hover:text-primary">
                   Siding Replacement
+                </Link>
+              </li>
+              <li>
+                <Link href="/painters-willamette-valley" className="text-slate-600 hover:text-primary">
+                  Painters (Willamette Valley)
                 </Link>
               </li>
               <li>
@@ -202,7 +212,7 @@ export function SiteFooter() {
                   .filter((c) => ['eugene', 'albany', 'corvallis', 'springfield'].includes(c.slug))
                   .map((city) => (
                     <li key={city.slug}>
-                      <Link href={`/${city.slug}-or`} className="hover:text-primary">
+                      <Link href={`/locations/${city.slug}-or`} className="hover:text-primary">
                         {city.name}, OR
                       </Link>
                     </li>

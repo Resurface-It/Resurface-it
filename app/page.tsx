@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { Section } from '@/components/Section'
 import { SectionHeader } from '@/components/SectionHeader'
 import { SecondaryButton } from '@/components/SecondaryButton'
 import { HousecallProButton } from '@/components/HousecallProButton'
 import { PhoneLink } from '@/components/PhoneLink'
 import { Shield, CheckCircle } from 'lucide-react'
-import { generateLocalBusinessSchema, generateBreadcrumbSchema, generateFAQPageSchema } from '@/lib/jsonld'
+import { generateLocalBusinessSchema, generateBreadcrumbSchema, generateFAQPageSchema, generateIndividualReviewSchemas } from '@/lib/jsonld'
 import { primaryCities } from '@/data/cities'
 import { companyInfo } from '@/data/company'
 import { FAQAccordion } from '@/components/FAQAccordion'
@@ -18,6 +19,15 @@ import { StatsSection } from '@/components/StatsSection'
 import { ProcessTimeline } from '@/components/ProcessTimeline'
 import { TestimonialsCarousel } from '@/components/TestimonialsCarousel'
 import { MobileStickyCTA } from '@/components/MobileStickyCTA'
+
+import { generateMetadata as genMeta } from '@/lib/seo'
+
+export const metadata: Metadata = genMeta({
+  title: 'Siding Contractors & Painters Near Me | Willamette Valley | Resurface-It',
+  description:
+    'Siding contractors and painters near you in the Willamette Valley. Resurface-It provides siding replacement, interior & exterior painting in Eugene, Albany, Corvallis & Springfield. 5-year warranty. Free estimates.',
+  path: '/',
+})
 
 export default function HomePage() {
   // Generate structured data on server
@@ -53,8 +63,25 @@ export default function HomePage() {
       answer: 'We serve Eugene, Albany, Corvallis, Springfield, and surrounding communities throughout Lane, Linn, and Benton counties. See our Areas We Serve page for the full list of communities. As a locally owned company based in Eugene, we understand the unique needs of Willamette Valley homeowners.',
       category: 'scheduling' as const,
     },
+    {
+      question: 'Where can I find painters near me in the Willamette Valley?',
+      answer:
+        'If you are searching for painters near you in the Willamette Valley, Resurface-It provides professional interior and exterior house painting in Eugene, Albany, Corvallis, Springfield, and nearby communities. You can view our dedicated painting services and schedule a free estimate directly on our Painters in the Willamette Valley page or by calling our team.',
+      category: 'exterior-painting' as const,
+    },
+    {
+      question: 'Where can I find a siding contractor near me in the Willamette Valley?',
+      answer:
+        'Resurface-It is a licensed siding contractor serving the Willamette Valley, including Eugene, Albany, Corvallis, Springfield, and surrounding communities. We install Hardie board, vinyl, and fiber cement siding with a 5-year workmanship warranty. Visit our Siding Contractor page or our Siding Replacement service page for details and to request a free estimate.',
+      category: 'siding' as const,
+    },
   ]
   const faqSchema = homeFAQs.length > 0 ? generateFAQPageSchema(homeFAQs) : null
+  const fiveStar = getFiveStarReviews(testimonials)
+  const reviewSchemas = generateIndividualReviewSchemas(
+    fiveStar.map((t) => ({ name: t.name, quote: t.quote, rating: t.rating, date: t.date })),
+    companyInfo.name
+  )
 
   return (
     <>
@@ -72,6 +99,13 @@ export default function HomePage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       )}
+      {reviewSchemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       {/* Hero Section - Full Width with Image */}
       <section className="relative min-h-[80vh] flex items-center -mt-[7.5rem] md:-mt-[8.5rem] lg:-mt-[9.5rem] pt-[7.5rem] md:pt-[8.5rem] lg:pt-[9.5rem] pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -94,7 +128,7 @@ export default function HomePage() {
               Residential & Commercial Painting and Siding Experts Serving the Willamette Valley
             </h1>
             <p className="mb-4 text-xl text-white/95 md:text-2xl">
-              Locally Owned. Expertly Built. Designed for Oregon&apos;s Climate.
+              Your local siding contractors and painters in the Willamette Valley—expertly built for Oregon&apos;s climate.
             </p>
             <div className="mb-8">
               <PhoneLink
@@ -369,6 +403,13 @@ export default function HomePage() {
           subtitle="Locally owned and operated, we understand the unique needs of Oregon homeowners"
           align="center"
         />
+        <p className="mt-4 mx-auto max-w-2xl text-center text-slate-600">
+          Need a{' '}
+          <Link href="/siding-contractor-willamette-valley" className="font-semibold text-primary hover:underline">
+            siding contractor
+          </Link>
+          ? We serve Eugene, Albany, Corvallis, Springfield and the wider Willamette Valley.
+        </p>
         <div className="mt-8 grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-4">
           {primaryCities
             .filter(city => city.slug !== 'junction-city' && city.slug !== 'veneta')

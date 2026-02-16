@@ -18,7 +18,7 @@ export const metadata: Metadata = genMeta({
   title: 'Siding Replacement & Painting in Albany OR',
   description:
     'Best exterior house painters and siding replacement contractors in Albany, OR. Hardie board, vinyl & fiber cement installation plus interior painting. 5-year workmanship warranty. Licensed & insured.',
-  path: '/albany-or',
+  path: '/locations/albany-or',
 })
 
 export default function AlbanyPage() {
@@ -35,7 +35,7 @@ export default function AlbanyPage() {
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },
     { name: 'Areas We Serve', url: '/areas-we-serve' },
-    { name: 'Albany, OR', url: '/albany-or' },
+    { name: 'Albany, OR', url: '/locations/albany-or' },
   ])
 
   return (
@@ -102,7 +102,7 @@ export default function AlbanyPage() {
                 Resurface-it is Albany&apos;s trusted partner for siding replacement and painting services. From charming historic homes in downtown Albany to newer developments throughout the city, we understand the unique needs of Albany homeowners. Oregon&apos;s Willamette Valley climate—with its wet winters, sunny summers, and temperature fluctuations—demands exterior materials and finishes that can withstand the elements while maintaining their beauty.
               </p>
               <p className="mb-4 text-lg leading-relaxed">
-                We specialize in <Link href="/services/siding-replacement" className="font-semibold text-primary hover:underline">siding replacement</Link> using Hardie board, vinyl, and fiber cement materials that stand up to Albany&apos;s weather. Our <Link href="/services/exterior-painting" className="font-semibold text-primary hover:underline">exterior painting</Link> services use premium paints specifically formulated for Oregon&apos;s rain and humidity. Our <Link href="/albany-or/interior-painting" className="font-semibold text-primary hover:underline">interior painting in Albany</Link> services transform every room in your home, and we also offer <Link href="/services/deck-staining" className="font-semibold text-primary hover:underline">deck staining</Link> to protect and beautify your outdoor living spaces.
+                We specialize in <Link href="/services/siding-replacement" className="font-semibold text-primary hover:underline">siding replacement</Link> using Hardie board, vinyl, and fiber cement materials that stand up to Albany&apos;s weather. Our <Link href="/services/exterior-painting" className="font-semibold text-primary hover:underline">exterior painting</Link> services use premium paints specifically formulated for Oregon&apos;s rain and humidity. Our <Link href="/locations/albany-or" className="font-semibold text-primary hover:underline">interior painting in Albany</Link> services transform every room in your home, and we also offer <Link href="/services/deck-staining" className="font-semibold text-primary hover:underline">deck staining</Link> to protect and beautify your outdoor living spaces.
               </p>
               <p className="mb-6 text-lg leading-relaxed">
                 Whether you&apos;re in downtown Albany, near the Willamette River, or anywhere throughout Albany and surrounding communities like Tangent, Millersburg, Lebanon, and Corvallis, we&apos;re here to help protect and beautify your home.

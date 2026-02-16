@@ -12,7 +12,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = genMeta({
   title: 'Interior Painting in Eugene, OR',
   description: 'Professional interior painting in Eugene, OR. All rooms, low-VOC options, color consultation. Sherwin-Williams & Benjamin Moore paints. Expert prep, furniture protection, cleanup. Free estimates.',
-  path: '/eugene-or/interior-painting',
+  path: '/locations/eugene-or',
 })
 
 const eugeneInteriorFAQs = [
@@ -39,8 +39,8 @@ export default function EugeneInteriorPaintingPage() {
   const faqSchema = generateFAQPageSchema(eugeneInteriorFAQs)
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Eugene, OR', url: '/eugene-or' },
-    { name: 'Interior Painting', url: '/eugene-or/interior-painting' },
+    { name: 'Eugene, OR', url: '/locations/eugene-or' },
+    { name: 'Interior Painting', url: '/services/interior-painting' },
   ])
 
   return (
@@ -200,7 +200,7 @@ export default function EugeneInteriorPaintingPage() {
             Get Free Estimate
           </HousecallProButton>
           <p className="mt-6 text-sm text-white/80">
-            <Link href="/eugene-or" className="underline hover:text-white">
+            <Link href="/locations/eugene-or" className="underline hover:text-white">
               ← Back to Eugene services
             </Link>
             {' • '}

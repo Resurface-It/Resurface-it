@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
   }
 
   return genMeta({
-    title: `Siding, Roofing & Painting in ${city.name}, OR | Resurface-It, Inc`,
+    title: `Siding, Roofing & Painting in ${city.name}, OR`,
     description: `Professional siding replacement, roofing, and painting services in ${city.name}, Oregon. Top-rated contractors serving ${city.name} and surrounding areas. Licensed, insured, 5-year warranty. Free estimates.`,
     path: `/locations/${citySlug}`,
   })

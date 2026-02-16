@@ -50,7 +50,7 @@ These files are referenced in code but appear to be empty or missing:
 - `city-corvallis.jpg` (0 bytes)
 - `city-eugene.jpg` (0 bytes)
 - `city-springfield.jpg` (0 bytes)
-- `og-image.jpg` (0 bytes)
+- `og-image.jpg` (0 bytes) — **Required for SEO/social:** Add a 1200×630px image at `public/og-image.jpg` for Open Graph and Twitter cards. Use a branded image with logo and tagline. Referenced by `lib/seo.ts` and used for all pages that do not pass a custom `image`.
 - `hero-home.jpg` (0 bytes)
 
 ## Optimization Recommendations

@@ -11,7 +11,7 @@ import type { Metadata } from 'next'
 import { CheckCircle } from 'lucide-react'
 
 export const metadata: Metadata = genMeta({
-  title: 'Siding Replacement Contractors in Eugene, Albany, Corvallis & Springfield OR',
+  title: 'Siding Contractors | Eugene, Albany, Corvallis, Springfield OR',
   description:
     'Licensed siding replacement contractors for Eugene, Albany, Corvallis & Springfield, OR. Hardie board, vinyl & fiber cement siding, rot repair, weatherproofing, and 5-year workmanship warranty.',
   path: '/services/siding',

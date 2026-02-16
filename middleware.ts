@@ -1,9 +1,31 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
+// Canonical city pages: /locations/[city]-or. Legacy URLs redirect here (301).
+const LEGACY_CITY_OR = ['eugene-or', 'albany-or', 'corvallis-or', 'springfield-or'] as const
+const CITY_SLUG_TO_OR: Record<string, string> = {
+  eugene: 'eugene-or',
+  albany: 'albany-or',
+  corvallis: 'corvallis-or',
+  springfield: 'springfield-or',
+}
+
 export function middleware(request: NextRequest) {
-  const response = NextResponse.next()
   const { pathname } = request.nextUrl
+
+  // Legacy /[city]-or or /[city]-or/... -> /locations/[city]-or (301)
+  const firstSegment = pathname.slice(1).split('/')[0]
+  if (LEGACY_CITY_OR.includes(firstSegment as (typeof LEGACY_CITY_OR)[number])) {
+    const dest = new URL(`/locations/${firstSegment}`, request.url)
+    return NextResponse.redirect(dest, 301)
+  }
+  // Legacy /[city] (e.g. /eugene) -> /locations/[city]-or (301)
+  if (CITY_SLUG_TO_OR[firstSegment]) {
+    const dest = new URL(`/locations/${CITY_SLUG_TO_OR[firstSegment]}`, request.url)
+    return NextResponse.redirect(dest, 301)
+  }
+
+  const response = NextResponse.next()
 
   // Set cache headers for static assets
   if (

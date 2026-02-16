@@ -5,6 +5,8 @@ export interface BlogPost {
   date: string
   tags: string[]
   content: string[]
+  /** Optional path or URL for featured/OG image (e.g. /images/blog/my-post.jpg). Used in Article schema and Open Graph. */
+  image?: string
 }
 
 export const blogPosts: BlogPost[] = [

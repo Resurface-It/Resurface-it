@@ -11,7 +11,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = genMeta({
   title: 'Interior Painting in Corvallis, OR',
   description: 'Professional interior painting in Corvallis, OR. All rooms, low-VOC options, color consultation. Sherwin-Williams & Benjamin Moore paints. Expert prep, furniture protection, cleanup. Free estimates.',
-  path: '/corvallis-or/interior-painting',
+  path: '/locations/corvallis-or',
 })
 
 const corvallisInteriorFAQs = [
@@ -38,8 +38,8 @@ export default function CorvallisInteriorPaintingPage() {
   const faqSchema = generateFAQPageSchema(corvallisInteriorFAQs)
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Corvallis, OR', url: '/corvallis-or' },
-    { name: 'Interior Painting', url: '/corvallis-or/interior-painting' },
+    { name: 'Corvallis, OR', url: '/locations/corvallis-or' },
+    { name: 'Interior Painting', url: '/services/interior-painting' },
   ])
 
   return (
@@ -199,7 +199,7 @@ export default function CorvallisInteriorPaintingPage() {
             Get Free Estimate
           </HousecallProButton>
           <p className="mt-6 text-sm text-white/80">
-            <Link href="/corvallis-or" className="underline hover:text-white">
+            <Link href="/locations/corvallis-or" className="underline hover:text-white">
               ← Back to Corvallis services
             </Link>
             {' • '}

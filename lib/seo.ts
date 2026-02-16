@@ -19,6 +19,7 @@ export function generateMetadata({
     ? process.env.NEXT_PUBLIC_SITE_URL 
     : 'https://resurface-it.com'
   const fullUrl = `${siteUrl}${path}`
+  const absoluteImage = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? image : `/${image}`}`
 
   return {
     title: `${title} | Resurface-It, Inc`,
@@ -30,7 +31,7 @@ export function generateMetadata({
       siteName: 'Resurface-It, Inc Siding, Roofing & Painting',
       images: [
         {
-          url: image,
+          url: absoluteImage,
           width: 1200,
           height: 630,
           alt: title,
@@ -43,7 +44,7 @@ export function generateMetadata({
       card: 'summary_large_image',
       title: `${title} | Resurface-It, Inc`,
       description,
-      images: [image],
+      images: [absoluteImage],
     },
     robots: {
       index: !noIndex,

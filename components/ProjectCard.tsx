@@ -19,7 +19,7 @@ export function ProjectCard({ image, location, services, description, priority =
       <div className="relative aspect-[4/3] overflow-hidden bg-slate-200">
         <Image
           src={image}
-          alt={`Project in ${location}`}
+          alt={services.length > 0 ? `${services.join(' and ')} project in ${location}. ${description.slice(0, 80)}${description.length > 80 ? '…' : ''}` : `Project in ${location}. ${description.slice(0, 80)}${description.length > 80 ? '…' : ''}`}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-110"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
