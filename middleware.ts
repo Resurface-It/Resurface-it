@@ -39,8 +39,6 @@ export function middleware(request: NextRequest) {
       'Cache-Control',
       'public, max-age=31536000, immutable, stale-while-revalidate=86400'
     )
-    // Add ETag support
-    response.headers.set('ETag', `"${Date.now()}"`)
   } else if (pathname.startsWith('/_next/image')) {
     // Next.js optimized images: cache for 1 year
     response.headers.set(
@@ -68,8 +66,9 @@ export function middleware(request: NextRequest) {
   // Security headers
   response.headers.set('X-Content-Type-Options', 'nosniff')
   response.headers.set('X-Frame-Options', 'DENY')
-  response.headers.set('X-XSS-Protection', '1; mode=block')
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+  response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload')
+  response.headers.set('Cross-Origin-Opener-Policy', 'same-origin')
 
   return response
 }

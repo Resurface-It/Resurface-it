@@ -53,7 +53,7 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
             e.stopPropagation()
             onClose()
           }}
-          className="absolute right-4 top-4 z-[10001] rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary touch-manipulation"
+          className="absolute right-4 top-4 z-[10001] rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary touch-manipulation"
           aria-label="Close"
           type="button"
         >

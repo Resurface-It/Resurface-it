@@ -43,44 +43,29 @@ export function SiteFooter() {
               Licensed & Insured in Oregon
             </p>
             <div className="mt-6">
-              <style dangerouslySetInnerHTML={{ __html: `
-                .bz-bdg {
-                  width: 230px;
-                }
-                .bz-bdg > a {
-                  display: block;
-                  font-family: Helvetica;
-                  font-size: 9px;
-                  font-weight: 500;
-                  text-align: center;
-                  margin-top: 4px;
-                  color: #484848;
-                  line-height: 10px;
-                }
-                .bz-bdg .small-label {
-                  margin-top: -12px;
-                  padding: 0 10px;
-                }
-              ` }} />
               <div className="flex flex-wrap items-start gap-4">
-                <div className="bz-bdg flex-shrink-0">
+                <div className="w-[230px] flex-shrink-0">
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
                     title="BuildZoom.com"
                     href="https://www.buildzoom.com/contractor/resurface-it-inc?ad_location=co_website"
+                    className="block"
                   >
-                    <img
+                    <Image
                       alt="BuildZoom.com"
                       width={230}
-                      style={{ height: 'auto' }}
+                      height={115}
                       src="https://badges.buildzoom.com/2024/bz_2.png"
+                      className="h-auto w-[230px]"
+                      loading="lazy"
                     />
                   </a>
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
                     href="https://www.buildzoom.com/eugene-or/exterior-contractors?ad_location=co_website&bg_ref=30303323"
+                    className="block mt-1 font-sans text-[9px] font-medium text-center text-[#484848] leading-[10px]"
                   >
                     Exterior Contractors in Eugene
                   </a>
@@ -93,12 +78,14 @@ export function SiteFooter() {
                   />
                 </div>
                 <div className="flex-shrink-0">
-                  <img
+                  <Image
                     src="/images/Oregon-Lead-Safe-Certified.png"
                     alt="Lead-Safe Oregon Certified Firm"
                     width={120}
-                    style={{ height: 'auto', width: '120px', display: 'block' }}
+                    height={120}
+                    className="block h-auto w-[120px]"
                     loading="lazy"
+                    quality={75}
                   />
                 </div>
               </div>

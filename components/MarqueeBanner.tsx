@@ -11,12 +11,10 @@ const colorClasses = [
 ]
 
 export function MarqueeBanner() {
-  // Create items: message (color 1), logo, message (color 2), logo, message (color 3), logo, repeat
-  // Increased to 25 iterations to ensure each content block is significantly wider than any viewport
-  // This prevents cut-off issues on the right side at all screen sizes
-  // Pattern matches That1painter.com - create content block, then duplicate the entire block
+  // Two content blocks with CSS translateX(-50%) create a seamless loop.
+  // 10 iterations per block is enough to exceed any viewport width.
   const items: Array<{ type: 'message' | 'logo'; colorIndex?: number }> = []
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 10; i++) {
     items.push({ type: 'message', colorIndex: i % 3 })
     items.push({ type: 'logo' })
   }

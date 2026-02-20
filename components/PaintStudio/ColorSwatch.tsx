@@ -29,7 +29,7 @@ export const ColorSwatch = memo(function ColorSwatch({
           <p className="mt-1 text-xs text-slate-500">{color.code}</p>
         )}
         {color.family && (
-          <p className="mt-1 text-xs text-slate-400">{color.family}</p>
+          <p className="mt-1 text-xs text-slate-500">{color.family}</p>
         )}
       </div>
     </button>

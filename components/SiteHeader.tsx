@@ -6,7 +6,9 @@ import Image from 'next/image'
 import { Menu } from 'lucide-react'
 import { HousecallProButton } from './HousecallProButton'
 import { NavDropdown } from './NavDropdown'
-import { MobileNav } from './MobileNav'
+import dynamic from 'next/dynamic'
+
+const MobileNav = dynamic(() => import('./MobileNav').then(mod => ({ default: mod.MobileNav })), { ssr: false })
 import { trackClickToCall } from '@/lib/analytics'
 import { primaryCities } from '@/data/cities'
 import { services } from '@/data/services'

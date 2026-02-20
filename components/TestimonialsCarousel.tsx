@@ -35,54 +35,36 @@ export function TestimonialsCarousel() {
       </div>
 
       <div className="mt-6 flex items-center justify-center gap-4">
-        <style dangerouslySetInnerHTML={{__html: `
-          .testimonial-dot {
-            width: 5px !important;
-            height: 5px !important;
-            min-width: 0 !important;
-            min-height: 0 !important;
-            padding: 0 !important;
-            border: none !important;
-          }
-          .testimonial-dot.active {
-            width: 6px !important;
-            height: 6px !important;
-          }
-          @media (min-width: 768px) {
-            .testimonial-dot {
-              width: 6px !important;
-              height: 6px !important;
-            }
-            .testimonial-dot.active {
-              width: 16px !important;
-              height: 16px !important;
-            }
-          }
-        `}} />
         <button
           onClick={prev}
-          className="flex items-center justify-center min-w-[44px] min-h-[44px] rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-primary"
+          className="flex items-center justify-center min-w-[44px] min-h-[44px] rounded-full p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-primary"
           aria-label="Previous testimonial"
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
 
-        <div className="flex gap-1 md:gap-2">
+        <div className="flex gap-0">
           {fiveStarTestimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`testimonial-dot rounded-full transition-all ${
-                index === currentIndex ? 'active bg-primary' : 'bg-slate-300'
-              }`}
+              className="flex items-center justify-center min-w-[44px] min-h-[44px] p-0 border-none bg-transparent"
               aria-label={`Go to testimonial ${index + 1}`}
-            />
+            >
+              <span
+                className={`block h-2 w-2 md:h-2.5 md:w-2.5 rounded-full transition-transform duration-200 ${
+                  index === currentIndex
+                    ? 'bg-primary scale-150 md:scale-[2]'
+                    : 'bg-slate-300 scale-100'
+                }`}
+              />
+            </button>
           ))}
         </div>
 
         <button
           onClick={next}
-          className="flex items-center justify-center min-w-[44px] min-h-[44px] rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-primary"
+          className="flex items-center justify-center min-w-[44px] min-h-[44px] rounded-full p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-primary"
           aria-label="Next testimonial"
         >
           <ChevronRight className="h-6 w-6" />

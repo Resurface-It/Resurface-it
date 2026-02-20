@@ -10,8 +10,10 @@ import { ServiceCard } from '@/components/ServiceCard'
 import { CityBadge } from '@/components/CityBadge'
 import { TestimonialCard } from '@/components/TestimonialCard'
 import { PhoneLink } from '@/components/PhoneLink'
-import { MarqueeBanner } from '@/components/MarqueeBanner'
-import { BrandLogosMarquee } from '@/components/BrandLogosMarquee'
+import dynamic from 'next/dynamic'
+
+const MarqueeBanner = dynamic(() => import('@/components/MarqueeBanner').then(mod => ({ default: mod.MarqueeBanner })))
+const BrandLogosMarquee = dynamic(() => import('@/components/BrandLogosMarquee').then(mod => ({ default: mod.BrandLogosMarquee })))
 import { getCityBySlug } from '@/data/cities'
 import { services, getServiceBySlug } from '@/data/services'
 import { testimonials, getFiveStarReviews } from '@/data/testimonials'

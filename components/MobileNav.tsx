@@ -82,7 +82,6 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
     <>
       <div
         role="presentation"
-        aria-hidden="true"
         className={`fixed inset-0 z-50 bg-black/50 transition-opacity duration-200 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         onClick={onClose}
       />
@@ -93,7 +92,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
               <span className="text-xl font-bold text-slate-900">Menu</span>
               <button
                 onClick={onClose}
-                className="flex items-center justify-center min-w-[44px] min-h-[44px] rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+                className="flex items-center justify-center min-w-[44px] min-h-[44px] rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-700"
                 aria-label="Close menu"
               >
                 <X className="h-6 w-6" />

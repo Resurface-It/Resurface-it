@@ -42,6 +42,7 @@ export function BrandRedirectModal({
               alt={brand.name}
               fill
               className="object-contain"
+              sizes="192px"
               loading="eager"
             />
           </div>

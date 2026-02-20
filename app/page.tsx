@@ -12,12 +12,15 @@ import { primaryCities } from '@/data/cities'
 import { companyInfo } from '@/data/company'
 import { FAQAccordion } from '@/components/FAQAccordion'
 import { testimonials, getFiveStarReviews } from '@/data/testimonials'
-import { MarqueeBanner, BrandLogosMarquee } from '@/components/HomePageClient'
+import dynamic from 'next/dynamic'
 import { TrustStrip } from '@/components/TrustStrip'
 import { ServicesGrid } from '@/components/ServicesGrid'
 import { StatsSection } from '@/components/StatsSection'
 import { ProcessTimeline } from '@/components/ProcessTimeline'
-import { TestimonialsCarousel } from '@/components/TestimonialsCarousel'
+
+const MarqueeBanner = dynamic(() => import('@/components/MarqueeBanner').then(mod => ({ default: mod.MarqueeBanner })))
+const BrandLogosMarquee = dynamic(() => import('@/components/BrandLogosMarquee').then(mod => ({ default: mod.BrandLogosMarquee })))
+const TestimonialsCarousel = dynamic(() => import('@/components/TestimonialsCarousel').then(mod => ({ default: mod.TestimonialsCarousel })))
 import { MobileStickyCTA } from '@/components/MobileStickyCTA'
 
 import { generateMetadata as genMeta } from '@/lib/seo'

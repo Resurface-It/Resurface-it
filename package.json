@@ -29,6 +29,12 @@
     "uploadthing": "^7.7.4",
     "web-vitals": "^5.1.0"
   },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 Edge versions"
+  ],
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@types/react": "^18.2.0",
