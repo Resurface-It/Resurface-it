@@ -1,8 +1,8 @@
 export const companyInfo = {
   name: 'Resurface-It, Inc Siding, Roofing & Painting',
   shortName: 'Resurface-It',
-  phone: '(541) 255-1331',
-  officePhone: '(541) 913-5940',
+  phone: '(541) 913-5940',
+  officePhone: '(541) 255-1331',
   email: 'info@resurface-it.com', // TODO: Replace with actual email
   address: {
     street: '2535 Prairie Rd unit c',
