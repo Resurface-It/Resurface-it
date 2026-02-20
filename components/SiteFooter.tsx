@@ -69,6 +69,7 @@ export function SiteFooter() {
                   >
                     Exterior Contractors in Eugene
                   </a>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="https://track.buildzoom.com//badge_load?track_id=QKBxJM&entity=Contractor&event_type=impression&ad_type=contractor_badge"
                     width="1"
