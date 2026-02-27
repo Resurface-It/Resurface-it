@@ -84,7 +84,7 @@ export default async function AreaPage({ params }: AreaPageProps) {
   const systems = pickVariant(`${copyKey}-systems`, systemsVariants).replace('{areaName}', location.areaName)
   const timelines = pickVariant(`${copyKey}-timelines`, timelinesVariants).replace('{areaName}', location.areaName)
   const ctaBlock = pickVariant(`${copyKey}-cta`, ctaBlockVariants).replace('{areaName}', location.areaName)
-  const faqs = getFAQQuestions(copyKey, 5)
+  const faqs = getFAQQuestions(copyKey, 5, location.areaName)
 
   // Get nearby locations for internal links
   const nearbyLocations = location.nearbyAreas

@@ -190,7 +190,7 @@ export const faqQuestionPool = [
   },
 ]
 
-export function getFAQQuestions(key: string, count: number = 5): Array<{ question: string; answer: string; category: 'city-specific' }> {
+export function getFAQQuestions(key: string, count: number = 5, areaName?: string): Array<{ question: string; answer: string; category: 'city-specific' }> {
   const selected: Array<{ question: string; answer: string; category: 'city-specific' }> = []
   const used = new Set<number>()
   
@@ -199,7 +199,6 @@ export function getFAQQuestions(key: string, count: number = 5): Array<{ questio
     const hash = stableHash(variantKey)
     let index = hash % faqQuestionPool.length
     
-    // Find an unused index
     let attempts = 0
     while (used.has(index) && attempts < faqQuestionPool.length) {
       index = (index + 1) % faqQuestionPool.length
@@ -208,8 +207,10 @@ export function getFAQQuestions(key: string, count: number = 5): Array<{ questio
     
     if (!used.has(index)) {
       used.add(index)
+      const faq = faqQuestionPool[index]
       selected.push({
-        ...faqQuestionPool[index],
+        question: areaName ? faq.question.replace(/\{areaName\}/g, areaName) : faq.question,
+        answer: areaName ? faq.answer.replace(/\{areaName\}/g, areaName) : faq.answer,
         category: 'city-specific' as const,
       })
     }

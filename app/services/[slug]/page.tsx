@@ -9,6 +9,8 @@ import { ServicePageTracker } from '@/components/analytics/ServicePageTracker'
 import { ServiceImageContainer } from '@/components/ServiceImageContainer'
 import { getServiceBySlug } from '@/data/services'
 import { getFAQsByService } from '@/data/faq'
+import { companyInfo } from '@/data/company'
+import { PhoneLink } from '@/components/PhoneLink'
 import { generateMetadata as genMeta } from '@/lib/seo'
 import { generateServiceSchema, generateFAQPageSchema, generateBreadcrumbSchema } from '@/lib/jsonld'
 
@@ -142,12 +144,18 @@ export default async function ServicePage({ params }: ServicePageProps) {
               {!['Siding Replacement', 'Exterior Painting', 'Interior Painting', 'Deck Staining', 'Pressure Washing', 'Roofing'].includes(service.name) && service.name}
             </h1>
             <p className="mb-4 text-xl text-slate-600">{service.longDescription}</p>
-            {(service.name === 'Siding Replacement' || service.name === 'Exterior Painting' || service.name === 'Interior Painting' || service.name === 'Roofing') && (
-              <p className="mb-8 text-lg text-slate-600">
-                We provide {service.name.toLowerCase()} services for homes in Eugene, Albany, Corvallis, Springfield, and surrounding Oregon communities.
-              </p>
-            )}
-            <HousecallProButton variant="large">Get Free Estimate</HousecallProButton>
+            <p className="mb-8 text-lg text-slate-600 font-medium">
+              Prep is non-negotiable. Clear communication. Clean jobsite. Every project backed by our 5-year workmanship warranty.
+            </p>
+            <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <HousecallProButton variant="large">Get Free Estimate</HousecallProButton>
+              <PhoneLink
+                phone={companyInfo.phone}
+                className="text-lg font-semibold text-slate-900 hover:text-primary transition-colors"
+              >
+                Call Now: {companyInfo.phone}
+              </PhoneLink>
+            </div>
           </div>
         </div>
       </section>
@@ -295,6 +303,57 @@ export default async function ServicePage({ params }: ServicePageProps) {
           </div>
         </Section>
       )}
+
+      {/* Prep Standards & What Can Go Wrong */}
+      <Section className="bg-primary/5">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-6 text-center text-3xl">Our Standards — What Sets Us Apart</h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 className="mb-3 text-xl font-bold text-slate-900">What Can Go Wrong</h3>
+              <ul className="space-y-2 text-slate-700">
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-red-400" />
+                  Skipped prep leads to peeling, bubbling, or failure within months
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-red-400" />
+                  Cheap materials break down quickly in Oregon&apos;s wet climate
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-red-400" />
+                  Poor communication means surprise costs and missed timelines
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-red-400" />
+                  No warranty leaves you paying twice for the same job
+                </li>
+              </ul>
+            </div>
+            <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 className="mb-3 text-xl font-bold text-slate-900">How We Prevent It</h3>
+              <ul className="space-y-2 text-slate-700">
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                  Thorough prep on every project — cleaning, repair, priming, no shortcuts
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                  Premium materials chosen specifically for Oregon weather conditions
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                  Transparent pricing, clear timelines, and daily communication
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                  5-year workmanship warranty — if it fails, we fix it free
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </Section>
 
       {/* Trust Block */}
       <Section className="bg-slate-50">

@@ -25,9 +25,9 @@ export default function SpotlightsIndexPage() {
             Explore our general recommendations and approach to exterior services in different neighborhoods throughout our service areas. These spotlights share insights about what works well for homes in Oregon&apos;s climate.
           </p>
           <p className="mb-6 sm:mb-8 md:mb-12 text-sm sm:text-base text-slate-600">
-            <strong>Note:</strong> These pages share general recommendations. For completed projects with real photos and details, see our{' '}
-            <Link href="/case-studies" className="font-semibold text-primary hover:underline">
-              Case Studies
+            <strong>Note:</strong> These pages share general recommendations for different neighborhoods. For photos of completed projects, see our{' '}
+            <Link href="/gallery" className="font-semibold text-primary hover:underline">
+              Project Gallery
             </Link>
             .
           </p>

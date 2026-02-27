@@ -130,8 +130,11 @@ export default function HomePage() {
             <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
               Residential & Commercial Painting and Siding Experts Serving the Willamette Valley
             </h1>
-            <p className="mb-4 text-xl text-white/95 md:text-2xl">
+            <p className="mb-2 text-xl text-white/95 md:text-2xl">
               Your local siding contractors and painters in the Willamette Valley—expertly built for Oregon&apos;s climate.
+            </p>
+            <p className="mb-4 text-lg text-white/85 md:text-xl font-medium tracking-wide">
+              Prep is non-negotiable. Clear communication. Clean jobsite. Every time.
             </p>
             <div className="mb-8">
               <PhoneLink

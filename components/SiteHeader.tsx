@@ -52,15 +52,10 @@ export function SiteHeader() {
     },
   ]
 
-  // More dropdown items
   const moreDropdownItems = [
     {
       href: '/about',
       label: 'About',
-    },
-    {
-      href: '/case-studies',
-      label: 'Case Studies',
     },
     {
       href: '/spotlights',

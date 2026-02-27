@@ -184,52 +184,30 @@ export function generateSitemap(): SitemapEntry[] {
     })
   })
 
-  // Case studies pages
-  entries.push({
-    url: `${siteUrl}/case-studies`,
-    lastModified: now,
-    changeFrequency: 'weekly',
-    priority: 0.65,
-  })
-
-  cities.forEach((city) => {
-    // City case studies index
-    entries.push({
-      url: `${siteUrl}/case-studies/${city.citySlug}`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.65,
-    })
-
-    // Area case studies indexes
-    const locations = getMicroLocationsByCity(city.citySlug)
-    locations.forEach((location) => {
+  // Case studies: only include published detail pages (index pages are noindexed until real content exists)
+  try {
+    const publishedStudies = getPublishedCaseStudies()
+    if (publishedStudies.length > 0) {
       entries.push({
-        url: `${siteUrl}/case-studies/${city.citySlug}/${location.areaSlug}`,
+        url: `${siteUrl}/case-studies`,
         lastModified: now,
         changeFrequency: 'weekly',
         priority: 0.65,
       })
-    })
-  })
-
-  // Published case study detail pages only
-  try {
-    const publishedStudies = getPublishedCaseStudies()
-    publishedStudies.forEach((study) => {
-      entries.push({
-        url: `${siteUrl}/case-studies/${study.frontmatter.citySlug}/${study.frontmatter.areaSlug}/${study.frontmatter.caseSlug}`,
-        lastModified: study.frontmatter.endDate
-          ? new Date(study.frontmatter.endDate)
-          : study.frontmatter.startDate
-            ? new Date(study.frontmatter.startDate)
-            : now,
-        changeFrequency: 'monthly',
-        priority: 0.6,
+      publishedStudies.forEach((study) => {
+        entries.push({
+          url: `${siteUrl}/case-studies/${study.frontmatter.citySlug}/${study.frontmatter.areaSlug}/${study.frontmatter.caseSlug}`,
+          lastModified: study.frontmatter.endDate
+            ? new Date(study.frontmatter.endDate)
+            : study.frontmatter.startDate
+              ? new Date(study.frontmatter.startDate)
+              : now,
+          changeFrequency: 'monthly',
+          priority: 0.6,
+        })
       })
-    })
+    }
   } catch (error) {
-    // If case studies can't be loaded (e.g., during build), skip them
     console.warn('Warning: Could not load case studies for sitemap:', error)
   }
 

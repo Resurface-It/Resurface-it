@@ -4,6 +4,9 @@ import { useState } from 'react'
 import { Section } from '@/components/Section'
 import { SectionHeader } from '@/components/SectionHeader'
 import { ProjectCard } from '@/components/ProjectCard'
+import { HousecallProButton } from '@/components/HousecallProButton'
+import { PhoneLink } from '@/components/PhoneLink'
+import { companyInfo } from '@/data/company'
 import { trackGalleryFilter } from '@/lib/analytics'
 
 const allProjects = [
@@ -453,6 +456,25 @@ export default function GalleryPage() {
         {filteredProjects.map((project, index) => (
           <ProjectCard key={index} {...project} priority={index < 6} />
         ))}
+      </div>
+
+      {/* CTA block after gallery */}
+      <div className="mt-16 rounded-xl bg-primary/5 border border-primary/20 p-8 text-center">
+        <h2 className="mb-4 text-2xl font-bold text-slate-900 md:text-3xl">
+          Want Results Like These for Your Home?
+        </h2>
+        <p className="mb-6 text-lg text-slate-700 max-w-2xl mx-auto">
+          Every project starts with a free, no-obligation estimate. We&apos;ll visit your home, discuss your vision, and provide a detailed quote — often within 24 hours.
+        </p>
+        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <HousecallProButton variant="large">Get Free Estimate</HousecallProButton>
+          <PhoneLink
+            phone={companyInfo.phone}
+            className="text-lg font-semibold text-slate-900 hover:text-primary transition-colors"
+          >
+            Call: {companyInfo.phone}
+          </PhoneLink>
+        </div>
       </div>
     </Section>
   )

@@ -10,6 +10,7 @@ export const metadata: Metadata = genMeta({
   title: 'Case Studies | Resurface-It, Inc',
   description: 'View our completed projects with real photos and details. Professional siding, roofing, and painting projects throughout Eugene, Springfield, Corvallis, and Albany, Oregon.',
   path: '/case-studies',
+  noIndex: true,
 })
 
 export default function CaseStudiesIndexPage() {

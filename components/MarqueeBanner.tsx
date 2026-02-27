@@ -5,21 +5,18 @@ import Image from 'next/image'
 const message = "Friendly faces. Fresh siding. Better paint."
 
 const colorClasses = [
-  "text-blue-900", // dark blue
-  "text-black",    // black
-  "text-white",    // white
+  "text-blue-900",
+  "text-black",
+  "text-white",
 ]
 
 export function MarqueeBanner() {
-  // Two content blocks with CSS translateX(-50%) create a seamless loop.
-  // 10 iterations per block is enough to exceed any viewport width.
   const items: Array<{ type: 'message' | 'logo'; colorIndex?: number }> = []
   for (let i = 0; i < 10; i++) {
     items.push({ type: 'message', colorIndex: i % 3 })
     items.push({ type: 'logo' })
   }
 
-  // Render a single content block
   const renderContentBlock = (blockIndex: number) => (
     <div key={`content-block-${blockIndex}`} className="flex items-center whitespace-nowrap shrink-0" style={{ minWidth: 'max-content' }}>
       {items.map((item, index) => {
@@ -31,7 +28,7 @@ export function MarqueeBanner() {
             >
               <Image
                 src="/Resurface-it.png"
-                alt="Resurface-it Logo"
+                alt=""
                 width={180}
                 height={60}
                 className="h-10 md:h-14 w-auto"
@@ -55,35 +52,33 @@ export function MarqueeBanner() {
     </div>
   )
 
-  // For static fallback, show only 3 pairs (message + logo) to avoid wrapping
-  const staticItems = items.slice(0, 6)
-
   return (
     <div 
       className="border-y-2 border-primary/20 bg-primary/15 py-3 md:py-4 relative"
-      aria-label="Company tagline marquee"
-      style={{ minHeight: '3.5rem' }} // Explicit height to prevent CLS
+      role="marquee"
+      style={{ minHeight: '3.5rem' }}
     >
-      {/* Animated marquee - works on all screen sizes, hidden when user prefers reduced motion */}
-      {/* Pattern: 2 identical content blocks, animation moves -50% for seamless loop */}
-      {/* Content extends beyond viewport to prevent right-side cut-off */}
-      <div className="overflow-hidden marquee-animated w-full">
+      {/* Single accessible instance for screen readers / SEO */}
+      <p className="sr-only">{message}</p>
+
+      {/* Animated marquee — all visual duplicates hidden from assistive tech */}
+      <div className="overflow-hidden marquee-animated w-full" aria-hidden="true">
         <div className="flex animate-marquee-slow whitespace-nowrap" style={{ width: 'max-content', flexShrink: 0 }}>
           {renderContentBlock(0)}
           {renderContentBlock(1)}
         </div>
       </div>
       
-      {/* Static fallback for users who prefer reduced motion */}
-      <div className="flex marquee-static overflow-x-auto">
+      {/* Static fallback for reduced motion — also hidden from assistive tech (sr-only covers it) */}
+      <div className="flex marquee-static overflow-x-auto" aria-hidden="true">
         <div className="flex items-center justify-center gap-4 px-4 whitespace-nowrap">
-          {staticItems.slice(0, 4).map((item, index) => {
+          {items.slice(0, 4).map((item, index) => {
             if (item.type === 'logo') {
               return (
                 <div key={`static-logo-${index}`} className="flex shrink-0 items-center">
                   <Image
                     src="/Resurface-it.png"
-                    alt="Resurface-it Logo"
+                    alt=""
                     width={180}
                     height={60}
                     className="h-10 md:h-14 w-auto"
@@ -106,4 +101,3 @@ export function MarqueeBanner() {
     </div>
   )
 }
-

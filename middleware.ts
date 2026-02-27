@@ -2,12 +2,14 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 // Canonical city pages: /locations/[city]-or. Legacy URLs redirect here (301).
-const LEGACY_CITY_OR = ['eugene-or', 'albany-or', 'corvallis-or', 'springfield-or'] as const
+const LEGACY_CITY_OR = ['eugene-or', 'albany-or', 'corvallis-or', 'springfield-or', 'junction-city-or', 'veneta-or'] as const
 const CITY_SLUG_TO_OR: Record<string, string> = {
   eugene: 'eugene-or',
   albany: 'albany-or',
   corvallis: 'corvallis-or',
   springfield: 'springfield-or',
+  'junction-city': 'junction-city-or',
+  veneta: 'veneta-or',
 }
 
 export function middleware(request: NextRequest) {

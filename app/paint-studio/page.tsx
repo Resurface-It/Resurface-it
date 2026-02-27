@@ -1,98 +1,41 @@
-'use client'
-
-import { useState, useEffect, Suspense } from 'react'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { Suspense } from 'react'
+import Link from 'next/link'
 import { Section } from '@/components/Section'
 import { SectionHeader } from '@/components/SectionHeader'
-import { BrandSelector } from '@/components/PaintStudio/BrandSelector'
-import { PaintTypeSelector } from '@/components/PaintStudio/PaintTypeSelector'
-import { QualityLevelSelector } from '@/components/PaintStudio/QualityLevelSelector'
-import { ColorGrid } from '@/components/PaintStudio/ColorGrid'
-import type { PaintType } from '@/data/paintBrands'
+import { HousecallProButton } from '@/components/HousecallProButton'
+import { PhoneLink } from '@/components/PhoneLink'
+import { generateMetadata as genMeta } from '@/lib/seo'
+import { generateBreadcrumbSchema } from '@/lib/jsonld'
+import { companyInfo } from '@/data/company'
+import { CheckCircle } from 'lucide-react'
+import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 
-type Step = 'brand' | 'type' | 'quality' | 'colors'
+const PaintStudioContent = dynamic(
+  () => import('@/components/PaintStudio/PaintStudioContent'),
+  { ssr: false }
+)
 
-function PaintStudioContent() {
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const [step, setStep] = useState<Step>('brand')
-  const [selectedBrand, setSelectedBrand] = useState<string | null>(null)
-  const [selectedPaintType, setSelectedPaintType] = useState<PaintType | null>(null)
-  const [selectedQualityLevel, setSelectedQualityLevel] = useState<string | null>(null)
+export const metadata: Metadata = genMeta({
+  title: 'Paint Studio — Explore Premium Paint Colors | Resurface-It',
+  description:
+    'Browse paint colors from Sherwin-Williams, Benjamin Moore, Behr, and PPG. Choose the perfect color for your Oregon home with our Paint Studio. Free color consultation with every estimate.',
+  path: '/paint-studio',
+})
 
-  // Initialize from URL params
-  useEffect(() => {
-    const brandParam = searchParams.get('brand')
-    const typeParam = searchParams.get('type') as PaintType | null
-    const lineParam = searchParams.get('line')
-
-    if (brandParam && typeParam && lineParam) {
-      setSelectedBrand(brandParam)
-      setSelectedPaintType(typeParam)
-      setSelectedQualityLevel(lineParam)
-      setStep('colors')
-    } else if (brandParam && typeParam) {
-      setSelectedBrand(brandParam)
-      setSelectedPaintType(typeParam)
-      setStep('quality')
-    } else if (brandParam) {
-      setSelectedBrand(brandParam)
-      setStep('type')
-    }
-  }, [searchParams])
-
-  const handleBrandSelect = (brandId: string) => {
-    setSelectedBrand(brandId)
-    setStep('type')
-    router.push(`/paint-studio?brand=${brandId}`, { scroll: false })
-  }
-
-  const handlePaintTypeSelect = (paintType: string) => {
-    if (!selectedBrand) return
-    setSelectedPaintType(paintType as PaintType)
-    setStep('quality')
-    router.push(`/paint-studio?brand=${selectedBrand}&type=${paintType}`, {
-      scroll: false,
-    })
-  }
-
-  const handleQualityLevelSelect = (qualityLevelId: string) => {
-    if (!selectedBrand || !selectedPaintType) return
-    setSelectedQualityLevel(qualityLevelId)
-    setStep('colors')
-    router.push(
-      `/paint-studio?brand=${selectedBrand}&type=${selectedPaintType}&line=${qualityLevelId}`,
-      { scroll: false }
-    )
-  }
-
-  const handleBackToBrands = () => {
-    setSelectedBrand(null)
-    setSelectedPaintType(null)
-    setSelectedQualityLevel(null)
-    setStep('brand')
-    router.push('/paint-studio', { scroll: false })
-  }
-
-  const handleBackToType = () => {
-    if (!selectedBrand) return
-    setSelectedPaintType(null)
-    setSelectedQualityLevel(null)
-    setStep('type')
-    router.push(`/paint-studio?brand=${selectedBrand}`, { scroll: false })
-  }
-
-  const handleBackToQuality = () => {
-    if (!selectedBrand || !selectedPaintType) return
-    setSelectedQualityLevel(null)
-    setStep('quality')
-    router.push(`/paint-studio?brand=${selectedBrand}&type=${selectedPaintType}`, {
-      scroll: false,
-    })
-  }
+export default function PaintStudioPage() {
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Paint Studio', url: '/paint-studio' },
+  ])
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <Section className="bg-white py-16">
         <SectionHeader
           title="Paint Studio"
@@ -103,56 +46,120 @@ function PaintStudioContent() {
 
       <Section className="bg-slate-50 py-16">
         <div className="container">
-          {step === 'brand' && <BrandSelector onBrandSelect={handleBrandSelect} />}
+          <Suspense
+            fallback={
+              <div className="mx-auto max-w-4xl text-center">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                  {['Sherwin-Williams', 'Benjamin Moore', 'Behr', 'PPG'].map((brand) => (
+                    <div
+                      key={brand}
+                      className="flex flex-col items-center justify-center rounded-xl border-2 border-slate-200 bg-white p-8 animate-pulse"
+                    >
+                      <div className="mb-4 h-20 w-40 rounded bg-slate-200" />
+                      <p className="text-lg font-semibold text-slate-400">{brand}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            }
+          >
+            <PaintStudioContent />
+          </Suspense>
+        </div>
+      </Section>
 
-          {step === 'type' && selectedBrand && (
-            <PaintTypeSelector
-              brandId={selectedBrand}
-              onPaintTypeSelect={handlePaintTypeSelect}
-              onBack={handleBackToBrands}
-            />
-          )}
+      {/* Static SEO content that always renders server-side */}
+      <Section className="bg-white py-16">
+        <div className="container">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-6 text-3xl font-bold text-slate-900">
+              Find the Perfect Color for Your Oregon Home
+            </h2>
+            <p className="mb-4 text-lg text-slate-700">
+              Choosing the right paint color is one of the most important decisions in any painting
+              project. Our Paint Studio lets you explore thousands of colors from the most trusted
+              brands in the industry — Sherwin-Williams, Benjamin Moore, Behr, and PPG — so you
+              can find the perfect palette for your home&apos;s interior or exterior.
+            </p>
+            <p className="mb-6 text-lg text-slate-700">
+              Every free estimate from Resurface-It includes a color consultation. Our experienced
+              painters help you choose colors that complement your home&apos;s architecture, work
+              with Oregon&apos;s natural light, and stand up to our climate.
+            </p>
+            <div className="grid gap-4 md:grid-cols-2 mb-8">
+              {[
+                'Browse thousands of colors from 4 premium brands',
+                'Filter by interior, exterior, and specialty paint types',
+                'Compare quality levels and finish options',
+                'Free color consultation with every estimate',
+                'Expert guidance for Oregon-specific color choices',
+                'Colors matched to your home\'s style and surroundings',
+              ].map((benefit) => (
+                <div key={benefit} className="flex items-start gap-3">
+                  <CheckCircle className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
+                  <span className="text-lg text-slate-700">{benefit}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
 
-          {step === 'quality' && selectedBrand && selectedPaintType && (
-            <QualityLevelSelector
-              brandId={selectedBrand}
-              paintType={selectedPaintType}
-              onQualityLevelSelect={handleQualityLevelSelect}
-              onBack={handleBackToType}
-            />
-          )}
+      <Section className="bg-primary py-16 text-white">
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="mb-4 text-3xl font-bold">Ready to Choose Your Colors?</h2>
+            <p className="mb-8 text-lg text-white/90">
+              Schedule a free estimate and get expert color consultation included. We&apos;ll help
+              you choose colors that look beautiful and last in Oregon&apos;s climate.
+            </p>
+            <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <HousecallProButton
+                variant="large"
+                className="bg-white !text-slate-900 hover:bg-slate-100 shadow-xl font-bold"
+              >
+                Get Free Estimate
+              </HousecallProButton>
+              <PhoneLink
+                phone={companyInfo.phone}
+                className="text-lg font-semibold text-white hover:text-white/80 transition-colors"
+              >
+                Call: {companyInfo.phone}
+              </PhoneLink>
+            </div>
+          </div>
+        </div>
+      </Section>
 
-          {step === 'colors' &&
-            selectedBrand &&
-            selectedPaintType &&
-            selectedQualityLevel && (
-              <ColorGrid
-                brandId={selectedBrand}
-                paintType={selectedPaintType}
-                qualityLevelId={selectedQualityLevel}
-                onBack={handleBackToQuality}
-              />
-            )}
+      <Section className="bg-slate-50 py-12">
+        <div className="container">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="mb-4 text-lg text-slate-700">
+              Explore more of our services:
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                href="/services/exterior-painting"
+                className="rounded-lg border border-primary bg-white px-4 py-2 font-semibold text-primary transition-all hover:bg-primary hover:text-white"
+              >
+                Exterior Painting
+              </Link>
+              <Link
+                href="/services/interior-painting"
+                className="rounded-lg border border-primary bg-white px-4 py-2 font-semibold text-primary transition-all hover:bg-primary hover:text-white"
+              >
+                Interior Painting
+              </Link>
+              <Link
+                href="/gallery"
+                className="rounded-lg border border-primary bg-white px-4 py-2 font-semibold text-primary transition-all hover:bg-primary hover:text-white"
+              >
+                View Our Gallery
+              </Link>
+            </div>
+          </div>
         </div>
       </Section>
     </>
-  )
-}
-
-export default function PaintStudioPage() {
-  return (
-    <Suspense
-      fallback={
-        <Section className="bg-white py-16">
-          <SectionHeader
-            title="Paint Studio"
-            subtitle="Loading..."
-            align="center"
-          />
-        </Section>
-      }
-    >
-      <PaintStudioContent />
-    </Suspense>
   )
 }
