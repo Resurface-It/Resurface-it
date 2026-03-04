@@ -16,8 +16,8 @@ const stats = [
   },
   {
     icon: Star,
-    label: '5 Star Reviews',
-    value: '50+',
+    label: 'Google Rating',
+    value: '4.7★',
   },
   {
     icon: Award,

@@ -40,7 +40,7 @@ export default function AreasWeServePage() {
 
       <CitiesGrid
         cities={primaryCities.filter(
-          (city) => city.slug !== 'junction-city' && city.slug !== 'veneta'
+          (city) => city.slug !== 'junction-city'
         )}
         surroundingCities={surroundingCities}
         groupByRegion

@@ -2,7 +2,6 @@ export const companyInfo = {
   name: 'Resurface-It, Inc Siding, Roofing & Painting',
   shortName: 'Resurface-It',
   phone: '(541) 913-5940',
-  officePhone: '(541) 255-1331',
   email: 'info@resurface-it.com', // TODO: Replace with actual email
   address: {
     street: '2535 Prairie Rd unit c',
@@ -49,13 +48,13 @@ export const companyInfo = {
   aggregateRating: (() => {
     const rating = typeof process !== 'undefined' && process.env.NEXT_PUBLIC_GOOGLE_RATING
       ? parseFloat(process.env.NEXT_PUBLIC_GOOGLE_RATING)
-      : 5
+      : 4.7
     const count = typeof process !== 'undefined' && process.env.NEXT_PUBLIC_GOOGLE_REVIEW_COUNT
       ? parseInt(process.env.NEXT_PUBLIC_GOOGLE_REVIEW_COUNT, 10)
-      : 50
+      : 12
     return {
-      ratingValue: Number.isFinite(rating) ? rating : 5,
-      reviewCount: Number.isInteger(count) && count >= 0 ? count : 50,
+      ratingValue: Number.isFinite(rating) ? rating : 4.7,
+      reviewCount: Number.isInteger(count) && count >= 0 ? count : 12,
     }
   })(),
 

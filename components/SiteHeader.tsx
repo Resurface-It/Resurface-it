@@ -36,14 +36,14 @@ export function SiteHeader() {
     description: service.shortDescription,
   }))
 
-  // Areas dropdown items - only show main cities
-  const mainCities = ['eugene', 'springfield', 'corvallis', 'albany']
+  // Areas dropdown items - show main cities plus Veneta
+  const mainCities = ['eugene', 'springfield', 'corvallis', 'albany', 'veneta']
   const areasDropdownItems = [
     ...primaryCities
       .filter(city => mainCities.includes(city.slug))
       .sort((a, b) => mainCities.indexOf(a.slug) - mainCities.indexOf(b.slug))
       .map(city => ({
-        href: `/${city.slug}-or`,
+        href: `/locations/${city.slug}-or`,
         label: city.name,
       })),
     {

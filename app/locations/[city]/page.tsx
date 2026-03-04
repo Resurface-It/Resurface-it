@@ -43,8 +43,8 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
   }
 
   return genMeta({
-    title: `Siding, Roofing & Painting in ${city.name}, OR`,
-    description: `Professional siding replacement, roofing, and painting services in ${city.name}, Oregon. Top-rated contractors serving ${city.name} and surrounding areas. Licensed, insured, 5-year warranty. Free estimates.`,
+    title: `Siding Replacement & Painting in ${city.name}, OR`,
+    description: `Professional siding replacement and exterior painting in ${city.name}, Oregon. Locally owned, licensed & insured (CCB #217088). 5-year workmanship warranty. Free estimates within 24 hours.`,
     path: `/locations/${citySlug}`,
   })
 }
@@ -121,7 +121,7 @@ export default async function CityLocationPage({ params }: CityPageProps) {
         <div className="container relative z-10">
           <div className="mx-auto max-w-5xl">
             <h1 className="mb-6 text-center text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-              Siding, Roofing & Painting Services in {city.name}, OR
+              Siding &amp; Painting Services in {city.name}, OR
             </h1>
             <p className="mb-8 text-center text-xl text-white/95 md:text-2xl">
               Professional home exterior services that protect your investment and enhance your home&apos;s value in {city.name}, Oregon

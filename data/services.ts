@@ -369,7 +369,7 @@ export const services: Service[] = [
       '5-year workmanship warranty included',
     ],
     startingPrice: '$6,500',
-    featured: true,
+    featured: false,
     icon: 'building',
     processSteps: [
       {
@@ -445,7 +445,7 @@ export const services: Service[] = [
       'Resurfacing overlays to restore worn slabs',
       'Professional pressure washing and surface cleaning',
     ],
-    featured: true,
+    featured: false,
     icon: 'square',
   },
 ]

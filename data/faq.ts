@@ -247,6 +247,21 @@ export const faqs: FAQ[] = [
     answer: 'Requesting an estimate is easy—call us at (541) 913-5940 or use our online form. We typically provide estimates within 24 hours. We\'ll visit your Springfield home, assess your project, discuss your goals, and provide a detailed written estimate with no obligation.',
     category: 'city-specific',
   },
+  {
+    question: 'Do you work on rural properties and acreage homes in Veneta?',
+    answer: 'Yes, we regularly serve rural properties and acreage homes in and around Veneta. We\'re comfortable working on larger lots and properties west of Eugene. Call (541) 913-5940 to schedule a free on-site estimate.',
+    category: 'city-specific',
+  },
+  {
+    question: 'Do you offer written estimates for painting and siding in Veneta?',
+    answer: 'Absolutely. Every project starts with a free, no-obligation written estimate that details scope, materials, timeline, and pricing. Any changes during the project are handled with written change orders—so there are never surprise costs.',
+    category: 'city-specific',
+  },
+  {
+    question: 'How long does an exterior paint job take in Veneta?',
+    answer: 'Most exterior painting projects in Veneta take 3–7 business days depending on home size, prep requirements, and weather conditions. We schedule around Oregon\'s wet seasons and communicate your timeline clearly from the start.',
+    category: 'city-specific',
+  },
 ]
 
 export function getFAQsByCategory(category: FAQ['category']): FAQ[] {
@@ -271,6 +286,7 @@ export function getCityFAQs(cityName: string): FAQ[] {
     'Albany': ['How long does siding replacement take in Albany, OR?'],
     'Corvallis': ['What siding materials work best for Corvallis homes?'],
     'Springfield': ['How do I request an estimate in Springfield, OR?'],
+    'Veneta': ['Do you work on rural properties and acreage homes in Veneta?', 'Do you offer written estimates for painting and siding in Veneta?', 'How long does an exterior paint job take in Veneta?'],
   }
   
   const questions = cityFAQMap[cityName] || []

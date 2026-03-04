@@ -176,9 +176,6 @@ export default function TermsPage() {
                 <p className="mb-2 text-slate-700">
                   Phone: <a href={`tel:${companyInfo.phone.replace(/\s/g, '')}`} className="text-primary hover:underline">{companyInfo.phone}</a>
                 </p>
-                <p className="mb-2 text-slate-700">
-                  Office: <a href={`tel:${companyInfo.officePhone.replace(/\s/g, '')}`} className="text-primary hover:underline">{companyInfo.officePhone}</a>
-                </p>
                 <p className="text-slate-700">
                   Email: <a href={`mailto:${companyInfo.email}`} className="text-primary hover:underline">{companyInfo.email}</a>
                 </p>

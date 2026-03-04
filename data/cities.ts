@@ -76,14 +76,19 @@ export const primaryCities: City[] = [
   {
     slug: 'veneta',
     name: 'Veneta',
-    headline: 'Siding, Roofing & Painting Services in Veneta, OR',
-    blurb: 'Serving Veneta homeowners with professional siding, roofing, and painting services. We provide expert solutions tailored to this community\'s needs.',
-    nearby: ['Eugene', 'Elmira'],
-    highlightedServices: ['siding-replacement', 'exterior-painting'],
-    neighborhoods: ['Residential areas'],
-    housingCharacteristics: 'Veneta features primarily residential homes that benefit from exterior protection and modernization.',
-    climateNotes: 'Veneta experiences Willamette Valley climate patterns requiring proper weatherproofing and moisture management.',
-    serviceRecommendations: ['Complete exterior upgrades', 'Weatherproofing services'],
+    headline: 'Painting & Siding Contractors in Veneta, OR',
+    blurb: 'Locally owned in Eugene, Resurface-It serves Veneta homeowners with prep-first exterior painting and siding services built for Oregon\'s climate. 5-year workmanship warranty. CCB #217088.',
+    nearby: ['Eugene', 'Elmira', 'Cheshire'],
+    highlightedServices: ['siding-replacement', 'exterior-painting', 'interior-painting'],
+    neighborhoods: ['Veneta', 'Elmira', 'Crow Road area', 'Rural Lane County properties'],
+    housingCharacteristics: 'Veneta features a mix of established residential homes, rural properties, and acreage homes west of Eugene. Many homes benefit from exterior protection upgrades that address moisture intrusion, UV damage, and aging siding common in this area.',
+    climateNotes: 'Veneta sits in the Coast Range foothills, receiving more rainfall than Eugene proper. Homes face elevated moisture exposure, moss growth on north-facing surfaces, and strong UV damage on sun-exposed sides. Moisture-resistant primers and properly sealed siding are essential.',
+    serviceRecommendations: [
+      'Moisture-resistant primers for exterior painting',
+      'James Hardie fiber cement siding for long-term protection',
+      'Rot repair and written change orders for siding replacement',
+      'UV-protective topcoats for south-facing surfaces',
+    ],
   },
 ]
 

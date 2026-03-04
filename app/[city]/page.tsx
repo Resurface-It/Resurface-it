@@ -192,7 +192,7 @@ export default async function CityPage({ params }: CityPageProps) {
               </div>
               <h3 className="mb-3 text-xl font-bold text-slate-900">Reputation</h3>
               <p className="text-slate-600">
-                50+ five-star reviews! We&apos;re the siding & painting contractor of choice for {city.name} and surrounding areas.
+                Rated 4.7★ on Google by homeowners in {city.name} and the Willamette Valley. We&apos;re the prep-first siding &amp; painting contractor of choice for this area.
               </p>
             </div>
 

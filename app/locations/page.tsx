@@ -9,8 +9,8 @@ import type { Metadata } from 'next'
 import { MapPin } from 'lucide-react'
 
 export const metadata: Metadata = genMeta({
-  title: 'Service Areas | Eugene, Albany, Corvallis, Springfield OR',
-  description: 'Serving Eugene, Albany, Corvallis, Springfield, and surrounding Willamette Valley communities. Local siding, roofing, and painting services. Free estimates.',
+  title: 'Service Areas | Eugene, Albany, Corvallis, Springfield, Veneta OR',
+  description: 'Serving Eugene, Albany, Corvallis, Springfield, Veneta, and surrounding Willamette Valley communities. Local siding replacement and painting services. Free estimates.',
   path: '/locations',
 })
 
@@ -31,10 +31,10 @@ export default function LocationsHubPage() {
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="mb-6">
-              Service Areas: Eugene, Albany, Corvallis, Springfield & Surrounding Oregon Areas
+              Service Areas: Eugene, Albany, Corvallis, Springfield, Veneta &amp; Surrounding Oregon Areas
             </h1>
             <p className="mb-4 text-xl text-slate-600">
-              Resurface-It, Inc proudly serves homeowners throughout the Willamette Valley with premium siding, roofing, and painting services.
+              Resurface-It, Inc proudly serves homeowners throughout the Willamette Valley with premium siding replacement and painting services.
             </p>
             <p className="mb-8 text-lg text-slate-600">
               As a locally owned company based in Eugene, we understand the unique needs of Oregon homes and provide expert solutions tailored to our climate—from{' '}
@@ -60,7 +60,7 @@ export default function LocationsHubPage() {
           </p>
           <div className="grid gap-6 md:grid-cols-2">
             {primaryCities
-              .filter(city => city.slug !== 'junction-city' && city.slug !== 'veneta')
+              .filter(city => city.slug !== 'junction-city')
               .map((city) => (
                 <Link
                   key={city.slug}
@@ -228,7 +228,7 @@ export default function LocationsHubPage() {
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="mb-4 text-3xl font-bold">Ready to Get Started?</h2>
           <p className="mb-8 text-lg text-primaryLight">
-            Get your free, no-obligation estimate for siding, roofing, or painting services.
+            Get your free, no-obligation estimate for siding replacement or painting services.
           </p>
           <HousecallProButton variant="large" className="bg-white text-primary hover:bg-slate-100">
             Get Free Estimate

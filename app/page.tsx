@@ -128,7 +128,7 @@ export default function HomePage() {
         <div className="container relative z-10">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-              Residential & Commercial Painting and Siding Experts Serving the Willamette Valley
+              Residential & Commercial Painting, Siding & Concrete Experts Serving the Willamette Valley
             </h1>
             <p className="mb-2 text-xl text-white/95 md:text-2xl">
               Your local siding contractors and painters in the Willamette Valley—expertly built for Oregon&apos;s climate.
@@ -182,15 +182,59 @@ export default function HomePage() {
       {/* Trust Strip */}
       <TrustStrip />
 
+      {/* Conversion Block */}
+      <Section className="bg-white py-12 border-b border-slate-100">
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="mb-3 text-2xl font-bold md:text-3xl">
+              Exterior Painting &amp; Siding Done Right <span className="text-primary">(Prep First)</span>
+            </h2>
+            <p className="mb-6 text-slate-600">
+              We don&apos;t cut corners. Every project starts with thorough prep—because great results begin before the first coat of paint.
+            </p>
+            <div className="mb-8 grid grid-cols-1 gap-3 text-left sm:grid-cols-2 md:grid-cols-3">
+              {[
+                { icon: '🔲', text: 'Prep is non-negotiable' },
+                { icon: '📋', text: 'Written scope & change orders' },
+                { icon: '🧹', text: 'Clean jobsite, respectful crew' },
+                { icon: '🛡️', text: '5-year workmanship warranty' },
+                { icon: '✅', text: 'Licensed & insured (CCB #217088)' },
+                { icon: '📞', text: 'Fast estimates — often in 24 hours' },
+              ].map(({ icon, text }) => (
+                <div key={text} className="flex items-center gap-3 rounded-lg bg-slate-50 px-4 py-3">
+                  <span className="text-lg">{icon}</span>
+                  <span className="text-sm font-medium text-slate-800">{text}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <HousecallProButton variant="large" className="shadow-md rounded-full">
+                Get Free Estimate
+              </HousecallProButton>
+              <PhoneLink
+                phone={companyInfo.phone}
+                className="text-lg font-bold text-primary hover:text-primaryDark transition-colors"
+              >
+                Call {companyInfo.phone}
+              </PhoneLink>
+            </div>
+          </div>
+        </div>
+      </Section>
+
       {/* Social Proof Section */}
       <Section className="bg-slate-50 py-16">
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-              Oregon Homeowners Rate Resurface-it ★★★★★ for Siding & Painting
+              Rated 4.7★ by Oregon Homeowners
             </h2>
             <p className="mb-8 text-lg text-slate-600">
-              With 50+ five-star reviews from homeowners across Eugene, Albany, Corvallis, and Springfield, we&apos;ve built our reputation on quality work, clear communication, and standing behind every project with our 5-year warranty.
+              Trusted by homeowners in Eugene, Springfield, Corvallis, Albany, and Veneta. We&apos;ve built our reputation on quality prep work, clear communication, and standing behind every project with our 5-year warranty.{' '}
+              <a href={companyInfo.googleBusinessProfileUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">
+                See our latest reviews on Google
+              </a>
+              {' '}— we respond to every customer.
             </p>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {getFiveStarReviews(testimonials).slice(0, 3).map((testimonial, index) => {
@@ -241,19 +285,11 @@ export default function HomePage() {
                 As a locally owned, non-franchise company based in Eugene, we understand the unique challenges Oregon homeowners face. Our experienced crews use materials specifically chosen for Oregon&apos;s weather—moisture-resistant primers, UV-protective paints, and durable siding materials that stand up to our climate. Every project is backed by our 5-year workmanship warranty, giving you confidence that your investment will last.
               </p>
               <p className="mb-6 text-lg leading-relaxed text-slate-700">
-                We also provide{' '}
+                We also offer{' '}
                 <Link href="/services/interior-painting" className="font-semibold text-primary hover:underline">
                   interior painting
                 </Link>
-                ,{' '}
-                <Link href="/services/deck-staining" className="font-semibold text-primary hover:underline">
-                  deck staining
-                </Link>
-                , and{' '}
-                <Link href="/services/pressure-washing" className="font-semibold text-primary hover:underline">
-                  pressure washing
-                </Link>
-                . Our crews are respectful, keep job sites clean daily, and communicate clearly throughout your project. We&apos;re not just contractors—we&apos;re your neighbors, committed to protecting your most valuable investment.
+                {' '}for complete home transformations. Our crews are respectful, keep job sites clean daily, and communicate clearly throughout your project. We&apos;re not just contractors—we&apos;re your neighbors, committed to protecting your most valuable investment.
               </p>
               <Link href="/about">
                 <SecondaryButton>Learn More About Us</SecondaryButton>
@@ -416,20 +452,21 @@ export default function HomePage() {
           </Link>
           ? We serve Eugene, Albany, Corvallis, Springfield and the wider Willamette Valley.
         </p>
-        <div className="mt-8 grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {primaryCities
-            .filter(city => city.slug !== 'junction-city' && city.slug !== 'veneta')
+            .filter(city => city.slug !== 'junction-city')
             .map((city) => {
             const citySpecificBlurbs: Record<string, string> = {
               eugene: 'From historic homes near the University of Oregon to modern builds in River Road, Eugene\'s diverse neighborhoods require siding and paint solutions that withstand our wet winters and sunny summers.',
               albany: 'Albany\'s mix of historic and newer homes benefits from our expertise in both traditional and modern siding materials, plus exterior painting that protects against Oregon\'s humidity and rain.',
               corvallis: 'Corvallis homeowners trust us for siding replacement and painting that stands up to the Willamette Valley\'s climate. We work with homes near OSU, in established neighborhoods, and throughout the area.',
               springfield: 'Springfield\'s growing community needs reliable exterior services. We provide siding replacement and painting solutions that protect homes from Oregon\'s weather while enhancing curb appeal.',
+              veneta: 'Veneta homeowners trust us for prep-first exterior painting and siding work built to handle rural Oregon\'s moisture and UV exposure. We serve Veneta properties of all sizes.',
             }
             return (
               <Link
                 key={city.slug}
-                href={`/${city.slug}-or`}
+                href={`/locations/${city.slug}-or`}
                 className="rounded-xl border border-slate-200 bg-white p-5 md:p-6 text-center transition-shadow hover:shadow-lg"
               >
                 <h3 className="mb-3 text-lg md:text-xl font-semibold">{city.name}</h3>

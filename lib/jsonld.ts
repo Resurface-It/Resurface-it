@@ -13,6 +13,7 @@ export interface LocalBusiness {
   '@context': string
   '@type': string | string[]
   name: string
+  url?: string
   description: string
   telephone: string
   email: string
@@ -72,12 +73,17 @@ export interface FAQPage {
 }
 
 export function generateLocalBusinessSchema(): LocalBusiness {
+  const siteUrl = typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SITE_URL
+    ? process.env.NEXT_PUBLIC_SITE_URL
+    : 'https://resurface-it.com'
+
   return {
     '@context': 'https://schema.org',
     '@type': ['HomeAndConstructionBusiness', 'GeneralContractor', 'HousePainter'],
     name: companyInfo.name,
+    url: siteUrl,
     description:
-      'Professional interior and exterior house painters and siding replacement specialists serving the Willamette Valley, including Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas. Licensed, insured, locally owned, and backed by a 5-year workmanship warranty.',
+      'Professional exterior painting and siding replacement specialists serving the Willamette Valley, including Eugene, Albany, Corvallis, Springfield, Veneta, and surrounding Oregon areas. Prep-first craftsmanship, locally owned, licensed & insured, backed by a 5-year workmanship warranty.',
     telephone: companyInfo.phone,
     email: companyInfo.email,
     address: {
@@ -101,7 +107,6 @@ export function generateLocalBusinessSchema(): LocalBusiness {
       'Benton County, OR',
     ],
     serviceType: [
-      'Roofing',
       'Siding Replacement',
       'Exterior Painting',
       'Interior Painting',
@@ -144,6 +149,7 @@ export function generateServiceSchema(serviceName: string, serviceDescription: s
       'Albany, OR',
       'Corvallis, OR',
       'Springfield, OR',
+      'Veneta, OR',
     ],
   }
 }
@@ -235,7 +241,7 @@ export function generateOrganizationSchema(): Organization {
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     description:
-      'Professional interior and exterior house painters, siding replacement, and roofing services in the Willamette Valley, including Eugene, Albany, Corvallis, Springfield, and surrounding Oregon communities. Licensed, insured, locally owned, and backed by a 5-year workmanship warranty.',
+      'Professional exterior painting and siding replacement specialists in the Willamette Valley, including Eugene, Albany, Corvallis, Springfield, Veneta, and surrounding Oregon communities. Prep-first craftsmanship, locally owned, licensed & insured, backed by a 5-year workmanship warranty.',
     telephone: companyInfo.phone,
     email: companyInfo.email,
     address: {

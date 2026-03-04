@@ -27,10 +27,10 @@ export function SiteFooter() {
               />
             </div>
             <p className="mb-4 text-sm text-slate-600">
-              Premium siding replacement, roofing, and painting services for Eugene, Albany, Corvallis, Springfield, and surrounding Oregon areas—your local siding contractors and house painters in the Willamette Valley.
+              Premium siding replacement and painting services for Eugene, Albany, Corvallis, Springfield, Veneta, and surrounding Oregon areas—your local siding contractors and house painters in the Willamette Valley.
             </p>
             <p className="mb-4 text-xs text-slate-500 italic">
-              Resurface-It, Inc specializes in siding, roofing, and painting services for residential exteriors in the Willamette Valley.
+              Resurface-It, Inc specializes in siding replacement and painting services for residential exteriors in the Willamette Valley.
             </p>
             <div className="mb-4 space-y-2">
               <PillBadge>5-Year Workmanship Warranty</PillBadge>
@@ -192,7 +192,7 @@ export function SiteFooter() {
               <h4 className="mb-3 text-sm font-semibold text-slate-900">Service Areas</h4>
               <ul className="mb-2 space-y-1 text-xs text-slate-600">
                 {primaryCities
-                  .filter((c) => ['eugene', 'albany', 'corvallis', 'springfield'].includes(c.slug))
+                  .filter((c) => ['eugene', 'albany', 'corvallis', 'springfield', 'veneta'].includes(c.slug))
                   .map((city) => (
                     <li key={city.slug}>
                       <Link href={`/locations/${city.slug}-or`} className="hover:text-primary">
@@ -216,10 +216,6 @@ export function SiteFooter() {
                   <Phone className="h-4 w-4" />
                   {companyInfo.phone}
                 </PhoneLink>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                <span>Office: {companyInfo.officePhone}</span>
               </li>
               <li>
                 <a href={`mailto:${companyInfo.email}`} className="flex items-center gap-2 hover:text-primary">
